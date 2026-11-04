@@ -1,0 +1,41 @@
+{
+  "name": "sinceai-2026",
+  "version": "0.0.0",
+  "phase": "0",
+  "phaseName": "Scaffold before the event: no product code, no challenge selected",
+  "session": 1,
+  "updated": "2026-11-04",
+  "state": "Session 1 (4.11.2026, Code on the main PC): the scaffold and the documentation structure written and pushed as commit 1. The preparation of the machines and connections continues outside this repository, from the Atlas artifact SINCEAI-2026-SUUNNITELMA.",
+  "next_session": {
+    "id": "event-start",
+    "name": "Challenge selection and the first build",
+    "read_first": [
+      "CLAUDE.md",
+      "docs/roadmap.md",
+      "docs/BACKLOG.md",
+      "docs/DECISIONS.md"
+    ],
+    "scope": "After the selection on Friday 6.11.: rename the repository, register the Atlas system, fill product.md, architecture.md and the README's Challenge and Data and IP sections, then build.",
+    "gate": "The challenge is selected and its IP terms and data restrictions have been read."
+  },
+  "git_commit": null,
+  "git_commit_note": "A commit cannot hold its own hash. The hash of commit 1 is in the Atlas artifact SINCEAI-2026-PYSTYTYS-VASTINE.",
+  "deploy": {
+    "surface": "none yet",
+    "atlas": "No Atlas system yet; it is registered once the challenge is known (BACKLOG REPO-2)."
+  },
+  "ci": "none: added only if the build needs a gate",
+  "github": "github.com/pkorrrhonen-cmd/sinceai-2026 (private; renamed after the selection, GitHub redirects the old name)",
+  "atlasArtifacts": {
+    "plan": "SINCEAI-2026-SUUNNITELMA",
+    "handoff": "SINCEAI-2026-PYSTYTYS-HANDOFF (its event facts stand; the plan replaced its order)",
+    "report": "SINCEAI-2026-PYSTYTYS-VASTINE",
+    "runbook": "SINCEAI-2026-RUNBOOK"
+  },
+  "workflow": "Code, comments, commits and documentation in English; conversation with the owner in Finnish. During the event straight to main in small commits; never force-push or rewrite history. End a session by updating BUILD_INFO.json, CHANGELOG.md, BACKLOG.md, DECISIONS.md and, when a lesson was paid for, LESSONS.md.",
+  "machines": {
+    "main_pc": "Windows; the checkout's folder is named sinceai2026, without the hyphen",
+    "mac": "The machine at the event; cloned from GitHub",
+    "truth": "main on GitHub is the only truth"
+  }
+}

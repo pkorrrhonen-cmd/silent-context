@@ -1,0 +1,17 @@
+# Secrets never enter git
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Dependencies and builds
+node_modules/
+.venv/
+__pycache__/
+
+# Tools and the machine
+.claude/worktrees/
+.claude/settings.local.json
+.DS_Store
+Thumbs.db
