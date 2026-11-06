@@ -15,6 +15,7 @@ Updated 6.11.2026 (session 2).
 | 1 | The challenge | Elisa, selected 6.11.2026. Final. | `OK` |
 | 2 | Visibility | Private. The IP terms are read. The submission form asks for a repository link, so this is decided before the submission; gitleaks over the full history before any flip to public. | `later`, before the submission on 8.11. |
 | 3 | License | None chosen. The terms: the team owns what it builds, and Elisa can use it in its business. | `later`, before the submission on 8.11. |
+| 4 | Truth set, the second expert's claim | The truth set binds it to TRN-051. The model left it waiting (`no_id`), because the advice is about old units in general and TRN-051 only prompted it. Recommended: correct the truth set, with a visible note that this was done after the first run. | `draft` |
 
 ## Design decisions P1 to P6
 

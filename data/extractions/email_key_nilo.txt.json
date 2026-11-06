@@ -1,0 +1,33 @@
+{
+  "key": "51c11a76cf55435f6fdbe6e7d6506e8bc5fc383b7453985e3467b8d2db9f132f",
+  "model": "claude-opus-5-5",
+  "output": {
+    "claims": [
+      {
+        "kind": "access",
+        "claim_text": "There is a locked barrier at the start of the private road to the Nilo site; the key is in the grey box under the mailbox at the junction.",
+        "symptom": null,
+        "advice_message_seqs": [
+          1
+        ],
+        "relayed": false,
+        "target_node_ids": [],
+        "target_sites": [
+          "Nilo"
+        ],
+        "target_ports": [],
+        "target_firmware": null,
+        "mentions_barrier": true,
+        "procedure_type": null,
+        "scope_text": null,
+        "scope_names_version": null,
+        "relative_time": null,
+        "same_as_existing": null,
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": []
+      }
+    ],
+    "estimates": []
+  }
+}

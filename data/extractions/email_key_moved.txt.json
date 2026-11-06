@@ -1,0 +1,33 @@
+{
+  "key": "c89320094dece944132fa5b2f080d5b897c74400292c5164e9d71ad1ea94698a",
+  "model": "claude-opus-5-5",
+  "output": {
+    "claims": [
+      {
+        "kind": "access",
+        "claim_text": "The key to the barrier on the private road to the Nilo site is now in the maintenance hut by the junction, on the hook inside the door (moved from the grey box under the mailbox, which broke).",
+        "symptom": null,
+        "advice_message_seqs": [
+          1
+        ],
+        "relayed": false,
+        "target_node_ids": [],
+        "target_sites": [
+          "Nilo"
+        ],
+        "target_ports": [],
+        "target_firmware": null,
+        "mentions_barrier": true,
+        "procedure_type": null,
+        "scope_text": null,
+        "scope_names_version": null,
+        "relative_time": "yesterday",
+        "same_as_existing": null,
+        "replaces_existing": "clm-001",
+        "contradicts_existing": null,
+        "outcomes": []
+      }
+    ],
+    "estimates": []
+  }
+}

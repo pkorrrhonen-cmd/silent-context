@@ -29,7 +29,6 @@ Updated 6.11.2026 (session 2).
 | P-2 | *check* **Accept the IP terms** in sinceai.app. | The terms are read; whether they were accepted in the app is not recorded here. A gate before the submission. |
 | P-3 | **Submit** in sinceai.app: project details, submission URL, repository or demo link, video, source zip. | Closes Sunday 8.11. at 10:00 EET; the plan is to send by 09:30. |
 | P-4 | **Name the product.** | Needed for REPO-1, the README's title and the video. |
-| P-5 | **Choose the model endpoint and put its values in `.env`.** | BUILD-3 cannot start without it. No key is set in the Mac's shell environment. |
 
 ## The repository
 
@@ -44,7 +43,6 @@ Updated 6.11.2026 (session 2).
 
 | Code | Task | Why / notes |
 |---|---|---|
-| BUILD-3 | Extraction and binding. | Phase 3. Needs a model endpoint. |
 | BUILD-4 | `claims_for` and the agent. | Phase 4. |
 | BUILD-5 | Events, ageing, conflict. | Phase 5. |
 | BUILD-6 | Web page and graph. | Phase 6. Adds vis-network to the README's licence table. |

@@ -1,0 +1,69 @@
+{
+  "key": "f6294b95d8af256f66498a26b369b4dc1f507e8f65705d48ae1bcc853dab04e3",
+  "model": "claude-opus-5-5",
+  "output": {
+    "claims": [
+      {
+        "kind": "troubleshooting",
+        "claim_text": "The advice about not trusting green link status after an SFP change and disabling/enabling the interface was about the old 4.x firmware units; on the new 6.x boxes I would not expect the disable/enable to help.",
+        "symptom": "interface up after SFP change but traffic counters stay at zero",
+        "advice_message_seqs": [
+          3
+        ],
+        "relayed": false,
+        "target_node_ids": [],
+        "target_sites": [],
+        "target_ports": [],
+        "target_firmware": null,
+        "mentions_barrier": false,
+        "procedure_type": "PROC-SFP-REPLACE",
+        "scope_text": "the 4.x firmware ones",
+        "scope_names_version": "4.x",
+        "relative_time": null,
+        "same_as_existing": "clm-002",
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": [
+          {
+            "kind": "failure",
+            "message_seq": 2,
+            "unit_id": "TRN-100"
+          }
+        ]
+      },
+      {
+        "kind": "troubleshooting",
+        "claim_text": "When the link is up with alarms clear but there is no traffic and counters are at zero, look at the service profile on that port; the migration last month may have dropped something.",
+        "symptom": "link up, alarms clear, no traffic and counters at zero after SFP swap",
+        "advice_message_seqs": [
+          5
+        ],
+        "relayed": false,
+        "target_node_ids": [
+          "TRN-100"
+        ],
+        "target_sites": [],
+        "target_ports": [
+          "xe-0/1/0"
+        ],
+        "target_firmware": "6.x",
+        "mentions_barrier": false,
+        "procedure_type": null,
+        "scope_text": null,
+        "scope_names_version": null,
+        "relative_time": null,
+        "same_as_existing": null,
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": [
+          {
+            "kind": "success",
+            "message_seq": 7,
+            "unit_id": "TRN-100"
+          }
+        ]
+      }
+    ],
+    "estimates": []
+  }
+}

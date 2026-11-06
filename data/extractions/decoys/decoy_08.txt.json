@@ -1,0 +1,33 @@
+{
+  "key": "932baed0f99cebe7ffebd34c9256562c7e393d24b3302b0e256afb70c876b5ba",
+  "model": "claude-opus-5-5",
+  "output": {
+    "claims": [
+      {
+        "kind": "access",
+        "claim_text": "The Koski hut key is no longer in the box by the door; as far as Aarne knows it is now held at the caretaker's office, so call ahead and they will meet you. Phone the monitoring desk before you open up because the door contact raises an alarm, and allow an extra half hour on the first visit.",
+        "symptom": null,
+        "advice_message_seqs": [
+          1
+        ],
+        "relayed": false,
+        "target_node_ids": [],
+        "target_sites": [
+          "Koski"
+        ],
+        "target_ports": [],
+        "target_firmware": null,
+        "mentions_barrier": false,
+        "procedure_type": null,
+        "scope_text": null,
+        "scope_names_version": null,
+        "relative_time": null,
+        "same_as_existing": null,
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": []
+      }
+    ],
+    "estimates": []
+  }
+}

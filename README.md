@@ -61,6 +61,25 @@ be rebuilt at any time, because nothing in it is original:
 uv run python -m app.db --seed
 ```
 
+To read the sources into the store, as far as the demo clock has reached:
+
+```bash
+uv run --env-file .env python -m app.ingest
+```
+
+```bash
+uv run --env-file .env python -m app.ingest --until 2026-10-20T12:00:00
+```
+
+This needs no model and no key: the model's answers are recorded in `data/extractions/`, so a clean
+install reads them instead of calling anything. The model is called only for a source whose prompt has
+changed, or with `--refresh`, and without settings it says so. To score the result against the truth
+set and the held-out binding set:
+
+```bash
+uv run --env-file .env python -m app.ingest --truth
+```
+
 To write the graph to `export/graph.json`:
 
 ```bash
@@ -81,6 +100,10 @@ on the author's machines or accounts.
 
 The tools used to build it and the environment the demo was recorded in are not part of the product.
 
+The recorded answers came from Claude Opus 5.5 through Anthropic's OpenAI compatibility layer.
+Anthropic describes that layer as intended for testing and comparing models, not as a long-term
+production solution, so a production deployment should choose its endpoint accordingly.
+
 ## Pre-existing work
 
 Commit 1 (4.11.2026) is a scaffold created before the event; everything after it was built at Since AI 2026.
@@ -92,6 +115,7 @@ Commit 1 (4.11.2026) is a scaffold created before the event; everything after it
 | Claude Code (Claude Opus 5.5) | Creating the scaffold in commit 1; writing the code, the synthetic data and the documentation at the event |
 | Claude (Fable 5.1) on claude.ai | Analysing the challenge material; writing the decision document and the build plan |
 | Claude Opus 5.5 and GPT 6.1 in structured multi-agent rooms | Generating ideas (3 rooms) and challenging the design decisions (6 rooms); the owner made the decisions |
+| Claude Opus 5.5 through the API | Part of the demo, not of building it: reads the sources for the extraction whose answers are in `data/extractions/` |
 
 ## Synthetic data
 
@@ -107,6 +131,7 @@ Direct dependencies, licences read from the installed package metadata:
 | FastAPI | MIT | HTTP interface |
 | Uvicorn | BSD-3-Clause | Application server |
 | OpenAI Python SDK | Apache-2.0 | Client for any OpenAI-compatible endpoint |
+| Pydantic | MIT | The extraction's schema and its validation |
 | pytest | MIT | Tests (development only) |
 | HTTPX | BSD-3-Clause | Test client (development only) |
 

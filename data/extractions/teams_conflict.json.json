@@ -1,0 +1,56 @@
+{
+  "key": "61e05ba73ac2c2d6bfde311fe0e01514915b101297087cc7714e1a5fcdf36a95",
+  "model": "claude-opus-5-5",
+  "output": {
+    "claims": [
+      {
+        "kind": "troubleshooting",
+        "claim_text": "On these old units, replace the SFP first rather than bouncing the interface; the cage is usually the bad part on them, and a bounce just hides it for a while (old units have come back with the same fault after a bounce).",
+        "symptom": "interface up but forwarding not recovered after SFP swap on old units",
+        "advice_message_seqs": [
+          1,
+          3,
+          5
+        ],
+        "relayed": false,
+        "target_node_ids": [],
+        "target_sites": [],
+        "target_ports": [],
+        "target_firmware": null,
+        "mentions_barrier": false,
+        "procedure_type": "PROC-SFP-REPLACE",
+        "scope_text": "these old units",
+        "scope_names_version": null,
+        "relative_time": null,
+        "same_as_existing": null,
+        "replaces_existing": null,
+        "contradicts_existing": "clm-002",
+        "outcomes": []
+      },
+      {
+        "kind": "troubleshooting",
+        "claim_text": "After an SFP swap, check the counters, then disable and enable the interface; the SFP is usually fine and need not be replaced.",
+        "symptom": "interface up but forwarding not recovered after SFP swap",
+        "advice_message_seqs": [
+          2,
+          4
+        ],
+        "relayed": false,
+        "target_node_ids": [],
+        "target_sites": [],
+        "target_ports": [],
+        "target_firmware": null,
+        "mentions_barrier": false,
+        "procedure_type": "PROC-SFP-REPLACE",
+        "scope_text": null,
+        "scope_names_version": null,
+        "relative_time": null,
+        "same_as_existing": "clm-002",
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": []
+      }
+    ],
+    "estimates": []
+  }
+}

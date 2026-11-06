@@ -1,0 +1,34 @@
+{
+  "key": "c0a11b38a1110a3a904564ad472470a81c9ca467420c71f33f6ce9e61c563579",
+  "model": "claude-opus-5-5",
+  "output": {
+    "claims": [
+      {
+        "kind": "troubleshooting",
+        "claim_text": "If a fan alarm comes and goes on just one tray and the fan sounds normal, take the tray out, blow out the dust and reseat it; it's usually dust on the connector rather than a dead fan.",
+        "symptom": "intermittent fan alarm on one fan tray, fan sounds normal",
+        "advice_message_seqs": [
+          4,
+          6
+        ],
+        "relayed": false,
+        "target_node_ids": [
+          "TRN-042"
+        ],
+        "target_sites": [],
+        "target_ports": [],
+        "target_firmware": null,
+        "mentions_barrier": false,
+        "procedure_type": null,
+        "scope_text": null,
+        "scope_names_version": null,
+        "relative_time": null,
+        "same_as_existing": null,
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": []
+      }
+    ],
+    "estimates": []
+  }
+}

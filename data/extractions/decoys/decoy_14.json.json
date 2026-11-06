@@ -1,0 +1,32 @@
+{
+  "key": "1a31bac068d7a318934b99d40d6dd1b63f4240bef66acb89c52a4985c252a2b1",
+  "model": "claude-opus-5-5",
+  "output": {
+    "claims": [
+      {
+        "kind": "troubleshooting",
+        "claim_text": "After a deep discharge the batteries can take most of a working day to get back on float, and the alarm usually stays until they do, so give it more time first. Measure the string voltage now and again in two hours; if it isn't rising, suspect a weak string and order new ones.",
+        "symptom": "battery alarm won't clear after mains returns following a mains break",
+        "advice_message_seqs": [
+          4,
+          7
+        ],
+        "relayed": false,
+        "target_node_ids": [],
+        "target_sites": [],
+        "target_ports": [],
+        "target_firmware": null,
+        "mentions_barrier": false,
+        "procedure_type": null,
+        "scope_text": null,
+        "scope_names_version": null,
+        "relative_time": null,
+        "same_as_existing": null,
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": []
+      }
+    ],
+    "estimates": []
+  }
+}

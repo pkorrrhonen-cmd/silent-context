@@ -1,0 +1,33 @@
+{
+  "key": "da1c774371d3a604794812164eeebd7426fb73cad0bf878b2ba04157c2b9313e",
+  "model": "claude-opus-5-5",
+  "output": {
+    "claims": [
+      {
+        "kind": "troubleshooting",
+        "claim_text": "After a power break ge-0/0/1 can stay in loss of signal even when the far end is transmitting, and the port is probably not dead. Disable and enable the interface once before anyone drives out; only if the alarm stays after that, check the RX level on the SFP.",
+        "symptom": "port stays in LOS after a power break while the far end is transmitting",
+        "advice_message_seqs": [
+          1
+        ],
+        "relayed": false,
+        "target_node_ids": [],
+        "target_sites": [],
+        "target_ports": [
+          "ge-0/0/1"
+        ],
+        "target_firmware": null,
+        "mentions_barrier": false,
+        "procedure_type": null,
+        "scope_text": null,
+        "scope_names_version": null,
+        "relative_time": null,
+        "same_as_existing": null,
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": []
+      }
+    ],
+    "estimates": []
+  }
+}

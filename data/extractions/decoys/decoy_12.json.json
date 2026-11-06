@@ -1,0 +1,40 @@
+{
+  "key": "22ed5cc09fbbf1fa2b6b00c9041c3014511b992c44b412ee82049d5682d908dd",
+  "model": "claude-opus-5-5",
+  "output": {
+    "claims": [
+      {
+        "kind": "troubleshooting",
+        "claim_text": "If a port is flapping but RX power looks fine when it's up, it's probably not the SFP; flapping like that is more often a bad fibre bend or a loose patch in the tray, so check the fibre run to the frame first and reseat the patch at both ends before swapping the SFP. Leave the SFP alone unless it starts again.",
+        "symptom": "port flapping down and up every few minutes with RX power fine when up",
+        "advice_message_seqs": [
+          2,
+          4
+        ],
+        "relayed": false,
+        "target_node_ids": [],
+        "target_sites": [],
+        "target_ports": [
+          "ge-0/0/2"
+        ],
+        "target_firmware": null,
+        "mentions_barrier": false,
+        "procedure_type": "PROC-SFP-REPLACE",
+        "scope_text": null,
+        "scope_names_version": null,
+        "relative_time": null,
+        "same_as_existing": null,
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": [
+          {
+            "kind": "success",
+            "message_seq": 3,
+            "unit_id": "ge-0/0/2"
+          }
+        ]
+      }
+    ],
+    "estimates": []
+  }
+}

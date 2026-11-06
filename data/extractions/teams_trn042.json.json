@@ -1,0 +1,49 @@
+{
+  "key": "0cf119cdf0295734969cb85b8bdc98fa16a677510ff1e4ce957d7b8be5c4fe3f",
+  "model": "claude-opus-5-5",
+  "output": {
+    "claims": [
+      {
+        "kind": "troubleshooting",
+        "claim_text": "On the older units, don't trust the green link status after an SFP change: sometimes the interface comes up but forwarding doesn't recover. Usually the SFP is fine, so don't swap it again; check whether traffic counters increase, and if they stay at zero with the interface UP, disable the interface, wait a little, then enable it again. Don't reboot the whole unit unless that fails.",
+        "symptom": "after SFP replacement link is up and alarms cleared but traffic does not come back (counters stay at zero)",
+        "advice_message_seqs": [
+          4,
+          6,
+          8,
+          10
+        ],
+        "relayed": false,
+        "target_node_ids": [
+          "TRN-042"
+        ],
+        "target_sites": [],
+        "target_ports": [],
+        "target_firmware": null,
+        "mentions_barrier": false,
+        "procedure_type": "PROC-SFP-REPLACE",
+        "scope_text": "the older units",
+        "scope_names_version": null,
+        "relative_time": null,
+        "same_as_existing": null,
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": [
+          {
+            "kind": "success",
+            "message_seq": 9,
+            "unit_id": "TRN-042"
+          }
+        ]
+      }
+    ],
+    "estimates": [
+      {
+        "entity_id": "TRN-042",
+        "attribute": "installed_year",
+        "value_text": "around 2019",
+        "message_seq": 3
+      }
+    ]
+  }
+}

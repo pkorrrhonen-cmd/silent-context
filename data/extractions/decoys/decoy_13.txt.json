@@ -1,0 +1,31 @@
+{
+  "key": "53d30c8acc012ffeddcc62cdc18f68d9d6ed17f4bb321a93e05031aa5b31c715",
+  "model": "claude-opus-5-5",
+  "output": {
+    "claims": [
+      {
+        "kind": "access",
+        "claim_text": "Call the monitoring desk before you open the equipment room, because the door contact raises an intrusion alarm and people get sent out if nobody knows you are there. As far as Mikko remembers, the key is in the lockbox on the side of the building; the code was last changed in the spring, so ask the desk for the current one.",
+        "symptom": null,
+        "advice_message_seqs": [
+          1
+        ],
+        "relayed": false,
+        "target_node_ids": [],
+        "target_sites": [],
+        "target_ports": [],
+        "target_firmware": null,
+        "mentions_barrier": false,
+        "procedure_type": null,
+        "scope_text": null,
+        "scope_names_version": null,
+        "relative_time": "in the spring",
+        "same_as_existing": null,
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": []
+      }
+    ],
+    "estimates": []
+  }
+}

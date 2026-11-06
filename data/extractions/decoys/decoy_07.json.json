@@ -1,0 +1,33 @@
+{
+  "key": "27659f675bac1e5a298cae3d28799998068e50ed394521733eca9adff56b959a",
+  "model": "claude-opus-5-5",
+  "output": {
+    "claims": [
+      {
+        "kind": "troubleshooting",
+        "claim_text": "For an intermittent clock sync alarm, check the sync source priority first: if the primary reference is wobbling the alarm tends to come and go, and as far as I know it doesn't mean the port is bad. Set the secondary reference properly and watch it for a day before replacing anything.",
+        "symptom": "clock sync alarm coming and going a few times a day",
+        "advice_message_seqs": [
+          4
+        ],
+        "relayed": false,
+        "target_node_ids": [],
+        "target_sites": [],
+        "target_ports": [
+          "xe-0/1/0"
+        ],
+        "target_firmware": "6.1",
+        "mentions_barrier": false,
+        "procedure_type": null,
+        "scope_text": null,
+        "scope_names_version": null,
+        "relative_time": null,
+        "same_as_existing": null,
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": []
+      }
+    ],
+    "estimates": []
+  }
+}

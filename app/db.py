@@ -105,6 +105,32 @@ CREATE TABLE event (
   attrs TEXT NOT NULL DEFAULT '{}'
 );
 
+-- Someone's estimate about a unit, kept as that with its source. It never becomes a graph fact.
+CREATE TABLE estimate (
+  id TEXT PRIMARY KEY,
+  entity TEXT NOT NULL REFERENCES entity(id),
+  attribute TEXT NOT NULL,
+  value_text TEXT NOT NULL,
+  role TEXT,
+  source_ref TEXT NOT NULL,
+  received_at TEXT NOT NULL
+);
+
+-- Every source read, also when it held no claim, with the checksum of what was read.
+CREATE TABLE ingest_log (
+  file TEXT PRIMARY KEY,
+  sha256 TEXT NOT NULL,
+  channel TEXT NOT NULL,
+  received_at TEXT NOT NULL,
+  claim_ids TEXT NOT NULL DEFAULT '[]',
+  mode TEXT NOT NULL CHECK (mode IN ('model', 'recorded'))
+);
+
+CREATE TABLE meta (
+  key TEXT PRIMARY KEY,
+  value TEXT
+);
+
 CREATE TABLE answer_log (
   id TEXT PRIMARY KEY,
   asked_at TEXT NOT NULL,

@@ -20,6 +20,7 @@ goes out of date and conflicting advice, as long as it is documented. This is th
 | `data/events/` | Event stream and counter series | Invented, shaped to fit Elisa's conversation |
 | `data/truth/expected_claims.json` | The expected result for every source | Written for this demo |
 | `data/truth/decoys/`, `expected_decoys.json` | A held-out test set for binding | Written for this demo |
+| `data/extractions/` | The model's recorded answers to all of the above | Claude Opus 5.5, unedited |
 
 `data/sources/manifest.json` records the checksums of Elisa's two files, and a test keeps them equal.
 All other names and identifiers are invented. No real person, network or customer is in the data.

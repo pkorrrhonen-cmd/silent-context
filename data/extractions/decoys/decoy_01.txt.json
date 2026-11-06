@@ -1,0 +1,35 @@
+{
+  "key": "4c41a8acb4195360a5ed9f19b173f1ef794ad26ed23261bb83ca936a0a39c366",
+  "model": "claude-opus-5-5",
+  "output": {
+    "claims": [
+      {
+        "kind": "troubleshooting",
+        "claim_text": "CRC bursts that only show up in the afternoon, once the cabin has warmed up, usually point to a connector that is not fully home, so plan for the errors being in the patch panel rather than the unit. Reseat and clean the patches first and leave the optics alone.",
+        "symptom": "CRC error bursts only in the afternoon after the cabin warms up",
+        "advice_message_seqs": [
+          1
+        ],
+        "relayed": false,
+        "target_node_ids": [
+          "TRN-100"
+        ],
+        "target_sites": [
+          "Nilo"
+        ],
+        "target_ports": [],
+        "target_firmware": null,
+        "mentions_barrier": false,
+        "procedure_type": null,
+        "scope_text": null,
+        "scope_names_version": null,
+        "relative_time": null,
+        "same_as_existing": null,
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": []
+      }
+    ],
+    "estimates": []
+  }
+}

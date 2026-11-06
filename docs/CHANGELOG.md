@@ -10,6 +10,35 @@ The canonical state is [`BUILD_INFO.json`](BUILD_INFO.json): refer to it, do not
 plan in the Atlas artifact `SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA`. The README, product,
 architecture, roadmap, backlog and decisions now say so.
 
+### Phase 3: extraction and binding
+
+**Built:** reading the sources, one structured model call per thread, binding by code from the graph,
+merging, dating, evidence events, recorded answers, and scoring against both truth sets.
+
+**Changed from the plan:**
+
+- The model does not pick an entity even from candidates. It copies what the thread names, an
+  identifier must literally be in the text, and code resolves it. This is stricter than the plan and
+  cheaper to verify.
+- Supersession and disagreement landed here instead of phase 5, because one model call reports them.
+- Added two reasons a claim can wait, `unknown_id` and `contradicting_context`. `no_time` is not a
+  reason to wait: a missing time never stopped a binding, so it stays an empty field.
+- The teller key is computed per claim, so it cannot link one person across claims. That is what the
+  decision promises, and a key per person would not have kept that promise.
+
+**Measured,** with Claude Opus 5.5 through Anthropic's OpenAI compatibility layer. A structured reply
+took 3.7 s on a one-line test. The numbers are `uv run python -m app.ingest --truth`:
+
+- Truth set, 11 sources: 10 right in every column. Found 11/11, merged 7/7, entity 3/4, scope 4/4, time
+  7/7, evidence 5/6. The one miss is [`DECISIONS.md`](DECISIONS.md) row 4.
+- Held-out set, 16 sources: 12 of 12 unclear cases waited with the right reason, 4 of 4 controls bound
+  right, 0 confidently wrong. A small synthetic set written by a model of the same family: this says
+  the rules are not obviously broken, not that they hold on real conversations.
+- Without any key, the report is identical to the live run's, and 75 tests pass.
+
+**Found by the first real call:** the model split Elisa's one piece of advice into two claims. The
+prompt now says that advice for one problem is one claim. This came before the first full run.
+
 ### Phase 2: store and seed graph
 
 **Built:** the SQLite schema with the seed graph, a JSON export, `/graph`, and `claims_for` as a

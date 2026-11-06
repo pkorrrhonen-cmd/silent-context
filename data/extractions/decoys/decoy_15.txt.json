@@ -1,0 +1,31 @@
+{
+  "key": "f3e075a6c477e2e070b824d6b2cc25e3dcd053820e7e05dce38b04112f64abc6",
+  "model": "claude-opus-5-5",
+  "output": {
+    "claims": [
+      {
+        "kind": "troubleshooting",
+        "claim_text": "Do not swap the rectifier first on a rectifier alarm; measure the DC bus at the breaker panel. If it sits below about 48 V with mains present, my guess is a tripped breaker or a blown fuse rather than a failed rectifier, which is a much cheaper fix.",
+        "symptom": "rectifier alarm",
+        "advice_message_seqs": [
+          1
+        ],
+        "relayed": false,
+        "target_node_ids": [],
+        "target_sites": [],
+        "target_ports": [],
+        "target_firmware": null,
+        "mentions_barrier": false,
+        "procedure_type": null,
+        "scope_text": null,
+        "scope_names_version": null,
+        "relative_time": null,
+        "same_as_existing": null,
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": []
+      }
+    ],
+    "estimates": []
+  }
+}

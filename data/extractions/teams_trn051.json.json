@@ -1,0 +1,42 @@
+{
+  "key": "e2f608d88758df85c0815f15e154ce45c7c7e767f7efde6f26c637287fbabebb",
+  "model": "claude-opus-5-5",
+  "output": {
+    "claims": [
+      {
+        "kind": "troubleshooting",
+        "claim_text": "After an SFP change with link up but no traffic, check the traffic counters first; if they stay at zero with the interface UP, disable the interface, wait a bit and enable it again. No reboot yet.",
+        "symptom": "link up and alarms gone after SFP replacement but no traffic",
+        "advice_message_seqs": [
+          2,
+          4
+        ],
+        "relayed": true,
+        "target_node_ids": [
+          "TRN-051"
+        ],
+        "target_sites": [],
+        "target_ports": [
+          "ge-0/0/1"
+        ],
+        "target_firmware": null,
+        "mentions_barrier": false,
+        "procedure_type": "PROC-SFP-REPLACE",
+        "scope_text": null,
+        "scope_names_version": null,
+        "relative_time": null,
+        "same_as_existing": "clm-002",
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": [
+          {
+            "kind": "success",
+            "message_seq": 5,
+            "unit_id": "TRN-051"
+          }
+        ]
+      }
+    ],
+    "estimates": []
+  }
+}
