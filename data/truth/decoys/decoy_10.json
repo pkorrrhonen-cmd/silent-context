@@ -1,0 +1,46 @@
+{
+  "channel": "teams",
+  "date": "2026-09-29",
+  "note": "Synthetic.",
+  "participants": [
+    { "name": "Sanna Sähkö", "role": "Field Engineer" },
+    { "name": "Timo Tuuletin", "role": "Transmission On-call" }
+  ],
+  "messages": [
+    {
+      "seq": 1,
+      "time": "11:15",
+      "author": "Sanna Sähkö",
+      "role": "Field Engineer",
+      "text": "Timo, I'm on work order WO-051. High temperature alarm on the unit, it cleared on its own and then came back about an hour later."
+    },
+    {
+      "seq": 2,
+      "time": "11:19",
+      "author": "Timo Tuuletin",
+      "role": "Transmission On-call",
+      "text": "Is the cabinet door closed when it comes back? And when was the filter changed?"
+    },
+    {
+      "seq": 3,
+      "time": "11:22",
+      "author": "Sanna Sähkö",
+      "role": "Field Engineer",
+      "text": "Door's closed. No sticker on the filter, it looks pretty grey."
+    },
+    {
+      "seq": 4,
+      "time": "11:27",
+      "author": "Timo Tuuletin",
+      "role": "Transmission On-call",
+      "text": "Then I'd change the filter before anything else. A clogged filter is the usual reason for a temperature alarm that comes and goes like that. If it still comes back with a clean filter, check that the fans actually ramp up when the alarm is on. I wouldn't touch the temperature thresholds."
+    },
+    {
+      "seq": 5,
+      "time": "11:28",
+      "author": "Sanna Sähkö",
+      "role": "Field Engineer",
+      "text": "Got a filter in the van. Doing it now."
+    }
+  ]
+}

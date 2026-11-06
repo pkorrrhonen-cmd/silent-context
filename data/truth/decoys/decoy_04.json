@@ -1,0 +1,25 @@
+{
+  "channel": "teams",
+  "date": "2026-11-03",
+  "note": "Synthetic.",
+  "participants": [
+    { "name": "Tuula Tarkastaja", "role": "Field Engineer" },
+    { "name": "Risto Ristikko", "role": "Transmission On-call" }
+  ],
+  "messages": [
+    {
+      "seq": 1,
+      "time": "15:05",
+      "author": "Tuula Tarkastaja",
+      "role": "Field Engineer",
+      "text": "Hi Risto, TRN-052 dropped off monitoring about twenty minutes ago and I'm on my way there. Anything I should check first?"
+    },
+    {
+      "seq": 2,
+      "time": "15:09",
+      "author": "Risto Ristikko",
+      "role": "Transmission On-call",
+      "text": "For TRN-052 I'd look at the feed breaker in the DC panel before you start on the unit itself. A drop like that is most often a breaker tripped by a short spike. Reset it once. If it trips a second time don't reset again, that probably means a real fault downstream, so call me first."
+    }
+  ]
+}

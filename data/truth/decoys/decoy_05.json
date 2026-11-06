@@ -1,0 +1,53 @@
+{
+  "channel": "teams",
+  "date": "2026-10-22",
+  "note": "Synthetic.",
+  "participants": [
+    { "name": "Pirkko Portti", "role": "Field Engineer" },
+    { "name": "Arvo Aallonpituus", "role": "Transmission On-call" }
+  ],
+  "messages": [
+    {
+      "seq": 1,
+      "time": "10:10",
+      "author": "Pirkko Portti",
+      "role": "Field Engineer",
+      "text": "Arvo, I'm at TRN-051, errors on xe-0/1/1 since the upgrade this morning."
+    },
+    {
+      "seq": 2,
+      "time": "10:13",
+      "author": "Arvo Aallonpituus",
+      "role": "Transmission On-call",
+      "text": "What firmware did it go to?"
+    },
+    {
+      "seq": 3,
+      "time": "10:14",
+      "author": "Pirkko Portti",
+      "role": "Field Engineer",
+      "text": "6.1. It's one of the generation 2 boxes."
+    },
+    {
+      "seq": 4,
+      "time": "10:19",
+      "author": "Arvo Aallonpituus",
+      "role": "Transmission On-call",
+      "text": "On 6.x I'd look at the FEC setting first. As far as I know the upgrade can reset it to default, and then you get errors like that with a perfectly good link. Check that it matches the far end before you touch the optics."
+    },
+    {
+      "seq": 5,
+      "time": "10:30",
+      "author": "Pirkko Portti",
+      "role": "Field Engineer",
+      "text": "FEC was off at our end. Turned it on, errors stopped on TRN-051."
+    },
+    {
+      "seq": 6,
+      "time": "10:31",
+      "author": "Arvo Aallonpituus",
+      "role": "Transmission On-call",
+      "text": "Good. Note it in the ticket."
+    }
+  ]
+}

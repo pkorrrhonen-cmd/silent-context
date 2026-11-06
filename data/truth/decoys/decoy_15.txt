@@ -1,0 +1,17 @@
+From: Seppo Sulake
+To: Transmission on-call
+Date: Tue, 22 Sep 2026 09:40
+Subject: Re: TRN-042 rectifier alarm
+
+Hi Leena,
+
+I checked this against the alarm log. The rectifier alarm did not come from TRN-042 at all, that unit has been quiet for weeks. The ticket text was copied over from an older case and nobody has recorded which unit actually raised it.
+
+Whichever unit it turns out to be, I would not swap the rectifier first. Measure the DC bus at the breaker panel. If it sits below about 48 V with mains present, my guess is a tripped breaker or a blown fuse rather than a failed rectifier, and that is a much cheaper fix.
+
+Regards,
+Seppo
+
+On Mon, 21 Sep 2026 16:05, Leena Linkki wrote:
+> Hi Seppo, the ticket from this morning says TRN-042 has a rectifier alarm.
+> Should field go out and swap the rectifier?

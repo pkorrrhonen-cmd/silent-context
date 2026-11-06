@@ -1,0 +1,17 @@
+From: Eeva Eristin
+To: Transmission on-call
+Date: Mon, 19 Oct 2026 08:50
+Subject: Re: ge-0/0/1 stays in LOS after the power break
+
+Hi Kalle,
+
+I have seen this before after power breaks and I don't think the port is dead. ge-0/0/1 can stay in loss of signal even when the far end is transmitting.
+
+I would disable and enable the interface once before anyone drives out. Only if the alarm stays after that would I check the RX level on the SFP.
+
+Regards,
+Eeva
+
+On Fri, 16 Oct 2026 19:12, Kalle Katkaisija wrote:
+> Hi Eeva, after this evening's power break one of the units is showing LOS on ge-0/0/1 and it has not cleared.
+> The far end says they are transmitting. Is the port dead?

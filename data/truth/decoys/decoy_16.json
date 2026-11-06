@@ -1,0 +1,53 @@
+{
+  "channel": "teams",
+  "date": "2026-10-01",
+  "note": "Synthetic.",
+  "participants": [
+    { "name": "Riikka Reititin", "role": "Field Engineer" },
+    { "name": "Jorma Johdin", "role": "Transmission On-call" }
+  ],
+  "messages": [
+    {
+      "seq": 1,
+      "time": "09:31",
+      "author": "Riikka Reititin",
+      "role": "Field Engineer",
+      "text": "Hi Jorma, CRC errors climbing on ge-0/0/1. About 200 a minute. Link stays up."
+    },
+    {
+      "seq": 2,
+      "time": "09:33",
+      "author": "Jorma Johdin",
+      "role": "Transmission On-call",
+      "text": "What firmware is it on?"
+    },
+    {
+      "seq": 3,
+      "time": "09:34",
+      "author": "Riikka Reititin",
+      "role": "Field Engineer",
+      "text": "4.8."
+    },
+    {
+      "seq": 4,
+      "time": "09:38",
+      "author": "Jorma Johdin",
+      "role": "Transmission On-call",
+      "text": "OK. On 4.8 I wouldn't suspect the software for this. Steady CRCs with the link up are usually a dirty connector. Clean both ends of the fibre on ge-0/0/1 and clear the counters. If they're still climbing after ten minutes, try a new patch lead before you touch the optics."
+    },
+    {
+      "seq": 5,
+      "time": "09:52",
+      "author": "Riikka Reititin",
+      "role": "Field Engineer",
+      "text": "Cleaned and cleared. Counter has stayed at zero so far."
+    },
+    {
+      "seq": 6,
+      "time": "09:53",
+      "author": "Jorma Johdin",
+      "role": "Transmission On-call",
+      "text": "Good, keep an eye on it for a while."
+    }
+  ]
+}

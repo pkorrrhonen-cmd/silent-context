@@ -1,0 +1,165 @@
+{
+  "note": "Held-out binding test set, written by a separate agent before the binding rules existed. Not to be used for writing or tuning rules.",
+  "decoys": [
+    {
+      "file": "decoy_01.txt",
+      "category": "wrong_id",
+      "received_at": "2026-09-09T23:00:00",
+      "has_claim": true,
+      "expected_binding_status": "waiting",
+      "expected_reason": "contradicting_context",
+      "expected_entity": null,
+      "why": "The thread names TRN-100 but places it at Nilo, while the graph has TRN-100 at Koski and TRN-042 at Nilo, so the ID and the site contradict each other."
+    },
+    {
+      "file": "decoy_02.json",
+      "category": "earlier_mention",
+      "received_at": "2026-09-08T23:00:00",
+      "has_claim": true,
+      "expected_binding_status": "waiting",
+      "expected_reason": "no_id",
+      "expected_entity": null,
+      "why": "TRN-051 is mentioned first and explicitly ruled out; the fan tray advice concerns another unit whose tag is never given."
+    },
+    {
+      "file": "decoy_03.json",
+      "category": "control",
+      "received_at": "2026-10-06T23:00:00",
+      "has_claim": true,
+      "expected_binding_status": "bound",
+      "expected_reason": null,
+      "expected_entity": "TRN-042",
+      "why": "Another unit is mentioned in passing, but the expert states that all of the advice is for TRN-042."
+    },
+    {
+      "file": "decoy_04.json",
+      "category": "wrong_id",
+      "received_at": "2026-11-03T23:00:00",
+      "has_claim": true,
+      "expected_binding_status": "waiting",
+      "expected_reason": "unknown_id",
+      "expected_entity": null,
+      "why": "TRN-052 is used consistently but does not exist in the graph, and nothing in the thread says it is a typo for TRN-051."
+    },
+    {
+      "file": "decoy_05.json",
+      "category": "wrong_id",
+      "received_at": "2026-10-22T23:00:00",
+      "has_claim": true,
+      "expected_binding_status": "waiting",
+      "expected_reason": "contradicting_context",
+      "expected_entity": null,
+      "why": "The thread says TRN-051, but xe-0/1/1, firmware 6.1 and generation 2 all belong to TRN-100, while TRN-051 is generation 1 on firmware 4.8 with ge ports."
+    },
+    {
+      "file": "decoy_06.json",
+      "category": "control",
+      "received_at": "2026-09-17T23:00:00",
+      "has_claim": true,
+      "expected_binding_status": "bound",
+      "expected_reason": null,
+      "expected_entity": "TRN-051",
+      "why": "ge-0/0/2 exists on both TRN-042 and TRN-051, but the thread names the Rauta site and the only node at Rauta is TRN-051."
+    },
+    {
+      "file": "decoy_07.json",
+      "category": "control",
+      "received_at": "2026-10-29T23:00:00",
+      "has_claim": true,
+      "expected_binding_status": "bound",
+      "expected_reason": null,
+      "expected_entity": "TRN-100",
+      "why": "TRN-042 is mentioned only as an earlier, unrelated case; the advice concerns xe-0/1/0 on firmware 6.1, and only TRN-100 has that port and firmware."
+    },
+    {
+      "file": "decoy_08.txt",
+      "category": "control",
+      "received_at": "2026-11-02T23:00:00",
+      "has_claim": true,
+      "expected_binding_status": "bound",
+      "expected_reason": null,
+      "expected_entity": "SITE-KOSKI",
+      "why": "TRN-042 is only where the asker works first; the advice is explicitly about getting into the Koski site."
+    },
+    {
+      "file": "decoy_09.txt",
+      "category": "shared_port",
+      "received_at": "2026-10-19T23:00:00",
+      "has_claim": true,
+      "expected_binding_status": "waiting",
+      "expected_reason": "multiple_candidates",
+      "expected_entity": null,
+      "why": "ge-0/0/1 exists on both TRN-042 and TRN-051, and the thread gives no node ID, site or other detail that separates them."
+    },
+    {
+      "file": "decoy_10.json",
+      "category": "no_id",
+      "received_at": "2026-09-29T23:00:00",
+      "has_claim": true,
+      "expected_binding_status": "waiting",
+      "expected_reason": "no_id",
+      "expected_entity": null,
+      "why": "The thread only says the unit and gives a work order number, which is not a node, site or port in the graph."
+    },
+    {
+      "file": "decoy_11.json",
+      "category": "earlier_mention",
+      "received_at": "2026-10-13T23:00:00",
+      "has_claim": true,
+      "expected_binding_status": "waiting",
+      "expected_reason": "no_id",
+      "expected_entity": null,
+      "why": "TRN-100 is only the clean near side; the advice concerns the unit at the far end of the link, which the circuit record does not name."
+    },
+    {
+      "file": "decoy_12.json",
+      "category": "shared_port",
+      "received_at": "2026-09-15T23:00:00",
+      "has_claim": true,
+      "expected_binding_status": "waiting",
+      "expected_reason": "multiple_candidates",
+      "expected_entity": null,
+      "why": "ge-0/0/2 exists on both TRN-042 and TRN-051 and no node ID or site appears; the asker's surname is not a site."
+    },
+    {
+      "file": "decoy_13.txt",
+      "category": "no_id",
+      "received_at": "2026-10-08T23:00:00",
+      "has_claim": true,
+      "expected_binding_status": "waiting",
+      "expected_reason": "no_id",
+      "expected_entity": null,
+      "why": "The access advice is for a site that is never named in the email."
+    },
+    {
+      "file": "decoy_14.json",
+      "category": "no_id",
+      "received_at": "2026-10-27T23:00:00",
+      "has_claim": true,
+      "expected_binding_status": "waiting",
+      "expected_reason": "no_id",
+      "expected_entity": null,
+      "why": "The thread speaks only of this unit, with no node, site or port, and the asker's surname is not a site."
+    },
+    {
+      "file": "decoy_15.txt",
+      "category": "earlier_mention",
+      "received_at": "2026-09-22T23:00:00",
+      "has_claim": true,
+      "expected_binding_status": "waiting",
+      "expected_reason": "no_id",
+      "expected_entity": null,
+      "why": "The subject and first message name TRN-042, but the expert states the alarm did not come from it and nobody has recorded which unit raised it."
+    },
+    {
+      "file": "decoy_16.json",
+      "category": "shared_port",
+      "received_at": "2026-10-01T23:00:00",
+      "has_claim": true,
+      "expected_binding_status": "waiting",
+      "expected_reason": "multiple_candidates",
+      "expected_entity": null,
+      "why": "ge-0/0/1 exists on both TRN-042 and TRN-051, and firmware 4.8 is the same on both, so nothing separates them."
+    }
+  ]
+}

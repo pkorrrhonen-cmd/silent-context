@@ -1,0 +1,19 @@
+From: Ismo Ilmaisin
+To: Field engineers, north
+Date: Wed, 9 Sep 2026 10:05
+Subject: Re: TRN-100 errors at Nilo
+
+Hi Noora,
+
+When you go to TRN-100 at Nilo, plan for the errors being in the patch panel rather than the unit.
+
+I believe CRC bursts that only show up in the afternoon, once the cabin has warmed up, usually point to a connector that is not fully home. Reseat and clean the patches first and leave the optics alone.
+
+Allow extra time for the private road.
+
+Regards,
+Ismo
+
+On Tue, 8 Sep 2026 17:20, Noora Napa wrote:
+> Hi Ismo, I am driving out to the Nilo site tomorrow for TRN-100. It has been getting bursts of CRC errors in the afternoons.
+> Anything I should look at first?

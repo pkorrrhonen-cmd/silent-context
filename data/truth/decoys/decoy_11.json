@@ -1,0 +1,46 @@
+{
+  "channel": "teams",
+  "date": "2026-10-13",
+  "note": "Synthetic.",
+  "participants": [
+    { "name": "Ville Valokuitu", "role": "Field Engineer" },
+    { "name": "Marja Mittaaja", "role": "Transmission On-call" }
+  ],
+  "messages": [
+    {
+      "seq": 1,
+      "time": "13:02",
+      "author": "Ville Valokuitu",
+      "role": "Field Engineer",
+      "text": "Hi Marja, I'm on TRN-100. Counters here are clean, no CRC errors on our side at all."
+    },
+    {
+      "seq": 2,
+      "time": "13:05",
+      "author": "Marja Mittaaja",
+      "role": "Transmission On-call",
+      "text": "The customer still sees errors on that link though. Monitoring shows them on the far end, on whatever unit terminates the other side."
+    },
+    {
+      "seq": 3,
+      "time": "13:06",
+      "author": "Ville Valokuitu",
+      "role": "Field Engineer",
+      "text": "What unit is that?"
+    },
+    {
+      "seq": 4,
+      "time": "13:09",
+      "author": "Marja Mittaaja",
+      "role": "Transmission On-call",
+      "text": "The circuit record doesn't say, it's blank. I'll ask planning. But when one side is clean and the far side keeps counting CRCs, the fault is normally in that far unit's receive path. Whoever goes there should clean the connector first, then try a new patch lead, and only then think about the optics."
+    },
+    {
+      "seq": 5,
+      "time": "13:10",
+      "author": "Ville Valokuitu",
+      "role": "Field Engineer",
+      "text": "Understood. Nothing more for me to do here then."
+    }
+  ]
+}

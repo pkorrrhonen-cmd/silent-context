@@ -1,0 +1,53 @@
+{
+  "channel": "teams",
+  "date": "2026-10-06",
+  "note": "Synthetic.",
+  "participants": [
+    { "name": "Liisa Lämpö", "role": "Field Engineer" },
+    { "name": "Antti Anturi", "role": "Transmission On-call" }
+  ],
+  "messages": [
+    {
+      "seq": 1,
+      "time": "12:30",
+      "author": "Liisa Lämpö",
+      "role": "Field Engineer",
+      "text": "Hi Antti, TRN-042 has a fan alarm that comes and goes. I saw the same alarm on another unit last month, can't remember which one that was."
+    },
+    {
+      "seq": 2,
+      "time": "12:34",
+      "author": "Antti Anturi",
+      "role": "Transmission On-call",
+      "text": "Never mind the other one, nobody has asked about it. Is the alarm on a particular tray?"
+    },
+    {
+      "seq": 3,
+      "time": "12:36",
+      "author": "Liisa Lämpö",
+      "role": "Field Engineer",
+      "text": "Just the one tray, the lower one. Sounds normal to me, though."
+    },
+    {
+      "seq": 4,
+      "time": "12:41",
+      "author": "Antti Anturi",
+      "role": "Transmission On-call",
+      "text": "Then I'd take it out, blow out the dust and reseat it. It's usually dust on the connector rather than a dead fan."
+    },
+    {
+      "seq": 5,
+      "time": "12:42",
+      "author": "Liisa Lämpö",
+      "role": "Field Engineer",
+      "text": "So that's for TRN-042, not the other unit?"
+    },
+    {
+      "seq": 6,
+      "time": "12:44",
+      "author": "Antti Anturi",
+      "role": "Transmission On-call",
+      "text": "Yes, all of that is for TRN-042. I haven't looked at anything else."
+    }
+  ]
+}

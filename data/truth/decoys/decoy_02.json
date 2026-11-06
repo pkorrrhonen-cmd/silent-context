@@ -1,0 +1,46 @@
+{
+  "channel": "teams",
+  "date": "2026-09-08",
+  "note": "Synthetic.",
+  "participants": [
+    { "name": "Kaisa Kaapeli", "role": "Field Engineer" },
+    { "name": "Olli Optikko", "role": "Transmission On-call" }
+  ],
+  "messages": [
+    {
+      "seq": 1,
+      "time": "08:12",
+      "author": "Kaisa Kaapeli",
+      "role": "Field Engineer",
+      "text": "Morning Olli. TRN-051 check is finished, nothing to report there. While I have you, a question about a different unit from yesterday's round, the one with the fan tray alarm."
+    },
+    {
+      "seq": 2,
+      "time": "08:15",
+      "author": "Olli Optikko",
+      "role": "Transmission On-call",
+      "text": "Which one was that?"
+    },
+    {
+      "seq": 3,
+      "time": "08:17",
+      "author": "Kaisa Kaapeli",
+      "role": "Field Engineer",
+      "text": "I don't have the tag with me, the photo is on my other phone. Not TRN-051, that one was clean. The alarm comes and goes and the tray sounds rough."
+    },
+    {
+      "seq": 4,
+      "time": "08:21",
+      "author": "Olli Optikko",
+      "role": "Transmission On-call",
+      "text": "For that one I'd reseat the tray before ordering anything. In my experience an alarm that comes and goes is usually dust on the tray connector rather than a dead fan. If it comes back within a day the tray probably needs replacing."
+    },
+    {
+      "seq": 5,
+      "time": "08:22",
+      "author": "Kaisa Kaapeli",
+      "role": "Field Engineer",
+      "text": "OK, I'll try that when I'm back there."
+    }
+  ]
+}

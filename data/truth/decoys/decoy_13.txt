@@ -1,0 +1,17 @@
+From: Mikko Merkkivalo
+To: Transmission on-call
+Date: Thu, 8 Oct 2026 16:30
+Subject: Re: Getting into the equipment room
+
+Hi Helmi,
+
+For the site you asked about on the phone: I would call the monitoring desk before you open the equipment room. The door contact raises an intrusion alarm and people get sent out if nobody knows you are there.
+
+As far as I remember the key is in the lockbox on the side of the building. The code was last changed in the spring, so ask the desk for the current one.
+
+Regards,
+Mikko
+
+On Thu, 8 Oct 2026 13:02, Helmi Häiriö wrote:
+> Hi Mikko, I need to get into the equipment room at that site tomorrow morning.
+> What do I need to know before I go?

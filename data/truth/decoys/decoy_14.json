@@ -1,0 +1,60 @@
+{
+  "channel": "teams",
+  "date": "2026-10-27",
+  "note": "Synthetic.",
+  "participants": [
+    { "name": "Tero Rautalanka", "role": "Field Engineer" },
+    { "name": "Anneli Akku", "role": "Transmission On-call" }
+  ],
+  "messages": [
+    {
+      "seq": 1,
+      "time": "07:48",
+      "author": "Tero Rautalanka",
+      "role": "Field Engineer",
+      "text": "Morning Anneli. Battery alarm on this unit since the mains break last night. Mains is back but the alarm won't clear."
+    },
+    {
+      "seq": 2,
+      "time": "07:52",
+      "author": "Anneli Akku",
+      "role": "Transmission On-call",
+      "text": "How long has mains been back?"
+    },
+    {
+      "seq": 3,
+      "time": "07:53",
+      "author": "Tero Rautalanka",
+      "role": "Field Engineer",
+      "text": "Around three hours."
+    },
+    {
+      "seq": 4,
+      "time": "07:58",
+      "author": "Anneli Akku",
+      "role": "Transmission On-call",
+      "text": "Then I'd give it more time first. After a deep discharge the batteries can take most of a working day to get back on float, and the alarm usually stays until they do. Measure the string voltage now and again in two hours. If it isn't rising, I'd suspect a weak string and that's when we order new ones."
+    },
+    {
+      "seq": 5,
+      "time": "08:00",
+      "author": "Tero Rautalanka",
+      "role": "Field Engineer",
+      "text": "OK, measuring now. Will check back at ten."
+    },
+    {
+      "seq": 6,
+      "time": "10:04",
+      "author": "Tero Rautalanka",
+      "role": "Field Engineer",
+      "text": "String voltage is up by about a volt since eight."
+    },
+    {
+      "seq": 7,
+      "time": "10:06",
+      "author": "Anneli Akku",
+      "role": "Transmission On-call",
+      "text": "That sounds healthy. Leave it be, the alarm should clear by itself later today."
+    }
+  ]
+}

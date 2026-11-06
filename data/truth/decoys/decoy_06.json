@@ -1,0 +1,46 @@
+{
+  "channel": "teams",
+  "date": "2026-09-17",
+  "note": "Synthetic.",
+  "participants": [
+    { "name": "Pauli Paneeli", "role": "Field Engineer" },
+    { "name": "Vuokko Virtalähde", "role": "Transmission On-call" }
+  ],
+  "messages": [
+    {
+      "seq": 1,
+      "time": "09:05",
+      "author": "Pauli Paneeli",
+      "role": "Field Engineer",
+      "text": "Vuokko, I'm at the Rauta site. ge-0/0/2 is showing CRC errors, not many but they keep coming."
+    },
+    {
+      "seq": 2,
+      "time": "09:09",
+      "author": "Vuokko Virtalähde",
+      "role": "Transmission On-call",
+      "text": "Only ge-0/0/2 at Rauta, or ge-0/0/1 as well?"
+    },
+    {
+      "seq": 3,
+      "time": "09:11",
+      "author": "Pauli Paneeli",
+      "role": "Field Engineer",
+      "text": "Only ge-0/0/2. ge-0/0/1 is clean."
+    },
+    {
+      "seq": 4,
+      "time": "09:16",
+      "author": "Vuokko Virtalähde",
+      "role": "Transmission On-call",
+      "text": "Then I doubt it's the unit itself. Slow CRC errors on one port like that at Rauta are usually the patch lead. Swap the lead on ge-0/0/2 first and clear the counters. If they come back, clean the connector and then try the SFP."
+    },
+    {
+      "seq": 5,
+      "time": "09:35",
+      "author": "Pauli Paneeli",
+      "role": "Field Engineer",
+      "text": "New lead in, counters cleared. Zero so far."
+    }
+  ]
+}

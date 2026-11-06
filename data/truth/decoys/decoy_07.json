@@ -1,0 +1,46 @@
+{
+  "channel": "teams",
+  "date": "2026-10-29",
+  "note": "Synthetic.",
+  "participants": [
+    { "name": "Salla Signaali", "role": "Field Engineer" },
+    { "name": "Oiva Oskillaattori", "role": "Transmission On-call" }
+  ],
+  "messages": [
+    {
+      "seq": 1,
+      "time": "16:02",
+      "author": "Salla Signaali",
+      "role": "Field Engineer",
+      "text": "Hi Oiva, this reminds me of the clock alarm we had on TRN-042 back in the summer, but I'm on a different box now. Clock sync alarm on xe-0/1/0, it comes up a few times a day."
+    },
+    {
+      "seq": 2,
+      "time": "16:06",
+      "author": "Oiva Oskillaattori",
+      "role": "Transmission On-call",
+      "text": "TRN-042 was something else, that was a bad cable. What firmware is this one on?"
+    },
+    {
+      "seq": 3,
+      "time": "16:07",
+      "author": "Salla Signaali",
+      "role": "Field Engineer",
+      "text": "6.1."
+    },
+    {
+      "seq": 4,
+      "time": "16:12",
+      "author": "Oiva Oskillaattori",
+      "role": "Transmission On-call",
+      "text": "OK. For xe-0/1/0 on 6.1 I'd check the sync source priority first. If the primary reference is wobbling the alarm tends to come and go like that, and as far as I know it doesn't mean the port is bad. Set the secondary reference properly and watch it for a day before replacing anything."
+    },
+    {
+      "seq": 5,
+      "time": "16:13",
+      "author": "Salla Signaali",
+      "role": "Field Engineer",
+      "text": "Will do. I'll set it and check tomorrow."
+    }
+  ]
+}

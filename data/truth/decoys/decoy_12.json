@@ -1,0 +1,39 @@
+{
+  "channel": "teams",
+  "date": "2026-09-15",
+  "note": "Synthetic.",
+  "participants": [
+    { "name": "Ritva Koskilinja", "role": "Field Engineer" },
+    { "name": "Lauri Liitin", "role": "Transmission On-call" }
+  ],
+  "messages": [
+    {
+      "seq": 1,
+      "time": "14:20",
+      "author": "Ritva Koskilinja",
+      "role": "Field Engineer",
+      "text": "Lauri, ge-0/0/2 is flapping, down and up every few minutes. RX power looks fine when it's up. Should I swap the SFP?"
+    },
+    {
+      "seq": 2,
+      "time": "14:24",
+      "author": "Lauri Liitin",
+      "role": "Transmission On-call",
+      "text": "Not yet. If RX power is fine I doubt it's the SFP. Flapping like that is more often a bad fibre bend or a loose patch in the tray. Check the run from ge-0/0/2 to the frame first and reseat the patch at both ends."
+    },
+    {
+      "seq": 3,
+      "time": "14:40",
+      "author": "Ritva Koskilinja",
+      "role": "Field Engineer",
+      "text": "Found a tight bend behind the tray. Rerouted it. No flaps for 15 minutes."
+    },
+    {
+      "seq": 4,
+      "time": "14:41",
+      "author": "Lauri Liitin",
+      "role": "Transmission On-call",
+      "text": "Sounds like that was it. I'd leave the SFP alone unless it starts again."
+    }
+  ]
+}
