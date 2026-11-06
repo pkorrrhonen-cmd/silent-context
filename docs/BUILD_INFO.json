@@ -1,22 +1,22 @@
 {
   "name": "sinceai-2026",
   "version": "0.1.0",
-  "phase": "1",
-  "phaseName": "Data and truth set written; waiting for the owner's checkpoint before phase 2",
+  "phase": "2",
+  "phaseName": "Store and seed graph built; phase 3 waits for a model endpoint",
   "session": 2,
   "updated": "2026-11-06",
-  "state": "Session 2 (6.11.2026, Code on the Mac): Elisa's challenge is selected and the decisions P1 to P6 are made. Phase 0 (skeleton, health check) and phase 1 (Elisa's files unchanged, synthetic sources, events, seed graph, truth set, held-out binding set) are in main. No store, extraction, binding or agent code exists yet.",
+  "state": "Session 2 (6.11.2026, Code on the Mac): Elisa's challenge is selected and the decisions P1 to P6 are made. Phase 0 (skeleton, health check), phase 1 (Elisa's files unchanged, synthetic sources, events, seed graph, truth set, held-out binding set) and phase 2 (store, export, /graph, claims_for as a contract) are in main. No extraction, binding or agent logic exists yet.",
   "next_session": {
-    "id": "phase-2",
-    "name": "Store and seed graph, then extraction and binding",
+    "id": "phase-3",
+    "name": "Extraction and binding",
     "read_first": [
       "CLAUDE.md",
       "docs/roadmap.md",
       "docs/BACKLOG.md",
       "docs/synthetic-data.md"
     ],
-    "scope": "Phases 2 and 3 of the Atlas artifact SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA, with its decisions in SINCEAI-2026-ELISA-PAATOKSET v3. Rule authors do not read data/truth/decoys or expected_decoys.json.",
-    "gate": "Phase 1's checkpoint with the owner. Phase 3 also needs a model endpoint in .env."
+    "scope": "Phase 3 of the Atlas artifact SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA, with its decisions in SINCEAI-2026-ELISA-PAATOKSET v3. Rule authors do not read data/truth/decoys or expected_decoys.json.",
+    "gate": "A model endpoint in .env (BACKLOG P-5). Phase 3 ends in a checkpoint with the owner."
   },
   "git_commit": null,
   "git_commit_note": "A commit cannot hold its own hash. git log on main is the record.",

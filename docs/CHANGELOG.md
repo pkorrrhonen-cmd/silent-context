@@ -10,6 +10,22 @@ The canonical state is [`BUILD_INFO.json`](BUILD_INFO.json): refer to it, do not
 plan in the Atlas artifact `SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA`. The README, product,
 architecture, roadmap, backlog and decisions now say so.
 
+### Phase 2: store and seed graph
+
+**Built:** the SQLite schema with the seed graph, a JSON export, `/graph`, and `claims_for` as a
+contract that answers "I don't know" with a reason and logs the answer and the gap.
+
+**Decided while building:** the store is derived from `data/` and never committed, instead of shipping
+a binary, so a clean install works and the repository stays diffable. The rules that matter most are
+in the schema (a world time has a basis, a waiting claim has a reason), so a bug cannot quietly break
+them. The teller key stays out of the export.
+
+**Measured:** 31 tests pass. From an empty folder, `uv run python -m app.db --seed` builds 14 entities
+and 7 edges; `claims_for("TRN-051", ...)` answers `unknown` with `no_claims` and names
+`transmission-oncall`; `/graph` builds the store when it is missing and returns the same 14 and 7.
+
+**Not tested:** the export has not been loaded into a graph database.
+
 ### Phase 0: skeleton
 
 **Built:** Python 3.12, FastAPI and Uvicorn, with the model behind any OpenAI-compatible endpoint

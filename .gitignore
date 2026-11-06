@@ -11,6 +11,10 @@ node_modules/
 __pycache__/
 .pytest_cache/
 
+# Derived from data/: rebuilt, never committed
+store/
+export/
+
 # Tools and the machine
 .claude/worktrees/
 .claude/settings.local.json

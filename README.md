@@ -53,7 +53,21 @@ cp .env.example .env
 uv run uvicorn app.api:app
 ```
 
-The server then answers at `http://127.0.0.1:8000/health`. To run the tests:
+The server then answers at `http://127.0.0.1:8000/health`, and the graph is at
+`http://127.0.0.1:8000/graph`. The store is built from the files in `data/` on first use, and it can
+be rebuilt at any time, because nothing in it is original:
+
+```bash
+uv run python -m app.db --seed
+```
+
+To write the graph to `export/graph.json`:
+
+```bash
+uv run python -m app.export
+```
+
+To run the tests:
 
 ```bash
 uv run pytest
