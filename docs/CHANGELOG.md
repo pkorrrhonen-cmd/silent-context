@@ -29,8 +29,9 @@ merging, dating, evidence events, recorded answers, and scoring against both tru
 **Measured,** with Claude Opus 5.5 through Anthropic's OpenAI compatibility layer. A structured reply
 took 3.7 s on a one-line test. The numbers are `uv run python -m app.ingest --truth`:
 
-- Truth set, 11 sources: 10 right in every column. Found 11/11, merged 7/7, entity 3/4, scope 4/4, time
-  7/7, evidence 5/6. The one miss is [`DECISIONS.md`](DECISIONS.md) row 4.
+- Truth set, 11 sources, first scored run: 10 right in every column. Found 11/11, merged 7/7, entity
+  3/4, scope 4/4, time 7/7, evidence 5/6. The one miss was the truth set's own: the owner corrected it
+  ([`DECISIONS.md`](DECISIONS.md) row 4), and the file says so. These numbers are from before that.
 - Held-out set, 16 sources: 12 of 12 unclear cases waited with the right reason, 4 of 4 controls bound
   right, 0 confidently wrong. A small synthetic set written by a model of the same family: this says
   the rules are not obviously broken, not that they hold on real conversations.

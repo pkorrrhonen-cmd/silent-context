@@ -99,6 +99,7 @@ def _score_source(conn: sqlite3.Connection, row: dict, truth: dict, ids: dict[st
             f"got {claim['observed_entity']}, reason {claim['binding_reason']}",
         )
         score.check("entity", claim["binding_status"] == row["binding_status"], claim["binding_status"])
+        score.check("entity", claim["binding_reason"] == row["binding_reason"], claim["binding_reason"])
         score.check(
             "time",
             (claim["valid_from"], claim["valid_from_basis"])

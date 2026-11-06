@@ -8,18 +8,6 @@ import pytest
 from app import db, llm, scoring
 from app.ingest import run
 
-# The model left the second expert's general advice waiting, and the truth set binds it to TRN-051.
-# The owner decides which is right, so this stays visible here until then.
-OPEN_DISAGREEMENT = {
-    "teams_conflict.json: entity: got None, reason no_id",
-    "teams_conflict.json: entity: waiting",
-    "teams_conflict.json: evidence: missing"
-    " {'type': 'told', 'scope_entity': 'TRN-051', 'basis': 'message'}",
-    "teams_conflict.json: evidence: unexpected told on clm-005 (teams_conflict.json#seq=1,3,5)",
-    "edge missing: B ABOUT TRN-051",
-}
-
-
 @pytest.fixture(autouse=True)
 def no_model(monkeypatch: pytest.MonkeyPatch) -> None:
     def refuse(*args: object, **kwargs: object) -> dict:
@@ -30,8 +18,8 @@ def no_model(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.delenv("LLM_MODEL", raising=False)
 
 
-def test_the_truth_set_holds_apart_from_the_open_disagreement(tmp_path: Path) -> None:
-    assert set(scoring.score(tmp_path)["problems"]) == OPEN_DISAGREEMENT
+def test_the_truth_set_holds(tmp_path: Path) -> None:
+    assert scoring.score(tmp_path)["problems"] == []
 
 
 def test_the_held_out_set_has_no_confident_wrong_binding(tmp_path: Path) -> None:

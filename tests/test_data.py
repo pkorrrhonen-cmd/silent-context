@@ -78,7 +78,7 @@ def test_truth_references_resolve(truth: dict, entity_ids: set[str], events: lis
     event_ids = {e["id"] for e in events}
     claim_keys = set(truth["claims"])
     for claim in truth["claims"].values():
-        assert claim["observed_entity"] in entity_ids
+        assert claim["observed_entity"] is None or claim["observed_entity"] in entity_ids
         assert set(claim["about"]) <= entity_ids
         anchor = claim.get("valid_from_anchor_event")
         assert anchor is None or anchor in event_ids
@@ -87,7 +87,8 @@ def test_truth_references_resolve(truth: dict, entity_ids: set[str], events: lis
         assert edge["dst"] in claim_keys | entity_ids
     for row in truth["sources"]:
         for item in row.get("evidence", []):
-            assert item.get("scope_entity", "TRN-042") in entity_ids
+            scope = item.get("scope_entity")
+            assert scope is None or scope in entity_ids
             assert item.get("claim", "A") in claim_keys
     for outcome in truth["telemetry_outcomes"]:
         assert outcome["after_event"] in event_ids
