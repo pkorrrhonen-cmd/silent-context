@@ -4,7 +4,7 @@
   "phase": "6",
   "phaseName": "The page built; waiting for the owner's checkpoint before phase 7",
   "session": 2,
-  "updated": "2026-11-06",
+  "updated": "2026-11-07",
   "state": "Session 2 (6.11.2026, Code on the Mac): Elisa's challenge is selected and the decisions P1 to P6 are made. Phase 0 (skeleton, health check), phase 1 (Elisa's files unchanged, synthetic sources, events, seed graph, truth set, held-out binding set) phase 2 (store, export, /graph), phase 3 (extraction, binding, merging, recorded answers, scoring) phase 4 (claims_for, access_for, the prohibition, counters from telemetry), phase 5 (firmware recheck, outcomes from telemetry, the log line from device events) and phase 6 (the page, ten scenes) are in main. A clean install has not been tried yet; video, slides and final documentation do not exist yet.",
   "next_session": {
     "id": "phase-7",
@@ -15,8 +15,8 @@
       "docs/BACKLOG.md",
       "docs/synthetic-data.md"
     ],
-    "scope": "Phase 7 of the Atlas artifact SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA, with its decisions in SINCEAI-2026-ELISA-PAATOKSET v3. Rule authors do not read data/truth/decoys, expected_decoys.json or data/extractions/decoys.",
-    "gate": "Phase 6's checkpoint with the owner: the look of the page and the scenes."
+    "scope": "Start from the owner's checkpoint on the page and the product name, then phases 7 and 8 of the Atlas artifact SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA, with its decisions in SINCEAI-2026-ELISA-PAATOKSET v3. Phase 7: an acceptance table for the slides and a clean install from the README in a separate folder, with no key. Phase 8 reads the Atlas artifact SINCEAI-2026-VIDEO first. The plan's schedule has this phase at Saturday 20:30, so the build is well ahead of it. Rule authors do not read data/truth/decoys, expected_decoys.json or data/extractions/decoys.",
+    "gate": "Phase 6's checkpoint with the owner (BACKLOG P-6): the look of the page and the scenes."
   },
   "git_commit": null,
   "git_commit_note": "A commit cannot hold its own hash. git log on main is the record.",

@@ -2,13 +2,14 @@
 
 Order and gates only. The tasks are in [`BACKLOG.md`](BACKLOG.md) (the only task list), the state in
 [`BUILD_INFO.json`](BUILD_INFO.json), the done work in [`CHANGELOG.md`](CHANGELOG.md). Updated
-**6.11.2026**. A gate is falsifying: it says what blocks, never "approved".
+**7.11.2026**. A gate is falsifying: it says what blocks, never "approved".
 
 ## Where we are
 
 Elisa's challenge is selected and the design decisions are made
 ([`DECISIONS.md`](DECISIONS.md)). The build follows the phases in the Atlas artifact
-`SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA`.
+`SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA`. Phases 0 to 6 are done, and phase 6's checkpoint with the owner
+is open.
 
 ## The build's order
 

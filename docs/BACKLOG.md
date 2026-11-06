@@ -18,7 +18,7 @@ Atlas artifact `SINCEAI-2026-SUUNNITELMA`, not here, because this repository is 
 Codes: **P** the owner's own actions, **REPO** the repository, **DOC** the documents to fill,
 **BUILD** the build's phases.
 
-Updated 6.11.2026 (session 2).
+Updated 7.11.2026 (the end of session 2).
 
 ---
 
@@ -28,7 +28,9 @@ Updated 6.11.2026 (session 2).
 |---|---|---|
 | P-2 | *check* **Accept the IP terms** in sinceai.app. | The terms are read; whether they were accepted in the app is not recorded here. A gate before the submission. |
 | P-3 | **Submit** in sinceai.app: project details, submission URL, repository or demo link, video, source zip. | Closes Sunday 8.11. at 10:00 EET; the plan is to send by 09:30. |
-| P-4 | **Name the product.** | Needed for REPO-1, the README's title and the video. |
+| P-4 | **Name the product.** | Needed for REPO-1, the README's title and the video. The page says "Silent context" for now. |
+| P-6 | **Look at the page and its ten scenes,** then approve or change them. | Phase 6's checkpoint, still open. Check especially the captions and the dimming between scenes, which has not been seen moving. |
+| P-7 | *Optional:* **ask Joni the questions** in the Atlas artifact `SINCEAI-2026-ELISA-PAATOKSET` part 1.5, face to face, if there is time. | Saturday at the Joki showroom, 9 to 12 and 14.30 to 18. No decision depends on the answers. |
 
 ## The repository
 
