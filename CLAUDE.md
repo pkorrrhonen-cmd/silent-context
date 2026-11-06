@@ -1,8 +1,9 @@
 # Since AI 2026: notes for the build agent
 
-An entry for the Since AI 2026 hackathon (6.11. to 8.11.2026). The challenge is selected on Friday
-6.11., so until then this repository holds a scaffold and no product code. It stays private
-(`github.com/pkorrrhonen-cmd/sinceai-2026`) until the chosen challenge's IP terms have been read.
+An entry for the Since AI 2026 hackathon (6.11. to 8.11.2026), Elisa's challenge, selected on 6.11.
+The build follows the Atlas artifact `SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA`, which implements the
+decisions in [`docs/DECISIONS.md`](docs/DECISIONS.md). The repository
+(`github.com/pkorrrhonen-cmd/sinceai-2026`) stays private until visibility is decided.
 
 ## Where the truth is
 
@@ -59,8 +60,8 @@ Nothing goes into two places as a copy; a reference is enough. There is no SEED 
 - **Formatting.** No em dashes or en dashes. Author name in documents: Petri Korhonen.
 - **Commands for the owner** are copy-paste ready, one per code block. The main PC's shell is
   PowerShell 5.1 (no `&&`, no nested quotes); at the event the machine is the Mac.
-- **Where work runs.** Anything that needs the local model server (`SOMNUS_BASE_URL`) runs in Claude
-  Code on the Mac. A cloud session reaches only Atlas and the repository.
+- **Where work runs.** Anything that needs the local model server (`LLM_BASE_URL` pointed at it) runs
+  in Claude Code on the Mac. A cloud session reaches only Atlas and the repository.
 - **Atlas** is read and written through the claude.ai connector. `.mcp.json` is deliberately empty,
   as in the sibling repositories: a set Authorization header blocks the OAuth fallback.
 
@@ -92,6 +93,9 @@ The session is done when the next one can start from a clean desk.
 
 | Path | What |
 |---|---|
+| `app/` | The product code |
+| `tests/` | The tests |
+| `data/` | Elisa's examples, synthetic sources and events, the seed graph, the truth set |
 | `docs/` | The documentation above |
 | `docs/adr/` | Rendered decisions, once the Atlas system exists |
 | `docs/history/` | Empty on purpose; its README says why |

@@ -1,22 +1,28 @@
 # Since AI 2026: architecture
 
-A stub: filled after the challenge selection on 6.11.2026. The diagram goes into the README's
-Architecture section; this document holds the prose. Where this document and a decision differ, the
-decision wins and this is corrected.
+The prose behind the README's Architecture section. Where this document and a decision in
+[`DECISIONS.md`](DECISIONS.md) differ, the decision wins and this is corrected. Written as the build
+proceeds: a component is described here when it exists.
 
-## Constraint already in force
+## Constraint in force
 
 Every endpoint comes from an environment variable, never from code ([`.env.example`](../.env.example)
-lists them).
+lists them). The product runs without the author's environment.
 
 ## Components
 
-Not designed.
+| Component | State | What |
+|---|---|---|
+| `app/api.py` | Health check only | HTTP interface |
+| `data/` | Written | Sources, event stream, seed graph, truth set ([`synthetic-data.md`](synthetic-data.md)) |
+
+The store (SQLite tables for entities, edges, claims, sources, evidence events, events and the answer
+log), extraction and binding, `claims_for` and the web page are not built yet.
 
 ## Data flow
 
-Not designed.
+Not built yet.
 
 ## Threats
 
-Not designed.
+Not assessed yet.

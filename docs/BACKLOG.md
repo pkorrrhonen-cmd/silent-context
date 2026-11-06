@@ -15,9 +15,10 @@ actions. [`BUILD_INFO.json`](BUILD_INFO.json) tells the **state**, [`CHANGELOG.m
 **One boundary:** the preparation of the machines and connections for the event is tracked in the
 Atlas artifact `SINCEAI-2026-SUUNNITELMA`, not here, because this repository is submitted.
 
-Codes: **P** the owner's own actions, **REPO** the repository, **DOC** the documents to fill.
+Codes: **P** the owner's own actions, **REPO** the repository, **DOC** the documents to fill,
+**BUILD** the build's phases.
 
-Updated 4.11.2026 (session 1: the list written with the scaffold).
+Updated 6.11.2026 (session 2).
 
 ---
 
@@ -25,21 +26,35 @@ Updated 4.11.2026 (session 1: the list written with the scaffold).
 
 | Code | Task | Why / notes |
 |---|---|---|
-| P-1 | **Select the challenge** in sinceai.app. | Closes Friday 6.11. at 17:30 and is final ([`DECISIONS.md`](DECISIONS.md) row 1). |
-| P-2 | **Read the chosen challenge's IP terms and data restrictions, and accept the IP terms** in sinceai.app. | Every team member accepts them in the app. Visibility and the license depend on them. |
-| P-3 | **Submit** in sinceai.app: project details, submission URL, repository or demo link. | Closes Sunday 8.11. at 10:00 EET. Video and deck are optional. |
+| P-2 | *check* **Accept the IP terms** in sinceai.app. | The terms are read; whether they were accepted in the app is not recorded here. A gate before the submission. |
+| P-3 | **Submit** in sinceai.app: project details, submission URL, repository or demo link, video, source zip. | Closes Sunday 8.11. at 10:00 EET; the plan is to send by 09:30. |
+| P-4 | **Name the product.** | Needed for REPO-1, the README's title and the video. |
 
 ## The repository
 
 | Code | Task | Why / notes |
 |---|---|---|
-| REPO-1 | **Rename the repository** after the selection (`gh repo rename <challenge>`) and update `BUILD_INFO.json` `github` and the name in `CLAUDE.md`. | GitHub redirects the old name. |
-| REPO-2 | **Register the Atlas system** once the challenge is known, then render `docs/adr/` from its model. | Until then decisions live in [`DECISIONS.md`](DECISIONS.md). |
-| REPO-3 | **Before any flip to public:** run gitleaks over the full history and read `CLAUDE.md` and `docs/` for anything internal. | Gitleaks was not installed on the main PC on 4.11.2026. Depends on [`DECISIONS.md`](DECISIONS.md) row 2. |
+| REPO-1 | **Rename the repository** after P-4 (`gh repo rename <name>`) and update `BUILD_INFO.json` `github` and the name in `CLAUDE.md`. | GitHub redirects the old name. |
+| REPO-2 | **Register the Atlas system,** then render `docs/adr/` from its model. | Not during the event weekend (the owner, 6.11.2026). Until then decisions live in [`DECISIONS.md`](DECISIONS.md). |
+| REPO-3 | **Before any flip to public:** run gitleaks over the full history and read `CLAUDE.md` and `docs/` for anything internal. | Depends on [`DECISIONS.md`](DECISIONS.md) row 2. |
+| REPO-4 | **Build the source zip with `git archive`,** not from the working folder. | The working folder holds untracked leftovers that are not part of the product. |
+
+## The build
+
+| Code | Task | Why / notes |
+|---|---|---|
+| BUILD-2 | Store and seed graph. | Phase 2. |
+| BUILD-3 | Extraction and binding. | Phase 3. Needs a model endpoint. |
+| BUILD-4 | `claims_for` and the agent. | Phase 4. |
+| BUILD-5 | Events, ageing, conflict. | Phase 5. |
+| BUILD-6 | Web page and graph. | Phase 6. Adds vis-network to the README's licence table. |
+| BUILD-7 | Acceptance runs and a clean install. | Phase 7. |
+| BUILD-8 | Video, slides, documentation. | Phase 8. |
 
 ## Documents to fill
 
 | Code | Task | Why / notes |
 |---|---|---|
-| DOC-1 | **Fill the README** (Challenge, Demo, Architecture diagram, How to run, Data and IP) and keep "AI tools used" current. | The submission points here. |
-| DOC-2 | **Fill [`product.md`](product.md) and [`architecture.md`](architecture.md)** after the selection. | Both are stubs on purpose: no product decision is made before the event. |
+| DOC-1 | **Finish the README** (Demo, Architecture diagram, what was tested) and keep "AI tools used" current. | The submission points here. |
+| DOC-2 | **Finish [`architecture.md`](architecture.md)** as components come to exist. | Data flow and threats are still open. |
+| DOC-3 | **Write `docs/what-is-simulated.md`.** | Phase 8. |

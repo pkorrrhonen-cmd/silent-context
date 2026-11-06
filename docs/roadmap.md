@@ -2,11 +2,28 @@
 
 Order and gates only. The tasks are in [`BACKLOG.md`](BACKLOG.md) (the only task list), the state in
 [`BUILD_INFO.json`](BUILD_INFO.json), the done work in [`CHANGELOG.md`](CHANGELOG.md). Updated
-**4.11.2026**. A gate is falsifying: it says what blocks, never "approved".
+**6.11.2026**. A gate is falsifying: it says what blocks, never "approved".
 
 ## Where we are
 
-The scaffold is in (commit 1). No challenge is selected and no product code exists.
+Elisa's challenge is selected and the design decisions are made
+([`DECISIONS.md`](DECISIONS.md)). The build follows the phases in the Atlas artifact
+`SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA`.
+
+## The build's order
+
+| Phase | What | Checkpoint with the owner |
+|---|---|---|
+| 0 | Skeleton and health check | |
+| 1 | Synthetic data and truth set, before any rule | Yes |
+| 2 | Store and seed graph | |
+| 3 | Extraction and binding | Yes |
+| 4 | `claims_for` and the agent | Yes |
+| 5 | Events, ageing, conflict | |
+| 6 | Web page and graph | Yes |
+| 7 | Acceptance runs and a clean install | |
+| 8 | Video, slides, documentation | |
+| 9 | Submission, by Sunday 09:30 | |
 
 ## The event's schedule
 
@@ -27,13 +44,9 @@ Finnish time.
 
 ## Gates
 
-**Before the build:** blocked until the challenge is selected and its IP terms and data restrictions
-have been read. A challenge may require more before its data can be touched (FORCIT's requires a
-paper NDA first).
-
 **Before the submission:** blocked if the README does not name the challenge, the demo and how to
 run it; if "Pre-existing work" or "AI tools used" no longer tells the truth; if the submission link
 does not open for the jury; or if a team member has not accepted the IP terms in sinceai.app.
 
-**Before any flip to public:** blocked until the IP terms have been read and gitleaks has run over
-the full history ([`BACKLOG.md`](BACKLOG.md) REPO-3).
+**Before any flip to public:** blocked until gitleaks has run over the full history
+([`BACKLOG.md`](BACKLOG.md) REPO-3).
