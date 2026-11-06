@@ -1,0 +1,53 @@
+{
+  "channel": "teams",
+  "date": "2026-10-21",
+  "note": "Synthetic. Names and node IDs are invented, in the style of Elisa's example.",
+  "participants": [
+    { "name": "Aino Asentaja", "role": "Field Engineer" },
+    { "name": "Pekka Päivystäjä", "role": "Transmission On-call" }
+  ],
+  "messages": [
+    {
+      "seq": 1,
+      "time": "10:44",
+      "author": "Aino Asentaja",
+      "role": "Field Engineer",
+      "text": "Hi Pekka, at TRN-051. New SFP in on ge-0/0/1. Link is up and alarms are gone but there's no traffic.\nShould I swap the SFP again?"
+    },
+    {
+      "seq": 2,
+      "time": "10:46",
+      "author": "Pekka Päivystäjä",
+      "role": "Transmission On-call",
+      "text": "Hold on. Same kind of thing came up on TRN-042 last week. Erkki's advice was to look at the counters first. Are they moving?"
+    },
+    {
+      "seq": 3,
+      "time": "10:49",
+      "author": "Aino Asentaja",
+      "role": "Field Engineer",
+      "text": "Link UP, RX power normal, counters at zero."
+    },
+    {
+      "seq": 4,
+      "time": "10:50",
+      "author": "Pekka Päivystäjä",
+      "role": "Transmission On-call",
+      "text": "Then disable the interface, wait a bit and enable it. No reboot yet."
+    },
+    {
+      "seq": 5,
+      "time": "10:54",
+      "author": "Aino Asentaja",
+      "role": "Field Engineer",
+      "text": "Done. Traffic is back on TRN-051."
+    },
+    {
+      "seq": 6,
+      "time": "10:55",
+      "author": "Pekka Päivystäjä",
+      "role": "Transmission On-call",
+      "text": "Good, thanks."
+    }
+  ]
+}

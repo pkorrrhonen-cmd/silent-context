@@ -1,0 +1,17 @@
+{
+  "note": "Synthetic counter series, the telemetry layer. rx_octets_delta is the received traffic since the previous sample.",
+  "node": "TRN-051",
+  "port": "ge-0/0/1",
+  "metric": "rx_octets_delta",
+  "samples": [
+    { "t": "2026-10-21T10:41:00", "value": 0 },
+    { "t": "2026-10-21T10:45:00", "value": 0 },
+    { "t": "2026-10-21T10:49:00", "value": 0 },
+    { "t": "2026-10-21T10:51:00", "value": 0 },
+    { "t": "2026-10-21T10:54:00", "value": 2210377 },
+    { "t": "2026-10-21T10:58:00", "value": 5877120 },
+    { "t": "2026-10-21T11:02:00", "value": 6403981 },
+    { "t": "2026-10-21T11:06:00", "value": 6158844 },
+    { "t": "2026-10-21T11:10:00", "value": 6290213 }
+  ]
+}

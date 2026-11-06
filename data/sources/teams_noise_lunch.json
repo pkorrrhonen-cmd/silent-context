@@ -1,0 +1,25 @@
+{
+  "channel": "teams",
+  "date": "2026-10-16",
+  "note": "Synthetic. Names are invented.",
+  "participants": [
+    { "name": "Aino Asentaja", "role": "Field Engineer" },
+    { "name": "Oona Oikola", "role": "Field Engineer" }
+  ],
+  "messages": [
+    {
+      "seq": 1,
+      "time": "11:02",
+      "author": "Aino Asentaja",
+      "role": "Field Engineer",
+      "text": "Lunch at the usual place? I'm done with the old units for today, what a pain."
+    },
+    {
+      "seq": 2,
+      "time": "11:04",
+      "author": "Oona Oikola",
+      "role": "Field Engineer",
+      "text": "Yes, 11:30. Soup day."
+    }
+  ]
+}

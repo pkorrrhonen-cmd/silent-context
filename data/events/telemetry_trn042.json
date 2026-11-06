@@ -1,0 +1,18 @@
+{
+  "note": "Synthetic counter series, the telemetry layer. rx_octets_delta is the received traffic since the previous sample. Elisa's conversation only gives the shape: counters at zero until the interface is disabled and enabled.",
+  "node": "TRN-042",
+  "port": "ge-0/0/1",
+  "metric": "rx_octets_delta",
+  "samples": [
+    { "t": "2026-10-14T09:06:00", "value": 0 },
+    { "t": "2026-10-14T09:10:00", "value": 0 },
+    { "t": "2026-10-14T09:14:00", "value": 0 },
+    { "t": "2026-10-14T09:18:00", "value": 0 },
+    { "t": "2026-10-14T09:22:00", "value": 0 },
+    { "t": "2026-10-14T09:25:00", "value": 1840221 },
+    { "t": "2026-10-14T09:28:00", "value": 6120488 },
+    { "t": "2026-10-14T09:32:00", "value": 8331076 },
+    { "t": "2026-10-14T09:36:00", "value": 7904512 },
+    { "t": "2026-10-14T09:40:00", "value": 8120934 }
+  ]
+}

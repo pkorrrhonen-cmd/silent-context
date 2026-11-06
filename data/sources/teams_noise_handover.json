@@ -1,0 +1,25 @@
+{
+  "channel": "teams",
+  "date": "2026-10-26",
+  "note": "Synthetic. Names are invented.",
+  "participants": [
+    { "name": "Pekka Päivystäjä", "role": "Transmission On-call" },
+    { "name": "Erkki Expert", "role": "Network Expert" }
+  ],
+  "messages": [
+    {
+      "seq": 1,
+      "time": "07:58",
+      "author": "Pekka Päivystäjä",
+      "role": "Transmission On-call",
+      "text": "Handover: no open incidents. The on-call phone stays with me until Friday."
+    },
+    {
+      "seq": 2,
+      "time": "08:03",
+      "author": "Erkki Expert",
+      "role": "Network Expert",
+      "text": "Noted. I'm in training on Thursday, ask Sirpa if something comes up."
+    }
+  ]
+}

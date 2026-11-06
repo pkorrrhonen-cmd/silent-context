@@ -1,0 +1,46 @@
+{
+  "channel": "teams",
+  "date": "2026-11-02",
+  "note": "Synthetic. Names and node IDs are invented, in the style of Elisa's example.",
+  "participants": [
+    { "name": "Sirpa Specialist", "role": "Network Expert" },
+    { "name": "Erkki Expert", "role": "Network Expert" }
+  ],
+  "messages": [
+    {
+      "seq": 1,
+      "time": "08:40",
+      "author": "Sirpa Specialist",
+      "role": "Network Expert",
+      "text": "Saw the note about bouncing the interface on TRN-051 after the SFP swap. On these old units I would replace the SFP first. The cage is usually the bad part on them, and a bounce just hides it for a while."
+    },
+    {
+      "seq": 2,
+      "time": "08:46",
+      "author": "Erkki Expert",
+      "role": "Network Expert",
+      "text": "Not my experience. Check the counters, then disable and enable. The SFP was fine on both TRN-042 and TRN-051."
+    },
+    {
+      "seq": 3,
+      "time": "08:49",
+      "author": "Sirpa Specialist",
+      "role": "Network Expert",
+      "text": "Those may be the lucky ones. I have seen old units come back with the same fault after a bounce."
+    },
+    {
+      "seq": 4,
+      "time": "08:52",
+      "author": "Erkki Expert",
+      "role": "Network Expert",
+      "text": "We should look at it properly next time one fails. I stand by what I said for now."
+    },
+    {
+      "seq": 5,
+      "time": "08:53",
+      "author": "Sirpa Specialist",
+      "role": "Network Expert",
+      "text": "Same here. SFP first."
+    }
+  ]
+}

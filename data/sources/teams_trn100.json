@@ -1,0 +1,61 @@
+{
+  "channel": "teams",
+  "date": "2026-10-30",
+  "note": "Synthetic. Names and node IDs are invented, in the style of Elisa's example.",
+  "participants": [
+    { "name": "Oona Oikola", "role": "Field Engineer" },
+    { "name": "Erkki Expert", "role": "Network Expert" },
+    { "name": "Pekka Päivystäjä", "role": "Transmission On-call" }
+  ],
+  "messages": [
+    {
+      "seq": 1,
+      "time": "13:14",
+      "author": "Oona Oikola",
+      "role": "Field Engineer",
+      "text": "On TRN-100 now, swapped the SFP on xe-0/1/0. Link is up, alarms clear, no traffic and counters at zero.\nGoing to try the disable and enable from the TRN-042 case."
+    },
+    {
+      "seq": 2,
+      "time": "13:28",
+      "author": "Oona Oikola",
+      "role": "Field Engineer",
+      "text": "Disabled and enabled at 13:25. Counters are still at zero, it did not help."
+    },
+    {
+      "seq": 3,
+      "time": "13:31",
+      "author": "Erkki Expert",
+      "role": "Network Expert",
+      "text": "TRN-100 is one of the new 6.x boxes. What I said about the old units was about the 4.x firmware ones. I would not expect it to help there."
+    },
+    {
+      "seq": 4,
+      "time": "13:33",
+      "author": "Oona Oikola",
+      "role": "Field Engineer",
+      "text": "So what now?"
+    },
+    {
+      "seq": 5,
+      "time": "13:40",
+      "author": "Pekka Päivystäjä",
+      "role": "Transmission On-call",
+      "text": "Look at the service profile on that port. The migration last month may have dropped something."
+    },
+    {
+      "seq": 6,
+      "time": "14:02",
+      "author": "Oona Oikola",
+      "role": "Field Engineer",
+      "text": "VLAN 412 was missing from the profile on xe-0/1/0. Added it."
+    },
+    {
+      "seq": 7,
+      "time": "14:04",
+      "author": "Oona Oikola",
+      "role": "Field Engineer",
+      "text": "Traffic is back. So it was the VLAN, not the bounce."
+    }
+  ]
+}

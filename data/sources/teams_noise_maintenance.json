@@ -1,0 +1,25 @@
+{
+  "channel": "teams",
+  "date": "2026-10-23",
+  "note": "Synthetic. Names and sites are invented.",
+  "participants": [
+    { "name": "Oona Oikola", "role": "Field Engineer" },
+    { "name": "Pekka Päivystäjä", "role": "Transmission On-call" }
+  ],
+  "messages": [
+    {
+      "seq": 1,
+      "time": "09:47",
+      "author": "Oona Oikola",
+      "role": "Field Engineer",
+      "text": "Battery check at Koski done. Nothing to report."
+    },
+    {
+      "seq": 2,
+      "time": "09:49",
+      "author": "Pekka Päivystäjä",
+      "role": "Transmission On-call",
+      "text": "Thanks, ticking it off."
+    }
+  ]
+}

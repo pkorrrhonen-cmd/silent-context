@@ -1,0 +1,19 @@
+{
+  "note": "When each source reached the system. received_at is information time, set here because the demo has no real export: a nightly export at 23:00 on the day of the conversation. Elisa's two files are unchanged and carry no date, so received_at is what gives them a day. Moving the demo clock past a received_at is what makes a source known.",
+  "sources": [
+    { "file": "email_key_nilo.txt", "channel": "email", "origin": "synthetic", "received_at": "2026-09-02T23:00:00" },
+    { "file": "teams_trn042.json", "channel": "teams", "origin": "elisa", "original_name": "teams_chat.json", "sha256": "736473caed1255ffba76414b813bf41c641bfd98d9a5c2678486253280951071", "received_at": "2026-10-14T23:00:00" },
+    { "file": "email_trn042.txt", "channel": "email", "origin": "elisa", "original_name": "email.txt", "sha256": "49e0b6a9454998e340d6013563850d4060af49a72d5c3d41ffd91a2cc2f2f19d", "received_at": "2026-10-14T23:00:00" },
+    { "file": "teams_noise_lunch.json", "channel": "teams", "origin": "synthetic", "received_at": "2026-10-16T23:00:00" },
+    { "file": "teams_noise_schedule.json", "channel": "teams", "origin": "synthetic", "received_at": "2026-10-19T23:00:00" },
+    { "file": "email_key_moved.txt", "channel": "email", "origin": "synthetic", "received_at": "2026-10-20T23:00:00" },
+    { "file": "teams_trn051.json", "channel": "teams", "origin": "synthetic", "received_at": "2026-10-21T23:00:00" },
+    { "file": "teams_noise_maintenance.json", "channel": "teams", "origin": "synthetic", "received_at": "2026-10-23T23:00:00" },
+    { "file": "teams_noise_handover.json", "channel": "teams", "origin": "synthetic", "received_at": "2026-10-26T23:00:00" },
+    { "file": "teams_trn100.json", "channel": "teams", "origin": "synthetic", "received_at": "2026-10-30T23:00:00" },
+    { "file": "teams_conflict.json", "channel": "teams", "origin": "synthetic", "received_at": "2026-11-02T23:00:00" }
+  ],
+  "variants": [
+    { "file": "variants/email_key_moved_undated.txt", "channel": "email", "origin": "synthetic", "replaces": "email_key_moved.txt", "received_at": "2026-10-20T23:00:00", "purpose": "The same message with no date. Used only in a test: yesterday cannot be resolved, so the old claim is superseded with an unknown end." }
+  ]
+}
