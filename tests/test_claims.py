@@ -16,6 +16,7 @@ BEFORE_CAPTURE = "2026-10-14T22:00:00"
 AFTER_CAPTURE = "2026-10-20T12:00:00"
 KEY_MOVED = "2026-10-21T00:00:00"
 DURING_FAULT = "2026-10-21T10:50:00"
+AFTER_FIRMWARE = "2026-10-29T00:00:00"
 AFTER_FAILURE = "2026-10-31T00:00:00"
 AFTER_DISPUTE = "2026-11-03T00:00:00"
 
@@ -196,6 +197,39 @@ def test_a4_an_undated_move_gives_both_and_says_the_boundary_is_unknown(tmp_path
         assert current["claims"][1]["valid_to_basis"] == "superseded_end_unknown"
 
 
+def test_a5_a_firmware_update_rechecks_that_unit_only(clock) -> None:
+    conn = clock(AFTER_FIRMWARE)
+    updated = claims_for("TRN-042", SYMPTOM, observed={"counters": "zero"}, conn=conn)
+    assert updated["tier"] == "check_first"
+    assert updated["action_kind"] == "read"
+    claim = erkki(updated)
+    assert claim["status_for_entity"] == "recheck"
+    assert "4.8" in claim["status_note"] and "4.9" in claim["status_note"]
+    assert "4.9" in updated["next_step"]
+    assert "TRN-042" in updated["what_would_change"]
+
+    same_class = claims_for("TRN-051", SYMPTOM, observed={"counters": "zero"}, conn=conn)
+    assert same_class["tier"] == "propose"
+    assert erkki(same_class)["status_for_entity"] == "active"
+
+
+def test_a5_before_the_update_nothing_is_in_doubt(clock) -> None:
+    answer = claims_for("TRN-042", SYMPTOM, observed={"counters": "zero"}, conn=clock(AFTER_CAPTURE))
+    assert answer["tier"] == "propose"
+    assert erkki(answer)["status_for_entity"] == "active"
+
+
+def test_a5_a_point_in_time_before_the_update_is_not_in_doubt(clock) -> None:
+    answer = claims_for(
+        "TRN-042",
+        SYMPTOM,
+        at="2026-10-20T00:00:00",
+        observed={"counters": "zero"},
+        conn=clock(AFTER_FIRMWARE),
+    )
+    assert erkki(answer)["status_for_entity"] == "active"
+
+
 def test_a6_one_tellers_two_channels_show_as_one_telling(clock) -> None:
     answer = claims_for("TRN-051", SYMPTOM, observed={"counters": "zero"}, conn=clock(AFTER_CAPTURE))
     rendered = erkki(answer)["evidence_rendered"]
@@ -266,6 +300,77 @@ def test_a_bounce_that_worked_asks_nothing_more(clock) -> None:
     assert "rising" in answer["next_step"]
 
 
+# What devices add
+
+
+def telemetry_events(answer: dict) -> list[dict]:
+    return [e for e in erkki(answer)["evidence"] if e["basis"] == "telemetry"]
+
+
+def test_a_rise_after_the_bounce_shows_apart_from_what_people_said(clock) -> None:
+    answer = claims_for("TRN-042", SYMPTOM, conn=clock(AFTER_CAPTURE))
+    events = telemetry_events(answer)
+    assert [e["scope"] for e in events] == ["TRN-042"]
+    assert events[0]["event_time"] == "2026-10-14T09:25:00"
+    assert "not its cause" in events[0]["excerpt"]
+    rendered = erkki(answer)["evidence_rendered"]
+    assert "Observed: 2026-10-14T09:25:00 · counters rising" in rendered
+    assert "suggestion" in rendered
+
+
+def test_a_rise_that_followed_another_change_is_not_credited_to_the_advice(clock) -> None:
+    conn = clock(AFTER_FAILURE)
+    rows = conn.execute(
+        "SELECT scope_entity FROM evidence_event WHERE basis = 'telemetry' ORDER BY event_time"
+    ).fetchall()
+    assert [row["scope_entity"] for row in rows] == ["TRN-042", "TRN-051"]
+
+
+def test_telemetry_alone_does_not_make_a_proposal(plain) -> None:
+    add_claim(plain, "c1", action="Disable and enable it", action_kind="bounce_interface")
+    plain.execute(
+        "INSERT INTO evidence_event (id, claim_id, scope_entity, type, basis)"
+        " VALUES ('e1', 'c1', 'TRN-051', 'reported_success', 'telemetry')"
+    )
+    answer = claims_for("TRN-051", "fan tray humming", conn=plain)
+    assert answer["tier"] == "check_first"
+    assert "only been told" in answer["next_step"]
+
+
+def test_a_rise_does_not_set_last_confirmed(clock) -> None:
+    answer = claims_for("TRN-051", SYMPTOM, conn=clock(DURING_FAULT))
+    assert "last confirmed 2026-10-14T09:25:00" in erkki(answer)["evidence_rendered"]
+
+
+def test_what_a_person_did_comes_from_the_devices(tmp_path: Path) -> None:
+    path = tmp_path / "log.db"
+    ingest.run(path, until=DURING_FAULT)
+    with db.session(path) as conn:
+        answer = claims_for("TRN-051", SYMPTOM, conn=conn)
+        row = conn.execute(
+            "SELECT * FROM answer_log WHERE id = ?", (answer["answer_id"],)
+        ).fetchone()
+        assert row["human_did"] is None
+    ingest.run(path, until="2026-10-21T11:15:00")
+    with db.session(path) as conn:
+        row = conn.execute(
+            "SELECT * FROM answer_log WHERE id = ?", (answer["answer_id"],)
+        ).fetchone()
+    assert "Disable" in row["next_step"]
+    assert "ge-0/0/1" in row["human_did"] and "10:53" in row["human_did"]
+    assert row["outcome"] == "Counters rising afterwards"
+
+
+def test_logs_do_not_survive_going_back_before_they_were_written(tmp_path: Path) -> None:
+    path = tmp_path / "log.db"
+    ingest.run(path, until=DURING_FAULT)
+    with db.session(path) as conn:
+        claims_for("TRN-051", SYMPTOM, conn=conn)
+    ingest.run(path, until=AFTER_CAPTURE)
+    with db.session(path) as conn:
+        assert conn.execute("SELECT count(*) FROM answer_log").fetchone()[0] == 0
+
+
 # Rules with data shaped for them
 
 
@@ -302,6 +407,69 @@ def plain(tmp_path: Path):
     with db.session(path) as conn:
         conn.execute("INSERT INTO meta (key, value) VALUES ('as_of', '2026-10-20T12:00:00')")
         yield conn
+
+
+def add_firmware_update(conn, unit: str, when: str) -> None:
+    conn.execute(
+        "INSERT INTO event (id, type, entity, event_time, attrs) VALUES"
+        " (?, 'firmware_updated', ?, ?, '{\"from\": \"4.8\", \"to\": \"4.9\"}')",
+        (f"fw-{unit}", unit, when),
+    )
+
+
+def sfp_claim(conn, claim_id: str, **fields) -> None:
+    add_claim(
+        conn,
+        claim_id,
+        action="Disable and enable it",
+        action_kind="bounce_interface",
+        **fields,
+    )
+    conn.execute(
+        "INSERT INTO edge (src, rel, dst) VALUES (?, 'ABOUT', 'PROC-SFP-REPLACE')", (claim_id,)
+    )
+
+
+def test_an_update_before_advice_with_a_known_start_raises_no_doubt(plain) -> None:
+    sfp_claim(plain, "c1", valid_from="2026-10-05T00:00:00", valid_from_basis="anchored")
+    add_firmware_update(plain, "TRN-051", "2026-10-02T00:00:00")
+    answer = claims_for("TRN-051", "fan tray humming", conn=plain)
+    assert answer["claims"][0]["status_for_entity"] == "active"
+
+
+def test_when_the_order_cannot_be_told_the_agent_says_so(plain) -> None:
+    sfp_claim(plain, "c1")
+    add_firmware_update(plain, "TRN-051", "2026-09-20T00:00:00")
+    answer = claims_for("TRN-051", "fan tray humming", conn=plain)
+    assert answer["claims"][0]["status_for_entity"] == "order_unknown"
+    assert answer["tier"] == "check_first"
+    assert "not known whether" in answer["next_step"]
+
+
+def test_an_update_after_the_information_arrived_is_a_recheck_even_with_no_start(plain) -> None:
+    sfp_claim(plain, "c1")
+    add_firmware_update(plain, "TRN-051", "2026-10-10T00:00:00")
+    answer = claims_for("TRN-051", "fan tray humming", conn=plain)
+    assert answer["claims"][0]["status_for_entity"] == "recheck"
+
+
+def test_a_success_reported_after_the_update_clears_the_recheck(plain) -> None:
+    sfp_claim(plain, "c1")
+    add_firmware_update(plain, "TRN-051", "2026-10-10T00:00:00")
+    plain.execute(
+        "INSERT INTO evidence_event (id, claim_id, scope_entity, type, event_time, basis)"
+        " VALUES ('e1', 'c1', 'TRN-051', 'reported_success', '2026-10-12T00:00:00', 'message')"
+    )
+    answer = claims_for("TRN-051", "fan tray humming", conn=plain)
+    assert answer["claims"][0]["status_for_entity"] == "active"
+    assert answer["tier"] == "propose"
+
+
+def test_the_recheck_rule_reads_only_firmware_and_only_this_kind_of_advice(plain) -> None:
+    add_claim(plain, "c1", action="Disable and enable it", action_kind="bounce_interface")
+    add_firmware_update(plain, "TRN-051", "2026-10-10T00:00:00")
+    answer = claims_for("TRN-051", "fan tray humming", conn=plain)
+    assert answer["claims"][0]["status_for_entity"] == "active"
 
 
 def test_the_prohibition_holds_even_when_a_claim_advises_a_reboot(plain) -> None:

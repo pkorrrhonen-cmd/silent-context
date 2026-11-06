@@ -10,6 +10,31 @@ The canonical state is [`BUILD_INFO.json`](BUILD_INFO.json): refer to it, do not
 plan in the Atlas artifact `SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA`. The README, product,
 architecture, roadmap, backlog and decisions now say so.
 
+### Phase 5: events, ageing, disagreement
+
+**Built:** the firmware recheck per claim and unit, the status for an order that cannot be told, a rise
+in counters recorded apart from anyone's explanation, and the log line "the agent proposed, a person
+did, the outcome", filled from device events. The agent's logs now carry over when the store is rebuilt
+at a later clock.
+
+**Measured:** 136 tests pass with no key, and the truth set has no problems, including the rise on
+TRN-100 that came after a configuration change and is not credited to the advice.
+
+**Repeats of the held-out set,** with the prompt unchanged and no rule tuned to them
+(`data/truth/held_out_repeats.json`). The recorded answers come from this same prompt, which makes six
+runs:
+
+| Confidently wrong, of 16 | Runs |
+|---|---|
+| 0 | 3 |
+| 1 | 3 |
+
+In the five repeats the wrong binding was the same one file each time, in the category of an identifier
+that looks clear but is wrong. So this is not random scatter: there is one kind of trap the model
+sometimes walks into, and code does not catch it. That file has not been read and no rule was changed
+for it, so the set stays honest. The five repeats took 80 model calls, 354,025 input and 40,549 output
+tokens, about 2.23 USD at list price.
+
 ### Phase 4: the agent
 
 **Built:** `claims_for` with three tiers from rules, the evidence template, the prohibition in code,

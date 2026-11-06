@@ -12,7 +12,7 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta
 from uuid import uuid4
 
-from app import db
+from app import db, events
 from app.resolve import Graph
 
 FALLBACK_GROUP = "transmission-oncall"
@@ -111,6 +111,7 @@ class Candidate:
     claim: sqlite3.Row
     level: str
     status: str
+    status_note: str | None
 
 
 def _class_of(graph: Graph, entity: str | None) -> str | None:
@@ -136,14 +137,18 @@ def _conflict_partners(conn: sqlite3.Connection, claim_id: str) -> list[str]:
     return [row["dst"] if row["src"] == claim_id else row["src"] for row in rows]
 
 
-def _status(conn: sqlite3.Connection, claim: sqlite3.Row, level: str) -> str:
+def _status(
+    conn: sqlite3.Connection, claim: sqlite3.Row, level: str, entity: str, at: str | None
+) -> tuple[str, str | None]:
+    """This claim's status for this unit, and why, when there is more to say than the status."""
     if claim["superseded_at"]:
-        return "superseded"
+        return "superseded", None
     if level == "none":
-        return "not_applicable"
+        return "not_applicable", None
+    doubt = events.recheck(conn, claim, entity, at)
     if _conflict_partners(conn, claim["id"]):
-        return "disputed"
-    return "active"
+        return "disputed", doubt[1] if doubt else None
+    return doubt if doubt else ("active", None)
 
 
 def _candidates(
@@ -160,7 +165,8 @@ def _candidates(
         if at and claim["valid_from"] and claim["valid_from"] > at:
             continue
         level = _match_level(graph, entity, claim)
-        found.append(Candidate(claim, level, _status(conn, claim, level)))
+        status, status_note = _status(conn, claim, level, entity, at)
+        found.append(Candidate(claim, level, status, status_note))
     found.sort(key=lambda c: (LEVELS.index(c.level), c.claim["received_at"], c.claim["id"]))
     return found
 
@@ -185,8 +191,9 @@ def _match_note(graph: Graph, entity: str, candidate: Candidate) -> str:
 def _outcomes_in_class(
     conn: sqlite3.Connection, graph: Graph, claim_id: str, entity: str
 ) -> tuple[bool, bool]:
+    # Telemetry is left out: linking a rise to the advice is a suggestion, not something reported.
     rows = conn.execute(
-        "SELECT type, scope_entity FROM evidence_event WHERE claim_id = ?"
+        "SELECT type, scope_entity FROM evidence_event WHERE claim_id = ? AND basis = 'message'"
         " AND type IN ('reported_success', 'reported_failure')",
         (claim_id,),
     ).fetchall()
@@ -215,6 +222,7 @@ def _decide(
     claim: sqlite3.Row,
     level: str,
     status: str,
+    status_note: str | None,
     entity: str,
     success: bool,
     failure: bool,
@@ -257,6 +265,14 @@ def _decide(
             "Read the counters and report whether traffic came back after the bounce.",
             "read",
             "A report that the bounce failed, which lifts the prohibition.",
+            prohibition=held_back,
+        )
+    if status in ("recheck", "order_unknown"):
+        return _decision(
+            "check_first",
+            f"{check.rstrip('.')}. {status_note}",
+            "read",
+            f"A reported success on {entity} after that change, or a newer statement.",
             prohibition=held_back,
         )
 
@@ -321,14 +337,20 @@ def _decide(
 def render_evidence(conn: sqlite3.Connection, claim: sqlite3.Row, now: str) -> str:
     """From a template, never from a model, so no count or strength can appear that nobody reported."""
     lines = [f"Scope: {claim['scope_text'] or 'not stated'} ({claim['scope_status']})"]
-    events = conn.execute(
+    reported = conn.execute(
         "SELECT * FROM evidence_event WHERE claim_id = ? AND type != 'told'"
         " ORDER BY event_time IS NULL, event_time, id",
         (claim["id"],),
     ).fetchall()
-    for event in events:
+    for event in reported:
         excerpt = " ".join((event["excerpt"] or "").split())
         quote = f' · "{excerpt}"' if excerpt else ""
+        if event["basis"] == "telemetry":
+            lines.append(
+                f"Observed: {event['event_time']} · counters rising · {event['scope_entity']}{quote}"
+                " · source telemetry"
+            )
+            continue
         lines.append(
             f"Reported: {event['event_time'] or 'time unknown'} · {event['type']}"
             f" · {event['scope_entity'] or 'no unit'}{quote}"
@@ -356,7 +378,7 @@ def render_evidence(conn: sqlite3.Connection, claim: sqlite3.Row, now: str) -> s
         )
     confirmed = conn.execute(
         "SELECT max(event_time) AS last FROM evidence_event"
-        " WHERE claim_id = ? AND type = 'reported_success'",
+        " WHERE claim_id = ? AND type = 'reported_success' AND basis = 'message'",
         (claim["id"],),
     ).fetchone()["last"]
     lines.append(
@@ -373,6 +395,7 @@ def _view(
     level: str,
     note: str,
     now: str,
+    status_note: str | None = None,
 ) -> dict:
     evidence = conn.execute(
         "SELECT type, scope_entity, event_time, source_ref, excerpt, basis FROM evidence_event"
@@ -392,6 +415,7 @@ def _view(
         "scope_text": claim["scope_text"],
         "scope_status": claim["scope_status"],
         "status_for_entity": status,
+        "status_note": status_note,
         "match_level": level,
         "match_note": note,
         "info_age_days": _age_days(claim["received_at"], now),
@@ -472,7 +496,14 @@ def claims_for(
         primary = usable[0]
         success, failure = _outcomes_in_class(conn, graph, primary.claim["id"], entity_id)
         decision = _decide(
-            primary.claim, primary.level, primary.status, entity_id, success, failure, seen
+            primary.claim,
+            primary.level,
+            primary.status,
+            primary.status_note,
+            entity_id,
+            success,
+            failure,
+            seen,
         )
         match_level = primary.level
         # A guess is only worth showing when nothing better exists.
@@ -492,7 +523,8 @@ def claims_for(
         shown = candidates
 
     views = [
-        _view(conn, c.claim, c.status, c.level, _match_note(graph, entity_id, c), now) for c in shown
+        _view(conn, c.claim, c.status, c.level, _match_note(graph, entity_id, c), now, c.status_note)
+        for c in shown
     ]
     listed = {view["id"] for view in views}
     for candidate in shown:

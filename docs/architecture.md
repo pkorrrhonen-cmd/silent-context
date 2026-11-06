@@ -27,7 +27,23 @@ lists them). The product runs without the author's environment.
 | `app/ask.py` | Built | Ask the agent from the command line |
 | `app/api.py` | `/health`, `/graph`, `/claims_for`, `/access_for` | HTTP interface |
 
-The event rules (recheck, an outcome read from telemetry) and the web page are not built yet.
+The web page is not built yet.
+
+## What devices add
+
+`app/events.py` works from the event stream and telemetry alone. Nobody is asked anything.
+
+- **Recheck.** A firmware update on a unit puts SFP advice in doubt for that unit only, computed when
+  asked and never stored, so it cannot spread to the class. It is nobody's queue and nobody is told. A
+  success reported on the unit after the update clears it. If the advice has no known start and arrived
+  after the update, the order cannot be told, and the agent says so. This is one fixed rule on purpose:
+  replacing a module is the very situation this advice is for, not a reason to doubt it.
+- **An outcome seen on the device.** Counters rising soon after a bounce, with no other change in
+  between, are recorded apart from anyone's explanation. This confirms recovery, not its cause. Linking
+  it to the advice by time and port is a suggestion, so it never counts towards proposing anything.
+- **What a person did.** When the agent proposed a bounce, the log later fills in "a person did" and
+  "the outcome" from device events. A later decision about autonomy would need that record, and it
+  takes nobody's time.
 
 ## The agent
 

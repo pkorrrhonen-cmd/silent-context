@@ -7,10 +7,16 @@ enforces the schema.
 
 import json
 import os
+import threading
+from collections import Counter
 
 from openai import OpenAI
 
 MAX_TOKENS = 8000
+
+# Tokens used by this process, so a run can say what it cost instead of guessing.
+usage: Counter = Counter()
+_usage_lock = threading.Lock()
 
 
 class ModelNotConfigured(RuntimeError):
@@ -39,6 +45,10 @@ def complete_json(system: str, user: str, schema_name: str, schema: dict) -> dic
             "json_schema": {"name": schema_name, "strict": True, "schema": schema},
         },
     )
+    with _usage_lock:
+        usage["input"] += response.usage.prompt_tokens
+        usage["output"] += response.usage.completion_tokens
+        usage["calls"] += 1
     choice = response.choices[0]
     if choice.finish_reason not in ("stop", "end_turn"):
         raise RuntimeError(f"The model stopped early: finish_reason={choice.finish_reason}")

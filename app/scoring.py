@@ -4,6 +4,7 @@ The report prints numbers for the held-out set and nothing of its content, becau
 binding rules reads this output.
 """
 
+import hashlib
 import json
 import re
 import sqlite3
@@ -197,6 +198,13 @@ def _score_claims(conn: sqlite3.Connection, truth: dict, ids: dict[str, str]) ->
                 or row["role"] != estimate["role"]
             ):
                 problems.append(f"claim {key}: estimate {estimate} got {dict(row) if row else None}")
+    for outcome in truth["telemetry_outcomes"]:
+        seen = conn.execute(
+            "SELECT 1 FROM evidence_event WHERE basis = 'telemetry' AND scope_entity = ?",
+            (outcome["entity"],),
+        ).fetchone()
+        if bool(seen) != (outcome["expected"] == "reported_success"):
+            problems.append(f"telemetry outcome on {outcome['entity']}: seen={bool(seen)}")
     for edge in truth["edges"]:
         src, dst = ids.get(edge["src"]), ids.get(edge["dst"], edge["dst"])
         found = conn.execute(
@@ -263,7 +271,7 @@ def _score_variant(truth: dict, ids: dict[str, str], refresh: bool, workdir: Pat
     return problems
 
 
-def _score_decoy(row: dict, workdir: Path, refresh: bool) -> dict:
+def _score_decoy(row: dict, workdir: Path, refresh: bool, record_dir: Path) -> dict:
     """One held-out source in a store of its own, so no other source can help or hurt it."""
     path = db.build(workdir / f"{row['file']}.db")
     with db.session(path) as conn:
@@ -271,16 +279,21 @@ def _score_decoy(row: dict, workdir: Path, refresh: bool) -> dict:
         entry = {"file": row["file"], "received_at": row["received_at"]}
         try:
             ingest.ingest_file(
-                conn, graph, entry, directory=DECOY_DIR, cache_dir=DECOY_RECORD_DIR, refresh=refresh
+                conn, graph, entry, directory=DECOY_DIR, cache_dir=record_dir, refresh=refresh
             )
         except ingest.llm.ModelNotConfigured:
             raise
         except Exception as error:
-            return {"category": row["category"], "result": "error", "error": type(error).__name__}
+            return {
+                "file": row["file"],
+                "category": row["category"],
+                "result": "error",
+                "error": type(error).__name__,
+            }
         claims = conn.execute(
             "SELECT observed_entity, binding_status, binding_reason FROM claim"
         ).fetchall()
-    result = {"category": row["category"]}
+    result = {"file": row["file"], "category": row["category"]}
     bound = [claim for claim in claims if claim["binding_status"] == "bound"]
     if not claims:
         result["result"] = "no_claim"
@@ -296,10 +309,56 @@ def _score_decoy(row: dict, workdir: Path, refresh: bool) -> dict:
     return result
 
 
-def score_decoys(workdir: Path, refresh: bool = False) -> list[dict]:
+def score_decoys(
+    workdir: Path, refresh: bool = False, record_dir: Path = DECOY_RECORD_DIR
+) -> list[dict]:
     rows = json.loads((TRUTH_DIR / "expected_decoys.json").read_text(encoding="utf-8"))["decoys"]
     with ThreadPoolExecutor(max_workers=4) as pool:
-        return list(pool.map(lambda row: _score_decoy(row, workdir, refresh), rows))
+        return list(pool.map(lambda row: _score_decoy(row, workdir, refresh, record_dir), rows))
+
+
+def repeat_decoys(runs: int) -> None:
+    """Fresh model calls with the prompt unchanged, to see how much the result moves between runs.
+
+    The recorded answers are not touched. Prints and stores numbers and file names only.
+    """
+    results = []
+    for number in range(1, runs + 1):
+        with tempfile.TemporaryDirectory() as temp:
+            workdir = Path(temp)
+            decoys = score_decoys(workdir, record_dir=workdir / "answers")
+        counts = Counter(decoy["result"] for decoy in decoys)
+        results.append(
+            {
+                "run": number,
+                "counts": dict(counts),
+                "reason_right": sum(1 for decoy in decoys if decoy.get("reason_right")),
+                "wrong_files": sorted(
+                    decoy["file"] for decoy in decoys if decoy["result"] == "confident_wrong"
+                ),
+                "wrong_categories": dict(
+                    Counter(d["category"] for d in decoys if d["result"] == "confident_wrong")
+                ),
+            }
+        )
+        print(f"Run {number}: {results[-1]['counts']}, reason right {results[-1]['reason_right']}", flush=True)
+    wrong = [r["counts"].get("confident_wrong", 0) for r in results]
+    record = {
+        "note": "Repeats of the held-out set with the prompt unchanged and no rule tuned to it. These"
+        " are numbers and file names only. They describe this set of 16 synthetic sources.",
+        "model": ingest.llm.model_name(),
+        "prompt_sha256": hashlib.sha256(extract.SYSTEM_PROMPT.encode("utf-8")).hexdigest(),
+        "runs": results,
+        "confident_wrong_per_run": wrong,
+        "distinct_wrong_files": sorted({f for r in results for f in r["wrong_files"]}),
+        "tokens": dict(ingest.llm.usage),
+    }
+    (TRUTH_DIR / "held_out_repeats.json").write_text(
+        json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    print(f"Confidently wrong per run, of 16: {wrong}")
+    print(f"Distinct files ever wrong: {len(record['distinct_wrong_files'])}")
+    print(f"Tokens: {record['tokens']}")
 
 
 def score(workdir: Path, refresh: bool = False) -> dict:

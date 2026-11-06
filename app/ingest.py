@@ -13,7 +13,7 @@ import sys
 from datetime import datetime, timedelta
 from pathlib import Path
 
-from app import db, extract, llm
+from app import db, events, extract, llm
 from app.extract import ExtractedClaim
 from app.resolve import Binding, Graph, resolve_target
 from app.sources import ROOT, SOURCES_DIR, Message, Thread, appears_in, load_manifest, parse
@@ -28,12 +28,12 @@ DAYS_AGO = {"today": 0, "yesterday": 1, "the day before yesterday": 2}
 
 
 def load_events(conn: sqlite3.Connection, until: str | None) -> None:
-    events = json.loads(EVENTS_FILE.read_text(encoding="utf-8"))["events"]
+    stream = json.loads(EVENTS_FILE.read_text(encoding="utf-8"))["events"]
     conn.executemany(
         "INSERT INTO event (id, type, entity, port, event_time, attrs) VALUES (?, ?, ?, ?, ?, ?)",
         [
             (e["id"], e["type"], e["entity"], e["port"], e["event_time"], json.dumps(e["attrs"]))
-            for e in events
+            for e in stream
             if until is None or e["event_time"] <= until
         ],
     )
@@ -465,6 +465,26 @@ def ingest_file(
     return claim_ids
 
 
+def _logs_up_to(path: Path, until: str | None) -> dict[str, list[dict]]:
+    if not path.exists():
+        return {}
+    logs: dict[str, list[dict]] = {}
+    conn = sqlite3.connect(path)
+    conn.row_factory = sqlite3.Row
+    try:
+        for table in ("answer_log", "gap_log"):
+            logs[table] = [
+                dict(row)
+                for row in conn.execute(f"SELECT * FROM {table}")
+                if until is None or row["asked_at"] <= until
+            ]
+    except sqlite3.OperationalError:
+        return {}  # a store from an older schema has nothing worth carrying over
+    finally:
+        conn.close()
+    return logs
+
+
 def run(
     path: Path | None = None,
     until: str | None = None,
@@ -472,7 +492,12 @@ def run(
     refresh: bool = False,
     cache_dir: Path = extract.EXTRACTIONS_DIR,
 ) -> Path:
-    """Build the store as it stands at the demo clock. `replacing` swaps a source for a variant."""
+    """Build the store as it stands at the demo clock. `replacing` swaps a source for a variant.
+
+    The agent's logs are the one thing not derived from `data/`, so they carry over from the store being
+    replaced, up to the clock.
+    """
+    logs = _logs_up_to(path or db.store_path(), until)
     path = db.build(path)
     entries = [
         (replacing or {}).get(entry["file"], entry) for entry in load_manifest()["sources"]
@@ -485,7 +510,15 @@ def run(
         for entry in entries:
             if until is None or entry["received_at"] <= until:
                 ingest_file(conn, graph, entry, cache_dir=cache_dir, refresh=refresh)
+        events.link_telemetry_outcomes(conn, graph)
         conn.execute("INSERT INTO meta (key, value) VALUES ('as_of', ?)", (until or "",))
+        for table, rows in logs.items():
+            for row in rows:
+                marks = ", ".join("?" for _ in row)
+                conn.execute(
+                    f"INSERT INTO {table} ({', '.join(row)}) VALUES ({marks})", tuple(row.values())
+                )
+        events.settle_answers(conn)
     return path
 
 
@@ -494,12 +527,21 @@ def main() -> None:
     parser.add_argument("--until", help="The demo clock, for example 2026-10-20T12:00:00.")
     parser.add_argument("--refresh", action="store_true", help="Ask the model again for every source.")
     parser.add_argument("--truth", action="store_true", help="Score the result against the truth set.")
+    parser.add_argument(
+        "--repeat-held-out",
+        type=int,
+        metavar="RUNS",
+        help="Run the held-out set again with fresh model calls, to measure how much the result moves.",
+    )
     args = parser.parse_args()
     try:
-        if args.truth:
+        if args.truth or args.repeat_held_out:
             from app import scoring
 
-            scoring.report(refresh=args.refresh)
+            if args.repeat_held_out:
+                scoring.repeat_decoys(args.repeat_held_out)
+            else:
+                scoring.report(refresh=args.refresh)
             return
         path = run(until=args.until, refresh=args.refresh)
     except llm.ModelNotConfigured as error:

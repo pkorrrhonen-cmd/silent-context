@@ -16,7 +16,7 @@ Updated 6.11.2026 (session 2).
 | 2 | Visibility | Private. The IP terms are read. The submission form asks for a repository link, so this is decided before the submission; gitleaks over the full history before any flip to public. | `later`, before the submission on 8.11. |
 | 3 | License | None chosen. The terms: the team owns what it builds, and Elisa can use it in its business. | `later`, before the submission on 8.11. |
 | 4 | Truth set, the second expert's claim | Corrected: the claim waits with `no_id`. The truth set first bound it to TRN-051, and the model left it waiting, because the advice is about old units in general and TRN-051 only prompted it. The file says this was done after the first scored run, which makes that row weaker evidence than the rest. | `OK` |
-| 5 | Measuring run-to-run variation | The held-out result moved between runs (0, 0 and 1 confidently wrong of 16), and the prompt also changed between them, so the cause is not known. Recommended: repeat the held-out set with the prompt unchanged and report the range, with no rule tuned to it. | `draft` |
+| 5 | Measuring run-to-run variation | Done: five repeats with the prompt unchanged and no rule tuned to them. Confidently wrong per run, of 16: 0, 0, 0, 1, 1, the same one file each time. See `data/truth/held_out_repeats.json`. | `OK` |
 
 ## Design decisions P1 to P6
 

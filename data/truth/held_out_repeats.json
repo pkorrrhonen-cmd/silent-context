@@ -1,0 +1,82 @@
+{
+  "note": "Repeats of the held-out set with the prompt unchanged and no rule tuned to it. These are numbers and file names only. They describe this set of 16 synthetic sources.",
+  "model": "claude-opus-5-5",
+  "prompt_sha256": "a76f8dcfaec638366b945b510c1af6dee336f30976e1b6d55ae2391467119886",
+  "runs": [
+    {
+      "run": 1,
+      "counts": {
+        "waited_right": 12,
+        "bound_right": 4
+      },
+      "reason_right": 12,
+      "wrong_files": [],
+      "wrong_categories": {}
+    },
+    {
+      "run": 2,
+      "counts": {
+        "waited_right": 12,
+        "bound_right": 4
+      },
+      "reason_right": 12,
+      "wrong_files": [],
+      "wrong_categories": {}
+    },
+    {
+      "run": 3,
+      "counts": {
+        "waited_right": 12,
+        "bound_right": 4
+      },
+      "reason_right": 12,
+      "wrong_files": [],
+      "wrong_categories": {}
+    },
+    {
+      "run": 4,
+      "counts": {
+        "confident_wrong": 1,
+        "waited_right": 11,
+        "bound_right": 4
+      },
+      "reason_right": 11,
+      "wrong_files": [
+        "decoy_01.txt"
+      ],
+      "wrong_categories": {
+        "wrong_id": 1
+      }
+    },
+    {
+      "run": 5,
+      "counts": {
+        "confident_wrong": 1,
+        "waited_right": 11,
+        "bound_right": 4
+      },
+      "reason_right": 11,
+      "wrong_files": [
+        "decoy_01.txt"
+      ],
+      "wrong_categories": {
+        "wrong_id": 1
+      }
+    }
+  ],
+  "confident_wrong_per_run": [
+    0,
+    0,
+    0,
+    1,
+    1
+  ],
+  "distinct_wrong_files": [
+    "decoy_01.txt"
+  ],
+  "tokens": {
+    "input": 354025,
+    "output": 40549,
+    "calls": 80
+  }
+}

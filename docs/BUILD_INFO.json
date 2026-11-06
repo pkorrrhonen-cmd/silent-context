@@ -1,22 +1,22 @@
 {
   "name": "sinceai-2026",
   "version": "0.1.0",
-  "phase": "4",
-  "phaseName": "The agent built; waiting for the owner's checkpoint before phase 5",
+  "phase": "5",
+  "phaseName": "Events and ageing built; the web page is next",
   "session": 2,
   "updated": "2026-11-06",
-  "state": "Session 2 (6.11.2026, Code on the Mac): Elisa's challenge is selected and the decisions P1 to P6 are made. Phase 0 (skeleton, health check), phase 1 (Elisa's files unchanged, synthetic sources, events, seed graph, truth set, held-out binding set) phase 2 (store, export, /graph), phase 3 (extraction, binding, merging, recorded answers, scoring) and phase 4 (claims_for, access_for, the prohibition, counters from telemetry) are in main. The firmware recheck rule, outcomes read from telemetry and the web page do not exist yet.",
+  "state": "Session 2 (6.11.2026, Code on the Mac): Elisa's challenge is selected and the decisions P1 to P6 are made. Phase 0 (skeleton, health check), phase 1 (Elisa's files unchanged, synthetic sources, events, seed graph, truth set, held-out binding set) phase 2 (store, export, /graph), phase 3 (extraction, binding, merging, recorded answers, scoring) phase 4 (claims_for, access_for, the prohibition, counters from telemetry) and phase 5 (firmware recheck, outcomes from telemetry, the log line from device events) are in main. The web page does not exist yet.",
   "next_session": {
-    "id": "phase-5",
-    "name": "Events, ageing, disagreement",
+    "id": "phase-6",
+    "name": "Web page and graph",
     "read_first": [
       "CLAUDE.md",
       "docs/roadmap.md",
       "docs/BACKLOG.md",
       "docs/synthetic-data.md"
     ],
-    "scope": "Phase 5 of the Atlas artifact SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA, with its decisions in SINCEAI-2026-ELISA-PAATOKSET v3. Rule authors do not read data/truth/decoys, expected_decoys.json or data/extractions/decoys.",
-    "gate": "Phase 4's checkpoint with the owner, including DECISIONS.md row 5."
+    "scope": "Phase 6 of the Atlas artifact SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA, with its decisions in SINCEAI-2026-ELISA-PAATOKSET v3. Rule authors do not read data/truth/decoys, expected_decoys.json or data/extractions/decoys.",
+    "gate": "Phase 6 ends in a checkpoint with the owner."
   },
   "git_commit": null,
   "git_commit_note": "A commit cannot hold its own hash. git log on main is the record.",

@@ -7,7 +7,7 @@ uv run python -m app.ask access SITE-NILO --clock 2026-10-21T00:00:00
 
 import argparse
 
-from app import ingest
+from app import db, ingest
 from app.claims import access_for, claims_for
 
 SYMPTOM = "link up, counters zero after SFP replacement"
@@ -19,6 +19,9 @@ def _show(title: str, answer: dict) -> None:
     if "match_level" in answer:
         print(f"Match: {answer['match_level']}. {answer.get('match_note') or ''}".rstrip())
     print(f"Next step: {answer['next_step']}")
+    for claim in answer["claims"][:1]:
+        if claim.get("status_for_entity") not in (None, "active"):
+            print(f"Status for this unit: {claim['status_for_entity']}")
     if answer.get("action_kind"):
         print(f"Action kind: {answer['action_kind']}")
     if answer.get("prohibition"):
@@ -66,6 +69,27 @@ def demo() -> None:
     _show(
         "During the fault on TRN-051: nobody reports counters, the agent reads them, clock 21.10. 10:50",
         claims_for("TRN-051", SYMPTOM),
+    )
+
+    ingest.run(until="2026-10-21T11:15:00")
+    with db.session() as conn:
+        row = conn.execute(
+            "SELECT next_step, human_did, outcome FROM answer_log WHERE entity = 'TRN-051'"
+            " AND human_did IS NOT NULL ORDER BY asked_at DESC LIMIT 1"
+        ).fetchone()
+    print("\n=== 25 minutes later, from the devices alone. Nobody wrote this down.")
+    print(f"The agent proposed: {row['next_step']}")
+    print(f"A person did: {row['human_did']}")
+    print(f"Outcome: {row['outcome']}")
+
+    ingest.run(until="2026-10-29T00:00:00")
+    _show(
+        "After a firmware update on TRN-042 only: TRN-042, clock 29.10.",
+        claims_for("TRN-042", SYMPTOM, observed={"counters": "zero"}),
+    )
+    _show(
+        "The same class, not updated: TRN-051, clock 29.10.",
+        claims_for("TRN-051", SYMPTOM, observed={"counters": "zero"}),
     )
 
     ingest.run(until="2026-10-31T00:00:00")
