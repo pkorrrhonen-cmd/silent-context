@@ -1,12 +1,12 @@
 {
-  "key": "22ed5cc09fbbf1fa2b6b00c9041c3014511b992c44b412ee82049d5682d908dd",
+  "key": "b299e3aff707928c29bef5b658e233e5c33f23b423e68002d5b9efb852e321b3",
   "model": "claude-opus-5-5",
   "output": {
     "claims": [
       {
         "kind": "troubleshooting",
-        "claim_text": "If a port is flapping but RX power looks fine when it's up, it's probably not the SFP; flapping like that is more often a bad fibre bend or a loose patch in the tray, so check the fibre run to the frame first and reseat the patch at both ends before swapping the SFP. Leave the SFP alone unless it starts again.",
-        "symptom": "port flapping down and up every few minutes with RX power fine when up",
+        "claim_text": "If an interface is flapping but RX power is fine when it's up, it is probably not the SFP. Flapping like that is more often a bad fibre bend or a loose patch in the tray, so check the run to the frame first and reseat the patch at both ends, and leave the SFP alone unless it starts again.",
+        "symptom": "interface flapping down and up every few minutes with RX power fine when up",
         "advice_message_seqs": [
           2,
           4
@@ -19,9 +19,14 @@
         ],
         "target_firmware": null,
         "mentions_barrier": false,
-        "procedure_type": "PROC-SFP-REPLACE",
+        "procedure_type": null,
         "scope_text": null,
         "scope_names_version": null,
+        "check_step": "Check the fibre run from the port to the frame for bends",
+        "check_kind": "other",
+        "action": "Reseat the patch at both ends",
+        "action_kind": "none",
+        "do_not_before": "swap the SFP",
         "relative_time": null,
         "same_as_existing": null,
         "replaces_existing": null,

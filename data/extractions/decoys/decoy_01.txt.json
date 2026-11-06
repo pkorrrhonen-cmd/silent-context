@@ -1,12 +1,12 @@
 {
-  "key": "4c41a8acb4195360a5ed9f19b173f1ef794ad26ed23261bb83ca936a0a39c366",
+  "key": "b52a68daa5d8ddb8c8203a56aa15d0bc582117eafcaa8b890f92709fc949b2db",
   "model": "claude-opus-5-5",
   "output": {
     "claims": [
       {
         "kind": "troubleshooting",
-        "claim_text": "CRC bursts that only show up in the afternoon, once the cabin has warmed up, usually point to a connector that is not fully home, so plan for the errors being in the patch panel rather than the unit. Reseat and clean the patches first and leave the optics alone.",
-        "symptom": "CRC error bursts only in the afternoon after the cabin warms up",
+        "claim_text": "CRC bursts that only show up in the afternoon, once the cabin has warmed up, usually point to a connector in the patch panel that is not fully home, I believe. Reseat and clean the patches first and leave the optics alone.",
+        "symptom": "CRC error bursts only in the afternoon once the cabin has warmed up",
         "advice_message_seqs": [
           1
         ],
@@ -23,6 +23,40 @@
         "procedure_type": null,
         "scope_text": null,
         "scope_names_version": null,
+        "check_step": null,
+        "check_kind": null,
+        "action": "Reseat and clean the patches",
+        "action_kind": "none",
+        "do_not_before": "leave the optics alone",
+        "relative_time": null,
+        "same_as_existing": null,
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": []
+      },
+      {
+        "kind": "access",
+        "claim_text": "Allow extra time for the private road when going to the Nilo site.",
+        "symptom": null,
+        "advice_message_seqs": [
+          1
+        ],
+        "relayed": false,
+        "target_node_ids": [],
+        "target_sites": [
+          "Nilo"
+        ],
+        "target_ports": [],
+        "target_firmware": null,
+        "mentions_barrier": false,
+        "procedure_type": null,
+        "scope_text": null,
+        "scope_names_version": null,
+        "check_step": null,
+        "check_kind": null,
+        "action": null,
+        "action_kind": "none",
+        "do_not_before": null,
         "relative_time": null,
         "same_as_existing": null,
         "replaces_existing": null,

@@ -45,7 +45,8 @@ opposing advice, that is two claims.
 kind: "access" for how to reach or enter a place, otherwise "troubleshooting".
 
 claim_text: one or two sentences in the speaker's terms. Keep the order of steps, what not to do, and \
-hedging words such as "sometimes", "usually" and "probably". Never sound more certain than the speaker.
+hedging words such as "sometimes", "usually" and "probably". Never sound more certain than the speaker. \
+Use commas and full stops, not em dashes or en dashes.
 
 symptom: the situation the advice is for, as a short phrase. Null when it is not about a symptom.
 
@@ -73,6 +74,21 @@ nothing about it.
 
 scope_names_version: when those words name a firmware version or a model, that version or model as \
 written. Otherwise null.
+
+check_step: the first thing to check before acting, as a short instruction in the speaker's terms. \
+Null when they name no check.
+
+check_kind: "read_counters" when that check is reading traffic counters, "other" for any other check, \
+null when there is no check.
+
+action: the action advised, as a short instruction in the speaker's terms. Null when no action is \
+advised, for example where a key is.
+
+action_kind: "bounce_interface" for disabling and enabling an interface, "reboot", "replace_hw", \
+"read" when the advice is only to look at something, and "none" for anything else or no action.
+
+do_not_before: what the speaker says not to do before that action has been tried, in their terms. \
+Null when they say nothing about it.
 
 relative_time: for a claim about how things stand now, the words that say when this became true \
 relative to the message, copied exactly, for example "last Friday". Do not convert them to a date. \
@@ -141,6 +157,11 @@ class ExtractedClaim(BaseModel):
     procedure_type: str | None
     scope_text: str | None
     scope_names_version: str | None
+    check_step: str | None
+    check_kind: Literal["read_counters", "other"] | None
+    action: str | None
+    action_kind: Literal["bounce_interface", "reboot", "replace_hw", "read", "none"]
+    do_not_before: str | None
     relative_time: str | None
     same_as_existing: str | None
     replaces_existing: str | None

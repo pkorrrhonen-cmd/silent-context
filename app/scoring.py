@@ -169,6 +169,13 @@ def _score_claims(conn: sqlite3.Connection, truth: dict, ids: dict[str, str]) ->
             problems.append(f"claim {key}: no hedge kept: {claim['claim_text']}")
         if claim["kind"] != expected["kind"]:
             problems.append(f"claim {key}: kind {claim['kind']}")
+        for field_name in ("check_kind", "action_kind"):
+            if field_name in expected and claim[field_name] != expected[field_name]:
+                problems.append(f"claim {key}: {field_name} is {claim[field_name]}")
+        for field_name in ("check_step", "action", "do_not_before"):
+            for phrase in expected.get(f"{field_name}_must_mention", []):
+                if phrase.casefold() not in (claim[field_name] or "").casefold():
+                    problems.append(f"claim {key}: {field_name} {claim[field_name]!r} lacks {phrase!r}")
         final = expected.get("scope_refined_by", expected)
         if "scope_status" in final and claim["scope_status"] != final["scope_status"]:
             problems.append(f"claim {key}: scope status {claim['scope_status']}")

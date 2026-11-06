@@ -1,11 +1,11 @@
 {
-  "key": "932baed0f99cebe7ffebd34c9256562c7e393d24b3302b0e256afb70c876b5ba",
+  "key": "103e221b459f4b55a0cfff401a739c3bc4243c376dda68baa1e1756519a7daa5",
   "model": "claude-opus-5-5",
   "output": {
     "claims": [
       {
         "kind": "access",
-        "claim_text": "The Koski hut key is no longer in the box by the door; as far as Aarne knows it is now held at the caretaker's office, so call ahead and they will meet you. Phone the monitoring desk before you open up because the door contact raises an alarm, and allow an extra half hour on the first visit.",
+        "claim_text": "For Koski, the hut key is no longer in the box by the door. As far as I know it is now held at the caretaker's office, so call ahead and they will meet you, and phone the monitoring desk before you open up because the door contact raises an alarm. Allow an extra half hour on the first visit.",
         "symptom": null,
         "advice_message_seqs": [
           1
@@ -21,6 +21,11 @@
         "procedure_type": null,
         "scope_text": null,
         "scope_names_version": null,
+        "check_step": null,
+        "check_kind": null,
+        "action": "Call the caretaker's office ahead to get the key, and phone the monitoring desk before you open up",
+        "action_kind": "none",
+        "do_not_before": "open up before phoning the monitoring desk",
         "relative_time": null,
         "same_as_existing": null,
         "replaces_existing": null,

@@ -1,12 +1,12 @@
 {
-  "key": "27659f675bac1e5a298cae3d28799998068e50ed394521733eca9adff56b959a",
+  "key": "acfa6cfd1409b3936f34c6ae0acc6ac805c3de16119c1419fccf2f1e3c417a51",
   "model": "claude-opus-5-5",
   "output": {
     "claims": [
       {
         "kind": "troubleshooting",
-        "claim_text": "For an intermittent clock sync alarm, check the sync source priority first: if the primary reference is wobbling the alarm tends to come and go, and as far as I know it doesn't mean the port is bad. Set the secondary reference properly and watch it for a day before replacing anything.",
-        "symptom": "clock sync alarm coming and going a few times a day",
+        "claim_text": "For a clock sync alarm that comes and goes a few times a day, check the sync source priority first, since a wobbling primary reference tends to cause that and as far as he knows it doesn't mean the port is bad. Set the secondary reference properly and watch it for a day before replacing anything.",
+        "symptom": "clock sync alarm on interface coming up a few times a day",
         "advice_message_seqs": [
           4
         ],
@@ -21,6 +21,11 @@
         "procedure_type": null,
         "scope_text": null,
         "scope_names_version": null,
+        "check_step": "check the sync source priority",
+        "check_kind": "other",
+        "action": "set the secondary reference properly and watch it for a day",
+        "action_kind": "none",
+        "do_not_before": "replacing anything",
         "relative_time": null,
         "same_as_existing": null,
         "replaces_existing": null,

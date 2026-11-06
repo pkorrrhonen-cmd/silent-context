@@ -25,6 +25,11 @@ def claim(**overrides) -> dict:
         "procedure_type": None,
         "scope_text": None,
         "scope_names_version": None,
+        "check_step": None,
+        "check_kind": None,
+        "action": None,
+        "action_kind": "none",
+        "do_not_before": None,
         "relative_time": None,
         "same_as_existing": None,
         "replaces_existing": None,
@@ -293,6 +298,36 @@ def test_an_outcome_keeps_the_whole_message_and_names_the_unit_it_happened_on(
     assert row["excerpt"] == "Done. Traffic is back on TRN-051."
     assert row["event_time"] == "2026-10-21T10:02:00"
     assert row["source_ref"] == "b.json#seq=2"
+
+
+def test_defending_the_advice_is_not_a_report_of_trying_it(
+    tmp_path: Path, script: Script, run_file, store
+) -> None:
+    conn, _ = store
+    teams(
+        tmp_path / "t.json",
+        None,
+        ("Erkki", "Expert", "On TRN-042 bounce it. It was fine there last time."),
+        ("Veikko", "Engineer", "Did that. Traffic is back."),
+    )
+    script.next(
+        claim(
+            target_node_ids=["TRN-042"],
+            advice_message_seqs=[1],
+            outcomes=[
+                {"kind": "success", "message_seq": 1, "unit_id": "TRN-042"},
+                {"kind": "success", "message_seq": 2, "unit_id": "TRN-042"},
+            ],
+        )
+    )
+    run_file("t.json")
+    refs = [
+        row["source_ref"]
+        for row in conn.execute(
+            "SELECT source_ref FROM evidence_event WHERE type = 'reported_success'"
+        )
+    ]
+    assert refs == ["t.json#seq=2"]
 
 
 # Time

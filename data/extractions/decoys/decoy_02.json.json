@@ -1,11 +1,11 @@
 {
-  "key": "e4fe2b389185a8490f243cfedbaba62cad904cfb4c63b148c2893f9214e7412f",
+  "key": "e0e706b4a4eff46d53e9594f002b24a71f5b24f499fafa2219ec38960f902672",
   "model": "claude-opus-5-5",
   "output": {
     "claims": [
       {
         "kind": "troubleshooting",
-        "claim_text": "For an intermittent fan tray alarm, reseat the tray before ordering anything; an alarm that comes and goes is usually dust on the tray connector rather than a dead fan. If it comes back within a day the tray probably needs replacing.",
+        "claim_text": "For an intermittent fan tray alarm, reseat the tray before ordering anything, since an alarm that comes and goes is usually dust on the tray connector rather than a dead fan. If it comes back within a day the tray probably needs replacing.",
         "symptom": "fan tray alarm that comes and goes, tray sounds rough",
         "advice_message_seqs": [
           4
@@ -19,6 +19,11 @@
         "procedure_type": null,
         "scope_text": null,
         "scope_names_version": null,
+        "check_step": null,
+        "check_kind": null,
+        "action": "reseat the fan tray",
+        "action_kind": "none",
+        "do_not_before": "ordering anything",
         "relative_time": null,
         "same_as_existing": null,
         "replaces_existing": null,

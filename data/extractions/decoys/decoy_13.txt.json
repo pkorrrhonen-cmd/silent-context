@@ -1,11 +1,11 @@
 {
-  "key": "53d30c8acc012ffeddcc62cdc18f68d9d6ed17f4bb321a93e05031aa5b31c715",
+  "key": "dde9cfc98a79b869ea262d03102e34258740121f7cfd2c864ade6c3026b50d07",
   "model": "claude-opus-5-5",
   "output": {
     "claims": [
       {
         "kind": "access",
-        "claim_text": "Call the monitoring desk before you open the equipment room, because the door contact raises an intrusion alarm and people get sent out if nobody knows you are there. As far as Mikko remembers, the key is in the lockbox on the side of the building; the code was last changed in the spring, so ask the desk for the current one.",
+        "claim_text": "Call the monitoring desk before you open the equipment room, because the door contact raises an intrusion alarm and people get sent out if nobody knows you are there. As far as I remember the key is in the lockbox on the side of the building, and the code was last changed in the spring, so ask the desk for the current one.",
         "symptom": null,
         "advice_message_seqs": [
           1
@@ -19,6 +19,11 @@
         "procedure_type": null,
         "scope_text": null,
         "scope_names_version": null,
+        "check_step": "call the monitoring desk before you open the equipment room",
+        "check_kind": "other",
+        "action": "get the key from the lockbox on the side of the building, asking the desk for the current code",
+        "action_kind": "none",
+        "do_not_before": "open the equipment room",
         "relative_time": "in the spring",
         "same_as_existing": null,
         "replaces_existing": null,

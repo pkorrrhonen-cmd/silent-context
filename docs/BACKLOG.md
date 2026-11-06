@@ -43,7 +43,6 @@ Updated 6.11.2026 (session 2).
 
 | Code | Task | Why / notes |
 |---|---|---|
-| BUILD-4 | `claims_for` and the agent. | Phase 4. |
 | BUILD-5 | Events, ageing, conflict. | Phase 5. |
 | BUILD-6 | Web page and graph. | Phase 6. Adds vis-network to the README's licence table. |
 | BUILD-7 | Acceptance runs and a clean install. | Phase 7. |

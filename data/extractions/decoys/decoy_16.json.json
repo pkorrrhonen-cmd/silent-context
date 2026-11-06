@@ -1,12 +1,12 @@
 {
-  "key": "b31acecd0fd97820d97b72d3941cef569c708bb93524ba0be0ab200c7b907bc6",
+  "key": "92236e7b108175ac7bbe398818f825ae7c1dcc62afa367b383ad916f1b0a2302",
   "model": "claude-opus-5-5",
   "output": {
     "claims": [
       {
         "kind": "troubleshooting",
-        "claim_text": "Steady CRC errors with the link up are usually a dirty connector (on 4.8 don't suspect the software): clean both ends of the fibre and clear the counters; if they're still climbing after ten minutes, try a new patch lead before you touch the optics.",
-        "symptom": "CRC errors climbing while link stays up",
+        "claim_text": "On 4.8 I wouldn't suspect the software for this. Steady CRCs with the link up are usually a dirty connector, so clean both ends of the fibre and clear the counters, and if they're still climbing after ten minutes, try a new patch lead before you touch the optics.",
+        "symptom": "CRC errors climbing steadily while the link stays up",
         "advice_message_seqs": [
           4
         ],
@@ -21,6 +21,11 @@
         "procedure_type": null,
         "scope_text": "On 4.8",
         "scope_names_version": "4.8",
+        "check_step": null,
+        "check_kind": null,
+        "action": "Clean both ends of the fibre and clear the counters",
+        "action_kind": "none",
+        "do_not_before": "Don't touch the optics before trying a new patch lead",
         "relative_time": null,
         "same_as_existing": null,
         "replaces_existing": null,

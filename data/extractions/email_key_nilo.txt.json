@@ -1,11 +1,11 @@
 {
-  "key": "51c11a76cf55435f6fdbe6e7d6506e8bc5fc383b7453985e3467b8d2db9f132f",
+  "key": "d513236cc782ed16bfbf14fa624faf82325d17683725e16688e6001664206da5",
   "model": "claude-opus-5-5",
   "output": {
     "claims": [
       {
         "kind": "access",
-        "claim_text": "There is a locked barrier at the start of the private road to the Nilo site; the key is in the grey box under the mailbox at the junction.",
+        "claim_text": "There is a locked barrier at the start of the private road to the Nilo site. The key is in the grey box under the mailbox at the junction.",
         "symptom": null,
         "advice_message_seqs": [
           1
@@ -21,6 +21,11 @@
         "procedure_type": null,
         "scope_text": null,
         "scope_names_version": null,
+        "check_step": null,
+        "check_kind": null,
+        "action": null,
+        "action_kind": "none",
+        "do_not_before": null,
         "relative_time": null,
         "same_as_existing": null,
         "replaces_existing": null,

@@ -80,6 +80,21 @@ set and the held-out binding set:
 uv run --env-file .env python -m app.ingest --truth
 ```
 
+To ask the agent. The agent itself uses no model, so this needs no key. `demo` runs the scripted
+questions, each at its own clock value:
+
+```bash
+uv run python -m app.ask demo
+```
+
+```bash
+uv run python -m app.ask claims TRN-051 "link up, counters zero after SFP replacement" --counters zero --clock 2026-10-20T12:00:00
+```
+
+```bash
+uv run python -m app.ask access SITE-NILO --clock 2026-10-21T00:00:00
+```
+
 To write the graph to `export/graph.json`:
 
 ```bash

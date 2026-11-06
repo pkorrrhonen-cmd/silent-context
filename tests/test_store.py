@@ -129,6 +129,7 @@ def test_claims_for_on_an_empty_store_says_it_does_not_know(conn: sqlite3.Connec
     assert set(answer) == {
         "tier",
         "match_level",
+        "match_note",
         "next_step",
         "action_kind",
         "prohibition",
@@ -137,6 +138,7 @@ def test_claims_for_on_an_empty_store_says_it_does_not_know(conn: sqlite3.Connec
         "what_would_change",
         "ask_group",
         "reason_code",
+        "observed_used",
         "answer_id",
     }
     assert answer["tier"] == "unknown"

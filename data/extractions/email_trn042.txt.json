@@ -1,11 +1,11 @@
 {
-  "key": "f274680921f09ce4c3df67b8e3f5163df945d788a28912edbc253a11d33c441e",
+  "key": "8a07cd26aae553163883e4421b2b3fcca1160d0231ad22a6120dc0d3bd29470d",
   "model": "claude-opus-5-5",
   "output": {
     "claims": [
       {
         "kind": "troubleshooting",
-        "claim_text": "With some of the older transmission units, everything can look normal after replacing the SFP (interface UP, optical levels OK, alarms cleared) but traffic doesn't recover. Before replacing the SFP again or rebooting the unit, check the traffic counters; if the interface is UP but counters remain at zero, try disabling and enabling the interface once.",
+        "claim_text": "On some older transmission units, everything can look normal after replacing the optical module (interface UP, optical levels OK, alarms cleared) but traffic still doesn't recover. Before replacing the SFP again or rebooting the unit, check the traffic counters, and if the interface is UP but the counters remain at zero, try disabling and enabling the interface once.",
         "symptom": "traffic not recovering after SFP replacement while interface is UP, optical levels OK and alarms cleared",
         "advice_message_seqs": [
           1
@@ -21,6 +21,11 @@
         "procedure_type": "PROC-SFP-REPLACE",
         "scope_text": null,
         "scope_names_version": null,
+        "check_step": "check the traffic counters",
+        "check_kind": "read_counters",
+        "action": "try disabling and enabling the interface once",
+        "action_kind": "bounce_interface",
+        "do_not_before": "replacing the SFP again or rebooting the unit",
         "relative_time": null,
         "same_as_existing": "clm-002",
         "replaces_existing": null,

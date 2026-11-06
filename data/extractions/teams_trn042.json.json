@@ -1,12 +1,12 @@
 {
-  "key": "0cf119cdf0295734969cb85b8bdc98fa16a677510ff1e4ce957d7b8be5c4fe3f",
+  "key": "310fe6690134fd1eac674d41ecd045ba52a299f42469d9aa7800c10c82cd67a9",
   "model": "claude-opus-5-5",
   "output": {
     "claims": [
       {
         "kind": "troubleshooting",
-        "claim_text": "On the older units, don't trust the green link status after an SFP change: sometimes the interface comes up but forwarding doesn't recover. Usually the SFP is fine, so don't swap it again; check whether traffic counters increase, and if they stay at zero with the interface UP, disable the interface, wait a little, then enable it again. Don't reboot the whole unit unless that fails.",
-        "symptom": "after SFP replacement link is up and alarms cleared but traffic does not come back (counters stay at zero)",
+        "claim_text": "On these older units, don't trust the green link status, sometimes after changing the SFP the interface comes up but forwarding doesn't recover. Usually the SFP is fine, so check whether traffic counters are increasing, and if they stay at zero while the interface is UP, disable the interface, wait a little, then enable it again, and don't reboot the whole unit unless that fails.",
+        "symptom": "Link up and alarms cleared after SFP replacement but traffic not coming back",
         "advice_message_seqs": [
           4,
           6,
@@ -22,8 +22,13 @@
         "target_firmware": null,
         "mentions_barrier": false,
         "procedure_type": "PROC-SFP-REPLACE",
-        "scope_text": "the older units",
+        "scope_text": "These old units",
         "scope_names_version": null,
+        "check_step": "Check whether the traffic counters are actually increasing",
+        "check_kind": "read_counters",
+        "action": "Disable the interface, wait a little, then enable it again",
+        "action_kind": "bounce_interface",
+        "do_not_before": "Don't reboot the whole unit unless that fails",
         "relative_time": null,
         "same_as_existing": null,
         "replaces_existing": null,

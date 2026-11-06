@@ -1,12 +1,12 @@
 {
-  "key": "427fc894ca64484b7f30e39892056656c39e6aa23c35989b7c0295400c58d90f",
+  "key": "c5519a6ca52f52f04919a99c5d21800fd6a3de69aaa5da988225bb6ddc4aff43",
   "model": "claude-opus-5-5",
   "output": {
     "claims": [
       {
         "kind": "troubleshooting",
-        "claim_text": "When one side of a link is clean and the far side keeps counting CRC errors, the fault is normally in that far unit's receive path. Clean the connector first, then try a new patch lead, and only then think about the optics.",
-        "symptom": "CRC errors counting on the far end of a link while the near side is clean",
+        "claim_text": "When one side of a link is clean and the far side keeps counting CRCs, the fault is normally in that far unit's receive path. Clean the connector first, then try a new patch lead, and only then think about the optics.",
+        "symptom": "one side of the link clean, far side keeps counting CRC errors",
         "advice_message_seqs": [
           4
         ],
@@ -19,6 +19,11 @@
         "procedure_type": null,
         "scope_text": null,
         "scope_names_version": null,
+        "check_step": null,
+        "check_kind": null,
+        "action": "clean the connector first, then try a new patch lead",
+        "action_kind": "none",
+        "do_not_before": "think about the optics",
         "relative_time": null,
         "same_as_existing": null,
         "replaces_existing": null,

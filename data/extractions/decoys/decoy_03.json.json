@@ -1,11 +1,11 @@
 {
-  "key": "c0a11b38a1110a3a904564ad472470a81c9ca467420c71f33f6ce9e61c563579",
+  "key": "2425c741d3f95dad3e09d7c77a029b4d0807f863f9245c16c8dd2dd43ada65e5",
   "model": "claude-opus-5-5",
   "output": {
     "claims": [
       {
         "kind": "troubleshooting",
-        "claim_text": "If a fan alarm comes and goes on just one tray and the fan sounds normal, take the tray out, blow out the dust and reseat it; it's usually dust on the connector rather than a dead fan.",
+        "claim_text": "If a fan alarm comes and goes on one fan tray and the fan sounds normal, take the tray out, blow out the dust and reseat it. It's usually dust on the connector rather than a dead fan.",
         "symptom": "intermittent fan alarm on one fan tray, fan sounds normal",
         "advice_message_seqs": [
           4,
@@ -22,6 +22,11 @@
         "procedure_type": null,
         "scope_text": null,
         "scope_names_version": null,
+        "check_step": "check whether the alarm is on a particular tray",
+        "check_kind": "other",
+        "action": "take the tray out, blow out the dust and reseat it",
+        "action_kind": "none",
+        "do_not_before": null,
         "relative_time": null,
         "same_as_existing": null,
         "replaces_existing": null,

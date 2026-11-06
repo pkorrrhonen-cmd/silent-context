@@ -49,10 +49,12 @@ CREATE TABLE claim (
   scope_text TEXT,
   scope_status TEXT NOT NULL DEFAULT 'undefined' CHECK (scope_status IN ('confirmed', 'undefined')),
   applies_to TEXT REFERENCES entity(id),
-  -- Optional procedure fields, filled only if time remains. The order also stays in claim_text.
-  precondition TEXT,
+  -- What the agent's next step reads. There is no step machine: the order also stays in claim_text.
   check_step TEXT,
+  check_kind TEXT CHECK (check_kind IN ('read_counters', 'other')),
   action TEXT,
+  action_kind TEXT NOT NULL DEFAULT 'none' CHECK (action_kind IN
+    ('read', 'bounce_interface', 'reboot', 'replace_hw', 'none')),
   do_not_before TEXT,
   valid_from TEXT,
   valid_from_basis TEXT CHECK (valid_from_basis IN ('stated', 'anchored')),
@@ -92,6 +94,8 @@ CREATE TABLE evidence_event (
   event_time TEXT,
   source_ref TEXT,
   excerpt TEXT,
+  channel TEXT,
+  role TEXT,
   basis TEXT NOT NULL CHECK (basis IN ('message', 'telemetry', 'flag'))
 );
 
@@ -103,6 +107,15 @@ CREATE TABLE event (
   port TEXT,
   event_time TEXT NOT NULL,
   attrs TEXT NOT NULL DEFAULT '{}'
+);
+
+-- The counters the agent can read itself. Time-series data is time-aware by nature.
+CREATE TABLE telemetry (
+  entity TEXT NOT NULL REFERENCES entity(id),
+  port TEXT NOT NULL,
+  t TEXT NOT NULL,
+  metric TEXT NOT NULL,
+  value INTEGER NOT NULL
 );
 
 -- Someone's estimate about a unit, kept as that with its source. It never becomes a graph fact.
@@ -143,6 +156,8 @@ CREATE TABLE answer_log (
   human_did TEXT,
   outcome TEXT
 );
+
+-- What the agent could not answer, and who to ask. The first half of a question at the moment of need.
 
 CREATE TABLE gap_log (
   id TEXT PRIMARY KEY,

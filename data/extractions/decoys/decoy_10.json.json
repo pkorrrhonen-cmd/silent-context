@@ -1,13 +1,14 @@
 {
-  "key": "c01c870fd2cc0970e0ae76b4ade679189b9a7014141ee7750daf4cac17191eb3",
+  "key": "9be51f54560ad4cdd1da5377366ffa2f7662d6e89b7b0881ed9949e1dd368f33",
   "model": "claude-opus-5-5",
   "output": {
     "claims": [
       {
         "kind": "troubleshooting",
-        "claim_text": "For a high temperature alarm that comes and goes, change the cabinet filter before anything else, since a clogged filter is the usual reason. If it still comes back with a clean filter, check that the fans actually ramp up when the alarm is on; don't touch the temperature thresholds.",
+        "claim_text": "For a high temperature alarm that clears and comes back with the cabinet door closed, change the filter before anything else, since a clogged filter is the usual reason. If it still comes back with a clean filter, check that the fans actually ramp up when the alarm is on, and don't touch the temperature thresholds.",
         "symptom": "high temperature alarm that clears on its own and comes back",
         "advice_message_seqs": [
+          2,
           4
         ],
         "relayed": false,
@@ -19,6 +20,11 @@
         "procedure_type": null,
         "scope_text": null,
         "scope_names_version": null,
+        "check_step": "check that the cabinet door is closed and when the filter was changed",
+        "check_kind": "other",
+        "action": "change the filter",
+        "action_kind": "replace_hw",
+        "do_not_before": "don't touch the temperature thresholds",
         "relative_time": null,
         "same_as_existing": null,
         "replaces_existing": null,

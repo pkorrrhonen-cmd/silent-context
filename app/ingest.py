@@ -18,7 +18,8 @@ from app.extract import ExtractedClaim
 from app.resolve import Binding, Graph, resolve_target
 from app.sources import ROOT, SOURCES_DIR, Message, Thread, appears_in, load_manifest, parse
 
-EVENTS_FILE = ROOT / "data" / "events" / "events.json"
+TELEMETRY_DIR = ROOT / "data" / "events"
+EVENTS_FILE = TELEMETRY_DIR / "events.json"
 
 # An event only anchors a claim's start if it happened shortly before the conversation about it.
 ANCHOR_WINDOW = timedelta(hours=24)
@@ -36,6 +37,19 @@ def load_events(conn: sqlite3.Connection, until: str | None) -> None:
             if until is None or e["event_time"] <= until
         ],
     )
+
+
+def load_telemetry(conn: sqlite3.Connection, until: str | None) -> None:
+    for path in sorted(TELEMETRY_DIR.glob("telemetry_*.json")):
+        series = json.loads(path.read_text(encoding="utf-8"))
+        conn.executemany(
+            "INSERT INTO telemetry (entity, port, t, metric, value) VALUES (?, ?, ?, ?, ?)",
+            [
+                (series["node"], series["port"], s["t"], series["metric"], s["value"])
+                for s in series["samples"]
+                if until is None or s["t"] <= until
+            ],
+        )
 
 
 def _next_id(conn: sqlite3.Connection, table: str, prefix: str) -> str:
@@ -82,6 +96,8 @@ def _add_edge(conn: sqlite3.Connection, src: str, rel: str, dst: str) -> None:
 
 def _add_evidence(
     conn: sqlite3.Connection,
+    thread: Thread,
+    message: Message,
     claim_id: str,
     kind: str,
     scope: str | None,
@@ -91,7 +107,7 @@ def _add_evidence(
 ) -> None:
     conn.execute(
         "INSERT INTO evidence_event (id, claim_id, scope_entity, type, event_time, source_ref,"
-        " excerpt, basis) VALUES (?, ?, ?, ?, ?, ?, ?, 'message')",
+        " excerpt, channel, role, basis) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'message')",
         (
             _next_id(conn, "evidence_event", "evd"),
             claim_id,
@@ -100,6 +116,8 @@ def _add_evidence(
             event_time,
             source_ref,
             excerpt,
+            thread.channel,
+            message.role,
         ),
     )
 
@@ -161,8 +179,9 @@ def _new_claim(
     claim_id = _next_id(conn, "claim", "clm")
     conn.execute(
         "INSERT INTO claim (id, kind, claim_text, symptom, observed_entity, scope_text, scope_status,"
-        " applies_to, valid_from, valid_from_basis, received_at, binding_status, binding_reason)"
-        " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        " applies_to, check_step, check_kind, action, action_kind, do_not_before, valid_from,"
+        " valid_from_basis, received_at, binding_status, binding_reason)"
+        " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         (
             claim_id,
             item.kind,
@@ -172,6 +191,11 @@ def _new_claim(
             scope_text,
             "confirmed" if applies_to else "undefined",
             applies_to,
+            item.check_step,
+            item.check_kind,
+            item.action,
+            item.action_kind,
+            item.do_not_before,
             valid_from,
             basis,
             received_at,
@@ -219,7 +243,14 @@ def _narrow_scope(
 
 
 def _supersede(
-    conn: sqlite3.Connection, old_id: str, new_id: str, received_at: str, ref: str
+    conn: sqlite3.Connection,
+    thread: Thread,
+    message: Message,
+    old_id: str,
+    new_id: str,
+    received_at: str,
+    ref: str,
+    when: str | None,
 ) -> None:
     """The old claim stays. Its end is the new claim's start, or stays unknown if that is unknown."""
     start = conn.execute("SELECT valid_from FROM claim WHERE id = ?", (new_id,)).fetchone()[0]
@@ -229,11 +260,17 @@ def _supersede(
     )
     _add_edge(conn, new_id, "SUPERSEDES", old_id)
     observed = conn.execute("SELECT observed_entity FROM claim WHERE id = ?", (old_id,)).fetchone()[0]
-    _add_evidence(conn, old_id, "superseded", observed, None, ref, None)
+    _add_evidence(conn, thread, message, old_id, "superseded", observed, when, ref, None)
 
 
 def _dispute(
-    conn: sqlite3.Connection, new_id: str, old_id: str, ref: str, when: str | None, text: str
+    conn: sqlite3.Connection,
+    thread: Thread,
+    message: Message,
+    new_id: str,
+    old_id: str,
+    ref: str,
+    when: str | None,
 ) -> None:
     """Both claims stay visible, each marked disputed. Nothing here picks a winner."""
     _add_edge(conn, new_id, "CONFLICTS_WITH", old_id)
@@ -241,7 +278,7 @@ def _dispute(
         observed = conn.execute(
             "SELECT observed_entity FROM claim WHERE id = ?", (claim_id,)
         ).fetchone()[0]
-        _add_evidence(conn, claim_id, "disputed", observed, when, ref, text)
+        _add_evidence(conn, thread, message, claim_id, "disputed", observed, when, ref, message.text)
 
 
 def _existing(conn: sqlite3.Connection, claim_id: str | None) -> sqlite3.Row | None:
@@ -298,7 +335,9 @@ def _add_outcomes(
     ).fetchone()[0]
     for outcome in item.outcomes:
         message = thread.message(outcome.message_seq)
-        if message is None:
+        # A message that gives or defends the advice is not a report of trying it. This can miss a
+        # person who does both in one message, and that is the safe way to be wrong about evidence.
+        if message is None or outcome.message_seq in item.advice_message_seqs:
             continue
         unit = _literal_or_none(thread, outcome.unit_id)
         unit = unit.strip().upper() if unit else None
@@ -312,6 +351,8 @@ def _add_outcomes(
         if not already:
             _add_evidence(
                 conn,
+                thread,
+                message,
                 claim_id,
                 kinds[outcome.kind],
                 unit,
@@ -344,12 +385,12 @@ def _store_claim(
             and replaced["observed_entity"] == new["observed_entity"]
             and replaced["kind"] == new["kind"]
         ):
-            _supersede(conn, replaced["id"], claim_id, received_at, ref)
+            _supersede(conn, thread, advice[0], replaced["id"], claim_id, received_at, ref, when)
         elif replaced:
-            _dispute(conn, claim_id, replaced["id"], ref, when, advice[0].text)
+            _dispute(conn, thread, advice[0], claim_id, replaced["id"], ref, when)
         opposed = _existing(conn, item.contradicts_existing)
         if opposed:
-            _dispute(conn, claim_id, opposed["id"], ref, when, advice[0].text)
+            _dispute(conn, thread, advice[0], claim_id, opposed["id"], ref, when)
 
     teller_key = _teller_key(claim_id, advice[0].author)
     _add_source(conn, thread, claim_id, advice, ref, teller_key, received_at)
@@ -359,7 +400,7 @@ def _store_claim(
     # One person's second account is another source, not a second telling, and a relay is neither.
     if told_by_this_teller == 1 and not item.relayed:
         observed = _existing(conn, claim_id)["observed_entity"]
-        _add_evidence(conn, claim_id, "told", observed, when, ref, None)
+        _add_evidence(conn, thread, advice[0], claim_id, "told", observed, when, ref, None)
     _add_outcomes(conn, graph, thread, item, claim_id, not existing, received_at)
     return claim_id
 
@@ -440,6 +481,7 @@ def run(
     with db.session(path) as conn:
         graph = Graph.load(conn)
         load_events(conn, until)
+        load_telemetry(conn, until)
         for entry in entries:
             if until is None or entry["received_at"] <= until:
                 ingest_file(conn, graph, entry, cache_dir=cache_dir, refresh=refresh)

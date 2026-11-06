@@ -1,12 +1,12 @@
 {
-  "key": "61e05ba73ac2c2d6bfde311fe0e01514915b101297087cc7714e1a5fcdf36a95",
+  "key": "388545e61daa1fcf15626cd5dce72b7e26ea046b40cb63955f64616e6fc1f1f6",
   "model": "claude-opus-5-5",
   "output": {
     "claims": [
       {
         "kind": "troubleshooting",
-        "claim_text": "On these old units, replace the SFP first rather than bouncing the interface; the cage is usually the bad part on them, and a bounce just hides it for a while (old units have come back with the same fault after a bounce).",
-        "symptom": "interface up but forwarding not recovered after SFP swap on old units",
+        "claim_text": "On these old units, replace the SFP first rather than bouncing the interface. The cage is usually the bad part on them, and a bounce just hides it for a while, old units have come back with the same fault after a bounce.",
+        "symptom": "interface issue after SFP swap on old units",
         "advice_message_seqs": [
           1,
           3,
@@ -21,6 +21,11 @@
         "procedure_type": "PROC-SFP-REPLACE",
         "scope_text": "these old units",
         "scope_names_version": null,
+        "check_step": null,
+        "check_kind": null,
+        "action": "replace the SFP",
+        "action_kind": "replace_hw",
+        "do_not_before": null,
         "relative_time": null,
         "same_as_existing": null,
         "replaces_existing": null,
@@ -29,8 +34,8 @@
       },
       {
         "kind": "troubleshooting",
-        "claim_text": "After an SFP swap, check the counters, then disable and enable the interface; the SFP is usually fine and need not be replaced.",
-        "symptom": "interface up but forwarding not recovered after SFP swap",
+        "claim_text": "Check the counters, then disable and enable the interface. The SFP was fine on both TRN-042 and TRN-051.",
+        "symptom": "interface issue after SFP swap",
         "advice_message_seqs": [
           2,
           4
@@ -41,14 +46,30 @@
         "target_ports": [],
         "target_firmware": null,
         "mentions_barrier": false,
-        "procedure_type": "PROC-SFP-REPLACE",
+        "procedure_type": null,
         "scope_text": null,
         "scope_names_version": null,
+        "check_step": "check the counters",
+        "check_kind": "read_counters",
+        "action": "disable and enable the interface",
+        "action_kind": "bounce_interface",
+        "do_not_before": null,
         "relative_time": null,
         "same_as_existing": "clm-002",
         "replaces_existing": null,
         "contradicts_existing": null,
-        "outcomes": []
+        "outcomes": [
+          {
+            "kind": "success",
+            "message_seq": 2,
+            "unit_id": "TRN-042"
+          },
+          {
+            "kind": "success",
+            "message_seq": 2,
+            "unit_id": "TRN-051"
+          }
+        ]
       }
     ],
     "estimates": []

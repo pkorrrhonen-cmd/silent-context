@@ -1,19 +1,17 @@
 {
-  "key": "c37f4b8a6fc30f4f4a9bef9617f7f812043dfd79128f7e8b7e02bae2f8e276c1",
+  "key": "0a5009ada4526507b244fdc63d8733f648b279c050132a6e99c5188458af72e6",
   "model": "claude-opus-5-5",
   "output": {
     "claims": [
       {
         "kind": "access",
-        "claim_text": "The barrier key for the private road to the Nilo site is no longer in the grey box under the mailbox (it broke); it is now in the maintenance hut by the junction, on the hook inside the door.",
+        "claim_text": "The key to the barrier on the private road to the Nilo site is now in the maintenance hut by the junction, on the hook inside the door, since the grey box under the mailbox broke.",
         "symptom": null,
         "advice_message_seqs": [
           1
         ],
         "relayed": false,
-        "target_node_ids": [
-          "BAR-NILO-1"
-        ],
+        "target_node_ids": [],
         "target_sites": [
           "Nilo"
         ],
@@ -23,6 +21,11 @@
         "procedure_type": null,
         "scope_text": null,
         "scope_names_version": null,
+        "check_step": null,
+        "check_kind": null,
+        "action": null,
+        "action_kind": "none",
+        "do_not_before": null,
         "relative_time": "yesterday",
         "same_as_existing": null,
         "replaces_existing": "clm-001",

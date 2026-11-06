@@ -1,13 +1,14 @@
 {
-  "key": "1f753894215465bf831f9f5940c08c54582c9ee2d63e2076e960bd2b2ab076ef",
+  "key": "63de6795ead82b7ab88c8c1baf41f5757a8caa82c923019945abc8e434151b96",
   "model": "claude-opus-5-5",
   "output": {
     "claims": [
       {
         "kind": "troubleshooting",
-        "claim_text": "Slow CRC errors on one port (other port clean) are usually the patch lead rather than the unit itself: swap the lead first and clear the counters; if errors come back, clean the connector and then try the SFP.",
-        "symptom": "slow but persistent CRC errors on a single port",
+        "claim_text": "If slow CRC errors appear on only one port at Rauta, it is probably not the unit itself but usually the patch lead. Swap the lead first and clear the counters, and if the errors come back, clean the connector and then try the SFP.",
+        "symptom": "slow but continuing CRC errors on a single port while the neighbouring port is clean",
         "advice_message_seqs": [
+          2,
           4
         ],
         "relayed": false,
@@ -23,6 +24,11 @@
         "procedure_type": null,
         "scope_text": null,
         "scope_names_version": null,
+        "check_step": "Check whether only this port shows CRC errors or the neighbouring port as well",
+        "check_kind": "other",
+        "action": "Swap the patch lead and clear the counters",
+        "action_kind": "replace_hw",
+        "do_not_before": "try the SFP",
         "relative_time": null,
         "same_as_existing": null,
         "replaces_existing": null,

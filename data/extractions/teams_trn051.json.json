@@ -1,12 +1,12 @@
 {
-  "key": "e2f608d88758df85c0815f15e154ce45c7c7e767f7efde6f26c637287fbabebb",
+  "key": "53b2739ffd9199d078ae30e44b3359689e542b013a2a579a3c420577e1fce0b8",
   "model": "claude-opus-5-5",
   "output": {
     "claims": [
       {
         "kind": "troubleshooting",
-        "claim_text": "After an SFP change with link up but no traffic, check the traffic counters first; if they stay at zero with the interface UP, disable the interface, wait a bit and enable it again. No reboot yet.",
-        "symptom": "link up and alarms gone after SFP replacement but no traffic",
+        "claim_text": "After an SFP change, if the link is up but there is no traffic, look at the counters first. If they are at zero with the link UP, disable the interface, wait a bit and enable it, no reboot yet.",
+        "symptom": "link up after SFP replacement but no traffic",
         "advice_message_seqs": [
           2,
           4
@@ -24,6 +24,11 @@
         "procedure_type": "PROC-SFP-REPLACE",
         "scope_text": null,
         "scope_names_version": null,
+        "check_step": "look at the counters first",
+        "check_kind": "read_counters",
+        "action": "disable the interface, wait a bit and enable it",
+        "action_kind": "bounce_interface",
+        "do_not_before": "No reboot yet",
         "relative_time": null,
         "same_as_existing": "clm-002",
         "replaces_existing": null,

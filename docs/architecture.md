@@ -23,10 +23,41 @@ lists them). The product runs without the author's environment.
 | `app/scoring.py` | Built | Scores a run against the truth set and the held-out set |
 | `app/db.py` | Built | The claim store: schema, seed graph, rebuild |
 | `app/export.py` | Built | The graph as JSON |
-| `app/api.py` | `/health`, `/graph` | HTTP interface |
-| `app/claims.py` | Contract only | `claims_for`: for now it always answers "I don't know" with a reason |
+| `app/claims.py` | Built | The agent's calls: `claims_for` and `access_for` |
+| `app/ask.py` | Built | Ask the agent from the command line |
+| `app/api.py` | `/health`, `/graph`, `/claims_for`, `/access_for` | HTTP interface |
 
-Matching in `claims_for`, the event rules (recheck, telemetry) and the web page are not built yet.
+The event rules (recheck, an outcome read from telemetry) and the web page are not built yet.
+
+## The agent
+
+`claims_for(unit, symptom)` uses no model, so an answer works without an endpoint and is the same every
+time. The tier comes from rules, the evidence from a template, and the wording of a step from what the
+expert said, as extracted once.
+
+| Tier | When |
+|---|---|
+| `propose` | A reported success on this unit's class, no disagreement, and the claim's own check observed to hold |
+| `check_first` | Only told so far, the check not yet observed, a guess, a failure reported on this class, or a disagreement |
+| `unknown` | Nothing fits, or the advice does not cover this unit: the answer names a group and logs the gap |
+
+- **How a claim reaches a unit:** `same_node`, `same_class`, or `similar_guess`, which is named a guess
+  and is never proposed. While a scope is undefined, reaching another unit of the class is called an
+  inference in the answer itself.
+- **The one prohibition:** no reboot or hardware replacement before a failed bounce is reported. It is
+  in code, and it holds even if a claim advises a reboot.
+- **What the agent reads itself:** counters nobody reported come from telemetry, if a recent sample
+  exists. An old sample is not read as the present.
+- **What it never does:** offer a waiting claim as advice for a unit. A waiting claim can still appear
+  as the reason for a disagreement, marked as that.
+
+Symptoms are matched by plain words over what a claim says, not by meaning. Both ways of being wrong are
+cheap: a miss says "I don't know", and a false match still has to pass the claim's own check before
+anything is proposed. A real deployment would want a better match here.
+
+`access_for(place)` answers how to reach a place, with the age of the information. For a point in world
+time it says what held then, and if the moment one statement replaced another is unknown, it returns
+both and says so.
 
 ## The store
 

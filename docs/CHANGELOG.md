@@ -10,6 +10,40 @@ The canonical state is [`BUILD_INFO.json`](BUILD_INFO.json): refer to it, do not
 plan in the Atlas artifact `SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA`. The README, product,
 architecture, roadmap, backlog and decisions now say so.
 
+### Phase 4: the agent
+
+**Built:** `claims_for` with three tiers from rules, the evidence template, the prohibition in code,
+the agent reading counters itself from recent telemetry, `access_for`, the answer and gap logs, HTTP
+endpoints, and `python -m app.ask`. The agent uses no model.
+
+**Changed from the plan:**
+
+- The check and action fields came now, not last. The tier and the next step read them, and the time
+  allowed it. There is still no step machine. The unused `precondition` field is gone.
+- Disagreement is in here already, not in phase 5, because an answer that ignored it would be wrong.
+- A symptom is matched over the whole claim, not only its symptom field. The first try used the field
+  alone and the agent could not find Elisa's advice, because "counters" and "zero" were in the check.
+- For TRN-100 the plan expects a guess or no match. After 30.10. it can also find the VLAN finding from
+  that unit, as `same_node` and `check_first`. Elisa's advice is still shown as not covering it, with
+  the reported failure.
+
+**Measured:** 122 tests pass with no key. The acceptance cases for the first three questions, the
+barrier, the evidence wording and the prohibition pass, and so does most of the disagreement case.
+
+**The result moves between runs.** Three runs of the same sources:
+
+| Run | What differed | Truth set | Held-out: confidently wrong |
+|---|---|---|---|
+| 1 | First prompt | One miss, the truth set's own | 0 of 16 |
+| 2 | Check and action fields added | None | 0 of 16 |
+| 3 | A sentence about dashes added | One false success | 1 of 16 |
+
+The prompt changed each time, so these are not clean repeats, and the cause of the change is not known.
+The recorded answers are run 3, the newest: the best run was not picked. The false success was an
+expert defending their advice, read as a report of trying it. A message that gives the advice no longer
+counts as an outcome, which fixes the truth set's row with no new run. The rules were not changed for
+the held-out result, and its files were not read, so it stands at 1 of 16.
+
 ### Phase 3: extraction and binding
 
 **Built:** reading the sources, one structured model call per thread, binding by code from the graph,
