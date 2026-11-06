@@ -10,6 +10,29 @@ The canonical state is [`BUILD_INFO.json`](BUILD_INFO.json): refer to it, do not
 plan in the Atlas artifact `SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA`. The README, product,
 architecture, roadmap, backlog and decisions now say so.
 
+### Phase 6: the page
+
+**Built:** one page with ten scenes on the arrow keys: a live time axis in the form of Elisa's layer
+picture, sources with their checksums, claims, the graph, the agent and the numbers on extra work. A
+source opens as it was read. The endpoints behind it are `/state`, `/clock` and `/source`, and `/source`
+opens only files in the manifest.
+
+**Changed from the plan:**
+
+- The graph is hand-made SVG instead of vis-network. Laid out by kind, it stays still on a recording,
+  and it adds no dependency or licence. The decision allowed any drawing.
+- System fonts, because the page must not fetch anything from outside and a font would have been one
+  more thing to vendor.
+- The simulated "mark as wrong" button is left out, first in the plan's cutting order.
+
+**Measured:** 150 tests pass with no key. All ten scenes ran in a browser at 1440 by 900 with no console
+errors, and the page was also opened at 1920 by 1080. One thing could not be checked: the browser pane
+was hidden and did not finish CSS transitions, so the dimming between scenes was checked by its classes
+and has not been seen moving.
+
+The zero conversations started on the page has a test behind it: nothing in `app/` except the model
+client imports anything that can reach outside.
+
 ### Phase 5: events, ageing, disagreement
 
 **Built:** the firmware recheck per claim and unit, the status for an order that cannot be told, a rise

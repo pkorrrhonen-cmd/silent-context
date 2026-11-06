@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Silent context capture</title>
+  <link rel="stylesheet" href="/web/style.css">
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <strong>Silent context</strong>
+      <span>capture for network operations</span>
+    </div>
+    <nav id="scenes" aria-label="Scenes"></nav>
+    <div class="clock"><span>t =</span> <output id="clock">now</output></div>
+  </header>
+
+  <p id="caption"></p>
+
+  <section id="timeline" class="panel" aria-label="Time-aware layers">
+    <svg id="timeline-svg" role="img" aria-label="Events, sources and claims on a time axis"></svg>
+  </section>
+
+  <main>
+    <section id="sources" class="panel">
+      <h2>What was read <small>as it was written</small></h2>
+      <div id="proof" class="proof"></div>
+      <div id="metrics" class="metrics"></div>
+      <ul id="source-list"></ul>
+    </section>
+
+    <section id="claims" class="panel">
+      <h2>Context claims <small id="claim-count"></small></h2>
+      <div id="claim-list"></div>
+    </section>
+
+    <section id="graph" class="panel">
+      <h2>Bound to the graph <small>click a claim</small></h2>
+      <svg id="graph-svg" role="img" aria-label="Graph of claims, units, classes and sites"></svg>
+    </section>
+  </main>
+
+  <section id="agent" class="panel">
+    <form id="ask" autocomplete="off">
+      <h2>The agent asks <small>no model runs here</small></h2>
+      <div id="presets" class="presets"></div>
+      <label>Unit or place
+        <select id="unit">
+          <option>TRN-051</option>
+          <option>TRN-042</option>
+          <option>TRN-100</option>
+          <option value="SITE-NILO">Nilo site: how to get there</option>
+        </select>
+      </label>
+      <label id="symptom-field">Symptom
+        <input id="symptom" type="text">
+      </label>
+      <fieldset id="observed">
+        <legend>Reported counters</legend>
+        <label><input type="radio" name="counters" value="unknown" checked> not reported</label>
+        <label><input type="radio" name="counters" value="zero"> zero</label>
+        <label><input type="radio" name="counters" value="rising"> rising</label>
+        <label class="gap"><input type="checkbox" id="bounce-failed"> bounce failed</label>
+      </fieldset>
+      <button type="submit">Ask</button>
+    </form>
+    <div id="answer" class="answer" aria-live="polite"></div>
+  </section>
+
+  <div id="overlay" class="overlay" hidden>
+    <article id="overlay-card">
+      <button id="overlay-close" type="button" aria-label="Close">Close</button>
+      <div id="overlay-body"></div>
+    </article>
+  </div>
+
+  <script src="/web/app.js"></script>
+</body>
+</html>

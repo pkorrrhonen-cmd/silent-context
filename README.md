@@ -14,7 +14,11 @@ similar case appears.
 
 ## Demo
 
-Under construction. The demo follows three steps:
+Run it and open `http://127.0.0.1:8000`. It needs no model and no key. The arrow keys move through ten
+scenes. The time axis at the top is a live version of the time-aware layers: the event stream, what was
+received, and each claim's `valid_from` and `valid_to`, with `t=x` moving as the scenes go.
+
+The demo follows three steps:
 
 1. **Capture.** An expert's advice is taken from unchanged Teams and email exports. Nobody writes
    anything down for the system.
@@ -53,9 +57,9 @@ cp .env.example .env
 uv run uvicorn app.api:app
 ```
 
-The server then answers at `http://127.0.0.1:8000/health`, and the graph is at
-`http://127.0.0.1:8000/graph`. The store is built from the files in `data/` on first use, and it can
-be rebuilt at any time, because nothing in it is original:
+The page is then at `http://127.0.0.1:8000`, best viewed at 1440 by 900 or larger, and the graph as JSON
+at `/graph`. The store is built from the files in `data/` on first use, and it can be rebuilt at any
+time, because the only thing in it not derived from `data/` is the agent's log:
 
 ```bash
 uv run python -m app.db --seed

@@ -491,13 +491,14 @@ def run(
     replacing: dict[str, dict] | None = None,
     refresh: bool = False,
     cache_dir: Path = extract.EXTRACTIONS_DIR,
+    keep_logs: bool = True,
 ) -> Path:
     """Build the store as it stands at the demo clock. `replacing` swaps a source for a variant.
 
     The agent's logs are the one thing not derived from `data/`, so they carry over from the store being
-    replaced, up to the clock.
+    replaced, up to the clock, unless a fresh start is asked for.
     """
-    logs = _logs_up_to(path or db.store_path(), until)
+    logs = _logs_up_to(path or db.store_path(), until) if keep_logs else {}
     path = db.build(path)
     entries = [
         (replacing or {}).get(entry["file"], entry) for entry in load_manifest()["sources"]

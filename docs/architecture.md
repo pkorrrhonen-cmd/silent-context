@@ -25,9 +25,20 @@ lists them). The product runs without the author's environment.
 | `app/export.py` | Built | The graph as JSON |
 | `app/claims.py` | Built | The agent's calls: `claims_for` and `access_for` |
 | `app/ask.py` | Built | Ask the agent from the command line |
-| `app/api.py` | `/health`, `/graph`, `/claims_for`, `/access_for` | HTTP interface |
+| `app/events.py` | Built | What devices add: recheck, outcomes, what a person did |
+| `app/view.py` | Built | The whole state at the demo clock, for the page |
+| `app/api.py` | Built | HTTP interface, and it serves the page |
+| `web/` | Built | One page, with nothing fetched from outside |
 
-The web page is not built yet.
+## The page
+
+The top of the page is a live version of the time-aware layers in Elisa's reference picture: the event
+stream, what was received, and each claim as a bar from `valid_from` to `valid_to`, open-ended while it
+is still believed true. Moving `t=x` rebuilds the store as it stood then.
+
+The graph is drawn with hand-made SVG and laid out by kind, so it stays still from scene to scene on a
+recording and needs no library. The page uses system fonts and fetches nothing from outside, because
+whoever runs it may have no network.
 
 ## What devices add
 

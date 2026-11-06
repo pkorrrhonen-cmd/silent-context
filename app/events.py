@@ -122,9 +122,8 @@ def link_telemetry_outcomes(conn: sqlite3.Connection, graph: Graph) -> None:
                     up["entity"],
                     rise["t"],
                     f"telemetry_{up['entity'].lower().replace('-', '')}.json#{up['port']}@{rise['t']}",
-                    f"Counters on {up['port']} rose after the interface came back up at"
-                    f" {up['event_time']}. This confirms recovery, not its cause; linking it to this"
-                    " advice is a suggestion.",
+                    f"Counters on {up['port']} rose after the interface came back up. This confirms"
+                    " recovery, not its cause; linking it to this advice is a suggestion.",
                 ),
             )
 

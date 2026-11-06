@@ -1,22 +1,22 @@
 {
   "name": "sinceai-2026",
   "version": "0.1.0",
-  "phase": "5",
-  "phaseName": "Events and ageing built; the web page is next",
+  "phase": "6",
+  "phaseName": "The page built; waiting for the owner's checkpoint before phase 7",
   "session": 2,
   "updated": "2026-11-06",
-  "state": "Session 2 (6.11.2026, Code on the Mac): Elisa's challenge is selected and the decisions P1 to P6 are made. Phase 0 (skeleton, health check), phase 1 (Elisa's files unchanged, synthetic sources, events, seed graph, truth set, held-out binding set) phase 2 (store, export, /graph), phase 3 (extraction, binding, merging, recorded answers, scoring) phase 4 (claims_for, access_for, the prohibition, counters from telemetry) and phase 5 (firmware recheck, outcomes from telemetry, the log line from device events) are in main. The web page does not exist yet.",
+  "state": "Session 2 (6.11.2026, Code on the Mac): Elisa's challenge is selected and the decisions P1 to P6 are made. Phase 0 (skeleton, health check), phase 1 (Elisa's files unchanged, synthetic sources, events, seed graph, truth set, held-out binding set) phase 2 (store, export, /graph), phase 3 (extraction, binding, merging, recorded answers, scoring) phase 4 (claims_for, access_for, the prohibition, counters from telemetry), phase 5 (firmware recheck, outcomes from telemetry, the log line from device events) and phase 6 (the page, ten scenes) are in main. A clean install has not been tried yet; video, slides and final documentation do not exist yet.",
   "next_session": {
-    "id": "phase-6",
-    "name": "Web page and graph",
+    "id": "phase-7",
+    "name": "Acceptance runs and a clean install",
     "read_first": [
       "CLAUDE.md",
       "docs/roadmap.md",
       "docs/BACKLOG.md",
       "docs/synthetic-data.md"
     ],
-    "scope": "Phase 6 of the Atlas artifact SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA, with its decisions in SINCEAI-2026-ELISA-PAATOKSET v3. Rule authors do not read data/truth/decoys, expected_decoys.json or data/extractions/decoys.",
-    "gate": "Phase 6 ends in a checkpoint with the owner."
+    "scope": "Phase 7 of the Atlas artifact SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA, with its decisions in SINCEAI-2026-ELISA-PAATOKSET v3. Rule authors do not read data/truth/decoys, expected_decoys.json or data/extractions/decoys.",
+    "gate": "Phase 6's checkpoint with the owner: the look of the page and the scenes."
   },
   "git_commit": null,
   "git_commit_note": "A commit cannot hold its own hash. git log on main is the record.",

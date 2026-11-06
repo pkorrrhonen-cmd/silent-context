@@ -408,10 +408,15 @@ def _view(
     ).fetchall()
     return {
         "id": claim["id"],
+        "kind": claim["kind"],
         "claim_text": claim["claim_text"],
         "symptom": claim["symptom"],
         "observed_entity": claim["observed_entity"],
         "binding_status": claim["binding_status"],
+        "binding_reason": claim["binding_reason"],
+        "received_at": claim["received_at"],
+        "valid_from_basis": claim["valid_from_basis"],
+        "superseded_at": claim["superseded_at"],
         "scope_text": claim["scope_text"],
         "scope_status": claim["scope_status"],
         "status_for_entity": status,
@@ -461,6 +466,23 @@ def _log(
             (f"gap-{uuid4().hex[:12]}", now, entity, symptom, group),
         )
     return answer_id
+
+
+def list_claims(conn: sqlite3.Connection) -> list[dict]:
+    """Every known claim, with its status apart from any particular unit."""
+    now = _clock(conn)
+    views = []
+    for claim in conn.execute("SELECT * FROM claim ORDER BY received_at, id").fetchall():
+        if claim["binding_status"] == "waiting":
+            status = "waiting"
+        elif claim["superseded_at"]:
+            status = "superseded"
+        elif _conflict_partners(conn, claim["id"]):
+            status = "disputed"
+        else:
+            status = "active"
+        views.append(_view(conn, claim, status, "", "", now))
+    return views
 
 
 def claims_for(

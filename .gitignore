@@ -18,5 +18,6 @@ export/
 # Tools and the machine
 .claude/worktrees/
 .claude/settings.local.json
+.claude/launch.json
 .DS_Store
 Thumbs.db
