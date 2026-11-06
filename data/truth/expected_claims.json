@@ -1,0 +1,250 @@
+{
+  "note": "The expected result for every source, written before any extraction or binding code existed, so a score against this file does not reflect rules tuned to it. Text fields are checked by the listed phrases, not by exact wording. A claim key (A, B, K1, K2, C) is a name used only in this file.",
+  "claims": {
+    "A": {
+      "kind": "troubleshooting",
+      "summary": "After an SFP replacement on older units, the interface can be UP with normal optics and zero traffic. Check the counters; if they stay at zero, disable and enable the interface before replacing hardware or rebooting.",
+      "observed_entity": "TRN-042",
+      "about": ["TRN-042", "PROC-SFP-REPLACE"],
+      "claim_text_must_mention": ["counter", "disable", "enable"],
+      "claim_text_must_keep_one_hedge": ["sometimes", "usually", "probably"],
+      "scope_text_any_of": ["older units", "old units", "older transmission units"],
+      "scope_text_must_not_contain": ["2019"],
+      "scope_status": "undefined",
+      "applies_to": null,
+      "valid_from": "2026-10-14T09:05:00",
+      "valid_from_basis": "anchored",
+      "valid_from_anchor_event": "ev-101",
+      "valid_to": null,
+      "received_at": "2026-10-14T23:00:00",
+      "teller": "erkki",
+      "teller_role": "Network Expert",
+      "estimates": [
+        { "entity": "TRN-042", "attribute": "installed_year", "value_text": "around 2019", "role": "Field Engineer", "message_seq": 3, "note": "Kept as the engineer's estimate with its source. It does not become an age limit." }
+      ],
+      "scope_refined_by": {
+        "source": "teams_trn100.json",
+        "scope_text_must_contain": "4.x firmware",
+        "scope_status": "confirmed",
+        "applies_to": "cls-trn-gen1",
+        "note": "The teller names a firmware version, so the scope becomes confirmed from this source onwards. Before it the scope is undefined, and any reach to another unit is named a guess."
+      }
+    },
+    "B": {
+      "kind": "troubleshooting",
+      "summary": "On these old units, replace the SFP first: the cage is usually the bad part, and a bounce hides the fault for a while.",
+      "observed_entity": "TRN-051",
+      "about": ["TRN-051", "PROC-SFP-REPLACE"],
+      "claim_text_must_mention": ["SFP", "cage"],
+      "claim_text_must_keep_one_hedge": ["usually"],
+      "scope_text_any_of": ["these old units", "old units"],
+      "scope_status": "undefined",
+      "applies_to": null,
+      "valid_from": null,
+      "valid_from_basis": null,
+      "valid_to": null,
+      "received_at": "2026-11-02T23:00:00",
+      "teller": "sirpa",
+      "teller_role": "Network Expert"
+    },
+    "K1": {
+      "kind": "access",
+      "summary": "The key to the barrier on the Nilo private road is in the grey box under the mailbox at the junction.",
+      "observed_entity": "BAR-NILO-1",
+      "about": ["BAR-NILO-1", "SITE-NILO"],
+      "claim_text_must_mention": ["grey box", "mailbox"],
+      "scope_status": "undefined",
+      "applies_to": null,
+      "procedure": null,
+      "valid_from": "2026-09-02",
+      "valid_from_basis": "stated",
+      "valid_to": "2026-10-19",
+      "valid_to_basis": "stated",
+      "superseded_at": "2026-10-20T23:00:00",
+      "received_at": "2026-09-02T23:00:00",
+      "teller": "hannu",
+      "teller_role": null
+    },
+    "K2": {
+      "kind": "access",
+      "summary": "The barrier key is now in the maintenance hut by the junction, on the hook inside the door.",
+      "observed_entity": "BAR-NILO-1",
+      "about": ["BAR-NILO-1", "SITE-NILO"],
+      "claim_text_must_mention": ["maintenance hut"],
+      "scope_status": "undefined",
+      "applies_to": null,
+      "procedure": null,
+      "valid_from": "2026-10-19",
+      "valid_from_basis": "stated",
+      "valid_to": null,
+      "received_at": "2026-10-20T23:00:00",
+      "teller": "hannu",
+      "teller_role": null
+    },
+    "C": {
+      "optional": true,
+      "kind": "troubleshooting",
+      "summary": "On TRN-100 the traffic loss after the SFP swap was a VLAN missing from the service profile on xe-0/1/0.",
+      "observed_entity": "TRN-100",
+      "about": ["TRN-100"],
+      "claim_text_must_mention": ["VLAN"],
+      "note": "A one-off finding on one port. Extracting it is neither required nor penalised."
+    }
+  },
+  "sources": [
+    {
+      "file": "email_key_nilo.txt",
+      "has_claim": true,
+      "claim": "K1",
+      "new_claim": true,
+      "binding_status": "bound",
+      "binding_reason": null,
+      "source_time_text": "Wed, 2 Sep 2026 14:12",
+      "evidence": [{ "type": "told", "scope_entity": "BAR-NILO-1", "basis": "message" }]
+    },
+    {
+      "file": "teams_trn042.json",
+      "has_claim": true,
+      "claim": "A",
+      "new_claim": true,
+      "binding_status": "bound",
+      "binding_reason": null,
+      "source_time_text": "09:14 to 09:27",
+      "evidence": [
+        { "type": "told", "scope_entity": "TRN-042", "basis": "message" },
+        { "type": "reported_success", "scope_entity": "TRN-042", "basis": "message", "excerpt_contains": "Traffic is back", "message_seq": 9, "day": "2026-10-14" }
+      ]
+    },
+    {
+      "file": "email_trn042.txt",
+      "has_claim": true,
+      "claim": "A",
+      "new_claim": false,
+      "binding_status": "bound",
+      "binding_reason": null,
+      "source_time_text": null,
+      "evidence": [],
+      "must_not": ["reported_success", "a second told row"],
+      "note": "The same teller as the Teams conversation, so one claim with two sources and one told row. The email has no time; that does not stop the binding. Its sentence about several cases stays readable through the source link, but it is the teller's own general statement and not an event, so it never reaches the rendered evidence."
+    },
+    {
+      "file": "teams_noise_lunch.json",
+      "has_claim": false,
+      "note": "A complaint about old units is not a claim."
+    },
+    {
+      "file": "teams_noise_schedule.json",
+      "has_claim": false,
+      "note": "It names TRN-042 and firmware, but only about a schedule. It must not trigger a recheck, and it is not the firmware event."
+    },
+    {
+      "file": "email_key_moved.txt",
+      "has_claim": true,
+      "claim": "K2",
+      "new_claim": true,
+      "binding_status": "bound",
+      "binding_reason": null,
+      "source_time_text": "Tue, 20 Oct 2026 08:31",
+      "supersedes": "K1",
+      "relative_time": "yesterday",
+      "evidence": [{ "type": "told", "scope_entity": "BAR-NILO-1", "basis": "message" }, { "type": "superseded", "claim": "K1", "basis": "message" }],
+      "note": "Yesterday is resolved by code from the message's own date, not by the model."
+    },
+    {
+      "file": "teams_trn051.json",
+      "has_claim": true,
+      "claim": "A",
+      "new_claim": false,
+      "binding_status": "bound",
+      "binding_reason": null,
+      "source_time_text": "10:44 to 10:55",
+      "evidence": [
+        { "type": "reported_success", "scope_entity": "TRN-051", "basis": "message", "excerpt_contains": "Traffic is back on TRN-051", "message_seq": 5, "day": "2026-10-21" }
+      ],
+      "must_not": ["a new told row", "reported_success on TRN-042"],
+      "note": "The on-call relays the expert's advice, which is not a new telling. The thread also names TRN-042, but the outcome belongs to TRN-051."
+    },
+    {
+      "file": "teams_noise_maintenance.json",
+      "has_claim": false
+    },
+    {
+      "file": "teams_noise_handover.json",
+      "has_claim": false
+    },
+    {
+      "file": "teams_trn100.json",
+      "has_claim": true,
+      "claim": "A",
+      "new_claim": false,
+      "binding_status": "bound",
+      "binding_reason": null,
+      "source_time_text": "13:14 to 14:04",
+      "optional_claims": ["C"],
+      "evidence": [
+        { "type": "reported_failure", "scope_entity": "TRN-100", "basis": "message", "excerpt_contains": "still at zero", "message_seq": 2, "day": "2026-10-30" }
+      ],
+      "must_not": ["reported_success on claim A", "disputed"],
+      "note": "Traffic comes back at the end, but the thread says it was the VLAN. A failure on another generation is not a dispute."
+    },
+    {
+      "file": "teams_conflict.json",
+      "has_claim": true,
+      "claim": "B",
+      "new_claim": true,
+      "binding_status": "bound",
+      "binding_reason": null,
+      "source_time_text": "08:40 to 08:53",
+      "conflicts_with": "A",
+      "evidence": [
+        { "type": "told", "scope_entity": "TRN-051", "basis": "message" },
+        { "type": "disputed", "claim": "A", "basis": "message" },
+        { "type": "disputed", "claim": "B", "basis": "message" }
+      ],
+      "must_not": ["reported_failure", "reported_success", "a new told row on claim A"],
+      "note": "Neither expert reports an event here, and repeating an opinion is not a new telling. Both claims stay visible and the agent does not choose."
+    }
+  ],
+  "variants": [
+    {
+      "file": "variants/email_key_moved_undated.txt",
+      "replaces": "email_key_moved.txt",
+      "has_claim": true,
+      "claim": "K2",
+      "binding_status": "bound",
+      "binding_reason": null,
+      "source_time_text": null,
+      "supersedes": "K1",
+      "expect_on_k1": { "valid_to": null, "valid_to_basis": "superseded_end_unknown", "superseded_at": "2026-10-20T23:00:00" },
+      "expect_on_k2": { "valid_from": null, "valid_from_basis": null },
+      "note": "Without a date, yesterday stays unresolved, even though received_at is known: that is information time, not world time."
+    }
+  ],
+  "edges": [
+    { "src": "A", "rel": "ABOUT", "dst": "TRN-042" },
+    { "src": "A", "rel": "ABOUT", "dst": "PROC-SFP-REPLACE" },
+    { "src": "A", "rel": "APPLIES_TO", "dst": "cls-trn-gen1", "from_source": "teams_trn100.json" },
+    { "src": "B", "rel": "ABOUT", "dst": "TRN-051" },
+    { "src": "B", "rel": "ABOUT", "dst": "PROC-SFP-REPLACE" },
+    { "src": "B", "rel": "CONFLICTS_WITH", "dst": "A" },
+    { "src": "K1", "rel": "ABOUT", "dst": "BAR-NILO-1" },
+    { "src": "K2", "rel": "ABOUT", "dst": "BAR-NILO-1" },
+    { "src": "K2", "rel": "SUPERSEDES", "dst": "K1" }
+  ],
+  "telemetry_outcomes": [
+    { "entity": "TRN-042", "port": "ge-0/0/1", "after_event": "ev-104", "expected": "reported_success", "basis": "telemetry" },
+    { "entity": "TRN-051", "port": "ge-0/0/1", "after_event": "ev-204", "expected": "reported_success", "basis": "telemetry" },
+    { "entity": "TRN-100", "port": "xe-0/1/0", "after_event": "ev-404", "expected": "none", "note": "Counters stay at zero after admin_up. They rise only after ev-405, a configuration change, and that rise is not an outcome of the bounce." }
+  ],
+  "clock": {
+    "note": "The demo clock decides which sources and events are known. Acceptance cases that need different states of knowledge run at different clock values.",
+    "checkpoints": [
+      { "as_of": "2026-10-14T22:00:00", "known_claims": ["K1"], "for": "The agent before capture: unknown for TRN-051." },
+      { "as_of": "2026-10-20T12:00:00", "known_claims": ["A", "K1"], "for": "A1, A8, A6, A4 before: a new case on TRN-051, the same class as TRN-042." },
+      { "as_of": "2026-10-21T00:00:00", "known_claims": ["A", "K1", "K2"], "for": "A4 after: K2 replaces K1." },
+      { "as_of": "2026-10-29T00:00:00", "known_claims": ["A", "K1", "K2"], "for": "A5: the firmware update rechecks TRN-042 only; TRN-051 stays active." },
+      { "as_of": "2026-10-31T00:00:00", "known_claims": ["A", "K1", "K2"], "optional_known_claims": ["C"], "for": "A2: the failure on TRN-100 and the confirmed scope." },
+      { "as_of": "2026-11-03T00:00:00", "known_claims": ["A", "B", "K1", "K2"], "optional_known_claims": ["C"], "for": "A7: both experts' claims are visible." }
+    ]
+  }
+}
