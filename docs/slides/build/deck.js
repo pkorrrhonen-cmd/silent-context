@@ -161,8 +161,8 @@ pres.addSection({ title: "The idea" });
   });
   const ix = 5.95, iw = W - ML - ix, ih = iw * 9 / 16;
   image(s, "scene-4.png", ix, 2.0, iw, ih);
-  para(s, "The page: ten scenes, no model and no key. Every answer on it is computed when asked, and the time axis shows what was known when.", ix, 2.0 + ih + 0.18, iw, 0.7, { size: 13, color: C.text2 });
-  s.addNotes("Silent context reads those messages as they are. The advice becomes claims tied to the network, each with its source and how long it holds. An agent gets one call: what to do next, and where that came from. The demo page runs with no model and no key; the arrow keys move through ten scenes.");
+  para(s, "The page: thirteen scenes, no model and no key. Every answer on it is computed when asked, and the time axis shows what was known when.", ix, 2.0 + ih + 0.18, iw, 0.7, { size: 13, color: C.text2 });
+  s.addNotes("Silent context reads those messages as they are. The advice becomes claims tied to the network, each with its source and how long it holds. An agent gets one call: what to do next, and where that came from. The demo page runs with no model and no key; the arrow keys move through thirteen scenes.");
 }
 
 // ---------------------------------------------------------------- 3. Capture and bind
@@ -227,8 +227,50 @@ pres.addSection({ title: "How it works" });
   image(s, "use-answer.png", ML, 3.7, CW, ih);
   para(s, "The page's fourth scene: the same fault on TRN-051, the same class as TRN-042. The agent reads the counters from telemetry itself when a recent sample exists, proposes the expert's step with its source, and holds back a reboot or a hardware replacement until a failed bounce is reported.",
     ML, 3.7 + ih + 0.15, CW, 0.7, { size: 13, color: C.text2 });
-  para(s, "What a person did, and the outcome, fill in from the device events. Nobody reports anything.", ML, 3.7 + ih + 0.9, CW, 0.35, { size: 14 });
-  s.addNotes("Three tiers from rules: propose when a success is reported on this unit's class, no disagreement, and the claim's own check holds; check first when only told, in doubt, a guess, or disputed; I don't know with the group to ask, and the gap logged. One prohibition in code: no reboot or hardware replacement before a failed bounce is reported. The agent reads counters from telemetry itself when a recent sample exists. What a person did and the outcome fill in from device events.");
+  para(s, "What a person did, and the outcome, fill in from the device events. Nobody reports anything. That record is what the next slide's policy reads.", ML, 3.7 + ih + 0.9, CW, 0.35, { size: 14 });
+  s.addNotes("Three tiers from rules: propose when a success is reported on this unit's class, no disagreement, and the claim's own check holds; check first when only told, in doubt, a guess, or disputed; I don't know with the group to ask, and the gap logged. One prohibition in code: no reboot or hardware replacement before a failed bounce is reported. The agent reads counters from telemetry itself when a recent sample exists. What a person did and the outcome fill in from device events, and that record is what the policy on who acts reads.");
+}
+
+// ---------------------------------------------------------------- 5b. Who acts
+{
+  const s = content("How it works", "Who acts", "A policy says who does the next step. The agent itself, once a success is on record");
+  const rows = [
+    ["Step", "Reversible", "Needs", "Who acts"],
+    ["Turn the port off and on", "yes", "proposed on this class before and carried out with the counters rising; no disagreement; the counters read from the device by the agent", "the agent itself"],
+    ["Reboot", "no", "a failed lighter fix reported", "a person"],
+    ["Replace a part", "no", "the same", "a person"],
+    ["Drive to a site", "no", "", "a person"],
+  ];
+  const widths = [2.6, 1.3, 5.6, 2.1], top = 1.95, rh = 0.42;
+  rows.forEach((cells, r) => {
+    let x = ML;
+    cells.forEach((text, c) => {
+      const head = r === 0;
+      s.addText(text, { x, y: top + r * rh + (r > 1 ? 0.22 : 0), w: widths[c], h: r === 1 ? 0.64 : rh, fontFace: head ? MONO : undefined, fontSize: head ? 10.5 : 12.5, bold: head || c === 3, color: head ? C.accent1 : (c === 3 && r === 1 ? C.accent3 : C.text1), margin: [2, 4, 2, 0], valign: "top", isTextBox: true, objectName: named("policy cell") });
+      x += widths[c] + 0.15;
+    });
+  });
+  const ih = CW * 236 / 1140 * 0.78, iw = CW * 0.78, iy = 4.25;
+  image(s, "act-answer.png", ML + (CW - iw) / 2, iy, iw, ih);
+  para(s, "The page's sixth scene: the same fault on a third unit of the same class, after the agent's own log shows TRN-051's proposal carried out with the counters rising. The decision is real and computed when asked; the action is an event in the synthetic stream, with no write path to any device.",
+    ML, iy + ih + 0.1, CW, 0.5, { size: 12, color: C.text2, lines: 1.1 });
+  s.addNotes("A policy says who does the next step. By default the agent proposes and a person acts. The agent itself acts only on a reversible step that its own log shows was proposed on this class before and carried out with the counters rising, with no disagreement and the counters read from the device by the agent. A reboot or a hardware replacement never goes to the agent. The demo's network is synthetic: the agent's action is an event in the synthetic stream, and there is no write path to any device. The decision is real and computed when asked.");
+}
+
+// ---------------------------------------------------------------- 5c. Any source, and the question
+{
+  const s = content("How it works", "Any source, and the question", "The same reader for a ticket and a thread in Finnish; a drafted question when it does not know");
+  const lw = 5.6;
+  label(s, "Any source, any language", ML, 2.0, lw);
+  para(s, "A ticket export's worklog and a Teams thread in Finnish are read by the same reader as Elisa's Teams export and email, and become the same kind of claim, in the speaker's own words and language. The ticket's closing note adds an outcome to advice told in a chat. Ask about the Koski gate and the answer is in Finnish, because that is what was said.", ML, 2.35, lw, 1.8, { size: 13.5 });
+  label(s, "When it does not know", ML, 4.3, lw);
+  para(s, "It writes the question for the person on call, who sends it. The system itself sends nothing. A budget of three questions a week per group shows when the asking would become the extra work it replaces.", ML, 4.65, lw, 1.3, { size: 13.5 });
+  const ix = ML + lw + 0.4, iw = W - ML - ix;
+  const ih1 = iw * 112 / 1140, ih2 = iw * 87 / 900, ih3 = iw * 276 / 310 * 0.42;
+  image(s, "koski-answer.png", ix, 2.0, iw, ih1);
+  image(s, "ask-draft.png", ix, 2.0 + ih1 + 0.3, iw, ih2);
+  image(s, "sources-list.png", ix + (iw - iw * 0.42) / 2, 2.0 + ih1 + ih2 + 0.6, iw * 0.42, ih3);
+  s.addNotes("Any source, any language: a ticket export and a Teams thread in Finnish are read by the same reader as Elisa's files and become the same kind of claim, in the speaker's own words. The ticket's closing note adds an outcome to advice told in a chat. When the agent does not know, it writes the question for the person on call, who sends it; the system sends nothing, and a budget of three a week per group keeps the asking small.");
 }
 
 // ---------------------------------------------------------------- 6. What was measured
@@ -236,12 +278,12 @@ pres.addSection({ title: "What was measured, and what it is not" });
 {
   const s = content("What was measured, and what it is not", "What was measured", "Everything below runs with no key, from the recorded answers");
   const tiles = [
-    ["154", "tests pass", "The data set's shape, the store's rules, extraction and binding against the truth set, the agent's acceptance cases, the page, the MCP wrapper."],
-    ["11 / 11", "truth set sources found", "11 sources: merged 7/7, entity 4/4, scope 4/4, time 7/7, evidence 6/6."],
+    ["160", "tests pass", "The data set's shape, the store's rules, extraction and binding against the truth set, the agent's acceptance cases, the policy on who acts, the page, the MCP wrapper."],
+    ["13 / 13", "truth set sources found", "13 sources: merged 9/9, entity 5/5, scope 5/5, time 9/9, evidence 8/8. The second day's two rows were written before their sources were read."],
     ["1 of 16", "confidently wrong, held-out binding set", "16 synthetic sources the rule author has not read. Five repeats with the prompt unchanged: 0, 0, 0, 1, 1, the same file each time."],
-    ["20 of 20", "acceptance rows hold", "The build plan's cases A0 to A11, written by app.accept from the recorded answers. A test keeps every computed row passing."],
+    ["21 of 21", "acceptance rows hold", "The build plan's cases A0 to A11 and A12 for the policy, written by app.accept from the recorded answers. A test keeps every computed row passing."],
     ["Passed", "clean install from the README", "git archive into an empty folder, .env with no values, every command in the README runs with no key, on 7.11.2026."],
-    ["No edits", "Cypher export loaded into Neo4j 5", "5 claims, 14 entities, 14 evidence events and 9 sources as nodes, all ten edge types. One query answered the agent's question from the graph alone."],
+    ["No edits", "Cypher export loaded into Neo4j 5", "At noon on 7.11.: 5 claims, 14 entities, 14 evidence events and 9 sources as nodes, all ten edge types; one query answered the agent's question from the graph. The data grew that evening; the load was not repeated."],
   ];
   const cw = (CW - 0.5) / 3, ch = 2.12;
   tiles.forEach(([value, head, detail], i) => {
@@ -253,7 +295,7 @@ pres.addSection({ title: "What was measured, and what it is not" });
   });
   para(s, "These numbers describe this synthetic data only. Not tested: extraction on real conversations, outcomes read from real chat, and the class binding on anything but this data.",
     ML, 6.56, CW, 0.35, { size: 12, color: C.text2, valign: "middle" });
-  s.addNotes("154 tests, all with no key. The truth set of 11 sources: found 11 of 11, merged 7 of 7, entity 4 of 4, scope 4 of 4, time 7 of 7, evidence 6 of 6. The held-out binding set: 16 synthetic sources the rule author has not read, 1 of 16 confidently wrong in the recorded run, and 0, 0, 0, 1, 1 in five repeats. Acceptance cases A0 to A11: 20 computed rows, 20 hold. A clean install from the README with no key passed. The Cypher export loaded into Neo4j with no edits. These numbers describe this synthetic data only.");
+  s.addNotes("160 tests, all with no key. The truth set of 13 sources: found 13 of 13, merged 9 of 9, entity 5 of 5, scope 5 of 5, time 9 of 9, evidence 8 of 8. The held-out binding set: 16 synthetic sources the rule author has not read, 1 of 16 confidently wrong in the recorded run, and 0, 0, 0, 1, 1 in five repeats. Acceptance cases A0 to A12: 21 computed rows, 21 hold. A clean install from the README with no key passed on the first day. The Cypher export loaded into Neo4j with no edits at noon on the first day. These numbers describe this synthetic data only.");
 }
 
 // ---------------------------------------------------------------- 7. Elisa's question: is the information fact?
@@ -287,18 +329,18 @@ pres.addSection({ title: "What was measured, and what it is not" });
       "The exports: graph.json and graph.cypher, written from the store.",
     ]],
     ["Simulated", [
-      "Every other source: nine threads and emails written for this demo.",
+      "Every other source: nine threads and emails written for this demo, and on the second day a ticket export and a thread in Finnish.",
       "The dates: Elisa's files carry none, so a manifest gives each source a received time.",
       "The event stream and the telemetry; there is no network behind them.",
-      "The graph: three units, two classes, three sites, a barrier, a procedure type, two groups.",
+      "The graph: four units, two classes, four sites, a barrier, a procedure type, five groups.",
       "The demo clock and the channels. No real network, channel or person.",
     ]],
     ["Not built, on purpose", [
-      "Asking the expert at the moment of need: the gap log names the group and the question; the asking is not built.",
+      "Sending the question to the expert: it is drafted, with a budget; a person sends it.",
       "Matching Elisa's own inventory graph; its schema is not known here.",
       "A semantic symptom match; symptoms are matched by plain words.",
-      "Acting on the network: the agent proposes, a person acts.",
-      "A mark-as-wrong button; first in the plan's cutting order.",
+      "Acting on a real network: the policy's action is an event in the synthetic stream, with no write path to any device.",
+      "Live connectors to Teams and Slack, a chat with the agent, search by meaning: each a connector or a model away.",
     ]],
   ];
   const cw = (CW - 0.5) / 3, ch = 4.65;
@@ -308,17 +350,17 @@ pres.addSection({ title: "What was measured, and what it is not" });
     label(s, head, x + 0.25, y + 0.18, cw - 0.5);
     bullets(s, items, x + 0.25, y + 0.55, cw - 0.5, ch - 0.7, { size: 13.5, after: 6 });
   });
-  s.addNotes("Real: Elisa's two files unchanged; the model's reading, recorded; binding, dating and merging in code; the agent, live; the exports. Simulated: every other source, the dates, the event stream, the telemetry, the graph, the clock, the channels. No real network, channel or person. Not built on purpose: asking the expert at the moment of need, matching Elisa's own graph, a semantic symptom match, acting on the network.");
+  s.addNotes("Real: Elisa's two files unchanged; the model's reading, recorded; binding, dating and merging in code; the agent and the policy, live; the exports. Simulated: every other source, the dates, the event stream, the telemetry, the graph, the clock, the channels, and the agent's own action. No real network, channel or person. Not built on purpose: sending the question, matching Elisa's own graph, a semantic symptom match, acting on a real network, live connectors and a chat with the agent.");
 }
 
 // ---------------------------------------------------------------- 9. What comes next
 {
-  const s = content("What was measured, and what it is not", "What comes next", "Asking at the moment of need, and a record for autonomy");
+  const s = content("What was measured, and what it is not", "What comes next", "Sending the question, more of the policy, live sources");
   const cells = [
-    ["The question at the moment of need", "Elisa's own line: if the agent does not know, a person can ask Erkki. As a continuation of the gap log, a Teams message or a 20-second call when Erkki is driving away from the site. Not built, because synthetic data cannot show it is not extra work."],
-    ["A question budget", "A question budget and situation conditions, so the asking never becomes the extra work it replaces."],
-    ["An autonomy policy", "Certainty is necessary, never sufficient. The log of proposed, done and outcome is the record that decision needs, and the demo already fills it from the device events."],
-    ["For production at Elisa", "Schema matching against the inventory graph, channel connectors for Teams and email, and a semantic symptom match."],
+    ["Sending the question", "The question is drafted now, with a budget of three a week per group; a person sends it. The next step is a connector that sends it when the budget and the situation allow, a 20-second call when Erkki is driving away from the site. Synthetic data cannot show it is not extra work, so it is a step for real data."],
+    ["More of the policy", "The first table covers one reversible step. Next: more action classes, a limit on blast radius, and a review of the agent's own actions, so that certainty stays necessary and never sufficient."],
+    ["Live sources", "Connectors to Teams and Slack that read as the messages arrive, a ticketing system's own export, and a chat with the agent on top of the same calls."],
+    ["For production at Elisa", "Schema matching against the inventory graph, Finnish inflections from the inventory or a lemmatiser, and a semantic symptom match."],
   ];
   const cw = (CW - 0.3) / 2, ch = 2.2;
   cells.forEach(([head, text], i) => {
@@ -327,19 +369,19 @@ pres.addSection({ title: "What was measured, and what it is not" });
     label(s, head, x + 0.25, y + 0.18, cw - 0.5);
     para(s, text, x + 0.25, y + 0.55, cw - 0.5, ch - 0.7, { size: 15 });
   });
-  s.addNotes("What comes next: the question at the moment of need, as a continuation of the gap log, Elisa's own line that a person can ask Erkki; not built, because synthetic data cannot show it is not extra work. A question budget and situation conditions. An autonomy policy where certainty is necessary but never sufficient, with the log of proposed, done and outcome as its record. For production: schema matching against the inventory graph, channel connectors, a semantic symptom match.");
+  s.addNotes("What comes next: sending the drafted question through a connector when the budget and the situation allow; more of the policy, with more action classes and a limit on blast radius; live sources, connectors to Teams and Slack and a chat with the agent on the same calls; and for production, schema matching against the inventory graph, Finnish inflections from the inventory, and a semantic symptom match.");
 }
 
 // ---------------------------------------------------------------- 10. The limits, said plainly
 {
   const s = content("What was measured, and what it is not", "The limits, said plainly", "What this demo does not claim");
   const limits = [
-    "The system never starts a conversation with a specialist.",
+    "The system never sends a message itself. It drafts; a person sends.",
     "It shows the origin of a claim and what was reported about it, not the truth.",
     "It scores claims, not people: no personal assessment and no figure shown per person.",
     "Telling apart which units a claim applies to, before someone narrows it down, rests on synthetic data.",
-    "Everything except Elisa's two example files is simulated.",
-    "Asking the expert at the moment of need is not built.",
+    "The network here is simulated, and so is every file but Elisa's two; the agent acts only in that stream.",
+    "Left out on purpose: live connectors, a chat with the agent, search by meaning, Elisa's inventory graph.",
   ];
   limits.forEach((text, i) => {
     const y = 2.0 + i * 0.68;
@@ -351,7 +393,7 @@ pres.addSection({ title: "What was measured, and what it is not" });
     { text: "github.com/pkorrrhonen-cmd/silent-context", options: { color: C.accent1, bold: true } },
     { text: "   MIT   Petri Korhonen", options: { color: C.text2 } },
   ], { x: ML, y: 6.3, w: CW, h: 0.4, fontFace: MONO, fontSize: 13, charSpacing: 1, margin: 0, valign: "middle", isTextBox: true, objectName: "repository" });
-  s.addNotes("What this does not claim. It never starts a conversation with a specialist. It shows where a claim came from and what was reported, not the truth. It scores claims, never people. Telling apart which units a claim applies to, before someone narrows it down, rests on synthetic data. Everything except Elisa's two example files is simulated. Asking the expert at the moment of need is not built.");
+  s.addNotes("What this does not claim. It never sends a message itself; it drafts, and a person sends. It shows where a claim came from and what was reported, not the truth. It scores claims, never people. Telling apart which units a claim applies to rests on synthetic data. The network is simulated, and so is every file but Elisa's two; the agent acts only in that stream. Left out on purpose: live connectors, a chat with the agent, search by meaning, Elisa's inventory graph.");
 }
 
 (async () => {

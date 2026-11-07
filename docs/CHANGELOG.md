@@ -154,6 +154,54 @@ card's own dark first frame and the card's text, nothing else. 135.4 s, 15.1 MB.
 notes and the zip; the folder "Silent context video" and the pipeline's media folder. V2 (the v3 cut) and the
 first folder stay as fallbacks.
 
+### The expanded cut: a policy on who acts, any source, the drafted question, package V4
+
+**Why:** decision 19. After the first finals the owner weighed the tight scope against the era of autonomous
+operations and chose to build on the base: the things left out on purpose were the core.
+
+**Built, in order, each with its tests:**
+
+- **A policy on who acts** (`app/policy.py`, decision 20): the agent's answer says who does the next step. A
+  person by default; the agent itself only for a reversible step that its own log shows was proposed on this
+  class before and carried out with the counters rising, with no disagreement and the counters read from
+  the device by the agent; a reboot or a replacement never. The log carries `who_acts`, `who_why` and
+  `done_by`, and `settle_answers` reads the actor from the event. A fourth unit, TRN-063 at a site of its
+  own (Harju; at Rauta it made a site's mention ambiguous and broke two tests and a held-out row), has the
+  same fault on 25.10., and the synthetic stream holds the agent's own bounce marked as the agent's. The
+  page's new scene "Act" shows the decision and the record; "Use" shows "Who acts: a person" with the
+  reason. Acceptance case A12. `product.md`'s "No action on the network" became the policy's rule.
+- **Two more kinds of source** (`data/sources/teams_koski_avain.json`, `ticket_trn100.json`): a Teams thread in
+  Finnish about the key to the Koski gate, and a ticket export whose worklog reports what the chat's advice
+  led to on TRN-100. `sources.py` reads a ticket's worklog as a thread; the store allows the channel. The
+  model read both once, recorded: the Finnish claim in Finnish with the site in an inflected form, which
+  the graph now holds as aliases; the ticket's first entry relays the chat's bounce advice with its failure
+  on TRN-100 and its second the service-profile fix with its success. A relayed message may now carry its
+  own outcome; a telling still may not. The page's scene "Any source" asks about Koski and answers in
+  Finnish.
+- **The drafted question** (`draft_question`, decision 21): when the agent does not know, the answer carries
+  the question written for the person on call, the group, and the budget: this question's number of three in
+  seven days, from the gap log. The system sends nothing. The page's scene "Ask" shows the draft.
+- **The video, v5** (`video/narration-v5.md`, sixteen blocks, 490 words): the three new blocks, the limits
+  and the close reworded, the close naming what was left out on purpose, as the owner asked. The owner's
+  track: 159.4 s, all sixteen blocks found, 3.58 words a second, no sentence at an odd rate. The take: 227 s,
+  2458 frames. The final: `silent-context-v5-captions.mp4`, 176.5 s, 21.3 MB, 55 caption cues; the card
+  joins scanned frame by frame, no flash.
+- **The decks:** the five-picture deck shows the agent acting, the drafted question and the left-out list;
+  the full deck has twelve slides, "Who acts" with the policy table and "Any source, and the question" new,
+  the numbers, the real and simulated lists, what comes next and the limits brought up to date.
+- **The README** carries the three additions, the new limits, the left-out list, the diagram with ticket
+  exports and the policy, and the numbers; `what-is-simulated.md` the agent's action and the new sources.
+
+**Measured:** 160 tests. The truth set, 13 sources: found 13/13, merged 9/9, entity 5/5, scope 5/5, time 9/9,
+evidence 8/8; the two new rows were written before their sources were read, and the ticket's row was
+corrected after the first scored run on a mechanical ground and marked so (decision 23, for the owner to
+confirm). The held-out set unchanged: 1 of 16, 0 0 0 1 1. The page's thirteen scenes read as frames of the
+take. The Neo4j load of the morning was not repeated on the grown data.
+
+**Where it is:** the Desktop folder "Silent context submission V4": the v5 video, the five-picture deck, the
+twelve-slide deck and its PDF, the notes with the About text of about 4,400 characters, and the zip from
+main's tip. V3, V2 and the first folder stay as fallbacks.
+
 ### Session 4's end
 
 The owner's word at about 16:00 on 7.11.: the material is ready. The package is "Silent context submission V3";

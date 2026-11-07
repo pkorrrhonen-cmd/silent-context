@@ -1,4 +1,4 @@
-// Screenshots of the demo page's ten scenes at 1600 by 900 CSS pixels, device scale 2.
+// Screenshots of the demo page's thirteen scenes at 1600 by 900 CSS pixels, device scale 2.
 const puppeteer = require("puppeteer-core");
 const path = require("path");
 (async () => {
@@ -16,7 +16,7 @@ const path = require("path");
   await page.goto(url, { waitUntil: "networkidle0" });
   await page.waitForFunction("() => typeof goTo === 'function' && typeof busy !== 'undefined'");
   await new Promise((r) => setTimeout(r, 800));
-  for (let n = 0; n < 10; n++) {
+  for (let n = 0; n < 13; n++) {
     await page.evaluate(`goTo(${n})`);
     await page.waitForFunction("() => !busy");
     await new Promise((r) => setTimeout(r, 900));

@@ -1,0 +1,171 @@
+{
+ "about": "Silent context: the final plan (pipeline/final.py), written by cut_from_take.py from the alignment. Each narration block is one clip; its sentences start 0.3 s into the clip, which already shows what they talk about. The captions are burned into a black band under the picture, never over it. The guide run uses the same plan with --narration, --scenes-json and --name; the owner's own track replaces audio/narration.wav last.",
+ "name": "silent-context-v5",
+ "size": "1920x950",
+ "band": 130,
+ "narration": "audio/narration.wav",
+ "scenes_json": "audio/scenes.json",
+ "scenes": {
+  "01": {
+   "clip": "01-the-story",
+   "blocks": [
+    [
+     0,
+     5,
+     0.3
+    ]
+   ]
+  },
+  "02": {
+   "clip": "02-the-answer",
+   "blocks": [
+    [
+     0,
+     1,
+     0.3
+    ]
+   ]
+  },
+  "03": {
+   "clip": "03-the-page",
+   "blocks": [
+    [
+     0,
+     5,
+     0.3
+    ]
+   ]
+  },
+  "04": {
+   "clip": "04-capture",
+   "blocks": [
+    [
+     0,
+     2,
+     0.3
+    ]
+   ]
+  },
+  "05": {
+   "clip": "05-pin",
+   "blocks": [
+    [
+     0,
+     2,
+     0.3
+    ]
+   ]
+  },
+  "06": {
+   "clip": "06-use",
+   "blocks": [
+    [
+     0,
+     2,
+     0.3
+    ]
+   ]
+  },
+  "07": {
+   "clip": "07-learn",
+   "blocks": [
+    [
+     0,
+     2,
+     0.3
+    ]
+   ]
+  },
+  "08": {
+   "clip": "08-act",
+   "blocks": [
+    [
+     0,
+     2,
+     0.3
+    ]
+   ]
+  },
+  "09": {
+   "clip": "09-doubt",
+   "blocks": [
+    [
+     0,
+     1,
+     0.3
+    ]
+   ]
+  },
+  "10": {
+   "clip": "10-not-for-all",
+   "blocks": [
+    [
+     0,
+     0,
+     0.3
+    ]
+   ]
+  },
+  "11": {
+   "clip": "11-disagree",
+   "blocks": [
+    [
+     0,
+     0,
+     0.3
+    ]
+   ]
+  },
+  "12": {
+   "clip": "12-the-barrier",
+   "blocks": [
+    [
+     0,
+     0,
+     0.3
+    ]
+   ]
+  },
+  "13": {
+   "clip": "13-any-source",
+   "blocks": [
+    [
+     0,
+     1,
+     0.3
+    ]
+   ]
+  },
+  "14": {
+   "clip": "14-ask",
+   "blocks": [
+    [
+     0,
+     1,
+     0.3
+    ]
+   ]
+  },
+  "15": {
+   "clip": "15-the-limits",
+   "blocks": [
+    [
+     0,
+     4,
+     0.3
+    ]
+   ]
+  },
+  "16": {
+   "clip": "16-close",
+   "blocks": [
+    [
+     0,
+     4,
+     0.3
+    ]
+   ]
+  }
+ },
+ "tail": 0.6
+}
