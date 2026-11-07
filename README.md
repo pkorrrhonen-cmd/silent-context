@@ -18,8 +18,9 @@ Run it and open `http://127.0.0.1:8000`. It needs no model and no key. The arrow
 scenes. The time axis at the top is a live version of the time-aware layers: the event stream, what was
 received, and each claim's `valid_from` and `valid_to`, with `t=x` moving as the scenes go. The page is light,
 and its colours take Elisa's own look as a nod to the challenge: its blue for structure and actions, its orange
-for the claims, its greys, measured from elisa.fi's stylesheets on 7.11.2026. A palette only: no logo and nothing
-that presents the page as Elisa's. The page loads nothing from outside, and a test keeps it so.
+for the claims, its greys, measured from elisa.fi's stylesheets on 7.11.2026, and Jost for the headings, served
+from the repository. A palette only: no logo and nothing that presents the page as Elisa's. The page loads nothing
+from outside, and a test keeps it so.
 
 ![Scene 4 of the page: the same fault on another unit. The agent proposes the expert's step with its source, reads the counters from the device and holds back a reboot.](docs/images/page-scene-4-use.png)
 
@@ -259,6 +260,7 @@ metadata:
 | mcp (the Python SDK) | MIT | The MCP wrapper around the agent's calls |
 | pytest | MIT | Tests (development only) |
 | HTTPX | BSD-3-Clause | Test client (development only) |
+| Jost (the font, `web/fonts/`) | SIL Open Font License 1.1 | The page's headings; served from the repository, the licence beside the file |
 
 ## Data and IP (challenge terms)
 

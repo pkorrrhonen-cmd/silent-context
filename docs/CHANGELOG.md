@@ -45,9 +45,10 @@ the vote card. Package V5 is on the Desktop with the decks and the notes; V4 sta
 
 **Measured:** 160 tests pass. The first light build put a Google Fonts link on the page for Jost, and the
 page's own test caught it (the page loads nothing from outside), so the link came off the product page:
-Jost stays named in the token block and the system font stands in until the owner says whether to
-self-host it under its OFL licence. The story cards and the five-deck, which are tooling, load it from
-Google Fonts. The take: 229 s of screencast on the aligned v5 voice, cut to the speech as before.
+Jost stayed named in the token block with the system font standing in until the owner said to self-host
+it: one variable woff2 of the latin subset (26 kB, weights 500 to 700) under `web/fonts/` with the SIL
+Open Font License beside it, an `@font-face` in `style.css`, a row in the README's licence table; the test
+still passes. The story cards and the five-deck, which are tooling, load it from Google Fonts. The take: 229 s of screencast on the aligned v5 voice, cut to the speech as before.
 The final `silent-context-v6-captions.mp4` is 176.5 s, 1920 by 1080, 22.2 MB, the captions burned into the
 black band under the picture, the same length as v5 to the frame, because the voice sets it; frames read at
 thirteen points. It is in the Desktop folder "Silent context submission V5" with its SRT.
