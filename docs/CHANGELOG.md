@@ -64,6 +64,25 @@ what competed for attention went:
 **Measured:** 151 tests pass. All ten scenes ran again at 1440 by 900 with no console errors, and the
 Ask button fits the viewport.
 
+### Phase 7: the acceptance table
+
+**Built:** `app/accept.py` runs the build plan's cases on the recorded data, at each case's clock, with
+no key, and writes [`acceptance.md`](acceptance.md): one row per case with what was asked, what the
+plan expects, what was observed and the result. The checks are the ones in `tests/test_claims.py`; the
+table exists so the result fits on a slide. A9 reports numbers and is not a pass or a fail; A10 is the
+clean install, done by hand and quoted. A test runs the table and fails on any failing row.
+
+**Measured:** 20 computed rows, 20 hold; 152 tests pass. One lesson paid for on the way: the first
+run locked SQLite, because the script kept several connections to one store open while an answer's
+log sat unwritten in one of them. One connection at a time fixed it; the tests had hidden this by
+closing after each case.
+
+### Documents
+
+`docs/what-is-simulated.md` says what is real, what stands in and what is not built on purpose. The
+README now has the architecture diagram (Mermaid, rendered by GitHub) and a "What was tested" section
+pointing at the table and the numbers.
+
 ### Cypher export and a Neo4j trial
 
 **Built:** `app/export.py` writes `export/graph.cypher` beside the JSON. Sources and evidence events

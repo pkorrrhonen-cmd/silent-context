@@ -37,8 +37,31 @@ What the demo does not claim:
 
 ## Architecture
 
-The prose is in [`docs/architecture.md`](docs/architecture.md). The diagram goes here when the demo
-runs end to end.
+The prose is in [`docs/architecture.md`](docs/architecture.md). What is real and what is simulated is
+in [`docs/what-is-simulated.md`](docs/what-is-simulated.md).
+
+```mermaid
+flowchart LR
+    subgraph sources [Sources, unchanged]
+        T[Teams exports]
+        E[Emails]
+    end
+    subgraph devices [Devices, synthetic here]
+        EV[Event stream]
+        TM[Telemetry]
+    end
+    T --> X
+    E --> X
+    X[Extract: the model reads one thread,\nits answer recorded] --> C[Check against the text:\nonly what is literally there]
+    C --> B[Bind by code against the graph,\nor wait with a reason]
+    B --> S[(Claim store, SQLite,\nrebuilt from data/)]
+    EV --> S
+    TM --> S
+    S --> A[claims_for and access_for:\nrules, a template, no model]
+    A --> P[The page and\npython -m app.ask]
+    A --> L[(Answer and gap logs)]
+    S --> G[Export: graph.json\nand graph.cypher]
+```
 
 ## How to run
 
@@ -123,6 +146,28 @@ To run the tests:
 ```bash
 uv run pytest
 ```
+
+## What was tested
+
+Everything below runs with no key, from the recorded answers.
+
+- **151 tests** (`uv run pytest`): the data set's shape, the store's rules, extraction and binding
+  against the truth set, the agent's acceptance cases, what devices add, the page and its endpoints.
+- **The acceptance cases** of the build plan, A1 to A11, as one table:
+  [`docs/acceptance.md`](docs/acceptance.md), written by `uv run python -m app.accept`. Every computed
+  row holds, and a test keeps it so. A9 reports numbers only.
+- **The truth set,** 11 sources: found 11/11, merged 7/7, entity 4/4, scope 4/4, time 7/7, evidence
+  6/6 (`uv run python -m app.ingest --truth`).
+- **The held-out binding set,** 16 synthetic sources the rule author has not read: 1 of 16 confidently
+  wrong in the recorded run; 0, 0, 0, 1, 1 in five repeats with the prompt unchanged, the same file
+  each time. These numbers describe this set only.
+- **A clean install** from `git archive` into an empty folder, following this README with no key:
+  every command above runs, on 7.11.2026.
+- **The page:** all ten scenes in a browser at 1440 by 900 with no console errors.
+- **The Cypher export** loaded into an empty Neo4j 5 database with no edits.
+
+What was not tested: extraction on real conversations, outcomes read from real chat, and the class
+binding on anything but this synthetic data ([`docs/what-is-simulated.md`](docs/what-is-simulated.md)).
 
 ## Product and running environment
 

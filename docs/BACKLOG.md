@@ -43,13 +43,11 @@ Updated 7.11.2026 (session 3).
 
 | Code | Task | Why / notes |
 |---|---|---|
-| BUILD-7 | The acceptance table for the slides. | Phase 7. The clean install passed on 7.11. ([`CHANGELOG.md`](CHANGELOG.md), session 3). The owner wants to go through what the table is before it is built. |
 | BUILD-8 | Video, slides, documentation. | Phase 8, after everything else. The video: the whole idea clear in 20 seconds, how it happens shown briefly after that, fully grasped at about 60 seconds ([`DECISIONS.md`](DECISIONS.md) row 10). |
 
 ## Documents to fill
 
 | Code | Task | Why / notes |
 |---|---|---|
-| DOC-1 | **Finish the README** (Demo, Architecture diagram, what was tested) and keep "AI tools used" current. | The submission points here. |
+| DOC-1 | **Read the README once more before the submission** and keep "AI tools used" current. | The submission points here. The diagram and "What was tested" went in on 7.11. |
 | DOC-2 | **Finish [`architecture.md`](architecture.md)** as components come to exist. | Data flow and threats are still open. |
-| DOC-3 | **Write `docs/what-is-simulated.md`.** | Phase 8. |
