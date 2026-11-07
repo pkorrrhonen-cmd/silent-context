@@ -1,21 +1,29 @@
 """The second cut's scenes for the recorder (sf3d-ai-lab, pipeline/record.py): story cards and the page zoomed.
 
-    uv run python pipeline/record.py --stage http://127.0.0.1:8000/ --scenes <this file> --out ../media/silent-context/takes-v3 --size 1920x950 --scale 1.2 demo
+    SILENT_CONTEXT_ALIGNMENT=../media/silent-context/audio/scenes.json uv run python pipeline/record.py --stage http://127.0.0.1:8000/ --scenes <this file> --out ../media/silent-context/takes-v4 --size 1920x950 --scale 1.2 demo
 
 Same frame and scale as scenes.py (a 1920 by 950 picture, the captions' band under it, the page laid out at 1600 by
-792 CSS pixels). New here: the page is zoomed toward the one panel the narration talks about, by a transform on
-the page's body that the recorder injects (ZOOM_JS); the product's page is not changed. `zoomtest` is the ten
-second trial of that zoom, recorded before anything else was built (decision 18). Written at the event; the
-pipeline itself is pre-existing work.
+792 CSS pixels). The page is zoomed toward the one panel the narration talks about, by a transform on the page's
+body that the recorder injects (ZOOM_JS); the product's page is not changed. The take is recorded after the voice
+is aligned: the cards' elements and the later zoom moves take their moments from the aligned track's sentence
+times (SILENT_CONTEXT_ALIGNMENT, align.py's output), so the picture follows the voice; without it, the fixed
+seconds in story.html and below are used. `zoomtest` and `zoomtest2` are the ten second trials of the zoom,
+recorded before anything else was built (decision 18). Written at the event; the pipeline itself is pre-existing
+work. Was scenes_v3.py until the v4 words.
 """
 
 import asyncio
+import json
+import os
 import re
 from pathlib import Path
 
-NARRATION = Path(__file__).with_name("narration-v3.md")
+NARRATION = Path(__file__).with_name("narration-v4.md")
 STORY = Path(__file__).with_name("story.html")
 MARGIN = 2
+# The voice starts 0.3 s into each clip (final.json), and the clip starts at the block's mark, which follows the
+# card's first frame or the page's settle by a frame or two.
+VOICE_OFFSET = 0.35
 
 # Injected once per page load. videoZoom(selector, k, ms): translate and scale the body so the panel sits in the
 # middle of the frame at k times its size, clamped so the frame never shows anything outside the page. The panel's
@@ -56,6 +64,22 @@ def seconds_per_block() -> dict[str, int]:
     return {m.group(1): int(m.group(2)) for m in re.finditer(r"^## (\d\d) · [^·]+ · (\d+) s · \d+ words", text, re.M)}
 
 
+def cues_per_block() -> dict[str, list[list[float]]]:
+    """Each block's sentences as [start, end] seconds from the block's first frame, from the aligned track; {} without one."""
+    path = os.environ.get("SILENT_CONTEXT_ALIGNMENT")
+    if not path:
+        print("  no SILENT_CONTEXT_ALIGNMENT: the cards and the later moves use their fixed seconds", flush=True)
+        return {}
+    aligned = json.loads(Path(path).expanduser().read_text(encoding="utf-8"))
+    first = {s["scene"]: s["start"] for s in aligned["scenes"]}
+    out: dict[str, list[list[float]]] = {}
+    for s in aligned["sentences"]:
+        t0 = first[s["scene"]]
+        out.setdefault(s["scene"], []).append([round(s["start"] - t0 + VOICE_OFFSET, 2), round(s["end"] - t0 + VOICE_OFFSET, 2)])
+    print(f"  cues from {path}: {len(out)} blocks", flush=True)
+    return out
+
+
 async def open_page(page, args) -> None:
     await page.goto(args.stage)
     await page.wait_for_function("() => typeof goTo === 'function' && typeof busy !== 'undefined'")
@@ -77,40 +101,54 @@ async def zoom(page, sel, k: float = 1.6, ms: int = 600, rect=(0, 0, 1, 1)):
 # The blocks on the story cards, and the blocks on the page: scene index, then the moves (at seconds after the
 # block's mark, the target, the zoom, the part of the target). The answer's left three quarters hold the badge, the
 # step and the first facts; the rest is cut at the frame's edge as a camera would.
-CARD = {"01": 0, "02": 1, "11": 2, "12": 3}
+CARD = {"01": 0, "02": 1, "12": 2, "13": 3}
 ANSWER = (0, 0, .86, .75)   # the badge, the step and the first facts; a long "why this unit" is cut at the edge
 WIDE = (0, 0, 1, .75)       # the whole width, for an answer whose step runs over two lines
+HOLD = 1.0                  # a second of the whole view before the first move (the owner, 7.11.)
+# A move's moment is seconds after the mark, or ("s", k): the start of the block's sentence k in the aligned track.
 PAGE = {
-    "03": (1, []),  # the page opens Elisa's thread over the whole frame; it is the picture, read as written
-    "04": (2, [(0.4, "#claims", 1.8, (0, 0, 1, 1)), (9.6, "#timeline", 1.8, (.3, .5, .5, .5))]),
-    "05": (3, [(0.4, "#answer", 1.7, ANSWER)]),
-    "06": (4, [(0.4, "#answer", 1.7, (0, 0, .8, .9))]),
-    "07": (5, [(0.4, "#answer", 1.7, WIDE)]),
-    "08": (6, [(0.4, "#answer", 1.7, (0, 0, 1, .9))]),
-    "09": (7, [(0.4, "#answer", 1.7, WIDE)]),
-    "10": (8, [(0.4, "#answer", 1.7, WIDE)]),
+    "03": (0, []),  # the page as it is before anything is captured: the pause after the pitch, no zoom
+    "04": (1, []),  # the page opens Elisa's thread over the whole frame; it is the picture, read as written
+    "05": (2, [(HOLD, "#claims", 1.8, (0, 0, 1, 1)), (("s", 2), "#timeline", 1.8, (.3, .5, .5, .5))]),
+    "06": (3, [(HOLD, "#answer", 1.7, ANSWER)]),
+    "07": (4, [(HOLD, "#answer", 1.7, (0, 0, .8, .9))]),
+    "08": (5, [(HOLD, "#answer", 1.7, WIDE)]),
+    "09": (6, [(HOLD, "#answer", 1.7, (0, 0, 1, .9))]),
+    "10": (7, [(HOLD, "#answer", 1.7, WIDE)]),
+    "11": (8, [(HOLD, "#answer", 1.7, WIDE)]),
 }
+FIXED = {("05", 2): 9.6}  # the later moves' seconds when there is no alignment
 MOVE_MS = 900
 
 
-async def cards(page, cap, seconds, blocks) -> None:
+async def cards(page, cap, seconds, cues, blocks) -> None:
     await page.goto(STORY.resolve().as_uri())
     await page.wait_for_selector("body[data-ready='1']")
     await asyncio.sleep(1)
     for block in blocks:
-        await page.evaluate(f"storyGo({CARD[block]})")
-        await asyncio.sleep(0.3)
+        c = json.dumps(cues[block]) if block in cues else "null"
+        await page.evaluate(f"storyGo({CARD[block]}, {c})")
         cap.mark(f"block {block}")
         await asyncio.sleep(seconds[block] + MARGIN)
+
+
+def moment(block: str, at, cues) -> float:
+    if isinstance(at, tuple):
+        k = at[1]
+        if block in cues and k < len(cues[block]):
+            return cues[block][k][0]
+        return FIXED[(block, k)]
+    return float(at)
 
 
 async def demo(page, cap, args) -> None:
     """One take: two story cards, the page's scenes zoomed, two story cards."""
     seconds = seconds_per_block()
+    cues = cues_per_block()
     missing = (set(CARD) | set(PAGE)) - set(seconds)
     if missing:
         raise SystemExit(f"{NARRATION.name} has no block for {sorted(missing)}")
-    await cards(page, cap, seconds, ["01", "02"])
+    await cards(page, cap, seconds, cues, ["01", "02"])
     await open_page(page, args)
     for block in sorted(PAGE):
         index, moves = PAGE[block]
@@ -120,13 +158,14 @@ async def demo(page, cap, args) -> None:
         cap.mark(f"block {block}")
         t = 0.0
         for at, sel, k, rect in moves:
-            await asyncio.sleep(at - t)
-            t = at
+            when = moment(block, at, cues)
+            await asyncio.sleep(max(0.0, when - t))
+            t = max(t, when)
             fit = await zoom(page, sel, k, MOVE_MS, rect)
-            print(f"    {block}: {sel} x{fit['k']}", flush=True)
+            print(f"    {block}: {sel} x{fit['k']} at {when:.1f} s", flush=True)
         await asyncio.sleep(seconds[block] + MARGIN - t)
     await zoom(page, None, 1, 0)
-    await cards(page, cap, seconds, ["11", "12"])
+    await cards(page, cap, seconds, cues, ["12", "13"])
     cap.mark("done")
 
 

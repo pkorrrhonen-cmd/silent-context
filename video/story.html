@@ -3,7 +3,10 @@
      scenes_v3.py in the same take as the page: storyGo(n) shows card n and restarts its animations; the body is
      marked ready once fonts are in. Every animation ends in a still state, and a tiny ticker repaints the page five
      times a second while a card is shown, so the screencast always carries the last frame of a move (a fade's last
-     frame was dropped on 7.11.2026). Written at the event. Used only to make the video; not part of the product. -->
+     frame was dropped on 7.11.2026). An element's moment comes from the voice: data-cue="S,F" is sentence S of the
+     block and a fraction F of its length, and storyGo(n, cues) sets each element's delay from the aligned track's
+     sentence times (scenes_story.py reads them); without cues the data-at seconds are used. Written at the event.
+     Used only to make the video; not part of the product. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -70,41 +73,41 @@
 <section class="card" id="card-0" data-on>
   <div class="split">
     <div class="thread">
-      <div class="msg v in" style="--at:.4s"><p class="who">Veikko Vikkelä <span>Field Engineer · 09:14</span></p>
+      <div class="msg v in" data-cue="0,0.1" data-at=".4"><p class="who">Veikko Vikkelä <span>Field Engineer · 09:14</span></p>
         <p>Changed the SFP on transmission node TRN-042. Link is up and alarms cleared, but traffic is still not coming back.</p></div>
-      <div class="msg in" style="--at:4.6s"><p class="who">Erkki Expert <span>Network Expert · 09:22</span></p>
+      <div class="msg in" data-cue="2,0.35" data-at="4.6"><p class="who">Erkki Expert <span>Network Expert · 09:22</span></p>
         <p>That's it. Disable the interface, wait a little, then enable it again. Don't reboot the whole unit unless that fails.</p></div>
-      <div class="msg v in" style="--at:8.6s"><p class="who">Veikko Vikkelä <span>09:26</span></p><p>Is this documented somewhere?</p></div>
-      <div class="msg in" style="--at:10.2s"><p class="who">Erkki Expert <span>09:27</span></p><p>Not that I know of. We've just learned it over the years.</p></div>
-      <p class="tag in" style="--at:.4s">a Teams thread · Elisa's example file, unchanged</p>
+      <div class="msg v in" data-cue="3,0" data-at="8.6"><p class="who">Veikko Vikkelä <span>09:26</span></p><p>Is this documented somewhere?</p></div>
+      <div class="msg in" data-cue="4,0" data-at="10.2"><p class="who">Erkki Expert <span>09:27</span></p><p>Not that I know of. We've just learned it over the years.</p></div>
+      <p class="tag in" data-cue="0,0.1" data-at=".4">a Teams thread · Elisa's example file, unchanged</p>
     </div>
     <div class="lines">
-      <p class="eyebrow in" style="--at:.2s">Silent context</p>
-      <p class="l in" style="--at:1.6s">The link came up. No traffic.</p>
-      <p class="l in" style="--at:4.8s">Erkki knew the fix.</p>
-      <h1 class="in" style="--at:11.4s">It lives in one chat.</h1>
+      <p class="eyebrow in" data-cue="0,0" data-at=".2">Silent context</p>
+      <p class="l in" data-cue="1,0.1" data-at="1.6">The link came up. No traffic.</p>
+      <p class="l in" data-cue="2,0" data-at="4.8">Erkki knew the fix.</p>
+      <h1 class="in" data-cue="5,0" data-at="11.4">It lives in one chat.</h1>
     </div>
   </div>
   <p class="foot">Since AI 2026 · Elisa's challenge</p>
 </section>
 
 <section class="card" id="card-1">
-  <p class="eyebrow in" style="--at:.2s">The answer</p>
-  <h1 class="in" style="--at:.3s">Silent context remembers it.</h1>
+  <p class="eyebrow in" data-cue="0,0" data-at=".2">The answer</p>
+  <h1 class="in" data-cue="0,0.02" data-at=".3">Silent context remembers it.</h1>
   <div class="flow">
-    <div class="step in" style="--at:.9s">
+    <div class="step in" data-cue="0,0.06" data-at=".9">
       <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M8 10h28v18H20l-8 7v-7H8z"/><path d="M14 17h16M14 22h10"/></svg>
       <b>Read as written</b><p>The chat and the email, exactly as they are.</p></div>
-    <svg class="arrow in" style="--at:3.2s" viewBox="0 0 36 36" aria-hidden="true"><path d="M5 18h24M21 10l8 8-8 8"/></svg>
-    <div class="step in" style="--at:3.4s">
+    <svg class="arrow in" data-cue="0,0.3" data-at="3.2" viewBox="0 0 36 36" aria-hidden="true"><path d="M5 18h24M21 10l8 8-8 8"/></svg>
+    <div class="step in" data-cue="0,0.34" data-at="3.4">
       <svg viewBox="0 0 44 44" aria-hidden="true"><rect x="6" y="22" width="32" height="14" rx="2"/><path d="M11 29h6M21 29h12"/><path d="M14 8h16v12H14z"/><path d="M22 4v4M22 20v3"/></svg>
       <b>Pinned to the unit</b><p><code>TRN-042</code>, in Erkki's own words.</p></div>
-    <svg class="arrow in" style="--at:6.2s" viewBox="0 0 36 36" aria-hidden="true"><path d="M5 18h24M21 10l8 8-8 8"/></svg>
-    <div class="step in" style="--at:6.4s">
+    <svg class="arrow in" data-cue="0,0.62" data-at="6.2" viewBox="0 0 36 36" aria-hidden="true"><path d="M5 18h24M21 10l8 8-8 8"/></svg>
+    <div class="step in" data-cue="0,0.66" data-at="6.4">
       <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="15"/><path d="M22 12v10l7 4"/></svg>
       <b>Who said it, and when</b><p>Erkki · Teams · 14.10.</p></div>
-    <svg class="arrow in" style="--at:8.9s" viewBox="0 0 36 36" aria-hidden="true"><path d="M5 18h24M21 10l8 8-8 8"/></svg>
-    <div class="step in" style="--at:9.1s">
+    <svg class="arrow in" data-cue="1,0" data-at="8.9" viewBox="0 0 36 36" aria-hidden="true"><path d="M5 18h24M21 10l8 8-8 8"/></svg>
+    <div class="step in" data-cue="1,0.06" data-at="9.1">
       <svg viewBox="0 0 44 44" aria-hidden="true"><rect x="6" y="9" width="32" height="26" rx="3"/><path d="M13 19l6 6 12-12"/></svg>
       <b>One call for the agent</b><p>What to do next, and where that came from.</p></div>
   </div>
@@ -112,29 +115,43 @@
 </section>
 
 <section class="card" id="card-2">
-  <p class="eyebrow in" style="--at:.2s">The limits</p>
-  <h1 class="in" style="--at:.3s">What this does not claim.</h1>
+  <p class="eyebrow in" data-cue="0,0" data-at=".2">The limits</p>
+  <h1 class="in" data-cue="0,0.05" data-at=".3">What this does not claim.</h1>
   <div class="limits">
-    <p class="l in" style="--at:1.7s"><b>01</b><span>It never starts a conversation with an expert.</span></p>
-    <p class="l in" style="--at:5.2s"><b>02</b><span>It shows where advice came from, not whether it is true.</span></p>
-    <p class="l in" style="--at:8.4s"><b>03</b><span>It scores advice, never people.</span></p>
-    <p class="l in" style="--at:10.8s"><b>04</b><span>Everything but Elisa's two example files is simulated.</span></p>
+    <p class="l in" data-cue="1,0" data-at="1.7"><b>01</b><span>It never starts a conversation with an expert.</span></p>
+    <p class="l in" data-cue="2,0" data-at="5.2"><b>02</b><span>It shows where advice came from, not whether it is true.</span></p>
+    <p class="l in" data-cue="3,0" data-at="8.4"><b>03</b><span>It scores advice, never people.</span></p>
+    <p class="l in" data-cue="4,0" data-at="10.8"><b>04</b><span>Everything but Elisa's two example files is simulated.</span></p>
   </div>
   <p class="foot">Since AI 2026 · Elisa's challenge</p>
 </section>
 
 <section class="card close" id="card-3">
-  <p class="eyebrow in" style="--at:.2s">Since AI 2026 · Elisa's challenge</p>
-  <h1 class="in" style="--at:.3s">Silent context</h1>
-  <p class="l in" style="--at:1.3s">Runs with no model and no key.</p>
-  <p class="repo in" style="--at:2.5s">github.com/pkorrrhonen-cmd/silent-context <span>· MIT · Petri Korhonen</span></p>
+  <p class="eyebrow in" data-cue="0,0" data-at=".2">Since AI 2026 · Elisa's challenge</p>
+  <h1 class="in" data-cue="0,0.05" data-at=".3">Silent context</h1>
+  <p class="l in" data-cue="1,0" data-at="1.3">Runs with no model and no key.</p>
+  <p class="repo in" data-cue="2,0" data-at="2.5">github.com/pkorrrhonen-cmd/silent-context <span>· MIT · Petri Korhonen</span></p>
 </section>
 
 <div id="tick"></div>
 <script>
 "use strict";
 const cards = [...document.querySelectorAll(".card")];
-window.storyGo = (n) => { cards.forEach((card, i) => card.toggleAttribute("data-on", i === n)); };
+// cues: [[start, end], ...] per sentence of the card's block, seconds from the card's first frame; an element with
+// data-cue="S,F" appears at start[S] + F * (end[S] - start[S]); without cues, at its data-at seconds.
+window.storyGo = (n, cues) => {
+  const card = cards[n];
+  for (const el of card.querySelectorAll(".in")) {
+    let at = parseFloat(el.dataset.at || "0");
+    if (cues && el.dataset.cue) {
+      const [si, f] = el.dataset.cue.split(",").map(Number);
+      const c = cues[Math.min(si, cues.length - 1)];
+      if (c) at = c[0] + f * (c[1] - c[0]);
+    }
+    el.style.setProperty("--at", at.toFixed(2) + "s");
+  }
+  cards.forEach((c, i) => c.toggleAttribute("data-on", i === n));
+};
 const fromHash = parseInt(location.hash.slice(1), 10);
 if (!Number.isNaN(fromHash)) storyGo(fromHash);
 let on = false;
