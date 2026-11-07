@@ -162,6 +162,7 @@ h2 small {
 
 #t-line { transition: transform .55s cubic-bezier(.3, .7, .2, 1); }
 .t-now { stroke: #fff; stroke-width: 2; }
+.t-now-bg { fill: var(--panel); }
 .t-now-label { fill: #fff; font: 700 12px var(--mono); }
 
 /* The three middle panels */

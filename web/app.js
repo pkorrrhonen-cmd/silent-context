@@ -359,6 +359,8 @@ function drawTimeline() {
   const group = svgEl("g", { id: "t-line" }, svg);
   group.style.transform = `translateX(${nowX}px)`;
   svgEl("line", { x1: 0, x2: 0, y1: 16, y2: height, class: "t-now" }, group);
+  // A backing behind the label, so a tick's date under the same spot does not show through it.
+  svgEl("rect", { x: -32, y: 2, width: 30, height: 14, rx: 2, class: "t-now-bg" }, group);
   svgEl("text", { x: -5, y: 13, class: "t-now-label", "text-anchor": "end" }, group, "now");
 }
 
