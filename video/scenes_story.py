@@ -142,10 +142,15 @@ MOVE_MS = 900
 async def cards(page, cap, seconds, cues, blocks) -> None:
     await page.goto(STORY.resolve().as_uri())
     await page.wait_for_selector("body[data-ready='1']")
+    # No card until its block: the page opens on card 0, and a clip that started on the frame before the next card
+    # had painted showed card 0 for one frame (the owner saw it at 1:55 on 7.11.).
+    await page.evaluate("storyGo(-1)")
     await asyncio.sleep(1)
     for block in blocks:
         c = json.dumps(cues[block]) if block in cues else "null"
         await page.evaluate(f"storyGo({CARD[block]}, {c})")
+        # Two animation frames, so the card has painted and the screencast has a frame of it before the mark.
+        await page.evaluate("new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)))")
         cap.mark(f"block {block}")
         await asyncio.sleep(seconds[block] + MARGIN)
 

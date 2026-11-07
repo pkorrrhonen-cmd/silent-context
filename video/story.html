@@ -143,8 +143,8 @@ const cards = [...document.querySelectorAll(".card")];
 // cues: [[start, end], ...] per sentence of the card's block, seconds from the card's first frame; an element with
 // data-cue="S,F" appears at start[S] + F * (end[S] - start[S]); without cues, at its data-at seconds.
 window.storyGo = (n, cues) => {
-  const card = cards[n];
-  for (const el of card.querySelectorAll(".in")) {
+  const card = cards[n];  // storyGo(-1) shows no card: the recorder's state between blocks
+  for (const el of card ? card.querySelectorAll(".in") : []) {
     let at = parseFloat(el.dataset.at || "0");
     if (cues && el.dataset.cue) {
       const [si, f] = el.dataset.cue.split(",").map(Number);

@@ -143,6 +143,13 @@ agent's calls are also MCP tools, and a message or a call to the expert at the m
 step, not built yet. The take was recorded again (171.6 s, 1943 frames), frames read at each focus moment and
 at the close, and the final rebuilt: 135.4 s, 14.9 MB.
 
+**One frame fixed:** the owner saw a flash at 1:55, between the barrier scene and the limits card. Frame by
+frame it was one frame of the opening story card: the story page loads with card 0 shown, and the limits clip
+began on the frame before card 2 had painted. The recorder now shows no card after loading the page and marks
+a block only after two animation frames, so a clip's first frame is its own card. The take and the final were
+rebuilt; a brightness scan of every frame from 1:52 to 1:57, at the start and at the close shows the page, the
+card's own dark first frame and the card's text, nothing else. 135.4 s, 15.1 MB.
+
 **Where it is:** the Desktop folder "Silent context submission V3" with the five-picture deck, the full deck, the
 notes and the zip; the folder "Silent context video" and the pipeline's media folder. V2 (the v3 cut) and the
 first folder stay as fallbacks.
