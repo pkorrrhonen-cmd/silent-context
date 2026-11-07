@@ -39,6 +39,16 @@ the "what was tested" section, and `docs/what-is-simulated.md` does not exist (D
 **Open after this:** the owner's checkpoint on the page and the captions, the product name, and
 phase 7's remaining half, the acceptance table for the slides.
 
+### The session's end
+
+Main is at `dfd83fa`, 37 commits, pushed; gitleaks over the full history and the working tree finds
+nothing. Two folders on the owner's Desktop have one role each: "Silent context submission" holds
+exactly what the form takes (the final video, the deck and its PDF as in main, the source zip from
+main's tip, `submission-notes.md`), and "Silent context video" holds the video's working files (the
+drafts, the owner's track, the SRT files, the reading copy); the stale copies of the zip and the deck
+were removed from it. Open after this session: the owner's two actions, P-10 and P-3, and after the
+event REPO-2 and P-8.
+
 ### The slides
 
 **Built:** `docs/slides/silent-context.pptx`, ten slides from [`slides.md`](slides.md) in the page's own look:
