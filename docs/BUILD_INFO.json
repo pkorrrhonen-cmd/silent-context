@@ -27,6 +27,7 @@
   "ci": "none: added only if the build needs a gate",
   "github": "github.com/pkorrrhonen-cmd/sinceai-2026 (private; renamed when the product has a name, GitHub redirects the old name)",
   "atlasArtifacts": {
+    "status": "SINCEAI-2026-ELISA-TILANNE (read this first: what is done, measured and waiting)",
     "buildPlan": "SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA",
     "decisions": "SINCEAI-2026-ELISA-PAATOKSET",
     "ipPosition": "SINCEAI-2026-IP-LINJAUS",

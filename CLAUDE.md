@@ -77,7 +77,7 @@ Nothing goes into two places as a copy; a reference is enough. There is no SEED 
 2. **Read** `docs/BUILD_INFO.json` `next_session` (`read_first`, `scope`, `gate`).
 3. **Decisions:** which rows of `docs/DECISIONS.md` are still open.
 4. **Atlas:** once the system exists, `atlas_get_workspace("<system>")`. Until then the source is the
-   artifact `SINCEAI-2026-SUUNNITELMA`.
+   artifact `SINCEAI-2026-ELISA-TILANNE`, which says what is done, what was measured and what waits.
 
 ## Session end
 
