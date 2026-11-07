@@ -18,7 +18,7 @@ Atlas artifact `SINCEAI-2026-SUUNNITELMA`, not here, because this repository is 
 Codes: **P** the owner's own actions, **REPO** the repository, **DOC** the documents to fill,
 **BUILD** the build's phases.
 
-Updated 7.11.2026 (session 3).
+Updated 7.11.2026 (session 4).
 
 ---
 
@@ -26,10 +26,11 @@ Updated 7.11.2026 (session 3).
 
 | Code | Task | Why / notes |
 |---|---|---|
-| P-3 | **Submit** in sinceai.app: project details, submission URL, repository or demo link, video, source zip. | Closes Sunday 8.11. at 10:00 EET; the plan is to send by 09:30. Everything the form takes is in the Desktop folder "Silent context submission": the video, the deck and its PDF, the source zip and `submission-notes.md`. The source zip `silent-context-source.zip` there is built from main's tip with `git archive` (checked with a clean install on 7.11.); rebuild it right before the submission if main has moved. The slides: [`slides/silent-context.pptx`](slides/silent-context.pptx) and the PDF beside it. |
-| P-10 | **Put the final video where the submission can point** (YouTube unlisted, or the file as the form allows) and open the link once logged out. | The video is final on 7.11.: `silent-context-en-captions.mp4` in the Desktop folders "Silent context submission" and "Silent context video", and in the pipeline's media folder. |
+| P-10 | **Upload the final video to YouTube as unlisted** and open the link once in a private window. | The builders' guide (read 7.11.): YouTube is the only accepted format, public or unlisted, no MP4 or WebM upload. The file is `silent-context-en-captions.mp4` in the Desktop folder "Silent context submission"; the title, description and steps are in that folder's `submission-notes.md`. |
+| P-3 | **Submit** in sinceai.app. | Closes Sunday 8.11. at 10:00 EET; the plan is to send by 09:30, and a submission can be edited after sending. Every field's text is in the Desktop folder's `submission-notes.md`: the tagline (128 of 140 characters), the About text, Built with, the GenAI answer; the PDF goes in as the pitch deck, the zip as the source. Rebuild the zip with `git archive` if main moves after the last rebuild. |
+| P-11 | **Vote** in sinceai.app on Sunday 10:00 to 12:00. | 20 pairwise comparisons per builder; the vote picks the finalists and feeds the company top three. Can be done from anywhere. The closing ceremony at 13:15 needs presence only from the five finalists, who must be at the stage side at 13:00 and present live. |
 | P-8 | **On the main PC,** point the checkout at the renamed repository: `git remote set-url origin https://github.com/pkorrrhonen-cmd/silent-context.git`. | GitHub redirects the old name, so this can wait; it only keeps the remote honest. |
-| P-7 | *Optional:* **ask Elisa's representative the questions** in the Atlas artifact `SINCEAI-2026-ELISA-PAATOKSET` part 1.5, face to face, if there is time. | Saturday at the showroom, 9 to 12 and 14.30 to 18. No decision depends on the answers. |
+| P-7 | *Optional:* **ask Elisa's representative the questions** in the Atlas artifact `SINCEAI-2026-ELISA-PAATOKSET` part 1.5, face to face, if there is time. | Saturday at the showroom, until 18:00. No decision depends on the answers. |
 
 ## The repository
 
@@ -41,11 +42,10 @@ Updated 7.11.2026 (session 3).
 
 | Code | Task | Why / notes |
 |---|---|---|
-| BUILD-8 | **Present the slides.** | Phase 8. The video is final (7.11., the owner's voice, 127 s, captions in the band); the owner places it for the submission (P-10). The slides exist (7.11.): [`slides/silent-context.pptx`](slides/silent-context.pptx), ten slides with speaker notes, and the PDF beside it; the owner presents from the pptx on Windows and attaches it to the submission (P-3). A change to the words: [`slides/build/`](slides/build/), then rebuild. |
+| BUILD-8 | **Present the slides,** if ever asked. | Phase 8. The video is final (7.11., the owner's voice, 127 s, captions in the band); the owner uploads it (P-10). The slides exist (7.11.): [`slides/silent-context.pptx`](slides/silent-context.pptx), ten slides with speaker notes, and the PDF beside it, which goes into the submission as the pitch deck (P-3). A change to the words: [`slides/build/`](slides/build/), then rebuild. |
 
 ## Documents to fill
 
 | Code | Task | Why / notes |
 |---|---|---|
-| DOC-1 | **Read the README once more before the submission** and keep "AI tools used" current. | The submission points here. The diagram and "What was tested" went in on 7.11. |
 | DOC-2 | **Finish [`architecture.md`](architecture.md)** as components come to exist. | Data flow and threats are still open. |

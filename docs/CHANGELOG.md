@@ -4,6 +4,42 @@ Newest first. One entry per session; a session that ships several distinct thing
 What changed and *why*, with what was measured, so a later reader can tell a decision from a habit.
 The canonical state is [`BUILD_INFO.json`](BUILD_INFO.json): refer to it, do not copy it here.
 
+## Session 4, 7.11.2026: the submission's rules, and the work read as a judge
+
+**Why:** the build is done; what remained was how the video is handed in, what Sunday asks of the
+owner, and whether the work reads well to a judge and to an ordinary viewer. Nothing in `app/`,
+`web/`, `data/` or the slides changed.
+
+**The builders' guide** (sinceai.ai/hackathon-2026/guide/builders, read 7.11. evening):
+
+- The submission is made in sinceai.app only, by Sunday 8.11. 10:00 EET, and can be edited after
+  sending. The video must be a public or unlisted **YouTube link; no video file is accepted.** This
+  settles the backlog's open question (P-10).
+- The form's fields: challenge, project name (80 characters), tagline (140), About (5,000), Built
+  with, repository link, YouTube link, one source zip (100 MB), MLH questions including the GenAI
+  tools, challenge terms; optional demo URL, one pitch deck (PDF, PPT or PPTX) and two supporting
+  documents. The one-line description drafted on 7.11. was 254 characters, so a 128-character tagline
+  was written. The PDF goes in as the deck, because voters open it from the vote card.
+- Sunday: 10:00 deadline; 10:00 to 12:00 a participant vote of 20 pairwise comparisons per builder;
+  12:00 five finalists, the highest-ranked from five different company challenges; 13:15 the closing
+  ceremony at EduCity; 13:30 the company top three; 14:00 the finals, live only, four minutes and six
+  of questions. Presence is needed only from finalists. The vote is the owner's new action (P-11).
+
+**Read as a judge and as an ordinary viewer:** the README, the narration, the ten scenes in the
+browser, the slide text and the Desktop folder's notes. The page's scene stories, the 22 second
+pitch and the limits scene carry the idea; the README answers Elisa's three asks in its own
+"Demo" section and says what was measured and what was not. Found and recorded, not changed: the
+page is dense at a glance and is best read through the video; slides 4 and 8 are text-heavy; the
+README has no picture of the page, so a reader on GitHub sees prose and a diagram only. The
+repository and its raw README answer 200 without a login; the zip holds the same 133 files as the
+tracked tree.
+
+**Changed:** the Desktop folder's `submission-notes.md` now holds every field's text in the form's
+order, the YouTube steps, Sunday's timetable and the zip's rebuild command. The backlog's P-10 is
+the YouTube upload, P-3 points at the notes, P-11 is the vote, and DOC-1 (read the README before
+the submission) is done. The source zip was rebuilt from this session's last commit.
+
+
 ## Session 3, 7.11.2026: the technical check before the checkpoint
 
 **Why:** the owner saw the page the evening before and holds phase 6's checkpoint. Before anything
