@@ -39,6 +39,38 @@ the "what was tested" section, and `docs/what-is-simulated.md` does not exist (D
 **Open after this:** the owner's checkpoint on the page and the captions, the product name, and
 phase 7's remaining half, the acceptance table for the slides.
 
+### The pitch, the captions' band and the MCP wrapper
+
+**Decided by the owner** ([`DECISIONS.md`](DECISIONS.md) rows 11 to 14): the larger-text picture is
+approved as a pre-version; the captions go into a black band of their own under the picture, because
+the frame holds many views and text; a very concise pitch of about 20 seconds goes in front (the
+problem, how it is solved), so that Elisa's representative first grasps what the solution does and then
+sees it as a technical solution; the MCP wrapper is included; the owner produces the final voice in
+ElevenLabs and hands it over for alignment.
+
+**Built:**
+
+- **The band.** The take is recorded as a 1920 by 950 picture (`--scale 1.2`, the page at 1600 by
+  792 CSS pixels, checked to fit without scrolling) and the plan adds a 130 pixel black band under it,
+  so the video is 1920 by 1080 and the burned captions sit in the band, white on black, two lines of
+  45 pixels. The pipeline learned this in its own repository (`sf3d-ai-lab` `6b86ab0`: a `band` in the
+  plan or `--band`, and any even frame size for the picture). Measured on frames at 3, 15, 44 and 70
+  seconds: nothing of the page is covered.
+- **The pitch.** Two cards in the page's own look (`video/pitch.html`), recorded in the same take as
+  the page: the problem, with Erkki's own answer from Elisa's file beside it, and the answer as three
+  steps (read as written, tied to the network, one call for the agent). Narration v2: blocks 01 and 02
+  are the pitch, 60 words over 22 seconds; the earlier overview block over the page went, so the page
+  itself starts at 22 seconds and the viewer reaches "use" at 68. Twelve blocks, 356 words, 131
+  seconds planned; the guide track aligned with fit cost 0.67. The draft with the pitch and the band
+  is `silent-context-en-guide-band-captions.mp4`, 135.8 s, 8.2 MB, sent to the owner.
+- **A lesson paid for** ([`LESSONS.md`](LESSONS.md)): the first take's first card stayed dim, because
+  the screencast dropped the last frame of its fade. The cards cut in hard now.
+- **The MCP wrapper** (`app/mcp_server.py`, the `mcp` package 2.3.0): `claims_for`, `access_for` and
+  `source` as tools over stdio, each the function behind the HTTP interface, so an answer is the same
+  whichever way it is asked and no model runs. Tested over an in-memory transport (the three tools
+  listed, the same tier and next step as the direct call, a file outside the manifest refused) and as
+  a real stdio process started by a client. 154 tests pass. The README says how a client starts it.
+
 ### The checkpoint, and the page rebuilt for clarity
 
 **Decided by the owner** ([`DECISIONS.md`](DECISIONS.md) rows 6 to 10): the IP terms were accepted at

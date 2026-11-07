@@ -1,12 +1,13 @@
 {
- "about": "Silent context: the final plan (pipeline/final.py), written by cut_from_take.py from the alignment. Each narration scene is one clip; its sentences start 0.3 s into the clip, which already shows what they talk about. The guide run uses the same plan with --narration, --scenes-json and --name; the owner's own track replaces audio/narration.wav last.",
+ "about": "Silent context: the final plan (pipeline/final.py), written by cut_from_take.py from the alignment. Each narration scene is one clip; its sentences start 0.3 s into the clip, which already shows what they talk about. The captions are burned into a black band under the picture, never over it. The guide run uses the same plan with --narration, --scenes-json and --name; the owner's own track replaces audio/narration.wav last.",
  "name": "silent-context-en",
- "size": "1920x1080",
+ "size": "1920x950",
+ "band": 130,
  "narration": "audio/narration.wav",
  "scenes_json": "audio/scenes.json",
  "scenes": {
   "01": {
-   "clip": "01-whole",
+   "clip": "01-problem",
    "blocks": [
     [
      0,
@@ -16,17 +17,7 @@
    ]
   },
   "02": {
-   "clip": "02-gap",
-   "blocks": [
-    [
-     0,
-     1,
-     0.3
-    ]
-   ]
-  },
-  "03": {
-   "clip": "03-capture",
+   "clip": "02-answer",
    "blocks": [
     [
      0,
@@ -35,8 +26,8 @@
     ]
    ]
   },
-  "04": {
-   "clip": "04-bind",
+  "03": {
+   "clip": "03-gap",
    "blocks": [
     [
      0,
@@ -45,8 +36,18 @@
     ]
    ]
   },
+  "04": {
+   "clip": "04-capture",
+   "blocks": [
+    [
+     0,
+     2,
+     0.3
+    ]
+   ]
+  },
   "05": {
-   "clip": "05-use",
+   "clip": "05-bind",
    "blocks": [
     [
      0,
@@ -56,17 +57,17 @@
    ]
   },
   "06": {
-   "clip": "06-learn",
+   "clip": "06-use",
    "blocks": [
     [
      0,
-     2,
+     1,
      0.3
     ]
    ]
   },
   "07": {
-   "clip": "07-ageing",
+   "clip": "07-learn",
    "blocks": [
     [
      0,
@@ -76,17 +77,7 @@
    ]
   },
   "08": {
-   "clip": "08-not-for-all",
-   "blocks": [
-    [
-     0,
-     1,
-     0.3
-    ]
-   ]
-  },
-  "09": {
-   "clip": "09-disagree",
+   "clip": "08-ageing",
    "blocks": [
     [
      0,
@@ -95,8 +86,28 @@
     ]
    ]
   },
+  "09": {
+   "clip": "09-not-for-all",
+   "blocks": [
+    [
+     0,
+     1,
+     0.3
+    ]
+   ]
+  },
   "10": {
-   "clip": "10-barrier",
+   "clip": "10-disagree",
+   "blocks": [
+    [
+     0,
+     2,
+     0.3
+    ]
+   ]
+  },
+  "11": {
+   "clip": "11-barrier",
    "blocks": [
     [
      0,
@@ -105,8 +116,8 @@
     ]
    ]
   },
-  "11": {
-   "clip": "11-limits",
+  "12": {
+   "clip": "12-limits",
    "blocks": [
     [
      0,

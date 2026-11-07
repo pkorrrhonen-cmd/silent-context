@@ -28,6 +28,7 @@ lists them). The product runs without the author's environment.
 | `app/events.py` | Built | What devices add: recheck, outcomes, what a person did |
 | `app/view.py` | Built | The whole state at the demo clock, for the page |
 | `app/api.py` | Built | HTTP interface, and it serves the page |
+| `app/mcp_server.py` | Built | The same calls as MCP tools, over stdio, for an agent that speaks MCP |
 | `web/` | Built | One page, with nothing fetched from outside |
 
 ## The page
@@ -89,6 +90,11 @@ anything is proposed. A real deployment would want a better match here.
 `access_for(place)` answers how to reach a place, with the age of the information. For a point in world
 time it says what held then, and if the moment one statement replaced another is unknown, it returns
 both and says so.
+
+Both calls reach an agent three ways with one implementation behind them: as Python, over HTTP
+(`app/api.py`), and as MCP tools (`app/mcp_server.py`, with `source` for reading the thread behind a
+claim's evidence). The wrapper is thin on purpose: a tool is the function, so the answer is the same
+whichever way it is asked, and the rules live in one place.
 
 ## The store
 

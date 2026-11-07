@@ -14,10 +14,11 @@ from collections import Counter
 from pathlib import Path
 
 NAMES = {
-    "01": "whole", "02": "gap", "03": "capture", "04": "bind", "05": "use", "06": "learn",
-    "07": "ageing", "08": "not-for-all", "09": "disagree", "10": "barrier", "11": "limits",
+    "01": "problem", "02": "answer", "03": "gap", "04": "capture", "05": "bind", "06": "use", "07": "learn",
+    "08": "ageing", "09": "not-for-all", "10": "disagree", "11": "barrier", "12": "limits",
 }
 TAIL = 1.2  # seconds of picture after the last word
+BAND = 130  # pixels of black under the picture for the captions; with a 1920x950 picture the video is 1920x1080
 
 
 def main() -> None:
@@ -41,15 +42,16 @@ def main() -> None:
         end = min(hold_end, start + speech[block] + 0.3 + TAIL)
         scenes.append({"name": f"{block}-{NAMES[block]}", "parts": [{"take": a.take, "from": round(start, 2), "to": round(end, 2)}]})
     cut = {
-        "about": "Silent context: eleven clips cut from the one take by its block marks, each no longer than its speech plus a tail (cut_from_take.py). Nothing is sped up. Paths are relative to --media.",
+        "about": "Silent context: the two pitch cards and the ten page scenes, twelve clips cut from the one take by its block marks, each no longer than its speech plus a tail (cut_from_take.py). Nothing is sped up. Paths are relative to --media.",
         "size": events["size"],
         "speed_of_waits": 1,
         "scenes": scenes,
     }
     final = {
-        "about": "Silent context: the final plan (pipeline/final.py), written by cut_from_take.py from the alignment. Each narration scene is one clip; its sentences start 0.3 s into the clip, which already shows what they talk about. The guide run uses the same plan with --narration, --scenes-json and --name; the owner's own track replaces audio/narration.wav last.",
+        "about": "Silent context: the final plan (pipeline/final.py), written by cut_from_take.py from the alignment. Each narration scene is one clip; its sentences start 0.3 s into the clip, which already shows what they talk about. The captions are burned into a black band under the picture, never over it. The guide run uses the same plan with --narration, --scenes-json and --name; the owner's own track replaces audio/narration.wav last.",
         "name": "silent-context-en",
         "size": events["size"],
+        "band": BAND,
         "narration": "audio/narration.wav",
         "scenes_json": a.scenes_json,
         "scenes": {block: {"clip": f"{block}-{NAMES[block]}", "blocks": [[0, sentences[block] - 1, 0.3]]} for block in blocks},

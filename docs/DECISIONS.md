@@ -22,7 +22,10 @@ Updated 7.11.2026 (session 3).
 | 8 | Phase 6 checkpoint: the page | Changes: at first glance the page looks confusing. Session 3 makes it clearer wherever it can, and the owner looks again. The owner, 7.11.2026. | `edit` |
 | 9 | Cypher export and a Neo4j trial run | Done in session 3, because the build is ahead of the plan and the owner wants it. The owner, 7.11.2026. | `OK` |
 | 10 | The video's shape | The whole idea is clear in the first 20 seconds. After that, how it happens is shown as a short, clear presentation. At about 60 seconds the viewer has fully grasped what this is. The owner, 7.11.2026. | `OK` |
-| 11 | Something useful or distinguishing with the spare time | The owner asked for it; session 3 proposes what, why and impact in its report, and the owner picks. | `draft` |
+| 11 | Something useful or distinguishing with the spare time | The MCP wrapper: the agent's calls as MCP tools, so an agent that speaks MCP asks the store directly. Needs the `mcp` package, added. The owner, 7.11.2026. | `OK` |
+| 12 | The video's picture | Approved as a pre-version in the larger-text take. The captions go into a black band of their own under the picture, never over it, because the frame holds many views and text. The owner, 7.11.2026. | `OK` |
+| 13 | A pitch in front of the video | About 20 seconds, very concise: what the problem is, how it is solved; then the video shows it in practice. Elisa's representative must first grasp what the solution does, then see it as a technical solution. Built as two cards in the page's look (`video/pitch.html`), narration blocks 01 and 02, replacing the earlier overview block over the page. The owner, 7.11.2026; the words and the cards wait for his reaction. | `edit` |
+| 14 | The final voice | The owner produces the track in ElevenLabs and hands it over here; the session aligns it to the picture with the same plan. The owner, 7.11.2026. | `OK` |
 
 ## Design decisions P1 to P6
 

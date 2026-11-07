@@ -1,115 +1,125 @@
 {
- "about": "Silent context: eleven clips cut from the one take by its block marks, each no longer than its speech plus a tail (cut_from_take.py). Nothing is sped up. Paths are relative to --media.",
- "size": "1920x1080",
+ "about": "Silent context: the two pitch cards and the ten page scenes, twelve clips cut from the one take by its block marks, each no longer than its speech plus a tail (cut_from_take.py). Nothing is sped up. Paths are relative to --media.",
+ "size": "1920x950",
  "speed_of_waits": 1,
  "scenes": [
   {
-   "name": "01-whole",
+   "name": "01-problem",
    "parts": [
     {
-     "take": "takes-12/demo",
-     "from": 1.17,
-     "to": 20.54
+     "take": "takes-band/demo",
+     "from": 1.7,
+     "to": 10.3
     }
    ]
   },
   {
-   "name": "02-gap",
+   "name": "02-answer",
    "parts": [
     {
-     "take": "takes-12/demo",
-     "from": 23.91,
-     "to": 34.0
+     "take": "takes-band/demo",
+     "from": 12.35,
+     "to": 26.73
     }
    ]
   },
   {
-   "name": "03-capture",
+   "name": "03-gap",
    "parts": [
     {
-     "take": "takes-12/demo",
-     "from": 36.64,
-     "to": 47.03
+     "take": "takes-band/demo",
+     "from": 30.33,
+     "to": 40.38
     }
    ]
   },
   {
-   "name": "04-bind",
+   "name": "04-capture",
    "parts": [
     {
-     "take": "takes-12/demo",
-     "from": 49.37,
-     "to": 61.95
+     "take": "takes-band/demo",
+     "from": 43.12,
+     "to": 53.5
     }
    ]
   },
   {
-   "name": "05-use",
+   "name": "05-bind",
    "parts": [
     {
-     "take": "takes-12/demo",
-     "from": 65.11,
-     "to": 78.18
+     "take": "takes-band/demo",
+     "from": 55.86,
+     "to": 68.45
     }
    ]
   },
   {
-   "name": "06-learn",
+   "name": "06-use",
    "parts": [
     {
-     "take": "takes-12/demo",
-     "from": 80.86,
-     "to": 90.35
+     "take": "takes-band/demo",
+     "from": 71.61,
+     "to": 84.66
     }
    ]
   },
   {
-   "name": "07-ageing",
+   "name": "07-learn",
    "parts": [
     {
-     "take": "takes-12/demo",
-     "from": 92.21,
-     "to": 102.72
+     "take": "takes-band/demo",
+     "from": 87.38,
+     "to": 96.82
     }
    ]
   },
   {
-   "name": "08-not-for-all",
+   "name": "08-ageing",
    "parts": [
     {
-     "take": "takes-12/demo",
-     "from": 105.38,
-     "to": 114.5
+     "take": "takes-band/demo",
+     "from": 98.11,
+     "to": 108.63
     }
    ]
   },
   {
-   "name": "09-disagree",
+   "name": "09-not-for-all",
    "parts": [
     {
-     "take": "takes-12/demo",
-     "from": 118.34,
-     "to": 128.14
+     "take": "takes-band/demo",
+     "from": 110.85,
+     "to": 119.96
     }
    ]
   },
   {
-   "name": "10-barrier",
+   "name": "10-disagree",
    "parts": [
     {
-     "take": "takes-12/demo",
-     "from": 130.38,
-     "to": 137.92
+     "take": "takes-band/demo",
+     "from": 123.55,
+     "to": 133.35
     }
    ]
   },
   {
-   "name": "11-limits",
+   "name": "11-barrier",
    "parts": [
     {
-     "take": "takes-12/demo",
-     "from": 141.75,
-     "to": 161.75
+     "take": "takes-band/demo",
+     "from": 135.29,
+     "to": 142.81
+    }
+   ]
+  },
+  {
+   "name": "12-limits",
+   "parts": [
+    {
+     "take": "takes-band/demo",
+     "from": 146.0,
+     "to": 166.0
     }
    ]
   }

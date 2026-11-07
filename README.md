@@ -122,6 +122,15 @@ uv run python -m app.ask claims TRN-051 "link up, counters zero after SFP replac
 uv run python -m app.ask access SITE-NILO --clock 2026-10-21T00:00:00
 ```
 
+The same calls are MCP tools (`claims_for`, `access_for` and `source`, which reads the thread behind a
+claim's evidence), so an agent that speaks MCP asks the store directly; no model runs in the wrapper
+either. The client starts it over stdio, for example in Claude Code's `.mcp.json` or Claude Desktop's
+configuration:
+
+```json
+{"mcpServers": {"silent-context": {"command": "uv", "args": ["run", "python", "-m", "app.mcp_server"], "cwd": "<this folder>"}}}
+```
+
 To write the graph to `export/graph.json` and, as Cypher, to `export/graph.cypher`:
 
 ```bash
@@ -151,8 +160,9 @@ uv run pytest
 
 Everything below runs with no key, from the recorded answers.
 
-- **151 tests** (`uv run pytest`): the data set's shape, the store's rules, extraction and binding
-  against the truth set, the agent's acceptance cases, what devices add, the page and its endpoints.
+- **154 tests** (`uv run pytest`): the data set's shape, the store's rules, extraction and binding
+  against the truth set, the agent's acceptance cases, what devices add, the page and its endpoints,
+  the MCP wrapper.
 - **The acceptance cases** of the build plan, A1 to A11, as one table:
   [`docs/acceptance.md`](docs/acceptance.md), written by `uv run python -m app.accept`. Every computed
   row holds, and a test keeps it so. A9 reports numbers only.
@@ -165,6 +175,8 @@ Everything below runs with no key, from the recorded answers.
   every command above runs, on 7.11.2026.
 - **The page:** all ten scenes in a browser at 1440 by 900 with no console errors.
 - **The Cypher export** loaded into an empty Neo4j 5 database with no edits.
+- **The MCP wrapper:** a client over an in-memory transport lists the three tools and gets the same
+  answers as the functions behind the HTTP interface; a file outside the manifest is refused.
 
 What was not tested: extraction on real conversations, outcomes read from real chat, and the class
 binding on anything but this synthetic data ([`docs/what-is-simulated.md`](docs/what-is-simulated.md)).
@@ -209,6 +221,7 @@ Direct dependencies, licences read from the installed package metadata:
 | Uvicorn | BSD-3-Clause | Application server |
 | OpenAI Python SDK | Apache-2.0 | Client for any OpenAI-compatible endpoint |
 | Pydantic | MIT | The extraction's schema and its validation |
+| mcp (the Python SDK) | MIT | The MCP wrapper around the agent's calls |
 | pytest | MIT | Tests (development only) |
 | HTTPX | BSD-3-Clause | Test client (development only) |
 

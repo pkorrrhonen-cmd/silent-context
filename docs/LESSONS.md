@@ -4,6 +4,17 @@ Newest first. The **root cause** is the heading, not the symptom, because the ro
 elsewhere. Only lessons whose price was actually paid. A lesson that becomes a permanent rule moves
 into `CLAUDE.md`.
 
+## A screencast delivers frames only when the page paints, so a fade's last frame can be lost
+
+On 7.11.2026 the pitch cards in front of the video faded in over half a second, and in the first take
+the first card stayed dim for its whole hold: the screencast had sent a mid-fade frame and dropped the
+final one, because it delivers a frame only after the previous one is acknowledged and the card painted
+nothing after the fade. The page's scenes never showed this, because the page keeps painting (the
+clock, the transitions). The take was recorded again with a hard cut.
+
+**Rule:** a card or still that is recorded as a screencast changes in one paint, with no animation; or
+the frame is checked at the end of the hold, not at its start.
+
 ## One run of a model is one sample, not a measurement
 
 On 6.11.2026 the first scored run gave 0 of 16 confidently wrong on the held-out set, and that number
