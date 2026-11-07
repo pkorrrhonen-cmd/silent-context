@@ -83,9 +83,18 @@ closing after each case.
 owner's rule: the whole idea in the first 20 seconds (block 01, over the agent proposing), how it
 happens by about 66 seconds, the harder cases and the limits after that, 129 seconds and 351 words in
 all, 2.4 to 2.9 words a second per block. `video/scenes.py` drives the page through its own `goTo()`
-and reads each hold from the narration, so the two cannot drift apart. `video/cut.json` assembles one
-clip with nothing sped up. The pipeline is pre-existing work in another repository; the video folder
-is the event's.
+and reads each hold from the narration, so the two cannot drift apart. `video/cut_from_take.py` writes the cut list and the
+final plan from a take's marks and the alignment, each clip as long as its speech. The pipeline is
+pre-existing work in another repository; the video folder is the event's.
+
+**Measured, the first picture:** the recorder (Edge through Playwright, 1920 by 1080) drove the page
+through its eleven blocks in one take of 160 seconds, every block mark where the scenes file put it. A
+guide track from the Mac's own speech aligned to all eleven blocks (fit cost 0.58, faster than the
+planned pace at 3.6 words a second). The first draft ran 159 seconds, because every clip played its
+whole hold; cut to the speech, the guide-voiced draft with burned captions is 132 seconds, 1920 by
+1080, H.264 and AAC, 9.4 MB (`media/silent-context/final/silent-context-en-guide-captions.mp4` in
+the pipeline's repository, outside git). A second take at 1.2 device pixels per CSS pixel, for larger
+text, was recorded for comparison. The owner has not seen either yet.
 
 ### Documents
 
