@@ -107,6 +107,36 @@ as a supporting document. The first package stays in "Silent context submission"
 **Measured:** the PDF is five pages, 0.66 MB, each page read as a PNG; the only fix was the closing line,
 which wrapped.
 
+### The v4 words, the cards timed to the voice, and package V3
+
+**Why:** the owner watched the second cut: good, but the cut from the pitch to the system view was left open and
+could confuse; a short stop there should say what the view is, who reads it and what it is for, and each zoom
+should first show the whole view for a second. A new track was needed for the two sentences.
+
+**Built:** `video/narration-v4.md` and `narration-read-v4.txt`: v3 plus block 03, "The page", 58 words, on the
+page before anything is captured and without zoom; every other sentence unchanged. `video/story.html`: each
+element carries `data-cue="S,F"`, sentence S of the block and a fraction of its length, and `storyGo(n, cues)`
+sets the delays from the aligned track, so a card follows the voice instead of an estimate of its pace; the
+fixed seconds remain as the fallback. `video/scenes_story.py` (was `scenes_v3.py`): reads the alignment from
+`SILENT_CONTEXT_ALIGNMENT`, passes each card its cues, holds the whole view for 1.0 s before the first move, and
+takes a later move's moment from a sentence's start (the timeline move at the third sentence of the pin block).
+The order of the pipeline changed with it: the voice is aligned first, then the take is recorded.
+
+**Measured:**
+
+- **The owner's v4 track:** 121.3 s; the aligner found all thirteen blocks at the default threshold, 3.53 words
+  per speech second, fit cost 0.99, no sentence at an odd rate. The page block's six sentences fall 23.7 to
+  42.0 s.
+- **The take:** 172.1 s, 1803 frames. Frames at the cue moments: Erkki's bubble up as he is quoted, the fourth
+  step lit at the second sentence's start, the timeline move at 10.3 s of the pin block, the page block the
+  whole view at scene 1.
+- **The final:** `silent-context-v4-captions.mp4`, 135.4 s, 1920 by 1080, H.264 and AAC, 14.4 MB with the
+  captions in the band (11.8 MB without), 43 caption cues; frames read around the new block.
+
+**Where it is:** the Desktop folder "Silent context submission V3" with the five-picture deck, the full deck, the
+notes and the zip; the folder "Silent context video" and the pipeline's media folder. V2 (the v3 cut) and the
+first folder stay as fallbacks.
+
 ## Session 3, 7.11.2026: the technical check before the checkpoint
 
 **Why:** the owner saw the page the evening before and holds phase 6's checkpoint. Before anything

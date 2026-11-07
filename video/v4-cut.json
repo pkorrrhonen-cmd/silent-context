@@ -1,0 +1,137 @@
+{
+ "about": "Silent context: one clip per narration block, cut from the one take by its block marks, each no longer than its speech plus a tail (cut_from_take.py). Nothing is sped up. Paths are relative to --media.",
+ "size": "1920x950",
+ "speed_of_waits": 1,
+ "scenes": [
+  {
+   "name": "01-the-story",
+   "parts": [
+    {
+     "take": "takes-v4/demo",
+     "from": 1.1,
+     "to": 15.46
+    }
+   ]
+  },
+  {
+   "name": "02-the-answer",
+   "parts": [
+    {
+     "take": "takes-v4/demo",
+     "from": 17.13,
+     "to": 28.4
+    }
+   ]
+  },
+  {
+   "name": "03-the-page",
+   "parts": [
+    {
+     "take": "takes-v4/demo",
+     "from": 33.94,
+     "to": 53.68
+    }
+   ]
+  },
+  {
+   "name": "04-capture",
+   "parts": [
+    {
+     "take": "takes-v4/demo",
+     "from": 57.76,
+     "to": 66.62
+    }
+   ]
+  },
+  {
+   "name": "05-pin",
+   "parts": [
+    {
+     "take": "takes-v4/demo",
+     "from": 68.5,
+     "to": 82.25
+    }
+   ]
+  },
+  {
+   "name": "06-use",
+   "parts": [
+    {
+     "take": "takes-v4/demo",
+     "from": 85.25,
+     "to": 98.95
+    }
+   ]
+  },
+  {
+   "name": "07-learn",
+   "parts": [
+    {
+     "take": "takes-v4/demo",
+     "from": 103.04,
+     "to": 111.85
+    }
+   ]
+  },
+  {
+   "name": "08-doubt",
+   "parts": [
+    {
+     "take": "takes-v4/demo",
+     "from": 113.91,
+     "to": 121.66
+    }
+   ]
+  },
+  {
+   "name": "09-not-for-all",
+   "parts": [
+    {
+     "take": "takes-v4/demo",
+     "from": 124.71,
+     "to": 128.49
+    }
+   ]
+  },
+  {
+   "name": "10-disagree",
+   "parts": [
+    {
+     "take": "takes-v4/demo",
+     "from": 131.54,
+     "to": 136.67
+    }
+   ]
+  },
+  {
+   "name": "11-the-barrier",
+   "parts": [
+    {
+     "take": "takes-v4/demo",
+     "from": 138.31,
+     "to": 145.19
+    }
+   ]
+  },
+  {
+   "name": "12-the-limits",
+   "parts": [
+    {
+     "take": "takes-v4/demo",
+     "from": 148.83,
+     "to": 163.5
+    }
+   ]
+  },
+  {
+   "name": "13-close",
+   "parts": [
+    {
+     "take": "takes-v4/demo",
+     "from": 164.84,
+     "to": 171.28
+    }
+   ]
+  }
+ ]
+}
