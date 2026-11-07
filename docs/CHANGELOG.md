@@ -39,6 +39,19 @@ the "what was tested" section, and `docs/what-is-simulated.md` does not exist (D
 **Open after this:** the owner's checkpoint on the page and the captions, the product name, and
 phase 7's remaining half, the acceptance table for the slides.
 
+### The final video, on the owner's voice
+
+The owner recorded the twelve blocks in ElevenLabs from the reading copy and handed the track over
+in the Desktop folder (an MP3 of 114.6 s, mono, 44.1 kHz). Measured: `align.py` found every block
+boundary in a real pause at the default threshold, fit cost 0.90 (the guide track's 0.67), 3.59
+words a speech second. `cut_from_take.py` cut the twelve clips to his speech, 127.0 s of picture,
+and `final.py` built `silent-context-en.mp4` and `silent-context-en-captions.mp4`: 127.2 s, 1920 by
+1080, the captions in the band, 7.6 MB with captions, with the SRT files beside them. Frames at 2,
+9, 21, 40, 60 and 116 seconds checked: the cards bright for their holds, the page under the band,
+nothing covered. The files are in the pipeline's media folder and in the owner's Desktop folder
+"Silent context video". In the video the page appears at 22 seconds and "use" starts at 53, inside
+the owner's rule of 20 and about 60.
+
 ### The pitch, the captions' band and the MCP wrapper
 
 **Decided by the owner** ([`DECISIONS.md`](DECISIONS.md) rows 11 to 14): the larger-text picture is

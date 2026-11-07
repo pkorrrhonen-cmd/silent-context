@@ -27,7 +27,7 @@ Updated 7.11.2026 (session 3).
 | Code | Task | Why / notes |
 |---|---|---|
 | P-3 | **Submit** in sinceai.app: project details, submission URL, repository or demo link, video, source zip. | Closes Sunday 8.11. at 10:00 EET; the plan is to send by 09:30. |
-| P-9 | **Voice the narration in ElevenLabs** (`video/narration.md`, twelve blocks, about 131 s) and hand the track over. | The words are final (7.11.). One track, the blocks in order with a pause between them; the pronunciation notes are at the top of the file. The session aligns the track and builds the final video with the same plan (`DECISIONS.md` row 14). |
+| P-10 | **Put the final video where the submission can point** (YouTube unlisted, or the file as the form allows) and open the link once logged out. | The video is final on 7.11.: `silent-context-en-captions.mp4` in the Desktop folder "Silent context video" and in the pipeline's media folder. |
 | P-8 | **On the main PC,** point the checkout at the renamed repository: `git remote set-url origin https://github.com/pkorrrhonen-cmd/silent-context.git`. | GitHub redirects the old name, so this can wait; it only keeps the remote honest. |
 | P-7 | *Optional:* **ask Joni the questions** in the Atlas artifact `SINCEAI-2026-ELISA-PAATOKSET` part 1.5, face to face, if there is time. | Saturday at the Joki showroom, 9 to 12 and 14.30 to 18. No decision depends on the answers. |
 
@@ -43,7 +43,7 @@ Updated 7.11.2026 (session 3).
 
 | Code | Task | Why / notes |
 |---|---|---|
-| BUILD-8 | Video and slides. | Phase 8. The picture is approved as a pre-version (7.11.). The pitch cards, the captions' band and narration v2 exist in `video/`; the pitch is accepted; the voice waits for the owner's track (P-9), and then the final video is built with the same plan. The slides have an outline in [`slides.md`](slides.md); the owner makes the deck. |
+| BUILD-8 | Video and slides. | Phase 8. The video is final (7.11., the owner's voice, 127 s, captions in the band); the owner places it for the submission (P-10). The slides have an outline in [`slides.md`](slides.md); the owner makes the deck. |
 
 ## Documents to fill
 
