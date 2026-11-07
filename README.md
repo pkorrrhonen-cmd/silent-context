@@ -131,7 +131,7 @@ Commit 1 (4.11.2026) is a scaffold created before the event; everything after it
 
 | Tool | Used for |
 |---|---|
-| Claude Code (Claude Opus 5.5) | Creating the scaffold in commit 1; writing the code, the synthetic data and the documentation at the event |
+| Claude Code (Claude Opus 5.5; Claude Fable 5.1 from 7.11.) | Creating the scaffold in commit 1; writing the code, the synthetic data and the documentation at the event |
 | Claude (Fable 5.1) on claude.ai | Analysing the challenge material; writing the decision document and the build plan |
 | Claude Opus 5.5 and GPT 6.1 in structured multi-agent rooms | Generating ideas (3 rooms) and challenging the design decisions (6 rooms); the owner made the decisions |
 | Claude Opus 5.5 through the API | Part of the demo, not of building it: reads the sources for the extraction whose answers are in `data/extractions/` |
