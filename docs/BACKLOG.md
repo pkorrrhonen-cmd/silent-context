@@ -27,8 +27,7 @@ Updated 7.11.2026 (session 3).
 | Code | Task | Why / notes |
 |---|---|---|
 | P-3 | **Submit** in sinceai.app: project details, submission URL, repository or demo link, video, source zip. | Closes Sunday 8.11. at 10:00 EET; the plan is to send by 09:30. |
-| P-6 | **React to the pitch:** the two cards and the words of narration blocks 01 and 02 in `video/narration.md`. | The owner asked for a 20 second pitch in front of the video on 7.11.; session 3 built a draft, and the words and cards wait for his reaction (`DECISIONS.md` row 13). The page itself was approved with the picture on 7.11. |
-| P-9 | **Voice the narration in ElevenLabs** (`video/narration.md`, twelve blocks, about 131 s) and hand the track over. | After the pitch's words are settled. The session aligns the track and builds the final video with the same plan (`DECISIONS.md` row 14). |
+| P-9 | **Voice the narration in ElevenLabs** (`video/narration.md`, twelve blocks, about 131 s) and hand the track over. | The words are final (7.11.). One track, the blocks in order with a pause between them; the pronunciation notes are at the top of the file. The session aligns the track and builds the final video with the same plan (`DECISIONS.md` row 14). |
 | P-8 | **On the main PC,** point the checkout at the renamed repository: `git remote set-url origin https://github.com/pkorrrhonen-cmd/silent-context.git`. | GitHub redirects the old name, so this can wait; it only keeps the remote honest. |
 | P-7 | *Optional:* **ask Joni the questions** in the Atlas artifact `SINCEAI-2026-ELISA-PAATOKSET` part 1.5, face to face, if there is time. | Saturday at the Joki showroom, 9 to 12 and 14.30 to 18. No decision depends on the answers. |
 
@@ -44,7 +43,7 @@ Updated 7.11.2026 (session 3).
 
 | Code | Task | Why / notes |
 |---|---|---|
-| BUILD-8 | Video and slides. | Phase 8. The picture is approved as a pre-version (7.11.). The pitch cards, the captions' band and narration v2 exist in `video/`; the pitch waits for the owner's reaction (P-6), the voice for his track (P-9), and then the final video is built with the same plan. The slides have an outline in [`slides.md`](slides.md); the owner makes the deck. |
+| BUILD-8 | Video and slides. | Phase 8. The picture is approved as a pre-version (7.11.). The pitch cards, the captions' band and narration v2 exist in `video/`; the pitch is accepted; the voice waits for the owner's track (P-9), and then the final video is built with the same plan. The slides have an outline in [`slides.md`](slides.md); the owner makes the deck. |
 
 ## Documents to fill
 

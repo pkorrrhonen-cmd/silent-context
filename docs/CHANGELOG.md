@@ -62,7 +62,8 @@ ElevenLabs and hands it over for alignment.
   are the pitch, 60 words over 22 seconds; the earlier overview block over the page went, so the page
   itself starts at 22 seconds and the viewer reaches "use" at 68. Twelve blocks, 356 words, 131
   seconds planned; the guide track aligned with fit cost 0.67. The draft with the pitch and the band
-  is `silent-context-en-guide-band-captions.mp4`, 135.8 s, 8.2 MB, sent to the owner.
+  is `silent-context-en-guide-band-captions.mp4`, 135.8 s, 8.2 MB. The owner accepted the pitch's words
+  and cards as they are, so the narration is final for his voice.
 - **A lesson paid for** ([`LESSONS.md`](LESSONS.md)): the first take's first card stayed dim, because
   the screencast dropped the last frame of its fade. The cards cut in hard now.
 - **The MCP wrapper** (`app/mcp_server.py`, the `mcp` package 2.3.0): `claims_for`, `access_for` and
