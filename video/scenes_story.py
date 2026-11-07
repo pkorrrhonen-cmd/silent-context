@@ -35,7 +35,21 @@ ZOOM_JS = """
     body.dataset.zoomInit = "1";
     body.style.transformOrigin = "0 0";
     document.documentElement.style.overflow = "hidden";
+    const css = document.createElement("style");
+    css.textContent = ".video-lit { outline: 2px solid var(--copper-bright); outline-offset: 7px; border-radius: 4px; }";
+    document.head.appendChild(css);
   }
+  // videoFocus(["#claims"]) lights those panels the way the page lights a scene's and dims the rest; an element that is
+  // not a panel (the clock) gets an outline. "all" shows every panel undimmed; null only clears the outline.
+  window.videoFocus = (sels) => {
+    document.querySelectorAll(".video-lit").forEach((e) => e.classList.remove("video-lit"));
+    if (!sels) return;
+    const panels = [...document.querySelectorAll(".panel")];
+    if (sels === "all") { panels.forEach((p) => { p.classList.remove("dim"); p.classList.remove("lit"); }); return; }
+    const targets = sels.map((q) => document.querySelector(q)).filter(Boolean);
+    panels.forEach((p) => { const on = targets.includes(p); p.classList.toggle("lit", on); p.classList.toggle("dim", !on); });
+    targets.forEach((t) => { if (!t.classList.contains("panel")) t.classList.add("video-lit"); });
+  };
   window.videoZoom = (sel, kmax, ms, pad, rect) => {
     ms = ms === undefined ? 600 : ms; pad = pad === undefined ? 24 : pad; rect = rect || [0, 0, 1, 1];
     body.style.transition = ms ? `transform ${ms}ms cubic-bezier(.3,.7,.2,1)` : "none";
@@ -107,7 +121,10 @@ WIDE = (0, 0, 1, .75)       # the whole width, for an answer whose step runs ove
 HOLD = 1.0                  # a second of the whole view before the first move (the owner, 7.11.)
 # A move's moment is seconds after the mark, or ("s", k): the start of the block's sentence k in the aligned track.
 PAGE = {
-    "03": (0, []),  # the page as it is before anything is captured: the pause after the pitch, no zoom
+    # The pause after the pitch: the whole view, every panel plain, then each part lights up as the voice names it.
+    "03": (0, [(("s", 1), "focus", ["#timeline", ".clock"], None), (("s", 2), "focus", ["#sources"], None),
+               (("s", 3), "focus", ["#claims"], None), (("s", 4), "focus", ["#graph"], None),
+               (("s", 5), "focus", ["#agent"], None)]),
     "04": (1, []),  # the page opens Elisa's thread over the whole frame; it is the picture, read as written
     "05": (2, [(HOLD, "#claims", 1.8, (0, 0, 1, 1)), (("s", 2), "#timeline", 1.8, (.3, .5, .5, .5))]),
     "06": (3, [(HOLD, "#answer", 1.7, ANSWER)]),
@@ -117,7 +134,8 @@ PAGE = {
     "10": (7, [(HOLD, "#answer", 1.7, WIDE)]),
     "11": (8, [(HOLD, "#answer", 1.7, WIDE)]),
 }
-FIXED = {("05", 2): 9.6}  # the later moves' seconds when there is no alignment
+FIXED = {("05", 2): 9.6, ("03", 1): 9.5, ("03", 2): 11.6, ("03", 3): 13.2, ("03", 4): 14.6, ("03", 5): 16.8}  # without an alignment
+PLAIN = {"03"}  # blocks that open with every panel undimmed
 MOVE_MS = 900
 
 
@@ -153,7 +171,10 @@ async def demo(page, cap, args) -> None:
     for block in sorted(PAGE):
         index, moves = PAGE[block]
         await zoom(page, None, 1, 0)
+        await page.evaluate("videoFocus(null)")
         await scene(page, index)
+        if block in PLAIN:
+            await page.evaluate("videoFocus('all')")
         await asyncio.sleep(0.6)
         cap.mark(f"block {block}")
         t = 0.0
@@ -161,6 +182,10 @@ async def demo(page, cap, args) -> None:
             when = moment(block, at, cues)
             await asyncio.sleep(max(0.0, when - t))
             t = max(t, when)
+            if sel == "focus":
+                await page.evaluate(f"videoFocus({json.dumps(k)})")
+                print(f"    {block}: focus {k} at {when:.1f} s", flush=True)
+                continue
             fit = await zoom(page, sel, k, MOVE_MS, rect)
             print(f"    {block}: {sel} x{fit['k']} at {when:.1f} s", flush=True)
         await asyncio.sleep(seconds[block] + MARGIN - t)

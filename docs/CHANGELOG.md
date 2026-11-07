@@ -130,8 +130,18 @@ The order of the pipeline changed with it: the voice is aligned first, then the 
 - **The take:** 172.1 s, 1803 frames. Frames at the cue moments: Erkki's bubble up as he is quoted, the fourth
   step lit at the second sentence's start, the timeline move at 10.3 s of the pin block, the page block the
   whole view at scene 1.
-- **The final:** `silent-context-v4-captions.mp4`, 135.4 s, 1920 by 1080, H.264 and AAC, 14.4 MB with the
-  captions in the band (11.8 MB without), 43 caption cues; frames read around the new block.
+- **The final:** `silent-context-v4-captions.mp4`, 135.4 s, 1920 by 1080, H.264 and AAC, 14.9 MB with the
+  captions in the band (12.3 MB without), 43 caption cues; frames read around the new block.
+
+**Then, on the owner's second look:** in the page block the parts should light up as the voice names them, and
+the video should mention the MCP tools and that the agent's calls can be extended. Built on the same v4 track:
+`videoFocus` in the recorder's injected script lights a panel the way the page lights a scene's and dims the
+rest, and outlines the clock, which is not a panel; the block opens with every panel plain, then the clock and
+the timeline, the sources, the notes, the graph and the agent's answer light up at their sentences' starts from
+the alignment (9.8, 11.9, 13.5, 14.9 and 17.1 s into the block). The close card carries one more line: the
+agent's calls are also MCP tools, and a message or a call to the expert at the moment of need is the next
+step, not built yet. The take was recorded again (171.6 s, 1943 frames), frames read at each focus moment and
+at the close, and the final rebuilt: 135.4 s, 14.9 MB.
 
 **Where it is:** the Desktop folder "Silent context submission V3" with the five-picture deck, the full deck, the
 notes and the zip; the folder "Silent context video" and the pipeline's media folder. V2 (the v3 cut) and the
