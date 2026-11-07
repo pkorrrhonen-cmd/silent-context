@@ -59,6 +59,46 @@ address into the Demo URL field and the README's Demo section; a static snapshot
 Worker were weighed and set aside (the free symptom field would go, or too many unknowns for the
 weekend).
 
+### The hosted copy on Cloudflare Containers, a side session on 7.11. evening
+
+**Why:** the form's optional Demo URL field, so a jury member can try the page instead of only watching
+the video. The owner's account has Workers Paid, which Containers need, and the brief said Containers
+first, Fly.io or Cloud Run with the same image if Containers failed for a measured reason, and no Python
+Worker. Nothing failed.
+
+**Built:** the app as it is in one Docker image, from `Dockerfile` and `.dockerignore` at the root: Python
+3.12 slim, the dependencies from `uv.lock` installed with uv, `app/`, `web/` and `data/`, uvicorn on port
+8000 as a non-root user, 94 MB, built for `linux/amd64` (wrangler passes the platform; the Mac builds it
+under emulation). Behind it a small Worker, `hosting/worker.js`: every request goes to one named container
+instance of the `basic` type (a quarter vCPU, 1 GiB), which sleeps after two hours of quiet, and a cron
+sends it a health request every five minutes on Sundays 06:00 to 11:55 UTC, 08:00 to 13:55 Finnish time,
+so it is awake while the jury reads; a request resets the sleep timer. `hosting/wrangler.jsonc` holds the
+configuration with no account identifier, and `hosting/package.json` pins wrangler and the container
+package. The publication is one command, `cd hosting && npm ci && npx wrangler deploy`, which builds the
+image, pushes it to the account's registry, uploads the Worker and rolls the instance out; it ran twice,
+the second time after the font commit, because the image is the checkout as it stands. `docs/hosting.md`
+has the commands, the behaviour, the cost and how to take it down; the README's Demo section names the
+address, `https://silent-context.pkorrrhonen.workers.dev`, and says what is shared there.
+
+**Checked in `app/api.py`:** `POST /clock` rebuilds the one store file, so the demo clock is the instance's
+state and every visitor shares it, as they share the agent's log: two people moving through the scenes at
+the same moment move each other's clock. A visit is two minutes, so the README says it plainly instead of
+building per-visitor state. A container per visitor, keyed by a cookie in the Worker, would give each
+visitor a store of their own at the price of a cold start each; it is a possible follow-up, not built.
+
+**Measured:** the amd64 image builds in 14 s on the Mac and runs under emulation with a quarter CPU:
+`/health` 13 s after start, a clock move in 0.4 to 0.6 s. On Cloudflare: the first deploy 57 s, the second
+28 s, the new instance serving about two minutes after the command returned; a cold start of 10.1 s to the
+first `/health` answer, warm requests 0.15 s, a clock move 0.22 to 0.46 s. The Chrome extension was not
+reachable, so the page was read in the app's own browser pane, a fresh profile: the thirteen scenes on the
+arrow keys with their titles and clocks, every request to the page's own origin (the page, its script, its
+stylesheet, the Jost font, `/clock`, `/claims_for`, `/state`, `/source`, `/access_for`), no console error,
+and the ready question "Third unit TRN-063" answered check first, as it does locally.
+The cron's handler was run in `wrangler dev --test-scheduled` with the container in local Docker: the
+scheduled event started the container and the health request answered. gitleaks over the staged files
+found nothing. Cost: within the plan's included 375 vCPU-minutes, 25 GiB-hours and 200 GB-hours a month,
+and about 0.03 USD an hour awake beyond them.
+
 ## Session 4, 7.11.2026: the submission's rules, and the work read as a judge
 
 **Why:** the build is done; what remained was how the video is handed in, what Sunday asks of the

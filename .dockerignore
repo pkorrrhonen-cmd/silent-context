@@ -1,0 +1,9 @@
+# The image takes only what the app reads at runtime. Everything else stays out.
+*
+!app/
+!web/
+!data/
+!pyproject.toml
+!uv.lock
+**/__pycache__/
+**/.DS_Store

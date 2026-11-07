@@ -22,6 +22,12 @@ for the claims, its greys, measured from elisa.fi's stylesheets on 7.11.2026, an
 from the repository. A palette only: no logo and nothing that presents the page as Elisa's. The page loads nothing
 from outside, and a test keeps it so.
 
+A hosted copy for trying: <https://silent-context.pkorrrhonen.workers.dev>, the same app in a container on
+Cloudflare, served from the recorded answers; no model is called. It is one instance for everyone, so its demo
+clock and the agent's log are shared: two people moving through the scenes at the same moment move each
+other's clock, and the log may reset when the instance sleeps. The first visit after a quiet spell waits about
+ten seconds for it to wake. How it is published is in [`docs/hosting.md`](docs/hosting.md).
+
 ![Scene 4 of the page: the same fault on another unit. The agent proposes the expert's step with its source, reads the counters from the device and holds back a reboot.](docs/images/page-scene-4-use.png)
 
 *Scene 4 of thirteen: the same fault on another unit. The time axis at the top, what was read on the left, the

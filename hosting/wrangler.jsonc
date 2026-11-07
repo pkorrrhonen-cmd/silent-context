@@ -1,0 +1,29 @@
+// Cloudflare: the Worker and the one container behind it. docs/hosting.md says how to deploy.
+// No account identifier lives here; wrangler takes the account from the login.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "silent-context",
+  "main": "worker.js",
+  "compatibility_date": "2026-11-01",
+  "observability": { "enabled": true },
+
+  // The image is built from the repository root, where the Dockerfile is, so the context is the whole
+  // checkout minus .dockerignore. One instance: the demo's clock and log are shared by its visitors.
+  "containers": [
+    {
+      "class_name": "SilentContext",
+      "image": "../Dockerfile",
+      "instance_type": "basic",
+      "max_instances": 1
+    }
+  ],
+  "durable_objects": {
+    "bindings": [{ "name": "SILENT_CONTEXT", "class_name": "SilentContext" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["SilentContext"] }],
+
+  // Sundays 06:00 to 11:55 UTC, which is 08:00 to 13:55 Finnish time in November: a health request every
+  // five minutes keeps the instance awake while the jury reads (10:00 to 13:00). Cloudflare's cron
+  // counts Sunday as 1 or "sun" and runs on UTC.
+  "triggers": { "crons": ["*/5 6-11 * * sun"] }
+}

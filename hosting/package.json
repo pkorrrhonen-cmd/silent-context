@@ -1,0 +1,17 @@
+{
+  "name": "silent-context-hosting",
+  "private": true,
+  "description": "The Worker that fronts the Silent context container on Cloudflare. See docs/hosting.md.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "dependencies": {
+    "@cloudflare/containers": "^0.3.7"
+  },
+  "devDependencies": {
+    "wrangler": "^4.158.0"
+  }
+}
