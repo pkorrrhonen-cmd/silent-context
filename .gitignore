@@ -21,3 +21,6 @@ export/
 .claude/launch.json
 .DS_Store
 Thumbs.db
+
+# Office lock files while a deck is open
+~$*

@@ -39,6 +39,26 @@ the "what was tested" section, and `docs/what-is-simulated.md` does not exist (D
 **Open after this:** the owner's checkpoint on the page and the captions, the product name, and
 phase 7's remaining half, the acceptance table for the slides.
 
+### The slides
+
+**Built:** `docs/slides/silent-context.pptx`, ten slides from [`slides.md`](slides.md) in the page's own look:
+its colours, Calibri for text and Consolas for identifiers, slide 1 the cover and the problem in one, as the
+video's first card. Written by a script (`docs/slides/build/`, pptxgenjs, not part of the product) so that a
+change to the words is a change to one file and a rebuild. Four slides carry the page itself, taken from the
+running demo with headless Chrome at 1600 by 900 and device scale 2: the fourth scene whole, the claim and graph
+panels of the third, the claim panel alone, and the agent's answer of the fourth. Speaker notes on every slide,
+from the outline and the narration. A PDF beside it, `silent-context.pdf`.
+
+**Measured:** every sentence and number was read against the README's "What was tested", `acceptance.md`,
+`what-is-simulated.md`, `product.md` and the narration's last block; the one difference from the outline is 154
+tests, not 152 ([`DECISIONS.md`](DECISIONS.md) rows 15 to 17). The file passes the OOXML validator with no
+finding. Every slide was rendered and looked at: the first render overflowed the thread panel on slide 1 and
+the picture on slide 3, and three titles wrapped into their content; fixed, rendered again, clean. The ten
+screenshots gave one console error, the missing favicon. PowerPoint on the Mac opened the deck but answered no
+Apple event within two minutes, an automation permission it never got, so the PDF is LibreOffice's export
+(installed for this with Homebrew), with Office's Calibri and Consolas loaded into a throwaway profile so the PDF
+carries the deck's fonts.
+
 ### The source zip
 
 Built from main with `git archive --format=zip --prefix=silent-context/ HEAD` at `c9bfe7f`, into the

@@ -1,5 +1,10 @@
 # Slides: outline, v1
 
+**The deck exists:** `silent-context.pptx` and `silent-context.pdf` in [`slides/`](slides/), built on 7.11.2026 from this outline
+by the session; what changed on the way is in [`DECISIONS.md`](DECISIONS.md) rows 15 to 17 and [`CHANGELOG.md`](CHANGELOG.md).
+The deck is written by the scripts in [`slides/build/`](slides/build/), so a change to the words is a change to
+`deck.js` and a rebuild; its README says how.
+
 A draft for the owner, 7.11.2026, following the build plan's section 6: eight to ten slides, in English,
 plain words, nothing the data does not carry. Every number comes from [`acceptance.md`](acceptance.md),
 [`CHANGELOG.md`](CHANGELOG.md) or the README. The owner turns this into the deck in his own tool.
@@ -49,7 +54,7 @@ plain words, nothing the data does not carry. Every number comes from [`acceptan
 
 ## 6. What was measured
 
-- 152 tests, all with no key.
+- 154 tests, all with no key (the README's "What was tested" is the source; this outline first said 152).
 - Truth set, 11 sources: found 11/11, merged 7/7, entity 4/4, scope 4/4, time 7/7, evidence 6/6.
 - Held-out binding set, 16 synthetic sources the rule author has not read: 1 of 16 confidently wrong in
   the recorded run; 0, 0, 0, 1, 1 in five repeats with the prompt unchanged, the same file each time.
