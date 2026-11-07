@@ -63,9 +63,13 @@
   .limits .l b { font: 600 20px var(--mono); color: var(--copper-bright); letter-spacing: .1em; }
 
   /* Card 3: the close. */
-  .close h1 { font-size: 84px; }
-  .close .l { font-size: 36px; color: var(--muted); margin: 26px 0 0; }
-  .close .more { font-size: 27px; line-height: 1.35; color: var(--muted); margin: 22px 0 0; max-width: 1240px; }
+  .close h1 { font-size: 76px; }
+  .close .l { font-size: 32px; color: var(--muted); margin: 18px 0 0; }
+  .close .more { font-size: 27px; line-height: 1.35; color: var(--muted); margin: 14px 0 0; max-width: 1240px; }
+  .close .left-out { margin-top: 30px; }
+  .close .left-out .eyebrow { margin-bottom: 10px; }
+  .close .left-out .l { display: grid; grid-template-columns: 56px 1fr; align-items: baseline; font-size: 30px; line-height: 1.25; color: var(--text); margin: 0 0 8px; }
+  .close .left-out .l b { font: 600 17px var(--mono); color: var(--copper-bright); letter-spacing: .1em; }
   .close .more b { color: var(--text); font-weight: 600; }
   .close .repo { font: 24px var(--mono); color: var(--text); margin: 30px 0 0; letter-spacing: .02em; }
   .close .repo span { color: var(--faint); }
@@ -120,20 +124,27 @@
   <p class="eyebrow in" data-cue="0,0" data-at=".2">The limits</p>
   <h1 class="in" data-cue="0,0.05" data-at=".3">What this does not claim.</h1>
   <div class="limits">
-    <p class="l in" data-cue="1,0" data-at="1.7"><b>01</b><span>It never starts a conversation with an expert.</span></p>
+    <p class="l in" data-cue="1,0" data-at="1.7"><b>01</b><span>It never sends a message itself.</span></p>
     <p class="l in" data-cue="2,0" data-at="5.2"><b>02</b><span>It shows where advice came from, not whether it is true.</span></p>
     <p class="l in" data-cue="3,0" data-at="8.4"><b>03</b><span>It scores advice, never people.</span></p>
-    <p class="l in" data-cue="4,0" data-at="10.8"><b>04</b><span>Everything but Elisa's two example files is simulated.</span></p>
+    <p class="l in" data-cue="4,0" data-at="10.8"><b>04</b><span>The network here is simulated, and so is every file but Elisa's two.</span></p>
   </div>
   <p class="foot">Since AI 2026 · Elisa's challenge</p>
 </section>
 
-<section class="card close" id="card-3">
+<section class="card close" id="card-3" style="padding-top: 40px; padding-bottom: 60px;">
   <p class="eyebrow in" data-cue="0,0" data-at=".2">Since AI 2026 · Elisa's challenge</p>
   <h1 class="in" data-cue="0,0.05" data-at=".3">Silent context</h1>
-  <p class="l in" data-cue="1,0" data-at="1.3">Runs with no model and no key.</p>
-  <p class="more in" data-cue="1,0.7" data-at="2.2"><b>The agent's calls are also MCP tools.</b> Next, not built yet: a message or a call to the expert at the moment of need.</p>
-  <p class="repo in" data-cue="2,0" data-at="2.5">github.com/pkorrrhonen-cmd/silent-context <span>· MIT · Petri Korhonen</span></p>
+  <p class="l in" data-cue="1,0" data-at="1.3">Runs with no model and no key. The agent's calls are also MCP tools.</p>
+  <div class="left-out">
+    <p class="eyebrow in" data-cue="2,0" data-at="3.0">Left out on purpose</p>
+    <p class="l in" data-cue="2,0.25" data-at="4.0"><b>01</b><span>Live connectors to Teams and Slack</span></p>
+    <p class="l in" data-cue="2,0.55" data-at="5.5"><b>02</b><span>A chat with the agent</span></p>
+    <p class="l in" data-cue="2,0.8" data-at="7.0"><b>03</b><span>Search by meaning</span></p>
+    <p class="l in" data-cue="3,0" data-at="8.5"><b>04</b><span>Elisa's real inventory graph</span></p>
+    <p class="more in" data-cue="3,0.1" data-at="9.0">Each is a connector or a model away. The notes, the policy and the reader stay the same.</p>
+  </div>
+  <p class="repo in" data-cue="4,0" data-at="11.0">github.com/pkorrrhonen-cmd/silent-context <span>· MIT · Petri Korhonen</span></p>
 </section>
 
 <div id="tick"></div>

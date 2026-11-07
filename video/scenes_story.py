@@ -9,7 +9,7 @@ is aligned: the cards' elements and the later zoom moves take their moments from
 times (SILENT_CONTEXT_ALIGNMENT, align.py's output), so the picture follows the voice; without it, the fixed
 seconds in story.html and below are used. `zoomtest` and `zoomtest2` are the ten second trials of the zoom,
 recorded before anything else was built (decision 18). Written at the event; the pipeline itself is pre-existing
-work. Was scenes_v3.py until the v4 words.
+work. Was scenes_v3.py until the v4 words; the v5 words added three page blocks.
 """
 
 import asyncio
@@ -18,7 +18,7 @@ import os
 import re
 from pathlib import Path
 
-NARRATION = Path(__file__).with_name("narration-v4.md")
+NARRATION = Path(__file__).with_name("narration-v5.md")
 STORY = Path(__file__).with_name("story.html")
 MARGIN = 2
 # The voice starts 0.3 s into each clip (final.json), and the clip starts at the block's mark, which follows the
@@ -115,11 +115,13 @@ async def zoom(page, sel, k: float = 1.6, ms: int = 600, rect=(0, 0, 1, 1)):
 # The blocks on the story cards, and the blocks on the page: scene index, then the moves (at seconds after the
 # block's mark, the target, the zoom, the part of the target). The answer's left three quarters hold the badge, the
 # step and the first facts; the rest is cut at the frame's edge as a camera would.
-CARD = {"01": 0, "02": 1, "12": 2, "13": 3}
+CARD = {"01": 0, "02": 1, "15": 2, "16": 3}
 ANSWER = (0, 0, .86, .75)   # the badge, the step and the first facts; a long "why this unit" is cut at the edge
 WIDE = (0, 0, 1, .75)       # the whole width, for an answer whose step runs over two lines
 HOLD = 1.0                  # a second of the whole view before the first move (the owner, 7.11.)
 # A move's moment is seconds after the mark, or ("s", k): the start of the block's sentence k in the aligned track.
+# The page's scene indices: 0 gap, 1 capture, 2 bind, 3 use, 4 learn, 5 act, 6 ageing, 7 not for all, 8 disagree,
+# 9 barrier, 10 any source, 11 ask, 12 limits.
 PAGE = {
     # The pause after the pitch: the whole view, every panel plain, then each part lights up as the voice names it.
     "03": (0, [(("s", 1), "focus", ["#timeline", ".clock"], None), (("s", 2), "focus", ["#sources"], None),
@@ -129,12 +131,16 @@ PAGE = {
     "05": (2, [(HOLD, "#claims", 1.8, (0, 0, 1, 1)), (("s", 2), "#timeline", 1.8, (.3, .5, .5, .5))]),
     "06": (3, [(HOLD, "#answer", 1.7, ANSWER)]),
     "07": (4, [(HOLD, "#answer", 1.7, (0, 0, .8, .9))]),
-    "08": (5, [(HOLD, "#answer", 1.7, WIDE)]),
-    "09": (6, [(HOLD, "#answer", 1.7, (0, 0, 1, .9))]),
-    "10": (7, [(HOLD, "#answer", 1.7, WIDE)]),
+    "08": (5, [(HOLD, "#answer", 1.6, (0, 0, .92, .95))]),
+    "09": (6, [(HOLD, "#answer", 1.7, WIDE)]),
+    "10": (7, [(HOLD, "#answer", 1.7, (0, 0, 1, .9))]),
     "11": (8, [(HOLD, "#answer", 1.7, WIDE)]),
+    "12": (9, [(HOLD, "#answer", 1.7, WIDE)]),
+    "13": (10, [(HOLD, "#sources", 2.0, (0, 0, 1, 1)), (("s", 1), "#answer", 1.6, (0, 0, .9, .8))]),
+    "14": (11, [(HOLD, "#answer", 1.5, (0, 0, 1, .95))]),
 }
-FIXED = {("05", 2): 9.6, ("03", 1): 9.5, ("03", 2): 11.6, ("03", 3): 13.2, ("03", 4): 14.6, ("03", 5): 16.8}  # without an alignment
+FIXED = {("05", 2): 9.6, ("03", 1): 9.5, ("03", 2): 11.6, ("03", 3): 13.2, ("03", 4): 14.6, ("03", 5): 16.8,
+         ("13", 1): 5.0}  # without an alignment
 PLAIN = {"03"}  # blocks that open with every panel undimmed
 MOVE_MS = 900
 
@@ -195,7 +201,7 @@ async def demo(page, cap, args) -> None:
             print(f"    {block}: {sel} x{fit['k']} at {when:.1f} s", flush=True)
         await asyncio.sleep(seconds[block] + MARGIN - t)
     await zoom(page, None, 1, 0)
-    await cards(page, cap, seconds, cues, ["12", "13"])
+    await cards(page, cap, seconds, cues, ["15", "16"])
     cap.mark("done")
 
 

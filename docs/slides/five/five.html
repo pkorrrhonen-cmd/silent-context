@@ -69,9 +69,9 @@
   /* 5: measured and the limits */
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; margin-top: 6px; }
   h2 { font: 600 17px var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--copper-bright); margin: 0 0 26px; }
-  .nums { display: flex; flex-direction: column; gap: 22px; }
+  .nums { display: flex; flex-direction: column; gap: 18px; }
   .num { display: grid; grid-template-columns: 250px 1fr; gap: 24px; align-items: baseline; }
-  .num b { font: 700 54px/1 var(--sans); letter-spacing: -0.02em; }
+  .num b { font: 700 50px/1 var(--sans); letter-spacing: -0.02em; }
   .num span { font-size: 25px; color: var(--muted); line-height: 1.3; }
   .num span i { font-style: normal; color: var(--text); }
   .limits { display: flex; flex-direction: column; gap: 26px; }
@@ -125,21 +125,22 @@
       <svg viewBox="0 0 44 44" aria-hidden="true"><rect x="6" y="9" width="32" height="26" rx="3"/><path d="M13 19l6 6 12-12"/></svg>
       <b>One call for the agent</b><p>What to do next, and where that came from. Or: check first. Or: I don't know, ask these people.</p></div>
   </div>
-  <p class="after"><b>Nobody fills in anything</b> for the system, and the system <b>never starts a conversation</b> with anyone. An unclear case waits with its reason.</p>
+  <p class="after"><b>Nobody fills in anything</b> for the system, and the system <b>never sends a message</b> itself. An unclear case waits with its reason.</p>
+  <p class="after" style="margin-top: 22px"><b>Any source, any language:</b> Elisa's Teams export and email, a ticket's worklog, a thread in Finnish. One reader, one kind of note, in the speaker's own words.</p>
   <p class="foot"><span>Silent context</span><span>2 / 5</span></p>
 </section>
 
 <section class="slide">
-  <p class="eyebrow">One call for the agent</p>
-  <h1>A week later, the same fault on another unit.</h1>
+  <p class="eyebrow">One call for the agent, and who acts</p>
+  <h1>First the agent proposes. Once a success is on record, it acts.</h1>
   <div class="shot"><img src="shots/use-answer.png" alt="The agent's answer: PROPOSE, disable the interface, wait a little, then enable it again; held back: no reboot or hardware replacement before a failed bounce is reported; counters zero, read from the device by the agent itself"></div>
   <div class="three">
     <p>Erkki's step, <span>with its source.</span></p>
     <p>The counters, <span>read from the device itself.</span></p>
     <p>No reboot <span>before the lighter fix has failed.</span></p>
   </div>
-  <p class="label"><b>Then the record fills itself in.</b> What the technician did, and that it worked, comes from the device's own events. Nobody reported anything.</p>
-  <div class="shot" style="height: 214px"><img src="shots/learn-answer.png" alt="From the devices: the agent proposed, a person did, the outcome: counters rising afterwards"></div>
+  <p class="label"><b>Once that success is on record, the policy lets the agent act.</b> A third unit of the same model: the agent turns the port off and on itself, the device confirms. A reboot or a new part still waits for a person. The network here is synthetic; the decision is real.</p>
+  <div class="shot" style="height: 250px"><img src="shots/act-answer.png" alt="The agent acted: the policy said the agent itself, because the step is reversible and was carried out on this class before with the counters rising; the agent did it; counters rising afterwards"></div>
   <p class="foot"><span>Silent context</span><span>3 / 5</span></p>
 </section>
 
@@ -154,7 +155,11 @@
     <div class="row"><p class="label"><b>When two experts disagree</b>Both stay visible with their sources. No side is taken; the counters are read first.</p>
       <div class="shot" style="height: 96px"><img src="shots/disagree-head.png" alt="CHECK FIRST on TRN-051: read the traffic counters first; the recorded advice disagrees on what comes next, and this answer does not choose"></div></div>
   </div>
-  <p class="after" style="margin-top: 48px">It shows where advice came from and what was reported about it, <b>not whether it is true.</b> It scores advice, <b>never people.</b></p>
+  <div class="rows" style="margin-top: 34px">
+    <div class="row"><p class="label"><b>When it does not know at all</b>It writes the question for the person on call, who sends it. A budget keeps the asking small.</p>
+      <div class="shot" style="height: 96px"><img src="shots/ask-draft.png" alt="Draft for transmission-oncall: a person sends it, the system never does; question 2 of 3 this week" style="width: 100%"></div></div>
+  </div>
+  <p class="after" style="margin-top: 30px">It shows where advice came from and what was reported about it, <b>not whether it is true.</b> It scores advice, <b>never people.</b></p>
   <p class="foot"><span>Silent context</span><span>4 / 5</span></p>
 </section>
 
@@ -165,8 +170,8 @@
     <div>
       <h2>Measured, from the recorded answers</h2>
       <div class="nums">
-        <div class="num"><b>154</b><span>tests pass</span></div>
-        <div class="num"><b>11 / 11</b><span>sources found in the truth set; <i>merged 7/7, unit 4/4, time 7/7</i></span></div>
+        <div class="num"><b>160</b><span>tests pass</span></div>
+        <div class="num"><b>13 / 13</b><span>sources found in the truth set; <i>merged 9/9, unit 5/5, time 9/9, evidence 8/8</i></span></div>
         <div class="num"><b>1 of 16</b><span>wrong on sources the rule author never read; <i>0, 0, 0, 1, 1</i> in five repeats</span></div>
         <div class="num"><b>Passed</b><span>a clean install from the README, no key</span></div>
         <div class="num"><b>No edits</b><span>the graph export loads into Neo4j 5 as it is</span></div>
@@ -175,11 +180,13 @@
     <div>
       <h2>What it does not claim</h2>
       <div class="limits">
-        <p><b>01</b><span>It never starts a conversation with an expert.</span></p>
+        <p><b>01</b><span>It never sends a message itself. It drafts; a person sends.</span></p>
         <p><b>02</b><span>It shows where advice came from, not whether it is true.</span></p>
         <p><b>03</b><span>It scores advice, never people.</span></p>
-        <p><b>04</b><span>Everything but Elisa's two example files is simulated. The numbers describe that data only.</span></p>
+        <p><b>04</b><span>The network here is simulated, and so is every file but Elisa's two. The agent acts only in that synthetic stream.</span></p>
       </div>
+      <h2 style="margin-top: 34px">Left out on purpose, each a connector or a model away</h2>
+      <p style="margin: 0; font-size: 25px; line-height: 1.4; color: var(--muted)">Live connectors to Teams and Slack · a chat with the agent · search by meaning · Elisa's real inventory graph</p>
     </div>
   </div>
   <p class="repo">github.com/pkorrrhonen-cmd/silent-context <span>· MIT · Petri Korhonen</span></p>

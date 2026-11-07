@@ -6,12 +6,18 @@
 const puppeteer = require("puppeteer-core");
 const path = require("path");
 const CROPS = [
-  // scene index, name, selector, and the part of the element kept (top, height in CSS px; 0 = all)
-  { scene: 3, name: "use-answer", sel: "#answer", top: 0, height: 150 },
+  // scene index, name, selector, and the part of the element kept (top, height in CSS px; 0 = all).
+  // The page's scenes: 0 gap, 1 capture, 2 bind, 3 use, 4 learn, 5 act, 6 ageing, 7 not for all, 8 disagree,
+  // 9 barrier, 10 any source, 11 ask, 12 limits.
+  { scene: 3, name: "use-answer", sel: "#answer", top: 0, height: 168 },
   { scene: 4, name: "learn-answer", sel: "#answer", top: 0, height: 180 },
-  { scene: 5, name: "ageing-head", sel: "#answer", top: 0, height: 96 },
-  { scene: 6, name: "notforall-card", sel: "#answer .sides > :nth-child(2)", top: 0, height: 84 },
-  { scene: 7, name: "disagree-head", sel: "#answer", top: 0, height: 96 },
+  { scene: 5, name: "act-answer", sel: "#answer", top: 0, height: 236 },
+  { scene: 6, name: "ageing-head", sel: "#answer", top: 0, height: 96 },
+  { scene: 7, name: "notforall-card", sel: "#answer .sides > :nth-child(2)", top: 0, height: 84 },
+  { scene: 8, name: "disagree-head", sel: "#answer", top: 0, height: 96 },
+  { scene: 10, name: "sources-list", sel: "#sources", top: 0, height: 0 },
+  { scene: 10, name: "koski-answer", sel: "#answer", top: 0, height: 112 },
+  { scene: 11, name: "ask-draft", sel: "#answer .draft", top: 0, height: 0 },
   { scene: 2, name: "bind-claim", sel: "#claim-list > :first-child", top: 0, height: 0 },
 ];
 (async () => {

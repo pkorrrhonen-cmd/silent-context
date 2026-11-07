@@ -14,13 +14,13 @@ similar case appears.
 
 ## Demo
 
-Run it and open `http://127.0.0.1:8000`. It needs no model and no key. The arrow keys move through ten
+Run it and open `http://127.0.0.1:8000`. It needs no model and no key. The arrow keys move through thirteen
 scenes. The time axis at the top is a live version of the time-aware layers: the event stream, what was
 received, and each claim's `valid_from` and `valid_to`, with `t=x` moving as the scenes go.
 
 ![Scene 4 of the page: the same fault on another unit. The agent proposes the expert's step with its source, reads the counters from the device and holds back a reboot.](docs/images/page-scene-4-use.png)
 
-*Scene 4 of ten: the same fault on another unit. The time axis at the top, what was read on the left, the
+*Scene 4 of thirteen: the same fault on another unit. The time axis at the top, what was read on the left, the
 claims in the middle, the graph on the right, and the agent's answer at the bottom.*
 
 The demo follows three steps:
@@ -32,13 +32,31 @@ The demo follows three steps:
 3. **Use.** In a similar case the agent proposes the right next step before anyone replaces hardware
    or reboots a unit, shows where the advice came from, and says when it does not know.
 
+And three things around those steps, added on the second day:
+
+- **Who acts.** A policy says who does the next step. By default the agent proposes and a person acts.
+  The agent itself acts only on a step that is reversible, that its own log shows was proposed on this
+  class of unit before and carried out with the counters rising, with no disagreement on record, and
+  with the counters read from the device by the agent. A reboot or a hardware replacement never goes to
+  the agent. The demo's network is synthetic: the agent's action is an event in the synthetic stream,
+  and there is no write path to any device.
+- **Any source.** A ticket export and a Teams thread in Finnish are read by the same reader as Elisa's
+  Teams export and email, and become the same kind of claim, in the speaker's own words and language.
+- **The question.** When the agent does not know, it writes the question for the person on call, who
+  sends it; the system itself sends nothing, and a budget of three questions a week per group shows
+  when the asking would become the extra work it replaces.
+
 What the demo does not claim:
 
-- The system never starts a conversation with a specialist.
+- The system never sends a message to a specialist. It drafts; a person sends.
 - It shows the origin of a claim and what was reported about it, not the truth.
 - It scores claims, not people: no personal assessment and no figure shown per person.
+- It acts only in the demo's synthetic event stream, under the policy, and never on a real device.
 - Telling apart which units a claim applies to, before someone narrows it down, rests on synthetic
   data here. It is not evidence of a correct class binding in a real network.
+
+Left out on purpose, each a connector or a model away: live connectors to Teams and Slack, a chat with
+the agent, search by meaning, and Elisa's real inventory graph.
 
 ## Architecture
 
@@ -48,8 +66,9 @@ in [`docs/what-is-simulated.md`](docs/what-is-simulated.md).
 ```mermaid
 flowchart LR
     subgraph sources ["Sources, unchanged"]
-        T["Teams exports"]
+        T["Teams exports,<br/>in any language"]
         E["Emails"]
+        K["Ticket exports"]
     end
     subgraph devices ["Devices, synthetic here"]
         EV["Event stream"]
@@ -57,12 +76,13 @@ flowchart LR
     end
     T --> X
     E --> X
+    K --> X
     X["Extract: the model reads one thread,<br/>its answer recorded"] --> C["Check against the text:<br/>only what is literally there"]
     C --> B["Bind by code against the graph,<br/>or wait with a reason"]
     B --> S[("Claim store, SQLite,<br/>rebuilt from data/")]
     EV --> S
     TM --> S
-    S --> A["claims_for and access_for:<br/>rules, a template, no model"]
+    S --> A["claims_for and access_for:<br/>rules, a template, no model;<br/>a policy on who acts"]
     A --> P["The page and<br/>python -m app.ask"]
     A --> L[("Answer and gap logs")]
     S --> G["Export: graph.json<br/>and graph.cypher"]
@@ -142,10 +162,11 @@ To write the graph to `export/graph.json` and, as Cypher, to `export/graph.cyphe
 uv run python -m app.export
 ```
 
-The Cypher file loads into an empty Neo4j 5 database as it is. It was tried on 7.11.2026 against the
-official `neo4j:5` container: every statement ran, the database held 5 claims, 14 entities, 14 evidence
+The Cypher file loads into an empty Neo4j 5 database as it is. It was tried on 7.11.2026 at noon against
+the official `neo4j:5` container: every statement ran, the database held 5 claims, 14 entities, 14 evidence
 events and 9 sources as nodes with all ten edge types, and one query answered the agent's question
-from the graph alone. To repeat it, with any password of your own:
+from the graph alone. The data grew the same evening (a unit, a site, two sources, a claim); the load
+was not repeated. To repeat it, with any password of your own:
 
 ```bash
 docker run -d --name silent-context-neo4j -p 7474:7474 -p 7687:7687 -e NEO4J_AUTH=neo4j/<password> neo4j:5
@@ -165,20 +186,22 @@ uv run pytest
 
 Everything below runs with no key, from the recorded answers.
 
-- **154 tests** (`uv run pytest`): the data set's shape, the store's rules, extraction and binding
-  against the truth set, the agent's acceptance cases, what devices add, the page and its endpoints,
-  the MCP wrapper.
-- **The acceptance cases** of the build plan, A1 to A11, as one table:
+- **160 tests** (`uv run pytest`): the data set's shape, the store's rules, extraction and binding
+  against the truth set, the agent's acceptance cases, the policy on who acts, what devices add, the
+  page and its endpoints, the MCP wrapper.
+- **The acceptance cases** of the build plan, A1 to A11, and A12 for the policy, as one table:
   [`docs/acceptance.md`](docs/acceptance.md), written by `uv run python -m app.accept`. Every computed
   row holds, and a test keeps it so. A9 reports numbers only.
-- **The truth set,** 11 sources: found 11/11, merged 7/7, entity 4/4, scope 4/4, time 7/7, evidence
-  6/6 (`uv run python -m app.ingest --truth`).
+- **The truth set,** 13 sources: found 13/13, merged 9/9, entity 5/5, scope 5/5, time 9/9, evidence
+  8/8 (`uv run python -m app.ingest --truth`). The two rows for the second day's sources were written
+  before those sources were read; one was corrected after the first scored run and says so in the file.
 - **The held-out binding set,** 16 synthetic sources the rule author has not read: 1 of 16 confidently
   wrong in the recorded run; 0, 0, 0, 1, 1 in five repeats with the prompt unchanged, the same file
   each time. These numbers describe this set only.
 - **A clean install** from `git archive` into an empty folder, following this README with no key:
   every command above runs, on 7.11.2026.
-- **The page:** all ten scenes in a browser at 1440 by 900 with no console errors.
+- **The page:** all scenes in a browser at 1440 by 900 with no console errors (ten on 7.11. morning; the
+  three added later were read as frames of the video's take).
 - **The Cypher export** loaded into an empty Neo4j 5 database with no edits.
 - **The MCP wrapper:** a client over an in-memory transport lists the three tools and gets the same
   answers as the functions behind the HTTP interface; a file outside the manifest is refused.
