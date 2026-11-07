@@ -14,7 +14,8 @@ artifact `SINCEAI-2026-VIDEO`. What is here was written at the event:
 The page must be running at `http://127.0.0.1:8000` (`uv run uvicorn app.api:app`). The recorder's frame is
 1920 by 1080; with `--scale 1.2` the page is laid out at 1600 by 900 CSS pixels, its own height, and the text
 reads a fifth larger than at scale 1. Two takes were compared on 7.11.2026 and the larger one is the
-recommendation.
+recommendation. The pipeline's `assemble.py --out` and `final.py --clips` are relative to `--media`, so a
+second set of clips is `--out cut-12` and `--clips cut-12`, nothing longer.
 
 The order of the pipeline, from the Atlas artifact: record the take with `scenes.py`, assemble with `cut.json`,
 make a guide track from `narration.md` with the Mac's speech, align, and build a guide-voiced draft with

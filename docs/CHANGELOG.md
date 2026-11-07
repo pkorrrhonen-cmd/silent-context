@@ -93,8 +93,12 @@ guide track from the Mac's own speech aligned to all eleven blocks (fit cost 0.5
 planned pace at 3.6 words a second). The first draft ran 159 seconds, because every clip played its
 whole hold; cut to the speech, the guide-voiced draft with burned captions is 132 seconds, 1920 by
 1080, H.264 and AAC, 9.4 MB (`media/silent-context/final/silent-context-en-guide-captions.mp4` in
-the pipeline's repository, outside git). A second take at 1.2 device pixels per CSS pixel, for larger
-text, was recorded for comparison. The owner has not seen either yet.
+the pipeline's repository, outside git). A second take at 1.2 device pixels per CSS pixel lays the page out at 1600 by 900, its
+own height, and its text reads a fifth larger; its draft is `silent-context-en-guide-large-captions.mp4`,
+132 seconds, 9.9 MB, and it is the recommendation. Both drafts went to the owner, who has not seen them
+yet. One trap on the way: the pipeline's `assemble.py --out` is relative to its `--media` folder, so a
+path given as if relative to the shell landed under `media/media/`, and the first "large" build silently
+used the first take's clips. The byte sizes being identical gave it away.
 
 ### Documents
 
