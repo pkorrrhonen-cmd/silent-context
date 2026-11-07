@@ -4,6 +4,60 @@ Newest first. One entry per session; a session that ships several distinct thing
 What changed and *why*, with what was measured, so a later reader can tell a decision from a habit.
 The canonical state is [`BUILD_INFO.json`](BUILD_INFO.json): refer to it, do not copy it here.
 
+## Session 5, 7.11.2026 late evening: the light look in Elisa's colours, video v6, package V5
+
+**Why:** after package V4 the owner read the whole once more and asked two things: whether a live demo
+could go into the submission, and what could still be better, because nothing had been decided about
+colours or the page's look when the build started and the result was very dark. The content, the voice
+and the alignment were final, so the picture could change without the words.
+
+**Found, from the builders' guide (read again) and the judges' guide:** the form's optional Demo URL field
+is "A link where your project can be tried, if it is deployed. Judges see it; voters don't", and "Mock
+data, simulations and clickable prototypes are fine, say so". No rule forbids a hosted demo; the only
+limits are the zip's 100 MB, one pitch deck, two supporting documents and the video as a YouTube link.
+The rules page gives 404, so the builders' and judges' pages and the Terms are the rules. On stage the
+finalists present live, four minutes and six of questions; what may be shown is not said. The video
+frames, the five-picture deck and the twelve-slide deck were read as pictures: the dark page with small
+grey text reads worst on a phone in a bright hall, where the guide says the video is watched; six
+panels of equal weight gave the eye no place to go; the caption band was black on black; the five-deck's
+first page was half empty and two of its crops cut a sentence in half.
+
+**Decided (decision 24, the owner):** a light theme with elements of Elisa's own look, across the page,
+the cards and both decks, and a new take of the video on the same voice. Elisa's look was measured, not
+remembered: elisa.fi's, elisa.com's and yrityksille.elisa.fi's stylesheets were fetched and their design
+system's custom properties read (blue 100 to 950, green, red, yellow and grey scales, Jost for headings,
+Open Sans for text). The page takes blue 600 `#005fed` for structure and actions, blue 700 for unit
+nodes, orange `#ff6400` and `#ff8800` for the claims, greys 250 to 600, navy `#171c43` for text, red
+600 for disputed, green 600 for propose, and Jost for headings. A palette only: no logo and nothing that
+presents the page as Elisa's, and the README says so.
+
+**Built:** one token block in `web/style.css` carries the look, with the rules that had hard-coded dark
+values changed to tokens (text on orange is dark, the four status chips carry white text, the lit panel
+gets an orange ring, the now line is blue, the superseded claims go pale). `video/story.html`,
+`docs/slides/five/five.html` and `docs/slides/build/deck.js` take the same values. The five-deck's
+`shoot.js` crops now end at a named element's bottom edge and scroll it into view first, so no row is
+cut; the first page is centred, the third drops three repeated points so both answers fit whole, the
+fourth shows the whole "not for this unit" reason. Both decks were rebuilt (the PDF with LibreOffice and
+Office's Calibri and Consolas in a throwaway profile), the README's picture was re-shot, and the four dark
+crops the twelve-slide deck still carried were refreshed. The Built with text in the notes puts Claude
+Opus 5.5, MCP, Neo4j 5, FastAPI and Python first, because the guide says the first five show as chips on
+the vote card. Package V5 is on the Desktop with the decks and the notes; V4 stays as the fallback.
+
+**Measured:** 160 tests pass. The first light build put a Google Fonts link on the page for Jost, and the
+page's own test caught it (the page loads nothing from outside), so the link came off the product page:
+Jost stays named in the token block and the system font stands in until the owner says whether to
+self-host it under its OFL licence. The story cards and the five-deck, which are tooling, load it from
+Google Fonts. The take: 229 s of screencast on the aligned v5 voice, cut to the speech as before.
+The final `silent-context-v6-captions.mp4` is 176.5 s, 1920 by 1080, 22.2 MB, the captions burned into the
+black band under the picture, the same length as v5 to the frame, because the voice sets it; frames read at
+thirteen points. It is in the Desktop folder "Silent context submission V5" with its SRT.
+
+**Proposed, as a side session with its brief:** the hosted demo on Cloudflare Containers (the owner: the
+account has Workers Paid), the real FastAPI app as a Docker image, repeatable with one command, its
+address into the Demo URL field and the README's Demo section; a static snapshot on Pages or a Python
+Worker were weighed and set aside (the free symptom field would go, or too many unknowns for the
+weekend).
+
 ## Session 4, 7.11.2026: the submission's rules, and the work read as a judge
 
 **Why:** the build is done; what remained was how the video is handed in, what Sunday asks of the

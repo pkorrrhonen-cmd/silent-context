@@ -36,6 +36,19 @@ same move gave a frame every 17 ms.
 **Rule:** no `will-change` on anything a screencast must follow; measure the frames of a move before
 building on it.
 
+## A look decided last costs a take, a deck and an evening
+
+On 7.11.2026 the page, the cards and both decks were built with no decision about colours or a look: the
+first dark palette stayed because nothing replaced it, and after package V4 the owner saw the whole as very
+dark. The content was done and the voice was aligned, so the change was one token block and a new take,
+about two hours; but every picture, crop, deck and the README's image had to be made again, and the video
+was recorded a sixth time for the same words. The look is a decision like any other, and it was never on the
+list.
+
+**Rule:** before the first page is built, decide the palette and the heading font in one token block, from
+the audience's screen (a phone in a bright hall here) and the challenge owner's own look; a change later
+should be a change to that block and nothing else.
+
 ## A screencast delivers frames only when the page paints, so a fade's last frame can be lost
 
 On 7.11.2026 the pitch cards in front of the video faded in over half a second, and in the first take

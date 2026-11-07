@@ -3,7 +3,7 @@
 The pipeline is pre-existing work in another repository (`sf3d-ai-lab/video`); the commands are in the Atlas
 artifact `SINCEAI-2026-VIDEO`. What is here was written at the event. Two cuts exist: the first (7.11. afternoon,
 narration v2) and the second (7.11. evening, narration v3, then v4 after the owner watched it, then v5 expanded on
-decision 19), both on the owner's voice.
+decision 19, then v6: the v5 words and voice on the light look, decision 24), both on the owner's voice.
 
 ## The second cut, v3 and v4
 
@@ -14,7 +14,7 @@ decision 19), both on the owner's voice.
 | `narration-v4.md`, `narration-v3.md` and their read texts | The words of the earlier finals (135 s and 118 s), kept for the record. |
 | `story.html` | Four story cards in the page's look: the chat and "It lives in one chat", the four steps, the limits, the close. Each element's moment comes from the voice: `data-cue="S,F"` is sentence S of the block and a fraction of its length, and `storyGo(n, cues)` sets the delays from the aligned track; without cues the `data-at` seconds are used. A tiny ticker repaints the page five times a second so the screencast always carries the end of a move. |
 | `scenes_story.py` | The recorder's scene (was `scenes_v3.py`): the two cards, the page's scenes 1 to 12, the two cards. The page is zoomed toward the panel the sentence is about by a transform on its body that the recorder injects (`ZOOM_JS`); the product's page is not changed. Every zoomed block first holds the whole view for a second. In the page block `videoFocus` lights each part as the voice names it (the panels the way the page lights a scene's, the clock with an outline). With `SILENT_CONTEXT_ALIGNMENT` pointing at align.py's output, the cards, the focus moments and the later moves take their moments from the voice, so the take is recorded after the voice is aligned. `zoomtest` and `zoomtest2` are the trials that measured the zoom. |
-| `v3-cut.json`, `v4-cut.json`, `v5-cut.json` and the `-final.json` beside each | The assembly and the final plan of each final, written by `cut_from_take.py`; the plan's `tail` is 0.6 s. |
+| `v3-cut.json`, `v4-cut.json`, `v5-cut.json`, `v6-cut.json` and the `-final.json` beside each | The assembly and the final plan of each final, written by `cut_from_take.py`; the plan's `tail` is 0.6 s. v6 is a new take of the v5 words on the same aligned voice, after the page, the cards and the decks went light (decision 24); nothing in the narration or the alignment changed, so `align.py` was not rerun. |
 
 Measured 7.11.: with `will-change: transform` on the body the screencast gave 4 frames during a 0.6 s move;
 without it, a frame every 17 ms (73 frames in a 1.2 s move), so the move is smooth and the text stays crisp. A
