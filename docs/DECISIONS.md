@@ -13,7 +13,7 @@ Updated 7.11.2026 (session 3).
 | # | Where | What now | State |
 |---|---|---|---|
 | 1 | The challenge | Elisa, selected 6.11.2026. Final. | `OK` |
-| 2 | Visibility | Public as soon as the product is in a shape the repository can be opened in, before the submission. gitleaks is installed and run over the full history, and `CLAUDE.md` and `docs/` are read for anything internal, at that point. The owner, 7.11.2026. | `OK` |
+| 2 | Visibility | Public since 7.11.2026, by the owner's word after the video was final: gitleaks 8.30.1 over all 30 commits and the working tree found nothing (the recorded answers' prompt hash allowed with its reason), and `CLAUDE.md` and `docs/` were read for anything internal, with one private first name taken out of the backlog. The owner, 7.11.2026. | `OK` |
 | 3 | License | MIT, in `LICENSE` and `pyproject.toml`: the team owns what it builds, Elisa can use it in its business, and the jury and anyone else can read, run and build on it without a question. The owner, 7.11.2026. | `OK` |
 | 4 | Truth set, the second expert's claim | Corrected: the claim waits with `no_id`. The truth set first bound it to TRN-051, and the model left it waiting, because the advice is about old units in general and TRN-051 only prompted it. The file says this was done after the first scored run, which makes that row weaker evidence than the rest. | `OK` |
 | 5 | Measuring run-to-run variation | Done: five repeats with the prompt unchanged and no rule tuned to them. Confidently wrong per run, of 16: 0, 0, 0, 1, 1, the same one file each time. See `data/truth/held_out_repeats.json`. | `OK` |

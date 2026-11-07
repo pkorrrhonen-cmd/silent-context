@@ -3,7 +3,7 @@
 An entry for the Since AI 2026 hackathon (6.11. to 8.11.2026), Elisa's challenge, selected on 6.11.
 The build follows the Atlas artifact `SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA`, which implements the
 decisions in [`docs/DECISIONS.md`](docs/DECISIONS.md). The repository
-(`github.com/pkorrrhonen-cmd/silent-context`) stays private until it is ready to open.
+(`github.com/pkorrrhonen-cmd/silent-context`) is public since 7.11.2026, under the MIT licence.
 
 ## Where the truth is
 
@@ -36,8 +36,9 @@ Nothing goes into two places as a copy; a reference is enough. There is no SEED 
   first work they did.
 - **The repository is submitted, so operations stay out of it.** Home machines, SSH, tunnels and
   recovery commands live in Atlas. No internal address, user name or key file path enters git.
-- **Private until decided.** Visibility is decided only after the chosen challenge's IP terms have
-  been read, and gitleaks runs over the full history before any flip to public.
+- **Public, so every commit is read by strangers.** The flip was made on 7.11.2026 after gitleaks over
+  the full history and a read of the documents for anything internal; `.gitleaks.toml` says what is
+  allowed to look like a secret. Run gitleaks again before any commit that adds data or configuration.
 - **Each challenge's rules, licences and data restrictions apply** to everything built here.
 
 ## Working practice

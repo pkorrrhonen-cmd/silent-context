@@ -39,6 +39,23 @@ the "what was tested" section, and `docs/what-is-simulated.md` does not exist (D
 **Open after this:** the owner's checkpoint on the page and the captions, the product name, and
 phase 7's remaining half, the acceptance table for the slides.
 
+### Public, under MIT
+
+**Decided by the owner** ([`DECISIONS.md`](DECISIONS.md) rows 2 and 3): the repository goes public now
+that the video is final, under the MIT licence.
+
+**Measured before the flip:** gitleaks 8.30.1, installed for this, over all 30 commits of every branch
+and over the working tree. It first reported 56 findings in the history and 28 in the tree, all one
+thing: the `key` field at the top of every recorded answer in `data/extractions/`, the SHA-256 of the
+prompt that a clean install looks the answer up by (`app/extract.py`), 64 hex characters in all 28
+files and in no file anything else. Allowed in `.gitleaks.toml` with the reason; both scans then
+report no leaks. A pattern search of the tracked text found only `127.0.0.1` and token counts, the
+history never held a `.env`, a key file or a database, and the Neo4j throwaway password is nowhere in
+it. `CLAUDE.md` and `docs/` were read for anything internal: one private individual's first name in
+the backlog became "Elisa's representative". Then `LICENSE` and the licence in `pyproject.toml`, the
+README's IP section, the flip with `gh repo edit`, and the check: GitHub reports the repository public
+with the MIT licence detected, and the page and the raw README answer 200 to an anonymous request.
+
 ### The final video, on the owner's voice
 
 The owner recorded the twelve blocks in ElevenLabs from the reading copy and handed the track over

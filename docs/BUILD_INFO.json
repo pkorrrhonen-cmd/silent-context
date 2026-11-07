@@ -2,10 +2,10 @@
   "name": "sinceai-2026",
   "version": "0.1.0",
   "phase": "8",
-  "phaseName": "Phase 8: the video is final on the owner's voice; the slides, the flip to public and the submission remain",
+  "phaseName": "Phase 8: the video is final, the repository is public under MIT; the slides, the source zip and the submission remain",
   "session": 3,
   "updated": "2026-11-07",
-  "state": "Session 2 (6.11.2026, Code on the Mac): Elisa's challenge is selected and the decisions P1 to P6 are made. Phase 0 (skeleton, health check), phase 1 (Elisa's files unchanged, synthetic sources, events, seed graph, truth set, held-out binding set) phase 2 (store, export, /graph), phase 3 (extraction, binding, merging, recorded answers, scoring) phase 4 (claims_for, access_for, the prohibition, counters from telemetry), phase 5 (firmware recheck, outcomes from telemetry, the log line from device events) and phase 6 (the page, ten scenes) are in main. Session 3 (7.11.2026, Code on the Mac): a technical check, then the owner's checkpoint: the page looked confusing at first glance, so it was rebuilt for clarity (a story per scene, plain words, readable evidence, named claims) and waits for a second look. The product is named Silent context and the repository is renamed. The Cypher export loads into Neo4j. A clean install from git archive passed with no key. Phase 7 is done: docs/acceptance.md holds the build plan's cases A0 to A11 and a test keeps every computed row passing. The README has its diagram and its tested section, and docs/what-is-simulated.md exists. Phase 8: the owner approved the larger-text picture as a pre-version on 7.11. and asked for two things, both built: the captions in a black band under the picture (never over it) and a 20 second pitch in front (two cards in the page's look, narration blocks 01 and 02). The MCP wrapper (app/mcp_server.py, the mcp package) exposes claims_for, access_for and source as tools, tested over an in-memory transport and as a real stdio process. The owner voiced the narration in ElevenLabs, and the final video is built: 127.2 s, 1920 by 1080, the captions in the band, in the pipeline's media folder and in the owner's Desktop folder. The slides have an outline only.",
+  "state": "Session 2 (6.11.2026, Code on the Mac): Elisa's challenge is selected and the decisions P1 to P6 are made. Phase 0 (skeleton, health check), phase 1 (Elisa's files unchanged, synthetic sources, events, seed graph, truth set, held-out binding set) phase 2 (store, export, /graph), phase 3 (extraction, binding, merging, recorded answers, scoring) phase 4 (claims_for, access_for, the prohibition, counters from telemetry), phase 5 (firmware recheck, outcomes from telemetry, the log line from device events) and phase 6 (the page, ten scenes) are in main. Session 3 (7.11.2026, Code on the Mac): a technical check, then the owner's checkpoint: the page looked confusing at first glance, so it was rebuilt for clarity (a story per scene, plain words, readable evidence, named claims) and waits for a second look. The product is named Silent context and the repository is renamed. The Cypher export loads into Neo4j. A clean install from git archive passed with no key. Phase 7 is done: docs/acceptance.md holds the build plan's cases A0 to A11 and a test keeps every computed row passing. The README has its diagram and its tested section, and docs/what-is-simulated.md exists. Phase 8: the owner approved the larger-text picture as a pre-version on 7.11. and asked for two things, both built: the captions in a black band under the picture (never over it) and a 20 second pitch in front (two cards in the page's look, narration blocks 01 and 02). The MCP wrapper (app/mcp_server.py, the mcp package) exposes claims_for, access_for and source as tools, tested over an in-memory transport and as a real stdio process. The owner voiced the narration in ElevenLabs, and the final video is built: 127.2 s, 1920 by 1080, the captions in the band, in the pipeline's media folder and in the owner's Desktop folder. The repository went public under the MIT licence on 7.11. after gitleaks found nothing in the full history. The slides have an outline only.",
   "next_session": {
     "id": "phase-8",
     "name": "Video, slides, documentation",
@@ -15,8 +15,8 @@
       "docs/BACKLOG.md",
       "docs/synthetic-data.md"
     ],
-    "scope": "Phase 8 of the Atlas artifact SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA. The video is final on the owner's voice (a new voice would mean: align it with the pipeline's align.py, rerun video/cut_from_take.py, assemble, and build with video/final.json, band 130, clips cut-band). Next the slides from docs/slides.md, the flip to public with gitleaks, the licence, the source zip and the submission by Sunday 8.11. 09:30. Rule authors do not read data/truth/decoys, expected_decoys.json or data/extractions/decoys.",
-    "gate": "The owner's call on the licence and the flip to public, before the submission."
+    "scope": "Phase 8 of the Atlas artifact SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA. The video is final on the owner's voice (a new voice would mean: align it with the pipeline's align.py, rerun video/cut_from_take.py, assemble, and build with video/final.json, band 130, clips cut-band). The repository is public under MIT. Next the slides from docs/slides.md, the source zip with git archive, placing the video, and the submission by Sunday 8.11. 09:30. Rule authors do not read data/truth/decoys, expected_decoys.json or data/extractions/decoys.",
+    "gate": "The owner's submission in sinceai.app by Sunday 8.11. 09:30; the slides are his."
   },
   "git_commit": null,
   "git_commit_note": "A commit cannot hold its own hash. git log on main is the record.",
@@ -25,7 +25,7 @@
     "atlas": "No Atlas system for this repository during the event weekend (the owner, 6.11.2026). Threads and documents stay under the Atlas system."
   },
   "ci": "none: added only if the build needs a gate",
-  "github": "github.com/pkorrrhonen-cmd/silent-context (private until it is ready to open; renamed from sinceai-2026 on 7.11.2026, and GitHub redirects the old name)",
+  "github": "github.com/pkorrrhonen-cmd/silent-context (public since 7.11.2026, MIT; renamed from sinceai-2026 on 7.11.2026, and GitHub redirects the old name)",
   "atlasArtifacts": {
     "status": "SINCEAI-2026-ELISA-TILANNE (read this first: what is done, measured and waiting)",
     "buildPlan": "SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA",
