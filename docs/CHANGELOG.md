@@ -54,10 +54,12 @@ from the outline and the narration. A PDF beside it, `silent-context.pdf`.
 tests, not 152 ([`DECISIONS.md`](DECISIONS.md) rows 15 to 17). The file passes the OOXML validator with no
 finding. Every slide was rendered and looked at: the first render overflowed the thread panel on slide 1 and
 the picture on slide 3, and three titles wrapped into their content; fixed, rendered again, clean. The ten
-screenshots gave one console error, the missing favicon. PowerPoint on the Mac opened the deck but answered no
-Apple event within two minutes, an automation permission it never got, so the PDF is LibreOffice's export
-(installed for this with Homebrew), with Office's Calibri and Consolas loaded into a throwaway profile so the PDF
-carries the deck's fonts.
+screenshots gave one console error, the missing favicon. PowerPoint on the Mac first answered no Apple event
+within two minutes, an automation permission waiting on the owner, so the PDF was first LibreOffice's export
+(installed for this with Homebrew, with Office's Calibri and Consolas loaded into a throwaway profile). Once the
+owner granted the permission, the PDF was exported from PowerPoint itself: ten pages, Calibri and Consolas, the
+same layout. A folder on the Desktop, "Silent context submission", holds the final video, the deck, its PDF, the
+source zip rebuilt from main's tip and `submission-notes.md`, what goes where in the form.
 
 ### The source zip
 
