@@ -43,6 +43,7 @@ Updated 7.11.2026 (session 4).
 | Code | Task | Why / notes |
 |---|---|---|
 | BUILD-8 | **Present the slides,** if ever asked. | Phase 8. The video is final (7.11., the owner's voice, 127 s, captions in the band); the owner uploads it (P-10). The slides exist (7.11.): [`slides/silent-context.pptx`](slides/silent-context.pptx), ten slides with speaker notes, and the PDF beside it, which goes into the submission as the pitch deck (P-3). A change to the words: [`slides/build/`](slides/build/), then rebuild. |
+| BUILD-9 | **The video's second cut,** if the owner chooses A or B in [`DECISIONS.md`](DECISIONS.md) row 18. | Narration v3 is drafted in `video/narration-v3.md`. Order: a ten second zoom test on the page, the story cards (`video/story.html`), a draft on the guide voice, the owner's voice, the final cut with captions in the band, then P-10 with the new file. The 7.11. video stays the fallback. |
 
 ## Documents to fill
 

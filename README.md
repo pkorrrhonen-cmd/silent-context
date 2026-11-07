@@ -18,6 +18,11 @@ Run it and open `http://127.0.0.1:8000`. It needs no model and no key. The arrow
 scenes. The time axis at the top is a live version of the time-aware layers: the event stream, what was
 received, and each claim's `valid_from` and `valid_to`, with `t=x` moving as the scenes go.
 
+![Scene 4 of the page: the same fault on another unit. The agent proposes the expert's step with its source, reads the counters from the device and holds back a reboot.](docs/images/page-scene-4-use.png)
+
+*Scene 4 of ten: the same fault on another unit. The time axis at the top, what was read on the left, the
+claims in the middle, the graph on the right, and the agent's answer at the bottom.*
+
 The demo follows three steps:
 
 1. **Capture.** An expert's advice is taken from unchanged Teams and email exports. Nobody writes

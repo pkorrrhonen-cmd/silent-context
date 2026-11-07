@@ -8,7 +8,7 @@ recorded here before the next batch. **This file is the truth, the conversation 
 Decided before this list and not re-opened here: the decisions of 4.11.2026 in the Atlas artifact
 `SINCEAI-2026-SUUNNITELMA`.
 
-Updated 7.11.2026 (session 3).
+Updated 7.11.2026 (session 4).
 
 | # | Where | What now | State |
 |---|---|---|---|
@@ -29,6 +29,7 @@ Updated 7.11.2026 (session 3).
 | 15 | The slides: tool and look | Built by the session as `docs/slides/silent-context.pptx`, ten slides from `slides.md`, with pptxgenjs in the page's own colours: Calibri for text and Consolas for identifiers, because both ship with Office on Windows and on the Mac and stand in for the page's system sans and monospace. Slide 1 is the cover and the problem in one, as the outline has it. The session decided, 7.11.2026, because the outline and the look were agreed and the owner wants few questions. | `OK` |
 | 16 | The slides' numbers | From the README's "What was tested" and `acceptance.md`: 154 tests, not the outline's 152, which was written before the last tests went in. The session decided, 7.11.2026, because the README is where the truth is. | `OK` |
 | 17 | The slides' PDF | PowerPoint's own export on the Mac, once the owner granted the automation permission; the first attempts timed out waiting for it, and a LibreOffice export (installed with Homebrew for this, with Office's Calibri and Consolas loaded into a throwaway profile) stood in until then and rendered the same. The session decided, 7.11.2026, because the PDF should come from the tool the owner presents with. | `OK` |
+| 18 | The video's second cut | Proposed 7.11. evening after the judge's read: the final video is correct but dense, and a viewer new to it cannot read the page at video size. **A (recommended):** a new cut of at most 120 s on narration v3 in plain words (`video/narration-v3.md`): an animated story in front (Veikko's chat, Erkki's fix, "it lives in one chat"), four page scenes zoomed on the one panel that matters, a 14 s montage of the doubt cases, the limits and the close as cards; the owner re-voices the whole track. **B:** keep the take and the voice, add the zooms to the existing recording and swap the two pitch cards for the animated story; the owner re-voices only the first 26 s. **C:** keep the video as it is. The final video of 7.11. stays the fallback in every case, and the zoom is tried on a ten second take before anything else is built. | `open` |
 
 ## Design decisions P1 to P6
 

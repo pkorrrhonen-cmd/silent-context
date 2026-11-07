@@ -40,6 +40,23 @@ the YouTube upload, P-3 points at the notes, P-11 is the vote, and DOC-1 (read t
 the submission) is done. The source zip was rebuilt from this session's last commit.
 
 
+### The second half of session 4: a picture in the README, a Finnish paper, and a proposal for the video
+
+**Built:** the README's "Demo" section now opens with a picture of the page at scene 4
+(`docs/images/page-scene-4-use.png`, 1600 by 900, shot from the running page with headless Chrome as the
+slides were), because a reader on GitHub saw prose and a diagram only. The one console line during the
+shot was the favicon's 404. A Finnish plain-language paper for the owner, "Silent context selkokielellä",
+is in the Desktop folder "Silent context suomeksi" as HTML and PDF: the story, the three steps, the example
+on the demo's clock, what it never does, what is real and what is simulated, a glossary from our words to
+everyday ones, how to read the page, the video scene by scene, and a thirty second explanation. It is the
+owner's working paper, not part of the submission, and not in the repository.
+
+**Proposed, not built:** a second cut of the video on a plain-language narration, `video/narration-v3.md`
+(297 words, 111 s): an animated story in front, four page scenes zoomed on the panel that matters, a short
+montage of the doubt cases, the limits as a card. The options and the recommendation are decision 18 in
+[`DECISIONS.md`](DECISIONS.md), open for the owner; the 7.11. video stays the fallback. The source zip was
+rebuilt from this session's last commit.
+
 ## Session 3, 7.11.2026: the technical check before the checkpoint
 
 **Why:** the owner saw the page the evening before and holds phase 6's checkpoint. Before anything
