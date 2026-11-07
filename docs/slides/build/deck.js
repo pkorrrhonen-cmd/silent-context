@@ -27,12 +27,13 @@ const THEME = {
   headFontFace: "Calibri",
   bodyFontFace: "Calibri",
   colors: {
-    dk1: "E8ECEF", lt1: "0D1116", dk2: "93A1AF", lt2: "141C25",
-    accent1: "E8934F", accent2: "B5612A", accent3: "53C08F", accent4: "E9B44C", accent5: "9DB2C6", accent6: "E5705C",
-    hlink: "E8934F", folHlink: "B5612A",
+    // Light since 7.11.2026 evening, the same tokens as web/style.css: Elisa's blue, orange and greys, measured from elisa.fi.
+    dk1: "171C43", lt1: "EFEFF1", dk2: "70707A", lt2: "FFFFFF",
+    accent1: "005FED", accent2: "FF6400", accent3: "008253", accent4: "A8690F", accent5: "5B7A96", accent6: "E0022A",
+    hlink: "005FED", folHlink: "064AAC",
   },
 };
-const BG = "0D1116", PANEL = "141C25", RAISED = "1B2732", LINE = "2B3A48", FAINT = "5B6977";
+const BG = "EFEFF1", PANEL = "FFFFFF", RAISED = "F6F6F7", LINE = "D2D2D6", FAINT = "8D8D95";
 const MONO = "Consolas";
 
 const pres = new pptxgen();

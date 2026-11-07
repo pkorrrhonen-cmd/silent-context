@@ -6,13 +6,16 @@
 <head>
 <meta charset="utf-8">
 <title>Silent context in five pictures</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&display=swap">
 <style>
   :root {
-    --bg: #0d1116; --panel: #141c25; --panel-raised: #1b2732; --line: #2b3a48;
-    --copper: #b5612a; --copper-bright: #e8934f; --text: #e8ecef; --muted: #93a1af; --faint: #5b6977;
-    --propose: #53c08f;
+    --bg: #efeff1; --panel: #ffffff; --panel-raised: #f6f6f7; --line: #d2d2d6;
+    --copper: #ff6400; --copper-bright: #ff8800; --accent: #005fed; --text: #171c43; --muted: #70707a; --faint: #8d8d95;
+    --propose: #008253;
     --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --head: "Jost", var(--sans);
   }
   @page { size: 1920px 1080px; margin: 0; }
   * { box-sizing: border-box; }
@@ -20,18 +23,19 @@
   .slide { width: 1920px; height: 1080px; position: relative; overflow: hidden; padding: 84px 120px 100px;
            page-break-after: always; break-after: page; display: flex; flex-direction: column; }
   .slide:last-child { page-break-after: auto; break-after: auto; }
-  .eyebrow { font: 600 20px var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--copper-bright); margin: 0 0 22px; }
-  h1 { font-size: 64px; line-height: 1.1; margin: 0 0 36px; letter-spacing: -0.015em; }
+  .eyebrow { font: 600 20px var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin: 0 0 22px; }
+  h1 { font: 600 64px/1.1 var(--head); margin: 0 0 36px; letter-spacing: 0; }
   .foot { position: absolute; left: 120px; right: 120px; bottom: 44px; display: flex; justify-content: space-between;
           font: 15px var(--mono); letter-spacing: .06em; color: var(--faint); }
   .shot { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--panel); }
   .shot img { display: block; width: 100%; }
+  .narrow { width: 1300px; }
 
   /* 1: the chat and the big lines */
-  .split { display: grid; grid-template-columns: 680px 1fr; gap: 96px; align-items: center; flex: 1; }
-  .thread { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 30px 34px; font-size: 23px; line-height: 1.4; }
-  .msg { margin: 0 0 22px; }
-  .msg .who { font: 600 16px var(--mono); color: var(--copper-bright); margin: 0 0 6px; }
+  .split { display: grid; grid-template-columns: 680px 1fr; gap: 96px; align-items: center; align-content: center; flex: 1; }
+  .thread { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 34px 38px; font-size: 25px; line-height: 1.4; }
+  .msg { margin: 0 0 26px; }
+  .msg .who { font: 600 16px var(--mono); color: var(--accent); margin: 0 0 6px; }
   .msg .who span { color: var(--faint); font-weight: 400; margin-left: 10px; }
   .msg p { margin: 0; }
   .msg.v p { color: var(--muted); }
@@ -44,8 +48,8 @@
   .flow { display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr 40px 1fr; gap: 16px; align-items: stretch; margin-top: 10px; }
   .step { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 28px 28px 30px; }
   .step svg { width: 52px; height: 52px; margin-bottom: 18px; }
-  .step svg * { fill: none; stroke: var(--copper-bright); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-  .step b { display: block; font: 600 15px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--copper-bright); margin-bottom: 12px; }
+  .step svg * { fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .step b { display: block; font: 600 15px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
   .step p { margin: 0; font-size: 26px; line-height: 1.3; }
   .step p code { font: 600 23px var(--mono); }
   .arrow { align-self: center; justify-self: center; width: 40px; height: 40px; }
@@ -61,14 +65,15 @@
   .label b { color: var(--text); font-weight: 600; }
 
   /* 4: three rows, a label and a crop each */
-  .rows { display: flex; flex-direction: column; gap: 34px; margin-top: 6px; }
+  .rows { display: flex; flex-direction: column; gap: 22px; margin-top: 6px; }
   .row { display: grid; grid-template-columns: 460px 1fr; gap: 40px; align-items: center; }
-  .row .label { margin: 0; font-size: 28px; line-height: 1.3; }
-  .row .label b { display: block; font: 600 15px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--copper-bright); margin-bottom: 8px; }
+  .row .shot { width: 1040px; }
+  .row .label { margin: 0; font-size: 27px; line-height: 1.3; }
+  .row .label b { display: block; font: 600 15px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
 
   /* 5: measured and the limits */
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; margin-top: 6px; }
-  h2 { font: 600 17px var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--copper-bright); margin: 0 0 26px; }
+  h2 { font: 600 17px var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin: 0 0 26px; }
   .nums { display: flex; flex-direction: column; gap: 18px; }
   .num { display: grid; grid-template-columns: 250px 1fr; gap: 24px; align-items: baseline; }
   .num b { font: 700 50px/1 var(--sans); letter-spacing: -0.02em; }
@@ -76,7 +81,7 @@
   .num span i { font-style: normal; color: var(--text); }
   .limits { display: flex; flex-direction: column; gap: 26px; }
   .limits p { display: grid; grid-template-columns: 64px 1fr; align-items: baseline; margin: 0; font-size: 31px; line-height: 1.3; }
-  .limits p b { font: 600 18px var(--mono); color: var(--copper-bright); letter-spacing: .1em; }
+  .limits p b { font: 600 18px var(--mono); color: var(--accent); letter-spacing: .1em; }
   .repo { position: absolute; left: 120px; right: 120px; bottom: 96px; font: 26px var(--mono); color: var(--text); }
   .repo span { color: var(--muted); }
 </style>
@@ -133,14 +138,9 @@
 <section class="slide">
   <p class="eyebrow">One call for the agent, and who acts</p>
   <h1>First the agent proposes. Once a success is on record, it acts.</h1>
-  <div class="shot"><img src="shots/use-answer.png" alt="The agent's answer: PROPOSE, disable the interface, wait a little, then enable it again; held back: no reboot or hardware replacement before a failed bounce is reported; counters zero, read from the device by the agent itself"></div>
-  <div class="three">
-    <p>Erkki's step, <span>with its source.</span></p>
-    <p>The counters, <span>read from the device itself.</span></p>
-    <p>No reboot <span>before the lighter fix has failed.</span></p>
-  </div>
-  <p class="label"><b>Once that success is on record, the policy lets the agent act.</b> A third unit of the same model: the agent turns the port off and on itself, the device confirms. A reboot or a new part still waits for a person. The network here is synthetic; the decision is real.</p>
-  <div class="shot" style="height: 250px"><img src="shots/act-answer.png" alt="The agent acted: the policy said the agent itself, because the step is reversible and was carried out on this class before with the counters rising; the agent did it; counters rising afterwards"></div>
+  <div class="shot narrow"><img src="shots/use-answer.png" alt="The agent's answer: PROPOSE, disable the interface, wait a little, then enable it again; held back: no reboot or hardware replacement before a failed bounce is reported; counters zero, read from the device by the agent itself"></div>
+  <p class="label" style="margin-top: 28px"><b>Once that success is on record, the policy lets the agent act.</b> A third unit of the same model: the agent turns the port off and on itself, the device confirms. A reboot or a new part still waits for a person. The network here is synthetic; the decision is real.</p>
+  <div class="shot narrow"><img src="shots/act-answer.png" alt="The agent acted: the policy said the agent itself, because the step is reversible and was carried out on this class before with the counters rising; the agent did it; counters rising afterwards"></div>
   <p class="foot"><span>Silent context</span><span>3 / 5</span></p>
 </section>
 
@@ -149,17 +149,17 @@
   <h1>It knows when not to trust itself.</h1>
   <div class="rows">
     <div class="row"><p class="label"><b>After a firmware update</b>Check again, on that unit only. Nothing expires by a calendar.</p>
-      <div class="shot" style="height: 96px"><img src="shots/ageing-head.png" alt="CHECK FIRST on TRN-042: the firmware changed after this advice, so it needs checking again on this unit"></div></div>
+      <div class="shot"><img src="shots/ageing-head.png" alt="CHECK FIRST on TRN-042: the firmware changed after this advice, so it needs checking again on this unit"></div></div>
     <div class="row"><p class="label"><b>Where the fix did not help</b>Erkki narrowed the advice to the old units. It is no longer offered on the new one.</p>
-      <div class="shot" style="height: 96px"><img src="shots/notforall-card.png" alt="NOT APPLICABLE: the older units' advice, on the newer unit" style="width: 100%"></div></div>
+      <div class="shot"><img src="shots/notforall-card.png" alt="NOT APPLICABLE: the older units' advice, on the newer unit" style="width: 100%"></div></div>
     <div class="row"><p class="label"><b>When two experts disagree</b>Both stay visible with their sources. No side is taken; the counters are read first.</p>
-      <div class="shot" style="height: 96px"><img src="shots/disagree-head.png" alt="CHECK FIRST on TRN-051: read the traffic counters first; the recorded advice disagrees on what comes next, and this answer does not choose"></div></div>
+      <div class="shot"><img src="shots/disagree-head.png" alt="CHECK FIRST on TRN-051: read the traffic counters first; the recorded advice disagrees on what comes next, and this answer does not choose"></div></div>
   </div>
-  <div class="rows" style="margin-top: 34px">
+  <div class="rows" style="margin-top: 22px">
     <div class="row"><p class="label"><b>When it does not know at all</b>It writes the question for the person on call, who sends it. A budget keeps the asking small.</p>
-      <div class="shot" style="height: 96px"><img src="shots/ask-draft.png" alt="Draft for transmission-oncall: a person sends it, the system never does; question 2 of 3 this week" style="width: 100%"></div></div>
+      <div class="shot"><img src="shots/ask-draft.png" alt="Draft for transmission-oncall: a person sends it, the system never does; question 2 of 3 this week" style="width: 100%"></div></div>
   </div>
-  <p class="after" style="margin-top: 30px">It shows where advice came from and what was reported about it, <b>not whether it is true.</b> It scores advice, <b>never people.</b></p>
+  <p class="after" style="margin-top: 20px; font-size: 28px">It shows where advice came from and what was reported about it, <b>not whether it is true.</b> It scores advice, <b>never people.</b></p>
   <p class="foot"><span>Silent context</span><span>4 / 5</span></p>
 </section>
 

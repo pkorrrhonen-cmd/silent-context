@@ -6,8 +6,8 @@ opens with about five pictures). The ten-slide deck beside it stays as a support
 
 | File | What |
 |---|---|
-| `five.html` | The five pages: the chat and "It lives in one chat"; the four steps; the agent's answer and the device record; the three doubt cases; what was measured and the limits. |
-| `shoot.js` | The crops of the running page in `shots/`, read from the page's own elements at device scale 2. |
+| `five.html` | The five pages: the chat and "It lives in one chat"; the four steps; the agent's answer and the agent acting under the policy; the doubt cases and the drafted question; what was measured and the limits. Light since 7.11. evening, in the page's own tokens (decision 24). |
+| `shoot.js` | The crops of the running page in `shots/`, read from the page's own elements at device scale 2; a crop ends at a named element's bottom edge (`until`), so no row is cut in half. |
 | `render.js` | Writes the PDF from `five.html` with headless Chrome, and a PNG per page when given a folder. |
 | `shots/` | The crops the pages use. |
 
