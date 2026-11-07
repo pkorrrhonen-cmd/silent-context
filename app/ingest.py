@@ -337,7 +337,9 @@ def _add_outcomes(
         message = thread.message(outcome.message_seq)
         # A message that gives or defends the advice is not a report of trying it. This can miss a
         # person who does both in one message, and that is the safe way to be wrong about evidence.
-        if message is None or outcome.message_seq in item.advice_message_seqs:
+        # A relayed message is different: the person passes the advice on and reports what came of it,
+        # as a ticket's worklog entry does, so there the outcome counts (7.11.2026, the ticket source).
+        if message is None or (outcome.message_seq in item.advice_message_seqs and not item.relayed):
             continue
         unit = _literal_or_none(thread, outcome.unit_id)
         unit = unit.strip().upper() if unit else None

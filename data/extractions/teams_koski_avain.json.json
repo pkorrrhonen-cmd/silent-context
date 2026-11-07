@@ -1,0 +1,38 @@
+{
+  "key": "5a080d78c22518927fa166929fc8c88eeeda95d0b933d62cbc9b8487903fd2a3",
+  "model": "claude-opus-5-5",
+  "output": {
+    "claims": [
+      {
+        "kind": "access",
+        "claim_text": "Koski-aseman portin avain siirrettiin viime viikolla valvomon avainkaappiin, lokero 7, kun vanha lukkokaappi portin vieressä vaihdettiin. Hae se sieltä ennen kuin lähdet asemalle.",
+        "symptom": null,
+        "advice_message_seqs": [
+          2
+        ],
+        "relayed": false,
+        "target_node_ids": [],
+        "target_sites": [
+          "Koski-aseman"
+        ],
+        "target_ports": [],
+        "target_firmware": null,
+        "mentions_barrier": true,
+        "procedure_type": null,
+        "scope_text": null,
+        "scope_names_version": null,
+        "check_step": null,
+        "check_kind": null,
+        "action": null,
+        "action_kind": "none",
+        "do_not_before": null,
+        "relative_time": "viime viikolla",
+        "same_as_existing": null,
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": []
+      }
+    ],
+    "estimates": []
+  }
+}

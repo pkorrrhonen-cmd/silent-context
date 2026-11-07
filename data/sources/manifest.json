@@ -1,19 +1,112 @@
 {
   "note": "When each source reached the system. received_at is information time, set here because the demo has no real export: a nightly export at 23:00 on the day of the conversation. Elisa's two files are unchanged and carry no date, so received_at is what gives them a day. Moving the demo clock past a received_at is what makes a source known.",
   "sources": [
-    { "file": "email_key_nilo.txt", "label": "The key to the Nilo barrier", "channel": "email", "origin": "synthetic", "received_at": "2026-09-02T23:00:00" },
-    { "file": "teams_trn042.json", "label": "TRN-042 after an SFP swap", "channel": "teams", "origin": "elisa", "original_name": "teams_chat.json", "sha256": "736473caed1255ffba76414b813bf41c641bfd98d9a5c2678486253280951071", "received_at": "2026-10-14T23:00:00" },
-    { "file": "email_trn042.txt", "label": "The same advice, written up", "channel": "email", "origin": "elisa", "original_name": "email.txt", "sha256": "49e0b6a9454998e340d6013563850d4060af49a72d5c3d41ffd91a2cc2f2f19d", "received_at": "2026-10-14T23:00:00" },
-    { "file": "teams_noise_lunch.json", "label": "Lunch", "channel": "teams", "origin": "synthetic", "received_at": "2026-10-16T23:00:00" },
-    { "file": "teams_noise_schedule.json", "label": "A schedule", "channel": "teams", "origin": "synthetic", "received_at": "2026-10-19T23:00:00" },
-    { "file": "email_key_moved.txt", "label": "The key was moved", "channel": "email", "origin": "synthetic", "received_at": "2026-10-20T23:00:00" },
-    { "file": "teams_trn051.json", "label": "TRN-051, the same fault", "channel": "teams", "origin": "synthetic", "received_at": "2026-10-21T23:00:00" },
-    { "file": "teams_noise_maintenance.json", "label": "Battery maintenance", "channel": "teams", "origin": "synthetic", "received_at": "2026-10-23T23:00:00" },
-    { "file": "teams_noise_handover.json", "label": "A handover", "channel": "teams", "origin": "synthetic", "received_at": "2026-10-26T23:00:00" },
-    { "file": "teams_trn100.json", "label": "TRN-100, a newer unit", "channel": "teams", "origin": "synthetic", "received_at": "2026-10-30T23:00:00" },
-    { "file": "teams_conflict.json", "label": "A second expert disagrees", "channel": "teams", "origin": "synthetic", "received_at": "2026-11-02T23:00:00" }
+    {
+      "file": "email_key_nilo.txt",
+      "label": "The key to the Nilo barrier",
+      "channel": "email",
+      "origin": "synthetic",
+      "received_at": "2026-09-02T23:00:00"
+    },
+    {
+      "file": "teams_trn042.json",
+      "label": "TRN-042 after an SFP swap",
+      "channel": "teams",
+      "origin": "elisa",
+      "original_name": "teams_chat.json",
+      "sha256": "736473caed1255ffba76414b813bf41c641bfd98d9a5c2678486253280951071",
+      "received_at": "2026-10-14T23:00:00"
+    },
+    {
+      "file": "email_trn042.txt",
+      "label": "The same advice, written up",
+      "channel": "email",
+      "origin": "elisa",
+      "original_name": "email.txt",
+      "sha256": "49e0b6a9454998e340d6013563850d4060af49a72d5c3d41ffd91a2cc2f2f19d",
+      "received_at": "2026-10-14T23:00:00"
+    },
+    {
+      "file": "teams_noise_lunch.json",
+      "label": "Lunch",
+      "channel": "teams",
+      "origin": "synthetic",
+      "received_at": "2026-10-16T23:00:00"
+    },
+    {
+      "file": "teams_noise_schedule.json",
+      "label": "A schedule",
+      "channel": "teams",
+      "origin": "synthetic",
+      "received_at": "2026-10-19T23:00:00"
+    },
+    {
+      "file": "email_key_moved.txt",
+      "label": "The key was moved",
+      "channel": "email",
+      "origin": "synthetic",
+      "received_at": "2026-10-20T23:00:00"
+    },
+    {
+      "file": "teams_trn051.json",
+      "label": "TRN-051, the same fault",
+      "channel": "teams",
+      "origin": "synthetic",
+      "received_at": "2026-10-21T23:00:00"
+    },
+    {
+      "file": "teams_noise_maintenance.json",
+      "label": "Battery maintenance",
+      "channel": "teams",
+      "origin": "synthetic",
+      "received_at": "2026-10-23T23:00:00"
+    },
+    {
+      "file": "teams_noise_handover.json",
+      "label": "A handover",
+      "channel": "teams",
+      "origin": "synthetic",
+      "received_at": "2026-10-26T23:00:00"
+    },
+    {
+      "file": "teams_trn100.json",
+      "label": "TRN-100, a newer unit",
+      "channel": "teams",
+      "origin": "synthetic",
+      "received_at": "2026-10-30T23:00:00"
+    },
+    {
+      "file": "teams_conflict.json",
+      "label": "A second expert disagrees",
+      "channel": "teams",
+      "origin": "synthetic",
+      "received_at": "2026-11-02T23:00:00"
+    },
+    {
+      "file": "teams_koski_avain.json",
+      "label": "Kosken portin avain, in Finnish",
+      "channel": "teams",
+      "origin": "synthetic",
+      "received_at": "2026-11-03T23:00:00",
+      "language": "fi"
+    },
+    {
+      "file": "ticket_trn100.json",
+      "label": "Ticket INC-20483, TRN-100 closed",
+      "channel": "ticket",
+      "origin": "synthetic",
+      "received_at": "2026-11-04T23:00:00"
+    }
   ],
   "variants": [
-    { "file": "variants/email_key_moved_undated.txt", "label": "The key was moved, undated", "channel": "email", "origin": "synthetic", "replaces": "email_key_moved.txt", "received_at": "2026-10-20T23:00:00", "purpose": "The same message with no date. Used only in a test: yesterday cannot be resolved, so the old claim is superseded with an unknown end." }
+    {
+      "file": "variants/email_key_moved_undated.txt",
+      "label": "The key was moved, undated",
+      "channel": "email",
+      "origin": "synthetic",
+      "replaces": "email_key_moved.txt",
+      "received_at": "2026-10-20T23:00:00",
+      "purpose": "The same message with no date. Used only in a test: yesterday cannot be resolved, so the old claim is superseded with an unknown end."
+    }
   ]
 }

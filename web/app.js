@@ -123,6 +123,29 @@ const SCENES = [
     lit: ["agent", "timeline"],
   },
   {
+    nav: "Any source",
+    title: "Any source, any language, the same reader",
+    text:
+      "Two more sources arrived: a ticket whose closing note reports what the chat's advice led to on TRN-100, and a" +
+      " Teams thread in Finnish about the key to the Koski gate. The same reader, the same kind of note, in the" +
+      " speaker's own words. Ask about Koski and the answer is in Finnish, because that is what was said.",
+    look: "the sources on the left, and the agent",
+    clock: "2026-11-05T00:00:00",
+    ask: { unit: "SITE-KOSKI" },
+    lit: ["sources", "agent"],
+  },
+  {
+    nav: "Ask",
+    title: "When it does not know, it writes the question",
+    text:
+      "A symptom nobody has written about. The agent says it does not know, names the group, and drafts the question" +
+      " for the person on call to send. It never sends anything itself, and a budget keeps the asking small.",
+    look: "the agent",
+    clock: "2026-11-05T00:00:00",
+    ask: { unit: "TRN-051", symptom: "intermittent CRC errors on uplink" },
+    lit: ["agent"],
+  },
+  {
     nav: "The limits",
     title: "What this demo does not claim",
     text: "Stated here, in the README and in the slides.",
@@ -140,11 +163,14 @@ const PRESETS = [
   { label: "Third unit TRN-063", ask: { unit: "TRN-063", symptom: SYMPTOM } },
   { label: "Other symptom", ask: { unit: "TRN-051", symptom: "intermittent CRC errors on uplink" } },
   { label: "Drive to Nilo", ask: { unit: "SITE-NILO" } },
+  { label: "Drive to Koski", ask: { unit: "SITE-KOSKI" } },
   { label: "Key on 10.10.?", ask: { unit: "SITE-NILO", at: "2026-10-10" } },
 ];
 
 // Plain words for what the data calls things. The data keeps its names; the page translates.
 const TIER_LABEL = { propose: "PROPOSE", check_first: "CHECK FIRST", unknown: "I DON'T KNOW" };
+const CHANNEL_LETTER = { teams: "T", email: "E", ticket: "#" };
+const CHANNEL_NAME = { teams: "Teams export", email: "Email", ticket: "Ticket export" };
 const WHO_LABEL = { agent: "The agent itself", person: "A person", ask: "Nobody yet: a person on call is asked" };
 const MATCH_LABEL = {
   same_node: "seen on this unit",
@@ -400,7 +426,7 @@ function drawSources() {
         else note = "no advice in it";
       }
       li.innerHTML = `
-        <span class="channel">${source.channel === "teams" ? "T" : "E"}</span>
+        <span class="channel">${CHANNEL_LETTER[source.channel] || "?"}</span>
         <span class="name">${esc(source.label || source.file)}</span>
         <span class="note">${esc(note)}</span>`;
       li.title = `${source.file}, received ${shortTime(source.received_at, true)}${source.sha256 ? `, sha256 ${source.sha256.slice(0, 12)}` : ""}`;
@@ -437,7 +463,7 @@ function toldBy(sources) {
   for (const s of sources) {
     const role = s.role || "role unknown";
     if (!byRole.has(role)) byRole.set(role, new Set());
-    byRole.get(role).add(s.channel === "teams" ? "Teams" : s.channel);
+    byRole.get(role).add(s.channel === "teams" ? "Teams" : s.channel === "ticket" ? "a ticket" : s.channel);
   }
   return [...byRole].map(([role, channels]) => `${role} in ${[...channels].join(" and ")}`).join("; ");
 }
@@ -684,6 +710,12 @@ function drawAnswer() {
     rows.push(`<dt>Who acts</dt><dd class="${answer.who_acts === "agent" ? "read" : ""}">${esc(WHO_LABEL[answer.who_acts])}. ${esc(answer.who_why)}</dd>`);
   }
   if (answer.ask_group) rows.push(`<dt>Ask instead</dt><dd>${esc(answer.ask_group)}. The gap is logged, so the next time it has a name.</dd>`);
+  const q = answer.question;
+  const draft = q
+    ? `<div class="draft">
+        <div class="draft-head"><b>Draft for ${esc(q.to)}</b><span>a person sends it, the system never does · question ${q.used} of ${q.budget} this week${q.within_budget ? "" : " · over the budget, so it waits"}</span></div>
+        <p>${esc(q.draft)}</p></div>`
+    : "";
   rows.push(`<dt>What would change this</dt><dd>${esc(answer.what_would_change)}</dd>`);
   if (answer.boundary_known === false) rows.push("<dt>Boundary</dt><dd>Not known: the moment one statement replaced the other is not recorded.</dd>");
   const shown = (answer.claims || []).filter((claim) => claim.status_for_entity !== "not_yet_valid");
@@ -714,6 +746,7 @@ function drawAnswer() {
     </div>
     <p class="next">${esc(answer.next_step)}</p>
     <dl>${rows.join("")}</dl>
+    ${draft}
     ${side ? `<div class="sides">${side}</div>` : ""}`;
 }
 
@@ -745,7 +778,7 @@ async function openSource(file) {
     .join("");
   openOverlay(`
     <h3>${esc(source.label || source.subject || file)}</h3>
-    <p class="sub">${origin}. ${esc(source.channel === "teams" ? "Teams export" : "Email")} <code>${esc(file)}</code>, sha256 <code>${esc(source.sha256.slice(0, 16))}</code></p>
+    <p class="sub">${origin}. ${esc(CHANNEL_NAME[source.channel] || source.channel)} <code>${esc(file)}</code>, sha256 <code>${esc(source.sha256.slice(0, 16))}</code></p>
     ${messages}`);
 }
 

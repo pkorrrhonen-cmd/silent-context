@@ -1,4 +1,4 @@
-"""Reads the sources as they are: Teams exports and emails become one shape, a thread of messages."""
+"""Reads the sources as they are: Teams exports, emails and ticket exports become one shape, a thread of messages."""
 
 import json
 import re
@@ -100,8 +100,28 @@ def _parse_email(path: Path, file: str) -> Thread:
     )
 
 
+def _parse_ticket(path: Path, file: str) -> Thread:
+    """A ticketing system's export: the title and the worklog, one entry per message. Same shape, same reader."""
+    data = json.loads(path.read_text(encoding="utf-8"))
+    day = (data.get("opened") or "")[:10] or None
+    return Thread(
+        file=file,
+        channel="ticket",
+        day=day,
+        date_text=data.get("opened"),
+        subject=f"{data.get('ticket', '')} {data.get('title', '')}".strip() or None,
+        messages=tuple(
+            Message(m["seq"], m.get("time"), m.get("author"), m.get("role"), m["text"])
+            for m in data["worklog"]
+        ),
+    )
+
+
 def parse(path: Path, file: str) -> Thread:
-    return _parse_teams(path, file) if path.suffix == ".json" else _parse_email(path, file)
+    if path.suffix != ".json":
+        return _parse_email(path, file)
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return _parse_ticket(path, file) if "worklog" in data else _parse_teams(path, file)
 
 
 def load_manifest() -> dict:

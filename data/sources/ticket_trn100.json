@@ -1,0 +1,30 @@
+{
+  "ticket": "INC-20483",
+  "title": "TRN-100 xe-0/1/0: no traffic after SFP replacement",
+  "opened": "2026-10-30T13:15",
+  "closed": "2026-10-30T14:30",
+  "note": "Synthetic ticket export, the shape of a ticketing system's worklog. Added on 7.11.2026 to show a third kind of source feeding the same reader: a ticket's closing note reports an outcome for advice that was told in a chat.",
+  "worklog": [
+    {
+      "seq": 1,
+      "time": "13:16",
+      "author": "Aino Asentaja",
+      "role": "Field Engineer",
+      "text": "New SFP on xe-0/1/0 at TRN-100. Link is up, no traffic. Bounced the interface as the on-call's note says, no change."
+    },
+    {
+      "seq": 2,
+      "time": "14:05",
+      "author": "Pekka Päivystäjä",
+      "role": "Transmission On-call",
+      "text": "Checked the service profile on xe-0/1/0 as advised in the chat: the VLAN from last month's migration was missing. Added it, traffic is back on TRN-100."
+    },
+    {
+      "seq": 3,
+      "time": "14:30",
+      "author": "Aino Asentaja",
+      "role": "Field Engineer",
+      "text": "Closing. Root cause: service profile VLAN missing after the migration. Not the SFP."
+    }
+  ]
+}

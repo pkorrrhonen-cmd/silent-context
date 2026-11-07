@@ -1,0 +1,83 @@
+{
+  "key": "c31030d9977d2a1154e24ce78cac548a5ea08e76ab97892e3cf042be68196034",
+  "model": "claude-opus-5-5",
+  "output": {
+    "claims": [
+      {
+        "kind": "troubleshooting",
+        "claim_text": "After changing the SFP, if the interface comes up but traffic does not recover, disable the interface, wait a little, then enable it again, and don't reboot the whole unit unless that fails.",
+        "symptom": "link up but no traffic after SFP replacement",
+        "advice_message_seqs": [
+          1
+        ],
+        "relayed": true,
+        "target_node_ids": [
+          "TRN-100"
+        ],
+        "target_sites": [],
+        "target_ports": [
+          "xe-0/1/0"
+        ],
+        "target_firmware": null,
+        "mentions_barrier": false,
+        "procedure_type": "PROC-SFP-REPLACE",
+        "scope_text": null,
+        "scope_names_version": null,
+        "check_step": "check whether traffic counters are increasing",
+        "check_kind": "read_counters",
+        "action": "disable the interface, wait a little, then enable it again",
+        "action_kind": "bounce_interface",
+        "do_not_before": "don't reboot the whole unit",
+        "relative_time": null,
+        "same_as_existing": "clm-002",
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": [
+          {
+            "kind": "failure",
+            "message_seq": 1,
+            "unit_id": "TRN-100"
+          }
+        ]
+      },
+      {
+        "kind": "troubleshooting",
+        "claim_text": "Check the service profile on the port, the VLAN from last month's migration may be missing, and add it back.",
+        "symptom": "link up but no traffic after migration",
+        "advice_message_seqs": [
+          2
+        ],
+        "relayed": true,
+        "target_node_ids": [
+          "TRN-100"
+        ],
+        "target_sites": [],
+        "target_ports": [
+          "xe-0/1/0"
+        ],
+        "target_firmware": null,
+        "mentions_barrier": false,
+        "procedure_type": null,
+        "scope_text": null,
+        "scope_names_version": null,
+        "check_step": "check the service profile on the port",
+        "check_kind": "other",
+        "action": "add the missing VLAN to the service profile",
+        "action_kind": "none",
+        "do_not_before": null,
+        "relative_time": null,
+        "same_as_existing": "clm-004",
+        "replaces_existing": null,
+        "contradicts_existing": null,
+        "outcomes": [
+          {
+            "kind": "success",
+            "message_seq": 2,
+            "unit_id": "TRN-100"
+          }
+        ]
+      }
+    ],
+    "estimates": []
+  }
+}

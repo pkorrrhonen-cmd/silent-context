@@ -366,6 +366,10 @@ ul.evidence q { color: var(--text); quotes: "\201C" "\201D"; }
 .tier.unknown { background: var(--unknown); }
 .tier.learned { background: var(--copper-bright); }
 .tier.acted { background: var(--propose); }
+.draft { margin: 8px 0 10px; padding: 10px 14px; border: 1px dashed var(--copper); border-radius: 6px; max-width: 900px; }
+.draft-head { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; margin-bottom: 4px; font-size: 12.5px; color: var(--muted); }
+.draft-head b { color: var(--copper-bright); font: 600 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.draft p { margin: 0; font-size: 16px; line-height: 1.35; }
 
 .answer-head { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 4px; }
 .answer-head .match { font-size: 13px; color: var(--muted); }

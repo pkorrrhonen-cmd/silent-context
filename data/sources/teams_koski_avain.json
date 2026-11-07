@@ -1,0 +1,39 @@
+{
+  "channel": "teams",
+  "date": "2026-11-03",
+  "note": "Synthetic, in Finnish, in the style of Elisa's example. Names and places are invented. Added on 7.11.2026 to show that the reader does not care about the language of a source.",
+  "participants": [
+    { "name": "Jussi Jalkanen", "role": "Field Engineer" },
+    { "name": "Pekka Päivystäjä", "role": "Transmission On-call" }
+  ],
+  "messages": [
+    {
+      "seq": 1,
+      "time": "08:12",
+      "author": "Jussi Jalkanen",
+      "role": "Field Engineer",
+      "text": "Moi Pekka, olen Koski-asemalla. Portin avain ei ole enää lukkokaapissa portin vieressä, kaappi on tyhjä. Tiedätkö missä se on?"
+    },
+    {
+      "seq": 2,
+      "time": "08:19",
+      "author": "Pekka Päivystäjä",
+      "role": "Transmission On-call",
+      "text": "Joo. Koski-aseman portin avain siirrettiin viime viikolla valvomon avainkaappiin, lokero 7, kun se vanha lukkokaappi vaihdettiin. Hae se sieltä ennen kuin lähdet asemalle."
+    },
+    {
+      "seq": 3,
+      "time": "08:21",
+      "author": "Jussi Jalkanen",
+      "role": "Field Engineer",
+      "text": "Ok, kiitos. Olisi ollut hyvä tietää ennen ajoa."
+    },
+    {
+      "seq": 4,
+      "time": "08:22",
+      "author": "Pekka Päivystäjä",
+      "role": "Transmission On-call",
+      "text": "Totta. Laitan tiedon myös kenttäryhmälle."
+    }
+  ]
+}

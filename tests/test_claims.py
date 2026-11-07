@@ -664,3 +664,22 @@ def test_the_policy_never_gives_a_reboot_or_a_replacement_to_the_agent(plain) ->
         assert "not reversible" in who["why"]
     assert policy.who_acts(plain, graph, {"tier": "unknown", "action_kind": "none"}, "TRN-051", None)["who"] == "ask"
     assert policy.who_acts(plain, graph, {"tier": "check_first", "action_kind": "read"}, "TRN-051", None)["who"] == "person"
+
+
+# The drafted question, with a budget
+
+
+def test_when_the_agent_does_not_know_it_drafts_the_question_for_a_person(tmp_path: Path) -> None:
+    path = tmp_path / "ask.db"
+    ingest.run(path, until=AFTER_CAPTURE)
+    with db.session(path) as conn:
+        first = claims_for("TRN-051", "intermittent CRC errors on uplink", conn=conn)
+        second = claims_for("TRN-100", "fan tray humming loudly", conn=conn)
+        known = claims_for("TRN-051", SYMPTOM, observed={"counters": "zero"}, conn=conn)
+    assert first["tier"] == "unknown"
+    q = first["question"]
+    assert q["to"] == "transmission-oncall" and "TRN-051" in q["draft"] and "CRC" in q["draft"]
+    assert q["sent_by"] == "a person, never the system"
+    assert (q["used"], q["budget"], q["within_budget"]) == (1, 3, True)
+    assert second["question"]["used"] == 2
+    assert known["question"] is None

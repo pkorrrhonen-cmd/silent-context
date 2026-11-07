@@ -76,7 +76,7 @@ CREATE TABLE claim (
 CREATE TABLE source (
   id TEXT PRIMARY KEY,
   claim_id TEXT NOT NULL REFERENCES claim(id),
-  channel TEXT NOT NULL CHECK (channel IN ('teams', 'email', 'transcript')),
+  channel TEXT NOT NULL CHECK (channel IN ('teams', 'email', 'transcript', 'ticket')),
   ref TEXT NOT NULL,
   role TEXT,
   teller_key TEXT,

@@ -16,6 +16,8 @@ from app import db, events, policy
 from app.resolve import Graph
 
 FALLBACK_GROUP = "transmission-oncall"
+QUESTION_BUDGET = 3  # questions per group in seven days; the asking must not become the extra work it replaces
+QUESTION_WINDOW = timedelta(days=7)
 BLOCKED_ACTIONS = {"reboot", "replace_hw"}
 PROHIBITION = "No reboot or hardware replacement before a failed bounce is reported."
 COUNTERS_FRESH_FOR = timedelta(minutes=30)
@@ -473,6 +475,32 @@ def _log(
     return answer_id
 
 
+def draft_question(conn: sqlite3.Connection, now: str, entity: str, symptom: str, group: str) -> dict:
+    """When the agent does not know: the question written out for a person on call to send, with the budget.
+
+    The system never sends it. A person does, if they choose, and the budget shows how often this group
+    has been asked in the last seven days, this question included.
+    """
+    since = (datetime.fromisoformat(now) - QUESTION_WINDOW).isoformat()
+    used = conn.execute(
+        "SELECT count(*) FROM gap_log WHERE ask_group = ? AND asked_at > ? AND asked_at <= ?",
+        (group, since, now),
+    ).fetchone()[0]
+    what = "how to get there" if symptom == "access" else symptom
+    draft = (
+        f"{entity}: {what}. Nothing is recorded about this yet. Has anyone seen it, and what did you"
+        " check first?"
+    )
+    return {
+        "to": group,
+        "draft": draft,
+        "used": used + 1,
+        "budget": QUESTION_BUDGET,
+        "within_budget": used + 1 <= QUESTION_BUDGET,
+        "sent_by": "a person, never the system",
+    }
+
+
 def list_claims(conn: sqlite3.Connection) -> list[dict]:
     """Every known claim, with its status apart from any particular unit."""
     now = _clock(conn)
@@ -569,6 +597,7 @@ def claims_for(
                 views.append(_view(conn, partner, "disputed", "none", note, now))
 
     ask_group = group if decision["tier"] == "unknown" else None
+    question = draft_question(conn, now, entity_id, symptom, group) if ask_group else None
     who = policy.who_acts(conn, graph, decision, entity_id, seen["counters_from"])
     answer_id = _log(
         conn,
@@ -591,6 +620,7 @@ def claims_for(
         "claims": views,
         "evidence_rendered": "\n\n".join(view["evidence_rendered"] for view in views),
         "ask_group": ask_group,
+        "question": question,
         "observed_used": used,
         "answer_id": answer_id,
     }
@@ -612,8 +642,10 @@ def access_for(
     now = _clock(conn)
     site = graph.site_of_node.get(place) or (place if place in graph.site_aliases.values() else None)
     if site is None:
+        question = draft_question(conn, now, place, "access", FALLBACK_GROUP)
         answer_id = _log(conn, now, place, "access", "unknown", f"Ask {FALLBACK_GROUP}.", "none", [], FALLBACK_GROUP)
         return {
+            "question": question,
             "site": None,
             "tier": "unknown",
             "next_step": f"Ask {FALLBACK_GROUP}.",
@@ -681,8 +713,10 @@ def access_for(
         else f"Ask {group}."
     )
     ask_group = None if holding else group
+    question = draft_question(conn, now, place, "access", group) if ask_group else None
     answer_id = _log(conn, now, place, "access", tier, next_step, "none", [v["id"] for v in views], ask_group)
     return {
+        "question": question,
         "site": site,
         "tier": tier,
         "next_step": next_step,

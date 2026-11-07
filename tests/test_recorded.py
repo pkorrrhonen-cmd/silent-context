@@ -49,7 +49,7 @@ DASHES = chr(0x2013) + chr(0x2014)
 def test_the_recorded_answers_hold_no_en_or_em_dashes() -> None:
     """Prints file names only, because some of these files are the held-out set's answers."""
     files = sorted(extract.EXTRACTIONS_DIR.rglob("*.json"))
-    assert len(files) == 28
+    assert len(files) == 30
     dashed = [p.name for p in files if any(c in p.read_text(encoding="utf-8") for c in DASHES)]
     assert dashed == []
 
