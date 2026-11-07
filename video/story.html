@@ -1,0 +1,145 @@
+<!doctype html>
+<!-- The story cards of the second cut (narration-v3.md blocks 01, 02, 11 and 12), in the page's own look. Recorded by
+     scenes_v3.py in the same take as the page: storyGo(n) shows card n and restarts its animations; the body is
+     marked ready once fonts are in. Every animation ends in a still state, and a tiny ticker repaints the page five
+     times a second while a card is shown, so the screencast always carries the last frame of a move (a fade's last
+     frame was dropped on 7.11.2026). Written at the event. Used only to make the video; not part of the product. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Silent context: the story cards</title>
+<style>
+  :root {
+    --bg: #0d1116; --panel: #141c25; --panel-raised: #1b2732; --line: #2b3a48;
+    --copper: #b5612a; --copper-bright: #e8934f; --text: #e8ecef; --muted: #93a1af; --faint: #5b6977;
+    --propose: #53c08f;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body { background: var(--bg); color: var(--text); font: 15px/1.42 var(--sans); overflow: hidden; }
+  .card { position: absolute; inset: 0; display: none; padding: 56px 110px 90px; flex-direction: column; justify-content: center; }
+  .card[data-on] { display: flex; }
+  .eyebrow { font: 600 19px var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--copper-bright); margin: 0 0 24px; }
+  h1 { font-size: 58px; line-height: 1.12; margin: 0; letter-spacing: -0.015em; }
+  .foot { position: absolute; left: 110px; bottom: 40px; font: 14px var(--mono); letter-spacing: .06em; color: var(--faint); }
+  #tick { position: fixed; left: 0; bottom: 0; width: 2px; height: 2px; background: #0e1217; }
+
+  /* Everything that appears does so the same way: a short rise, then still. */
+  .in { opacity: 0; animation: arrive .55s cubic-bezier(.2,.7,.2,1) forwards; animation-delay: var(--at, 0s); }
+  @keyframes arrive { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+  /* Card 0: Veikko's and Erkki's chat on the left, the big lines on the right. */
+  .split { display: grid; grid-template-columns: 600px 1fr; gap: 80px; align-items: center; }
+  .thread { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 22px 26px; font-size: 20px; line-height: 1.4; min-height: 480px; }
+  .msg { margin: 0 0 18px; }
+  .msg .who { font: 600 15px var(--mono); color: var(--copper-bright); margin: 0 0 5px; }
+  .msg .who span { color: var(--faint); font-weight: 400; margin-left: 8px; }
+  .msg p { margin: 0; color: var(--text); }
+  .msg.v p { color: var(--muted); }
+  .thread .tag { margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--line); font: 13px var(--mono); color: var(--faint); letter-spacing: .06em; }
+  .lines { display: flex; flex-direction: column; gap: 26px; }
+  .lines .l { font-size: 36px; line-height: 1.25; color: var(--muted); margin: 0; }
+  .lines h1 { font-size: 64px; }
+
+  /* Card 1: four steps that light up in turn. */
+  .flow { display: grid; grid-template-columns: 1fr 36px 1fr 36px 1fr 36px 1fr; gap: 14px; align-items: stretch; margin-top: 40px; }
+  .step { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 22px 24px 24px; }
+  .step svg { width: 44px; height: 44px; margin-bottom: 14px; }
+  .step svg * { fill: none; stroke: var(--copper-bright); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .step b { display: block; font: 600 14px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--copper-bright); margin-bottom: 10px; }
+  .step p { margin: 0; font-size: 22px; line-height: 1.3; color: var(--text); }
+  .step p code { font: 600 20px var(--mono); color: var(--text); }
+  .arrow { align-self: center; justify-self: center; width: 36px; height: 36px; }
+  .arrow path { fill: none; stroke: var(--copper-bright); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Card 2: the limits, four lines. */
+  .limits { display: flex; flex-direction: column; gap: 26px; margin-top: 36px; }
+  .limits .l { display: grid; grid-template-columns: 70px 1fr; align-items: baseline; font-size: 38px; line-height: 1.25; margin: 0; }
+  .limits .l b { font: 600 20px var(--mono); color: var(--copper-bright); letter-spacing: .1em; }
+
+  /* Card 3: the close. */
+  .close h1 { font-size: 84px; }
+  .close .l { font-size: 36px; color: var(--muted); margin: 26px 0 0; }
+  .close .repo { font: 24px var(--mono); color: var(--text); margin: 34px 0 0; letter-spacing: .02em; }
+  .close .repo span { color: var(--faint); }
+</style>
+</head>
+<body>
+<section class="card" id="card-0" data-on>
+  <div class="split">
+    <div class="thread">
+      <div class="msg v in" style="--at:.4s"><p class="who">Veikko Vikkelä <span>Field Engineer · 09:14</span></p>
+        <p>Changed the SFP on transmission node TRN-042. Link is up and alarms cleared, but traffic is still not coming back.</p></div>
+      <div class="msg in" style="--at:4.6s"><p class="who">Erkki Expert <span>Network Expert · 09:22</span></p>
+        <p>That's it. Disable the interface, wait a little, then enable it again. Don't reboot the whole unit unless that fails.</p></div>
+      <div class="msg v in" style="--at:8.6s"><p class="who">Veikko Vikkelä <span>09:26</span></p><p>Is this documented somewhere?</p></div>
+      <div class="msg in" style="--at:10.2s"><p class="who">Erkki Expert <span>09:27</span></p><p>Not that I know of. We've just learned it over the years.</p></div>
+      <p class="tag in" style="--at:.4s">a Teams thread · Elisa's example file, unchanged</p>
+    </div>
+    <div class="lines">
+      <p class="eyebrow in" style="--at:.2s">Silent context</p>
+      <p class="l in" style="--at:1.6s">The link came up. No traffic.</p>
+      <p class="l in" style="--at:4.8s">Erkki knew the fix.</p>
+      <h1 class="in" style="--at:11.4s">It lives in one chat.</h1>
+    </div>
+  </div>
+  <p class="foot">Since AI 2026 · Elisa's challenge</p>
+</section>
+
+<section class="card" id="card-1">
+  <p class="eyebrow in" style="--at:.2s">The answer</p>
+  <h1 class="in" style="--at:.3s">Silent context remembers it.</h1>
+  <div class="flow">
+    <div class="step in" style="--at:.9s">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M8 10h28v18H20l-8 7v-7H8z"/><path d="M14 17h16M14 22h10"/></svg>
+      <b>Read as written</b><p>The chat and the email, exactly as they are.</p></div>
+    <svg class="arrow in" style="--at:3.2s" viewBox="0 0 36 36" aria-hidden="true"><path d="M5 18h24M21 10l8 8-8 8"/></svg>
+    <div class="step in" style="--at:3.4s">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><rect x="6" y="22" width="32" height="14" rx="2"/><path d="M11 29h6M21 29h12"/><path d="M14 8h16v12H14z"/><path d="M22 4v4M22 20v3"/></svg>
+      <b>Pinned to the unit</b><p><code>TRN-042</code>, in Erkki's own words.</p></div>
+    <svg class="arrow in" style="--at:6.2s" viewBox="0 0 36 36" aria-hidden="true"><path d="M5 18h24M21 10l8 8-8 8"/></svg>
+    <div class="step in" style="--at:6.4s">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="15"/><path d="M22 12v10l7 4"/></svg>
+      <b>Who said it, and when</b><p>Erkki · Teams · 14.10.</p></div>
+    <svg class="arrow in" style="--at:8.9s" viewBox="0 0 36 36" aria-hidden="true"><path d="M5 18h24M21 10l8 8-8 8"/></svg>
+    <div class="step in" style="--at:9.1s">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><rect x="6" y="9" width="32" height="26" rx="3"/><path d="M13 19l6 6 12-12"/></svg>
+      <b>One call for the agent</b><p>What to do next, and where that came from.</p></div>
+  </div>
+  <p class="foot">Since AI 2026 · Elisa's challenge</p>
+</section>
+
+<section class="card" id="card-2">
+  <p class="eyebrow in" style="--at:.2s">The limits</p>
+  <h1 class="in" style="--at:.3s">What this does not claim.</h1>
+  <div class="limits">
+    <p class="l in" style="--at:1.7s"><b>01</b><span>It never starts a conversation with an expert.</span></p>
+    <p class="l in" style="--at:5.2s"><b>02</b><span>It shows where advice came from, not whether it is true.</span></p>
+    <p class="l in" style="--at:8.4s"><b>03</b><span>It scores advice, never people.</span></p>
+    <p class="l in" style="--at:10.8s"><b>04</b><span>Everything but Elisa's two example files is simulated.</span></p>
+  </div>
+  <p class="foot">Since AI 2026 · Elisa's challenge</p>
+</section>
+
+<section class="card close" id="card-3">
+  <p class="eyebrow in" style="--at:.2s">Since AI 2026 · Elisa's challenge</p>
+  <h1 class="in" style="--at:.3s">Silent context</h1>
+  <p class="l in" style="--at:1.3s">Runs with no model and no key.</p>
+  <p class="repo in" style="--at:2.5s">github.com/pkorrrhonen-cmd/silent-context <span>· MIT · Petri Korhonen</span></p>
+</section>
+
+<div id="tick"></div>
+<script>
+"use strict";
+const cards = [...document.querySelectorAll(".card")];
+window.storyGo = (n) => { cards.forEach((card, i) => card.toggleAttribute("data-on", i === n)); };
+const fromHash = parseInt(location.hash.slice(1), 10);
+if (!Number.isNaN(fromHash)) storyGo(fromHash);
+let on = false;
+setInterval(() => { on = !on; document.getElementById("tick").style.transform = on ? "translateX(1px)" : "none"; }, 200);
+document.fonts.ready.then(() => { document.body.dataset.ready = "1"; });
+</script>
+</body>
+</html>

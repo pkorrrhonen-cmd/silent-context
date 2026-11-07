@@ -57,6 +57,39 @@ montage of the doubt cases, the limits as a card. The options and the recommenda
 [`DECISIONS.md`](DECISIONS.md), open for the owner; the 7.11. video stays the fallback. The source zip was
 rebuilt from this session's last commit.
 
+### The second cut of the video, built on the owner's choice A
+
+**Why:** decision 18. The first cut was correct but dense for a viewer new to it; the owner chose a new cut on
+a plain-language narration, with the first cut as the fallback.
+
+**Built:** `video/narration-v3.md` (twelve blocks, 305 words, the sentences the owner voiced from
+`narration-read-v3.txt`), `video/story.html` (four cards in the page's look: the chat and "It lives in one chat",
+the four steps, the limits, the close; each element arrives on a schedule that follows the narration),
+`video/scenes_v3.py` (the take: two cards, the page's scenes 2 to 9 zoomed toward the panel the sentence is
+about, two cards; the zoom is a transform on the page's body that the recorder injects, so the product's page
+is not changed), `cut_from_take.py` now names clips from the narration's headers and takes `--prefix`, and
+`v3-cut.json` and `v3-final.json` with a 0.6 s tail.
+
+**Measured:**
+
+- **The zoom records smoothly without `will-change`.** With `will-change: transform` on the body the
+  screencast gave 4 frames during a 0.6 s move; without it a frame every 17 ms, 73 frames in a 1.2 s move.
+  The first ten second trial showed the answer panel cut at both sides at 1.6 times, so the zoom now fits the
+  target to the frame: the answer panel's whole width fits at 1.38, its left three quarters at 1.6, the claim
+  card at 1.8. Scene 2 opens Elisa's thread over the whole frame, so that block has no zoom.
+- **The take:** 149.2 s, 1757 screencast frames; the cards' animations and their end states are in it (a
+  ticker repaints the page five times a second, so the end of a move is never dropped).
+- **The owner's track:** 107.8 s from ElevenLabs; the aligner found all twelve blocks at the default
+  threshold, 3.46 words per speech second, fit cost 1.48; the only slow sentences are the close's two.
+- **The final:** `silent-context-v3-captions.mp4`, 117.6 s, 1920 by 1080, H.264 and AAC, 12.7 MB with the
+  captions burned into the band (10.6 MB without), 36 caption cues; frames read at six points. The guide-voiced
+  draft before it, 124.4 s, was the pipeline check; `final.py --narration` needs an absolute path, a relative
+  one is read from the working folder and fails.
+
+**Where it is:** the Desktop folders "Silent context submission" (beside the first cut, with the notes pointing
+at the second) and "Silent context video", and the pipeline's media folder. The owner watches both cuts and
+picks the one to upload.
+
 ## Session 3, 7.11.2026: the technical check before the checkpoint
 
 **Why:** the owner saw the page the evening before and holds phase 6's checkpoint. Before anything

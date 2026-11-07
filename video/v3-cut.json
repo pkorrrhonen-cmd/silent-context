@@ -1,0 +1,127 @@
+{
+ "about": "Silent context: one clip per narration block, cut from the one take by its block marks, each no longer than its speech plus a tail (cut_from_take.py). Nothing is sped up. Paths are relative to --media.",
+ "size": "1920x950",
+ "speed_of_waits": 1,
+ "scenes": [
+  {
+   "name": "01-the-story",
+   "parts": [
+    {
+     "take": "takes-v3/demo",
+     "from": 1.59,
+     "to": 16.12
+    }
+   ]
+  },
+  {
+   "name": "02-the-answer",
+   "parts": [
+    {
+     "take": "takes-v3/demo",
+     "from": 17.9,
+     "to": 29.55
+    }
+   ]
+  },
+  {
+   "name": "03-capture",
+   "parts": [
+    {
+     "take": "takes-v3/demo",
+     "from": 34.78,
+     "to": 43.69
+    }
+   ]
+  },
+  {
+   "name": "04-pin",
+   "parts": [
+    {
+     "take": "takes-v3/demo",
+     "from": 45.5,
+     "to": 59.41
+    }
+   ]
+  },
+  {
+   "name": "05-use",
+   "parts": [
+    {
+     "take": "takes-v3/demo",
+     "from": 62.26,
+     "to": 76.06
+    }
+   ]
+  },
+  {
+   "name": "06-learn",
+   "parts": [
+    {
+     "take": "takes-v3/demo",
+     "from": 80.04,
+     "to": 89.28
+    }
+   ]
+  },
+  {
+   "name": "07-doubt",
+   "parts": [
+    {
+     "take": "takes-v3/demo",
+     "from": 90.79,
+     "to": 98.54
+    }
+   ]
+  },
+  {
+   "name": "08-not-for-all",
+   "parts": [
+    {
+     "take": "takes-v3/demo",
+     "from": 101.54,
+     "to": 105.38
+    }
+   ]
+  },
+  {
+   "name": "09-disagree",
+   "parts": [
+    {
+     "take": "takes-v3/demo",
+     "from": 108.27,
+     "to": 113.41
+    }
+   ]
+  },
+  {
+   "name": "10-the-barrier",
+   "parts": [
+    {
+     "take": "takes-v3/demo",
+     "from": 115.0,
+     "to": 121.71
+    }
+   ]
+  },
+  {
+   "name": "11-the-limits",
+   "parts": [
+    {
+     "take": "takes-v3/demo",
+     "from": 125.61,
+     "to": 140.1
+    }
+   ]
+  },
+  {
+   "name": "12-close",
+   "parts": [
+    {
+     "take": "takes-v3/demo",
+     "from": 141.92,
+     "to": 148.92
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+Veikko changed a part on a network unit. The link came up, but no traffic. Erkki knew the fix: disable the port, wait, enable it again. Is it written down anywhere? No. It lives in one chat.
+
+Silent context reads that chat as it is, pins the advice to the unit it was about, and remembers who said it and when. The next time, an agent gets the answer in one call.
+
+The thread and an email are read exactly as written. Nobody fills in anything. The system never starts a conversation with anyone.
+
+Erkki's advice becomes one note, in his own words, pinned to the unit TRN-042. It keeps who said it, where, and which units he said it covers. It is dated from the moment the part was changed.
+
+A week later, the same fault on another unit of the same model. The agent reads the counters from the device itself and proposes Erkki's step, with its source. A reboot stays held back until the lighter fix has failed.
+
+What the technician did, and that it worked, comes from the device's own events. The note fills itself in. Nobody reported anything.
+
+It also knows when not to trust itself. After a firmware update, it asks to check again on that unit only. Where the fix did not help, it stops offering it. When two experts disagree, it shows both and picks no side.
+
+And before anyone drives to a site: where the key is now, who said so, and how old that is.
+
+What this does not claim. It never starts a conversation with an expert. It shows where advice came from, not whether it is true. It scores advice, never people. Everything but Elisa's two example files is simulated.
+
+Silent context. Runs with no model and no key. The code is public.
