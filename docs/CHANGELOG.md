@@ -62,7 +62,9 @@ showed a dimmed panel; block 05 now lights the axis with the claims for that sen
 The take was recorded again on a quiet machine, cut and finished as before, and the frame list read for
 stalls before the cut: 55 or 56 frames in every zoom move and no frame over 50 ms, the same as the v5
 and v4 takes. The final keeps its name, length and size class; the plans `v6-cut.json` and `v6-final.json`
-are rewritten from the new marks, and the V5 folder's video and SRT are replaced.
+are rewritten from the new marks, and the V5 folder's video and SRT are replaced. The owner uploaded it to
+YouTube as unlisted the same evening: `https://youtu.be/0t4Ib1uPcfc`, titled "Elisa silent context demo - SinceAi 2026"; the
+link answers, so the upload row leaves the backlog and the form's demo video field has its value.
 
 **Proposed, as a side session with its brief:** the hosted demo on Cloudflare Containers (the owner: the
 account has Workers Paid), the real FastAPI app as a Docker image, repeatable with one command, its
