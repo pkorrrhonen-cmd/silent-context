@@ -24,3 +24,6 @@ Thumbs.db
 
 # Office lock files while a deck is open
 ~$*
+
+# The deck build's screenshots are written by shoot.js and crops.js; not kept in git
+docs/slides/build/shots/
