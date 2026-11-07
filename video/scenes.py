@@ -1,6 +1,9 @@
 """The page's scenes for the video recorder (sf3d-ai-lab, pipeline/record.py).
 
-    uv run python pipeline/record.py --stage http://127.0.0.1:8000/ --scenes <this file> --out ../media/silent-context/takes demo
+    uv run python pipeline/record.py --stage http://127.0.0.1:8000/ --scenes <this file> --out ../media/silent-context/takes --scale 1.2 demo
+
+`--scale 1.2` lays the page out at 1600 by 900 CSS pixels in the 1920 by 1080 frame: the page's own height,
+and text a fifth larger than at scale 1, which read small on 7.11.2026.
 
 One take, `demo`, walks the page's scenes in the order of narration.md and holds each for its block's
 seconds plus a margin, so the aligner has picture to cut to. The seconds come from narration.md next to
