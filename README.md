@@ -16,7 +16,10 @@ similar case appears.
 
 Run it and open `http://127.0.0.1:8000`. It needs no model and no key. The arrow keys move through thirteen
 scenes. The time axis at the top is a live version of the time-aware layers: the event stream, what was
-received, and each claim's `valid_from` and `valid_to`, with `t=x` moving as the scenes go.
+received, and each claim's `valid_from` and `valid_to`, with `t=x` moving as the scenes go. The page is light,
+and its colours take Elisa's own look as a nod to the challenge: its blue for structure and actions, its orange
+for the claims, its greys, measured from elisa.fi's stylesheets on 7.11.2026. A palette only: no logo and nothing
+that presents the page as Elisa's. The page loads nothing from outside, and a test keeps it so.
 
 ![Scene 4 of the page: the same fault on another unit. The agent proposes the expert's step with its source, reads the counters from the device and holds back a reboot.](docs/images/page-scene-4-use.png)
 

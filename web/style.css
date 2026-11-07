@@ -1,21 +1,29 @@
-/* The colours follow the time-aware layer picture this page animates: navy layers, copper bars. */
+/* The colours follow the time-aware layer picture this page animates: blue layers and units, orange claims.
+   Light since 7.11.2026 evening (the owner): the video is watched on phones in a bright hall, and a dark page
+   with small grey text read worst there. The values take Elisa's own look, measured from elisa.fi's
+   stylesheets on 7.11.2026: its blue for structure and actions, its orange for the claims, its greys, and Jost
+   for headings. --copper keeps its name from the first picture (copper bars) and is now that orange; text on it
+   is dark. The four status colours carry white text. */
 :root {
-  --bg: #0d1116;
-  --panel: #141c25;
-  --panel-raised: #1b2732;
-  --navy: #1a3a56;
-  --line: #2b3a48;
-  --copper: #b5612a;
-  --copper-bright: #e8934f;
-  --text: #e8ecef;
-  --muted: #93a1af;
-  --faint: #5b6977;
-  --propose: #53c08f;
-  --check: #e9b44c;
-  --unknown: #9db2c6;
-  --disputed: #e5705c;
+  --bg: #efeff1;
+  --panel: #ffffff;
+  --panel-raised: #f6f6f7;
+  --navy: #064aac;
+  --line: #d2d2d6;
+  --copper: #ff6400;
+  --copper-bright: #ff8800;
+  --accent: #005fed;
+  --accent-dark: #064aac;
+  --text: #171c43;
+  --muted: #70707a;
+  --faint: #8d8d95;
+  --propose: #008253;
+  --check: #a8690f;
+  --unknown: #5b7a96;
+  --disputed: #e0022a;
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --head: "Jost", var(--sans);
 }
 
 * { box-sizing: border-box; }
@@ -42,7 +50,7 @@ header {
 }
 
 .brand { display: flex; flex-direction: column; line-height: 1.1; min-width: 150px; }
-.brand strong { font-size: 18px; letter-spacing: -0.01em; }
+.brand strong { font: 600 19px var(--head); letter-spacing: 0; color: var(--accent); }
 .brand span { color: var(--muted); font-size: 12px; }
 
 #scenes { display: flex; gap: 4px; flex: 1; min-width: 0; }
@@ -62,13 +70,13 @@ header {
 #scenes button b { display: block; color: var(--faint); font: 11px var(--mono); }
 #scenes button:hover { color: var(--text); border-color: var(--faint); }
 #scenes button[aria-current="step"] {
-  background: var(--copper);
-  border-color: var(--copper-bright);
+  background: var(--accent);
+  border-color: var(--accent-dark);
   color: #fff;
 }
-#scenes button[aria-current="step"] b { color: #ffe3cc; }
+#scenes button[aria-current="step"] b { color: #cfe0ff; }
 
-.clock { font: 600 19px var(--mono); white-space: nowrap; color: var(--copper-bright); }
+.clock { font: 600 19px var(--mono); white-space: nowrap; color: var(--accent); }
 .clock span { color: var(--muted); font: 400 12px var(--sans); }
 
 /* The story: what this scene shows, in plain words, and where to look */
@@ -82,16 +90,14 @@ header {
 .story-main { flex: 1; min-width: 0; }
 #story h1 {
   margin: 0 0 1px;
-  font-size: 22px;
-  line-height: 1.2;
-  letter-spacing: -0.012em;
-  font-weight: 700;
+  font: 600 23px/1.2 var(--head);
+  letter-spacing: 0;
 }
 #story-text {
   margin: 0;
   font-size: 15.5px;
   line-height: 1.38;
-  color: #d3dae0;
+  color: #2c3845;
   max-width: 1100px;
 }
 #story-look {
@@ -99,7 +105,7 @@ header {
   flex: 0 0 auto;
   max-width: 300px;
   text-align: right;
-  color: var(--copper-bright);
+  color: var(--accent);
   font: 600 13px/1.35 var(--sans);
 }
 #story-look:empty { display: none; }
@@ -110,17 +116,18 @@ header {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(27, 36, 48, .06);
   transition: opacity .35s, border-color .35s;
 }
-.panel.dim { opacity: .34; }
-.panel.lit { border-color: var(--copper-bright); }
+.panel.dim { opacity: .45; }
+.panel.lit { border-color: var(--copper-bright); box-shadow: 0 0 0 1px var(--copper-bright); }
 
 h2 {
   margin: 0 0 6px;
   font: 700 12px var(--mono);
   letter-spacing: .08em;
   text-transform: uppercase;
-  color: var(--copper-bright);
+  color: var(--accent);
 }
 h2 small {
   margin-left: 6px;
@@ -135,13 +142,13 @@ h2 small {
 #timeline { padding: 0; overflow: hidden; }
 #timeline-svg { display: block; width: 100%; height: 100%; }
 
-.t-band { fill: var(--navy); opacity: .32; }
+.t-band { fill: #deedff; opacity: .55; }
 .t-layer { fill: var(--text); font: 700 11.5px var(--mono); letter-spacing: .03em; }
 .t-sublayer { fill: var(--muted); font: 11px var(--sans); }
 .t-tick { fill: var(--muted); font: 11px var(--mono); }
 .t-grid { stroke: var(--line); stroke-width: 1; }
 
-.t-event { fill: var(--copper-bright); stroke: #000; stroke-width: .5; transition: opacity .3s; }
+.t-event { fill: var(--copper-bright); stroke: var(--panel); stroke-width: .5; transition: opacity .3s; }
 .t-event.future { fill: none; stroke: var(--faint); stroke-width: 1; }
 .t-event-label { fill: var(--text); font: 11.5px var(--sans); }
 .t-event-label.future { fill: var(--faint); }
@@ -153,17 +160,17 @@ h2 small {
 .t-source.elisa { stroke: var(--copper-bright); stroke-width: 2; }
 
 .t-bar { fill: var(--copper); transition: opacity .3s; cursor: pointer; }
-.t-bar.ended { fill: #6f4a31; }
+.t-bar.ended { fill: #ffce85; }
 .t-bar.waiting { fill: none; stroke: var(--copper-bright); stroke-dasharray: 4 3; }
 .t-bar-open { stroke: var(--copper-bright); stroke-width: 2; stroke-dasharray: 3 5; }
 .t-bar-unknown { stroke: var(--copper-bright); stroke-width: 2; stroke-dasharray: 2 3; }
-.t-bar-label { fill: #fff; font: 600 11.5px var(--sans); pointer-events: none; }
-.t-bar-selected { stroke: #fff; stroke-width: 1.5; }
+.t-bar-label { fill: var(--text); font: 600 11.5px var(--sans); pointer-events: none; }
+.t-bar-selected { stroke: var(--text); stroke-width: 1.5; }
 
 #t-line { transition: transform .55s cubic-bezier(.3, .7, .2, 1); }
-.t-now { stroke: #fff; stroke-width: 2; }
+.t-now { stroke: var(--accent); stroke-width: 2; }
 .t-now-bg { fill: var(--panel); }
-.t-now-label { fill: #fff; font: 700 12px var(--mono); }
+.t-now-label { fill: var(--accent); font: 700 12px var(--mono); }
 
 /* The three middle panels */
 
@@ -209,7 +216,7 @@ main {
 #source-list .email .channel { color: var(--check); }
 #source-list .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 #source-list .note { color: var(--muted); white-space: nowrap; font-size: 11.5px; }
-#source-list .elisa .name { color: var(--copper-bright); }
+#source-list .elisa .name { color: var(--accent); }
 #source-list .future .note { color: var(--faint); }
 
 .metrics { margin-bottom: 6px; font-size: 12.5px; line-height: 1.35; color: var(--muted); }
@@ -244,7 +251,7 @@ main {
   padding: 0 5px;
   border-radius: 3px;
   font: 700 11px/1.6 var(--mono);
-  color: #0d1116;
+  color: #fff;
   background: var(--muted);
   text-transform: uppercase;
   white-space: nowrap;
@@ -252,7 +259,7 @@ main {
 .chip.active { background: var(--propose); }
 .chip.disputed, .chip.not_applicable { background: var(--disputed); }
 .chip.recheck, .chip.order_unknown, .chip.waiting { background: var(--check); }
-.chip.superseded { background: var(--faint); color: var(--text); }
+.chip.superseded { background: var(--muted); }
 
 /* The evidence, from the template: one row per line, the label apart from what it says */
 
@@ -260,11 +267,11 @@ ul.evidence {
   list-style: none;
   margin: 0;
   padding: 5px 8px;
-  background: var(--bg);
+  background: var(--panel);
   border-radius: 3px;
   font-size: 12px;
   line-height: 1.4;
-  color: #c9d3dc;
+  color: #2c3845;
 }
 ul.evidence li {
   display: grid;
@@ -272,7 +279,7 @@ ul.evidence li {
   gap: 6px;
   padding: 1px 0;
 }
-ul.evidence li + li { border-top: 1px solid #16202a; }
+ul.evidence li + li { border-top: 1px solid var(--line); }
 ul.evidence b { color: var(--muted); font: 700 10.5px/1.6 var(--mono); letter-spacing: .05em; text-transform: uppercase; }
 ul.evidence .dot { color: var(--faint); margin: 0 5px; }
 ul.evidence q { color: var(--text); quotes: "\201C" "\201D"; }
@@ -289,13 +296,15 @@ ul.evidence q { color: var(--text); quotes: "\201C" "\201D"; }
 .g-column { fill: var(--faint); font: 10.5px var(--mono); letter-spacing: .05em; text-transform: uppercase; }
 .g-node rect { fill: var(--panel-raised); stroke: var(--line); stroke-width: 1.2; }
 .g-node text { fill: var(--text); font: 12px var(--sans); text-anchor: middle; dominant-baseline: central; }
-.g-node.node text { font-family: var(--mono); }
-.g-node.node rect { fill: var(--navy); stroke: #38658d; }
+.g-node.node text { font-family: var(--mono); fill: #fff; }
+.g-node.node rect { fill: var(--navy); stroke: var(--accent); }
 .g-node.claim rect { fill: var(--copper); stroke: var(--copper-bright); cursor: pointer; }
-.g-node.claim text { font-weight: 600; }
+.g-node.claim text { font-weight: 600; fill: var(--text); }
 .g-node.claim.waiting rect { fill: none; stroke-dasharray: 4 3; }
-.g-node.claim.superseded rect { fill: #6f4a31; }
-.g-node.claim.lit rect { stroke: #fff; stroke-width: 2.4; }
+.g-node.claim.waiting text { fill: var(--text); }
+.g-node.claim.superseded rect { fill: #ffe3ba; stroke: #ffce85; }
+.g-node.claim.superseded text { fill: var(--muted); }
+.g-node.claim.lit rect { stroke: var(--text); stroke-width: 2.4; }
 .g-node.unit-lit rect { stroke: var(--propose); stroke-width: 2.4; }
 .g-node.claim { animation: fade .5s ease-out; }
 @keyframes fade { from { opacity: 0; } }
@@ -328,14 +337,14 @@ ul.evidence q { color: var(--text); quotes: "\201C" "\201D"; }
 #ask .gap { margin-left: 4px; }
 #ask button[type="submit"] {
   padding: 6px;
-  background: var(--copper);
-  border: 1px solid var(--copper-bright);
+  background: var(--accent);
+  border: 1px solid var(--accent-dark);
   border-radius: 4px;
   color: #fff;
   font: 700 14px var(--sans);
   cursor: pointer;
 }
-#ask button[type="submit"]:hover { background: #c96f33; }
+#ask button[type="submit"]:hover { background: var(--accent-dark); }
 
 .presets { display: flex; flex-wrap: wrap; gap: 4px; }
 .presets button {
@@ -347,7 +356,7 @@ ul.evidence q { color: var(--text); quotes: "\201C" "\201D"; }
   font: 12px var(--sans);
   cursor: pointer;
 }
-.presets button:hover { border-color: var(--copper-bright); }
+.presets button:hover { border-color: var(--accent); }
 
 .answer { min-height: 0; overflow: auto; }
 .answer .empty { color: var(--muted); }
@@ -358,17 +367,17 @@ ul.evidence q { color: var(--text); quotes: "\201C" "\201D"; }
   border-radius: 4px;
   font: 800 19px/1.35 var(--mono);
   letter-spacing: .02em;
-  color: #0d1116;
+  color: #fff;
   animation: arrive .35s ease-out;
 }
 .tier.propose { background: var(--propose); }
 .tier.check_first { background: var(--check); }
 .tier.unknown { background: var(--unknown); }
-.tier.learned { background: var(--copper-bright); }
+.tier.learned { background: var(--copper-bright); color: var(--text); }
 .tier.acted { background: var(--propose); }
 .draft { margin: 8px 0 10px; padding: 10px 14px; border: 1px dashed var(--copper); border-radius: 6px; max-width: 900px; }
 .draft-head { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; margin-bottom: 4px; font-size: 12.5px; color: var(--muted); }
-.draft-head b { color: var(--copper-bright); font: 600 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.draft-head b { color: var(--accent); font: 600 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
 .draft p { margin: 0; font-size: 16px; line-height: 1.35; }
 
 .answer-head { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 4px; }
@@ -397,7 +406,7 @@ ul.evidence q { color: var(--text); quotes: "\201C" "\201D"; }
   inset: 0;
   display: grid;
   place-items: center;
-  background: rgba(5, 8, 11, .74);
+  background: rgba(27, 36, 48, .5);
   animation: fade .2s ease-out;
 }
 .overlay[hidden] { display: none; }
@@ -423,12 +432,12 @@ ul.evidence q { color: var(--text); quotes: "\201C" "\201D"; }
   color: var(--text);
   cursor: pointer;
 }
-#overlay-card h3 { margin: 0 0 2px; font-size: 20px; }
+#overlay-card h3 { margin: 0 0 2px; font: 600 21px var(--head); }
 #overlay-card .sub { margin: 0 0 12px; color: var(--muted); font-size: 12.5px; overflow-wrap: anywhere; }
 #overlay-card .sub code { font: 11.5px var(--mono); }
 .message { margin-bottom: 8px; }
 .message .who { font: 12.5px var(--mono); color: var(--muted); }
-.message .who b { color: var(--copper-bright); font-weight: 600; }
+.message .who b { color: var(--accent); font-weight: 600; }
 .message .body { white-space: pre-wrap; font-size: 16px; }
 .limits { margin: 0 0 14px; padding: 0; list-style: none; }
 .limits li { padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 18px; line-height: 1.32; }
