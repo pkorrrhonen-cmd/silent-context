@@ -1,5 +1,5 @@
 {
- "about": "Silent context: the final plan (pipeline/final.py). Each narration scene is one clip; its sentences start 0.3 s into the clip, which already shows what they talk about. The guide run uses the same plan with --narration, --scenes-json and --name. The owner's own track replaces audio/narration.wav last.",
+ "about": "Silent context: the final plan (pipeline/final.py), written by cut_from_take.py from the alignment. Each narration scene is one clip; its sentences start 0.3 s into the clip, which already shows what they talk about. The guide run uses the same plan with --narration, --scenes-json and --name; the owner's own track replaces audio/narration.wav last.",
  "name": "silent-context-en",
  "size": "1920x1080",
  "narration": "audio/narration.wav",

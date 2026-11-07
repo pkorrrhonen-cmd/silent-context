@@ -1,5 +1,5 @@
 {
- "about": "Silent context: eleven clips cut from the one take by its block marks (record.py, scenes.py). Nothing is sped up. Paths are relative to --media, the video's folder under media/.",
+ "about": "Silent context: eleven clips cut from the one take by its block marks, each no longer than its speech plus a tail (cut_from_take.py). Nothing is sped up. Paths are relative to --media.",
  "size": "1920x1080",
  "speed_of_waits": 1,
  "scenes": [
@@ -9,7 +9,7 @@
     {
      "take": "takes/demo",
      "from": 1.22,
-     "to": 24.13
+     "to": 20.59
     }
    ]
   },
@@ -19,7 +19,7 @@
     {
      "take": "takes/demo",
      "from": 24.13,
-     "to": 36.85
+     "to": 34.22
     }
    ]
   },
@@ -29,7 +29,7 @@
     {
      "take": "takes/demo",
      "from": 36.85,
-     "to": 49.62
+     "to": 47.24
     }
    ]
   },
@@ -39,7 +39,7 @@
     {
      "take": "takes/demo",
      "from": 49.62,
-     "to": 65.44
+     "to": 62.2
     }
    ]
   },
@@ -49,7 +49,7 @@
     {
      "take": "takes/demo",
      "from": 65.44,
-     "to": 81.2
+     "to": 78.51
     }
    ]
   },
@@ -59,7 +59,7 @@
     {
      "take": "takes/demo",
      "from": 81.2,
-     "to": 92.01
+     "to": 90.69
     }
    ]
   },
@@ -69,7 +69,7 @@
     {
      "take": "takes/demo",
      "from": 92.01,
-     "to": 104.8
+     "to": 102.52
     }
    ]
   },
@@ -79,7 +79,7 @@
     {
      "take": "takes/demo",
      "from": 104.8,
-     "to": 117.6
+     "to": 113.92
     }
    ]
   },
@@ -89,7 +89,7 @@
     {
      "take": "takes/demo",
      "from": 117.6,
-     "to": 129.39
+     "to": 127.4
     }
    ]
   },
@@ -99,7 +99,7 @@
     {
      "take": "takes/demo",
      "from": 129.39,
-     "to": 140.12
+     "to": 136.93
     }
    ]
   },
