@@ -154,6 +154,14 @@ card's own dark first frame and the card's text, nothing else. 135.4 s, 15.1 MB.
 notes and the zip; the folder "Silent context video" and the pipeline's media folder. V2 (the v3 cut) and the
 first folder stay as fallbacks.
 
+### Session 4's end
+
+The owner's word at about 16:00 on 7.11.: the material is ready. The package is "Silent context submission V3";
+the video goes to YouTube as unlisted and the form, which opens at 18:00 EET, is sent on Saturday evening. Two
+lessons went into [`LESSONS.md`](LESSONS.md): a clip cut at a mark opens on the frame the screencast had
+before the mark, and `will-change: transform` hides a move from a screencast. Main is pushed and gitleaks over
+the full history finds nothing.
+
 ## Session 3, 7.11.2026: the technical check before the checkpoint
 
 **Why:** the owner saw the page the evening before and holds phase 6's checkpoint. Before anything

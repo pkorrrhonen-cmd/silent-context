@@ -4,6 +4,27 @@ Newest first. The **root cause** is the heading, not the symptom, because the ro
 elsewhere. Only lessons whose price was actually paid. A lesson that becomes a permanent rule moves
 into `CLAUDE.md`.
 
+## A clip cut at a mark opens on the frame the screencast had before the mark
+
+On 7.11.2026 the owner saw a one-frame flash at 1:55 of the second cut: the opening story card, between the
+barrier scene and the limits card. The story page loads with its first card shown; the recorder switched to
+the limits card and marked the block in the same instant, and the screencast's frame at that instant was the
+one painted before the switch. Every clip is cut from its mark, so the clip's first frame was the wrong card.
+The page's scenes never showed this, because the recorder waited 0.6 s after each scene before marking.
+
+**Rule:** before a mark, the picture the clip must open on has been painted and captured: show nothing until
+the block, switch, wait two animation frames, then mark.
+
+## `will-change: transform` moves a page on the compositor without a paint, so a screencast sees no frames
+
+On 7.11.2026 the first zoom trial put `will-change: transform` on the page's body, as a performance habit,
+and a 0.6 s zoom came through the screencast as 4 frames: the compositor animated the layer without the
+page painting, and the screencast delivers a frame only when the page paints. Without the property the
+same move gave a frame every 17 ms.
+
+**Rule:** no `will-change` on anything a screencast must follow; measure the frames of a move before
+building on it.
+
 ## A screencast delivers frames only when the page paints, so a fade's last frame can be lost
 
 On 7.11.2026 the pitch cards in front of the video faded in over half a second, and in the first take
