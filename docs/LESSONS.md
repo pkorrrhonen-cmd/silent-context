@@ -4,6 +4,17 @@ Newest first. The **root cause** is the heading, not the symptom, because the ro
 elsewhere. Only lessons whose price was actually paid. A lesson that becomes a permanent rule moves
 into `CLAUDE.md`.
 
+## A new unit at a site that already has one makes every mention of that site ambiguous
+
+On 7.11.2026 evening the fourth unit, TRN-063, was first placed at Rauta beside TRN-051. Two resolver tests
+and one held-out row changed at once: a thread that names only the site had bound to the one unit there, and
+now waited with "several could fit". The binding rule was right; the data had changed what a site name
+means. The unit was moved to a site of its own, and the numbers came back.
+
+**Rule:** before adding an entity to the graph, list the mentions that resolve through its neighbours,
+and expect those bindings to change; a held-out number that moves after a graph change is a data change,
+not a rule change.
+
 ## A clip cut at a mark opens on the frame the screencast had before the mark
 
 On 7.11.2026 the owner saw a one-frame flash at 1:55 of the second cut: the opening story card, between the

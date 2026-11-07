@@ -204,11 +204,13 @@ main's tip. V3, V2 and the first folder stay as fallbacks.
 
 ### Session 4's end
 
-The owner's word at about 16:00 on 7.11.: the material is ready. The package is "Silent context submission V3";
-the video goes to YouTube as unlisted and the form, which opens at 18:00 EET, is sent on Saturday evening. Two
-lessons went into [`LESSONS.md`](LESSONS.md): a clip cut at a mark opens on the frame the screencast had
-before the mark, and `will-change: transform` hides a move from a screencast. Main is pushed and gitleaks over
-the full history finds nothing.
+The owner's word at 17:41 on 7.11.: package V4 is the submit version, open to further work if something comes
+up. The video goes to YouTube as unlisted and the form, which opens at 18:00 EET, is sent on Saturday
+evening. The owner's own Finnish papers on the Desktop ("Silent context suomeksi": the plain-language paper
+and the deck in five pictures) follow the v5 content; they are not in the repository. Three lessons went
+into [`LESSONS.md`](LESSONS.md): a clip cut at a mark opens on the frame the screencast had before the mark,
+`will-change: transform` hides a move from a screencast, and a new unit at a site that already has one makes
+every mention of that site ambiguous. Main is pushed and gitleaks over the full history finds nothing.
 
 ## Session 3, 7.11.2026: the technical check before the checkpoint
 
