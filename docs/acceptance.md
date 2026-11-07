@@ -2,7 +2,7 @@
 
 Written by `uv run python -m app.accept` on 2026-11-07 from the recorded answers, with no model and no key. The cases are the build plan's A1 to A11, with A0 for the question before anything is captured. The stores are built at each case's clock from `data/`, as the tests do; the checks are the ones in `tests/test_claims.py`. A9 reports numbers and is not a pass or a fail: they describe this set of 16 synthetic sources only. A10 was done by hand and is quoted from the changelog.
 
-Computed rows holding: 20 of 20.
+Computed rows holding: 21 of 21.
 
 | Case | Asked | Expected | Observed | Result |
 |---|---|---|---|---|
@@ -27,3 +27,4 @@ Computed rows holding: 20 of 20.
 | A9 | The held-out binding set, 16 synthetic sources | unclear cases wait with a reason, controls bind; the wrong ones counted, not tuned | of 16: waited right 11, bound right 4, over-cautious 0, confidently wrong 1, errors 0; five repeats, wrong per run: 0 0 0 1 1 | measured |
 | A10 | A clean install from the README into an empty folder, with no key | the seeded store, the agent and the graph work; ingest reads the recorded answers and says it needs a model only for a changed prompt | Passed on 7.11.2026 from `git archive` into an empty folder: 150 tests, seed, ingest, truth report, the agent, both exports (CHANGELOG, session 3) | by hand |
 | A11 | The extra-work panel (15.10.) | conversations started 0, actions asked 0, Elisa's files shown unchanged by checksum | conversations started 0, actions asked 0, Elisa's 2 files shown unchanged by checksum: yes | ok |
+| A12 | Who acts: TRN-051 on 21.10., then TRN-063 on 25.10. after the first was carried out | a person the first time; the agent once its own log shows the step carried out on this class with the counters rising, and the agent's own bounce recorded as its own from the devices | TRN-051 21.10.: propose, person; TRN-063 25.10.: propose, agent; done by agent, Counters rising afterwards | ok |

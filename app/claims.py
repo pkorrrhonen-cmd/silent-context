@@ -12,7 +12,7 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta
 from uuid import uuid4
 
-from app import db, events
+from app import db, events, policy
 from app.resolve import Graph
 
 FALLBACK_GROUP = "transmission-oncall"
@@ -454,12 +454,16 @@ def _log(
     action_kind: str,
     claim_ids: list[str],
     group: str | None,
+    who: dict | None = None,
 ) -> str:
     answer_id = f"ans-{uuid4().hex[:12]}"
     conn.execute(
         "INSERT INTO answer_log (id, asked_at, entity, symptom, tier, next_step, action_kind,"
-        " claim_ids) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-        (answer_id, now, entity, symptom, tier, next_step, action_kind, json.dumps(claim_ids)),
+        " claim_ids, who_acts, who_why) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        (
+            answer_id, now, entity, symptom, tier, next_step, action_kind, json.dumps(claim_ids),
+            who["who"] if who else None, who["why"] if who else None,
+        ),
     )
     if tier == "unknown":
         conn.execute(
@@ -565,6 +569,7 @@ def claims_for(
                 views.append(_view(conn, partner, "disputed", "none", note, now))
 
     ask_group = group if decision["tier"] == "unknown" else None
+    who = policy.who_acts(conn, graph, decision, entity_id, seen["counters_from"])
     answer_id = _log(
         conn,
         now,
@@ -575,9 +580,12 @@ def claims_for(
         decision["action_kind"],
         [view["id"] for view in views],
         ask_group,
+        who,
     )
     return {
         **decision,
+        "who_acts": who["who"],
+        "who_why": who["why"],
         "match_level": match_level,
         "match_note": views[0]["match_note"] if views else None,
         "claims": views,

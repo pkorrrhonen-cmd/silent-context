@@ -30,7 +30,12 @@ with a next step, its sources and how much is known.
 - **No person scores.** No personal assessment and no figure shown per person. A teller identifier
   exists per claim, only to merge the same person's accounts, and the agent sees a role and a link.
 - **No percentages or counts as confidence.** The agent may not say "several" or "confirmed twice".
-- **No action on the network.** The agent proposes and a human acts.
+- **No action on a real network, and a policy says who acts.** The default is that the agent proposes and a
+  person acts. The agent itself acts only on a step that is reversible, that its own log shows was proposed
+  on this class before and carried out with a good outcome, with no disagreement on record, and with the
+  counters read from the device by the agent. A reboot or a hardware replacement never goes to the agent. In
+  this demo the network is synthetic: the agent's action is an event in the synthetic stream, and there is
+  no write path to any device (decision 20, 7.11.2026).
 - **No invented time or scope.** An age limit is not derived from "installed around 2019".
 
 ## The event's rules

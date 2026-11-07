@@ -365,6 +365,7 @@ ul.evidence q { color: var(--text); quotes: "\201C" "\201D"; }
 .tier.check_first { background: var(--check); }
 .tier.unknown { background: var(--unknown); }
 .tier.learned { background: var(--copper-bright); }
+.tier.acted { background: var(--propose); }
 
 .answer-head { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 4px; }
 .answer-head .match { font-size: 13px; color: var(--muted); }

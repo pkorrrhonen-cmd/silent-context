@@ -1,0 +1,48 @@
+{
+  "note": "Synthetic counter series, the telemetry layer. rx_octets_delta is the received traffic since the previous sample. The rise after 09:42 follows the agent's own bounce under the policy.",
+  "node": "TRN-063",
+  "port": "ge-0/0/1",
+  "metric": "rx_octets_delta",
+  "samples": [
+    {
+      "t": "2026-10-25T09:21:00",
+      "value": 0
+    },
+    {
+      "t": "2026-10-25T09:25:00",
+      "value": 0
+    },
+    {
+      "t": "2026-10-25T09:29:00",
+      "value": 0
+    },
+    {
+      "t": "2026-10-25T09:33:00",
+      "value": 0
+    },
+    {
+      "t": "2026-10-25T09:37:00",
+      "value": 0
+    },
+    {
+      "t": "2026-10-25T09:39:00",
+      "value": 0
+    },
+    {
+      "t": "2026-10-25T09:44:00",
+      "value": 1984410
+    },
+    {
+      "t": "2026-10-25T09:48:00",
+      "value": 5612877
+    },
+    {
+      "t": "2026-10-25T09:52:00",
+      "value": 6120034
+    },
+    {
+      "t": "2026-10-25T09:56:00",
+      "value": 6288415
+    }
+  ]
+}

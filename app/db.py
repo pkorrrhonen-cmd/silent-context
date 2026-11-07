@@ -153,7 +153,10 @@ CREATE TABLE answer_log (
   next_step TEXT,
   action_kind TEXT CHECK (action_kind IN ('read', 'bounce_interface', 'reboot', 'replace_hw', 'none')),
   claim_ids TEXT NOT NULL DEFAULT '[]',
+  who_acts TEXT CHECK (who_acts IN ('agent', 'person', 'ask')),
+  who_why TEXT,
   human_did TEXT,
+  done_by TEXT CHECK (done_by IN ('person', 'agent')),
   outcome TEXT
 );
 

@@ -329,6 +329,30 @@ def case_a11(s: Stores) -> tuple[str, bool]:
     )
 
 
+AFTER_RECORD = "2026-10-25T09:40:00"
+AFTER_AGENT_ACTED = "2026-10-25T09:50:00"
+
+
+def case_a12(s: Stores) -> tuple[str, bool]:
+    """The policy on who acts: a person the first time, the agent once its own log shows a carried-out success."""
+    first = claims_for("TRN-051", SYMPTOM, conn=s.at(DURING_FAULT))
+    s.release()
+    path = s.paths[DURING_FAULT]
+    ingest.run(path, until=AFTER_RECORD)
+    with db.session(path) as conn:
+        third = claims_for("TRN-063", SYMPTOM, conn=conn)
+    ingest.run(path, until=AFTER_AGENT_ACTED)
+    with db.session(path) as conn:
+        row = conn.execute("SELECT done_by, outcome FROM answer_log WHERE id = ?", (third["answer_id"],)).fetchone()
+    s.paths.pop(DURING_FAULT)  # that store now holds this case's log; the others build their own
+    return (
+        f"TRN-051 21.10.: {first['tier']}, {first['who_acts']}; TRN-063 25.10.: {third['tier']}, {third['who_acts']};"
+        f" done by {row['done_by']}, {row['outcome']}",
+        first["who_acts"] == "person" and third["who_acts"] == "agent" and third["tier"] == "propose"
+        and row["done_by"] == "agent" and row["outcome"] == "Counters rising afterwards",
+    )
+
+
 CASES = [
     ("A0", "TRN-051, the symptom, before anything is captured (14.10. 22:00)",
      "I don't know, reason no claims, ask transmission-oncall", case_a0),
@@ -372,6 +396,9 @@ CASES = [
      "unclear cases wait with a reason, controls bind; the wrong ones counted, not tuned", case_a9),
     ("A11", "The extra-work panel (15.10.)",
      "conversations started 0, actions asked 0, Elisa's files shown unchanged by checksum", case_a11),
+    ("A12", "Who acts: TRN-051 on 21.10., then TRN-063 on 25.10. after the first was carried out",
+     "a person the first time; the agent once its own log shows the step carried out on this class with the counters rising,"
+     " and the agent's own bounce recorded as its own from the devices", case_a12),
 ]
 
 BY_HAND = [

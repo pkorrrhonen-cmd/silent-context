@@ -64,7 +64,7 @@ def state(conn: sqlite3.Connection) -> dict:
     row = conn.execute("SELECT value FROM meta WHERE key = 'as_of'").fetchone()
     as_of = (row["value"] or None) if row else None
     log = conn.execute(
-        "SELECT entity, asked_at, next_step, human_did, outcome FROM answer_log"
+        "SELECT entity, asked_at, next_step, who_acts, who_why, human_did, done_by, outcome FROM answer_log"
         " WHERE human_did IS NOT NULL ORDER BY asked_at DESC LIMIT 3"
     ).fetchall()
     return {

@@ -127,7 +127,7 @@ def test_events_have_dates_and_known_entities(events: list[dict], entity_ids: se
 def test_telemetry_is_ordered_and_on_a_real_port() -> None:
     entities = {e["id"]: e for e in load(DATA / "seed" / "entities.json")["entities"]}
     files = sorted((DATA / "events").glob("telemetry_*.json"))
-    assert len(files) == 3
+    assert len(files) == 4
     for path in files:
         series = load(path)
         assert series["port"] in entities[series["node"]]["attrs"]["ports"]

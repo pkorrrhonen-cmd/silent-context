@@ -1,17 +1,23 @@
 {
-  "note": "Synthetic as-built graph for the demo. TRN-042 is named in Elisa's example material; its class, firmware, ports and site are invented here, and so is everything else in this file. Ages are given per class only: a node's installation year is not known to the graph.",
+  "note": "Synthetic as-built graph for the demo. TRN-042 is named in Elisa's example material; its class, firmware, ports and site are invented here, and so is everything else in this file. Ages are given per class only: a node's installation year is not known to the graph. TRN-063 was added on 7.11.2026 for the scene where the policy lets the agent act.",
   "entities": [
     {
       "id": "cls-trn-gen1",
       "kind": "device_class",
       "name": "Transmission unit, generation 1",
-      "attrs": { "install_years": "2016-2019", "firmware_major": "4.x" }
+      "attrs": {
+        "install_years": "2016-2019",
+        "firmware_major": "4.x"
+      }
     },
     {
       "id": "cls-trn-gen2",
       "kind": "device_class",
       "name": "Transmission unit, generation 2",
-      "attrs": { "install_years": "2022 onwards", "firmware_major": "6.x" }
+      "attrs": {
+        "install_years": "2022 onwards",
+        "firmware_major": "6.x"
+      }
     },
     {
       "id": "TRN-042",
@@ -21,7 +27,10 @@
         "class_id": "cls-trn-gen1",
         "firmware": "4.8",
         "region": "Northern Finland",
-        "ports": ["ge-0/0/1", "ge-0/0/2"],
+        "ports": [
+          "ge-0/0/1",
+          "ge-0/0/2"
+        ],
         "responsible_group": "transmission-oncall"
       }
     },
@@ -33,7 +42,10 @@
         "class_id": "cls-trn-gen1",
         "firmware": "4.8",
         "region": "Central Finland",
-        "ports": ["ge-0/0/1", "ge-0/0/2"],
+        "ports": [
+          "ge-0/0/1",
+          "ge-0/0/2"
+        ],
         "responsible_group": "transmission-oncall"
       }
     },
@@ -45,7 +57,25 @@
         "class_id": "cls-trn-gen2",
         "firmware": "6.1",
         "region": "Southern Finland",
-        "ports": ["xe-0/1/0", "xe-0/1/1"],
+        "ports": [
+          "xe-0/1/0",
+          "xe-0/1/1"
+        ],
+        "responsible_group": "transmission-oncall"
+      }
+    },
+    {
+      "id": "TRN-063",
+      "kind": "node",
+      "name": "TRN-063",
+      "attrs": {
+        "class_id": "cls-trn-gen1",
+        "firmware": "4.8",
+        "region": "Western Finland",
+        "ports": [
+          "ge-0/0/1",
+          "ge-0/0/2"
+        ],
         "responsible_group": "transmission-oncall"
       }
     },
@@ -54,7 +84,10 @@
       "kind": "site",
       "name": "Nilo",
       "attrs": {
-        "aliases": ["Nilo", "Nilo site"],
+        "aliases": [
+          "Nilo",
+          "Nilo site"
+        ],
         "region": "Northern Finland",
         "access": "private road",
         "responsible_group": "field-north"
@@ -65,7 +98,10 @@
       "kind": "site",
       "name": "Rauta",
       "attrs": {
-        "aliases": ["Rauta", "Rauta site"],
+        "aliases": [
+          "Rauta",
+          "Rauta site"
+        ],
         "region": "Central Finland",
         "responsible_group": "field-central"
       }
@@ -75,16 +111,37 @@
       "kind": "site",
       "name": "Koski",
       "attrs": {
-        "aliases": ["Koski", "Koski site"],
+        "aliases": [
+          "Koski",
+          "Koski site"
+        ],
         "region": "Southern Finland",
         "responsible_group": "field-south"
+      }
+    },
+    {
+      "id": "SITE-HARJU",
+      "kind": "site",
+      "name": "Harju",
+      "attrs": {
+        "aliases": [
+          "Harju",
+          "Harju site"
+        ],
+        "region": "Western Finland",
+        "responsible_group": "field-west"
       }
     },
     {
       "id": "BAR-NILO-1",
       "kind": "access_barrier",
       "name": "Barrier on the Nilo private road",
-      "attrs": { "aliases": ["barrier", "gate"] }
+      "attrs": {
+        "aliases": [
+          "barrier",
+          "gate"
+        ]
+      }
     },
     {
       "id": "PROC-SFP-REPLACE",
@@ -125,15 +182,59 @@
       "kind": "group",
       "name": "Field engineers, south",
       "attrs": {}
+    },
+    {
+      "id": "field-west",
+      "kind": "group",
+      "name": "Field engineers, west",
+      "attrs": {}
     }
   ],
   "edges": [
-    { "src": "TRN-042", "rel": "INSTANCE_OF", "dst": "cls-trn-gen1" },
-    { "src": "TRN-051", "rel": "INSTANCE_OF", "dst": "cls-trn-gen1" },
-    { "src": "TRN-100", "rel": "INSTANCE_OF", "dst": "cls-trn-gen2" },
-    { "src": "TRN-042", "rel": "LOCATED_AT", "dst": "SITE-NILO" },
-    { "src": "TRN-051", "rel": "LOCATED_AT", "dst": "SITE-RAUTA" },
-    { "src": "TRN-100", "rel": "LOCATED_AT", "dst": "SITE-KOSKI" },
-    { "src": "SITE-NILO", "rel": "HAS_BARRIER", "dst": "BAR-NILO-1" }
+    {
+      "src": "TRN-042",
+      "rel": "INSTANCE_OF",
+      "dst": "cls-trn-gen1"
+    },
+    {
+      "src": "TRN-051",
+      "rel": "INSTANCE_OF",
+      "dst": "cls-trn-gen1"
+    },
+    {
+      "src": "TRN-100",
+      "rel": "INSTANCE_OF",
+      "dst": "cls-trn-gen2"
+    },
+    {
+      "src": "TRN-063",
+      "rel": "INSTANCE_OF",
+      "dst": "cls-trn-gen1"
+    },
+    {
+      "src": "TRN-042",
+      "rel": "LOCATED_AT",
+      "dst": "SITE-NILO"
+    },
+    {
+      "src": "TRN-051",
+      "rel": "LOCATED_AT",
+      "dst": "SITE-RAUTA"
+    },
+    {
+      "src": "TRN-100",
+      "rel": "LOCATED_AT",
+      "dst": "SITE-KOSKI"
+    },
+    {
+      "src": "TRN-063",
+      "rel": "LOCATED_AT",
+      "dst": "SITE-HARJU"
+    },
+    {
+      "src": "SITE-NILO",
+      "rel": "HAS_BARRIER",
+      "dst": "BAR-NILO-1"
+    }
   ]
 }

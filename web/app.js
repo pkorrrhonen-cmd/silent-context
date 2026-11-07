@@ -63,6 +63,22 @@ const SCENES = [
     lit: ["agent"],
   },
   {
+    nav: "Act",
+    title: "Once a success is on record, the agent acts",
+    text:
+      "The same fault on a third unit of the same class, TRN-063. The agent's own log now holds a proposal that a person" +
+      " carried out with the counters rising, so the policy lets the agent turn the port off and on itself. The device" +
+      " confirms. A reboot or a new part still waits for a person. The network here is synthetic: the action is an event in it.",
+    look: "the agent",
+    clock: "2026-10-25T09:50:00",
+    // The policy reads the agent's own record, so the earlier proposal and this one are asked first.
+    askedBefore: [
+      { clock: "2026-10-21T10:50:00", entity: "TRN-051", symptom: SYMPTOM },
+      { clock: "2026-10-25T09:40:00", entity: "TRN-063", symptom: SYMPTOM },
+    ],
+    lit: ["agent"],
+  },
+  {
     nav: "Ageing",
     title: "Doubt, for one unit only",
     text:
@@ -121,6 +137,7 @@ const PRESETS = [
   { label: "Old unit TRN-051", ask: { unit: "TRN-051", symptom: SYMPTOM } },
   { label: "Seen on TRN-042", ask: { unit: "TRN-042", symptom: SYMPTOM } },
   { label: "Newer TRN-100", ask: { unit: "TRN-100", symptom: SYMPTOM } },
+  { label: "Third unit TRN-063", ask: { unit: "TRN-063", symptom: SYMPTOM } },
   { label: "Other symptom", ask: { unit: "TRN-051", symptom: "intermittent CRC errors on uplink" } },
   { label: "Drive to Nilo", ask: { unit: "SITE-NILO" } },
   { label: "Key on 10.10.?", ask: { unit: "SITE-NILO", at: "2026-10-10" } },
@@ -128,6 +145,7 @@ const PRESETS = [
 
 // Plain words for what the data calls things. The data keeps its names; the page translates.
 const TIER_LABEL = { propose: "PROPOSE", check_first: "CHECK FIRST", unknown: "I DON'T KNOW" };
+const WHO_LABEL = { agent: "The agent itself", person: "A person", ask: "Nobody yet: a person on call is asked" };
 const MATCH_LABEL = {
   same_node: "seen on this unit",
   same_class: "same class as where it was seen",
@@ -635,16 +653,21 @@ function drawAnswer() {
   const box = $("answer");
   if (!answer) {
     const line = state?.log[0];
+    const byAgent = line?.done_by === "agent";
     box.innerHTML = line
       ? `
-      <div class="answer-head"><span class="tier learned">FROM THE DEVICES</span>
-        <span class="match"><b>${esc(line.entity)}</b> · nobody wrote this down</span></div>
+      <div class="answer-head"><span class="tier ${byAgent ? "acted" : "learned"}">${byAgent ? "THE AGENT ACTED" : "FROM THE DEVICES"}</span>
+        <span class="match"><b>${esc(line.entity)}</b> · ${byAgent ? "under the policy, in the synthetic network" : "nobody wrote this down"}</span></div>
       <dl class="log">
         <dt>The agent proposed</dt><dd>${esc(line.next_step)}</dd>
-        <dt>A person did</dt><dd>${esc(line.human_did)}</dd>
+        ${line.who_acts ? `<dt>The policy said</dt><dd class="${byAgent ? "read" : ""}">${esc(WHO_LABEL[line.who_acts])}. ${esc(line.who_why || "")}</dd>` : ""}
+        <dt>${byAgent ? "The agent did" : "A person did"}</dt><dd>${esc(line.human_did)}</dd>
         <dt>The outcome</dt><dd>${esc(line.outcome || "Not known")}</dd>
+        ${byAgent ? '<dt>Still with a person</dt><dd class="no">A reboot or a hardware replacement: not reversible, so the policy never gives them to the agent.</dd>' : ""}
       </dl>
-      <p class="empty">This is the record a later decision about autonomy would need, and it took nobody's time.</p>`
+      <p class="empty">${byAgent
+        ? "The decision is real and computed when asked; the action is an event in the synthetic stream, with no write path to any device."
+        : "This is the record the policy on who acts reads, and it took nobody's time."}</p>`
       : '<p class="empty">Ask something, or move through the scenes with the arrow keys.</p>';
     return;
   }
@@ -657,6 +680,9 @@ function drawAnswer() {
     rows.push(`<dt>Counters</dt><dd>${esc(used.counters)}, as reported</dd>`);
   }
   if (answer.match_note) rows.push(`<dt>Why this unit</dt><dd>${esc(answer.match_note)}</dd>`);
+  if (answer.who_acts) {
+    rows.push(`<dt>Who acts</dt><dd class="${answer.who_acts === "agent" ? "read" : ""}">${esc(WHO_LABEL[answer.who_acts])}. ${esc(answer.who_why)}</dd>`);
+  }
   if (answer.ask_group) rows.push(`<dt>Ask instead</dt><dd>${esc(answer.ask_group)}. The gap is logged, so the next time it has a name.</dd>`);
   rows.push(`<dt>What would change this</dt><dd>${esc(answer.what_would_change)}</dd>`);
   if (answer.boundary_known === false) rows.push("<dt>Boundary</dt><dd>Not known: the moment one statement replaced the other is not recorded.</dd>");
@@ -784,8 +810,7 @@ async function goTo(index) {
     panel.classList.toggle("dim", item.lit.length > 0 && !lit);
   }
   try {
-    const before = item.askedBefore;
-    if (before) {
+    for (const before of [].concat(item.askedBefore || [])) {
       await api("/clock", { method: "POST", body: JSON.stringify({ as_of: before.clock }) });
       await api("/claims_for", {
         method: "POST",

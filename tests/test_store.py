@@ -136,6 +136,8 @@ def test_claims_for_on_an_empty_store_says_it_does_not_know(conn: sqlite3.Connec
         "claims",
         "evidence_rendered",
         "what_would_change",
+        "who_acts",
+        "who_why",
         "ask_group",
         "reason_code",
         "observed_used",

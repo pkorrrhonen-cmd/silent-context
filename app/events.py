@@ -129,9 +129,9 @@ def link_telemetry_outcomes(conn: sqlite3.Connection, graph: Graph) -> None:
 
 
 def settle_answers(conn: sqlite3.Connection) -> None:
-    """Fills "the agent proposed, a person did, the outcome" from the devices alone.
+    """Fills "the agent proposed, who did it, the outcome" from the devices alone.
 
-    This is the record a later decision about autonomy would need, and it takes nobody's time.
+    This is the record the policy on who acts reads, and it takes nobody's time.
     """
     answers = conn.execute(
         "SELECT id, entity, asked_at FROM answer_log WHERE action_kind = 'bounce_interface'"
@@ -157,7 +157,15 @@ def settle_answers(conn: sqlite3.Connection) -> None:
                 if any(s["value"] > 0 for s in samples)
                 else "Counters still at zero afterwards"
             )
+        # Who did it is in the event itself: an action by the agent is marked so in the stream. In this demo
+        # that stream is synthetic, and the agent has no write path to any device.
+        actor = json.loads(up["attrs"]).get("actor", "person")
         conn.execute(
-            "UPDATE answer_log SET human_did = ?, outcome = ? WHERE id = ?",
-            (f"Disabled and enabled {up['port']}, seen on the device at {up['event_time']}", outcome, answer["id"]),
+            "UPDATE answer_log SET human_did = ?, done_by = ?, outcome = ? WHERE id = ?",
+            (
+                f"Disabled and enabled {up['port']}, seen on the device at {up['event_time']}",
+                actor,
+                outcome,
+                answer["id"],
+            ),
         )

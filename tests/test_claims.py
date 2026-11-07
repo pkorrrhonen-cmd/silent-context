@@ -323,7 +323,7 @@ def test_a_rise_that_followed_another_change_is_not_credited_to_the_advice(clock
     rows = conn.execute(
         "SELECT scope_entity FROM evidence_event WHERE basis = 'telemetry' ORDER BY event_time"
     ).fetchall()
-    assert [row["scope_entity"] for row in rows] == ["TRN-042", "TRN-051"]
+    assert [row["scope_entity"] for row in rows] == ["TRN-042", "TRN-051", "TRN-063"]
 
 
 def test_telemetry_alone_does_not_make_a_proposal(plain) -> None:
@@ -595,3 +595,72 @@ def test_the_answers_over_http(built, monkeypatch: pytest.MonkeyPatch) -> None:
     assert client.post("/claims_for", json={"entity": "TRN-051"}).status_code == 422
     access = client.get("/access_for", params={"place": "SITE-NILO"})
     assert "grey box" in access.json()["next_step"]
+
+
+# Who acts: the policy over the answer
+
+AFTER_RECORD = "2026-10-25T09:40:00"
+AFTER_AGENT_ACTED = "2026-10-25T09:50:00"
+
+
+def test_the_first_time_the_policy_keeps_the_step_with_a_person(clock) -> None:
+    answer = claims_for("TRN-051", SYMPTOM, conn=clock(DURING_FAULT))
+    assert answer["tier"] == "propose"
+    assert answer["who_acts"] == "person"
+    assert "no proposal of this step on this class" in answer["who_why"]
+
+
+def test_the_policy_lets_the_agent_act_once_its_own_log_shows_a_carried_out_success(tmp_path: Path) -> None:
+    path = tmp_path / "policy.db"
+    ingest.run(path, until=DURING_FAULT)
+    with db.session(path) as conn:
+        claims_for("TRN-051", SYMPTOM, conn=conn)
+    ingest.run(path, until=AFTER_RECORD)
+    with db.session(path) as conn:
+        answer = claims_for("TRN-063", SYMPTOM, conn=conn)
+    assert answer["tier"] == "propose"
+    assert answer["observed_used"] == {"counters": "zero", "counters_from": "telemetry"}
+    assert answer["who_acts"] == "agent"
+    assert "TRN-051" in answer["who_why"] and "21.10." in answer["who_why"]
+    # The record of the agent's own action comes from the devices, marked as the agent's.
+    ingest.run(path, until=AFTER_AGENT_ACTED)
+    with db.session(path) as conn:
+        row = conn.execute(
+            "SELECT * FROM answer_log WHERE id = ?", (answer["answer_id"],)
+        ).fetchone()
+    assert row["done_by"] == "agent"
+    assert "09:42" in row["human_did"]
+    assert row["outcome"] == "Counters rising afterwards"
+
+
+def test_without_a_carried_out_success_the_third_unit_stays_with_a_person(clock) -> None:
+    answer = claims_for("TRN-063", SYMPTOM, conn=clock(AFTER_RECORD))
+    assert answer["tier"] == "propose"
+    assert answer["who_acts"] == "person"
+
+
+def test_counters_a_person_reported_do_not_let_the_agent_act(tmp_path: Path) -> None:
+    path = tmp_path / "policy.db"
+    ingest.run(path, until=DURING_FAULT)
+    with db.session(path) as conn:
+        claims_for("TRN-051", SYMPTOM, conn=conn)
+    ingest.run(path, until=AFTER_RECORD)
+    with db.session(path) as conn:
+        answer = claims_for("TRN-063", SYMPTOM, observed={"counters": "zero"}, conn=conn)
+    assert answer["who_acts"] == "person"
+    assert "reported by a person" in answer["who_why"]
+
+
+def test_the_policy_never_gives_a_reboot_or_a_replacement_to_the_agent(plain) -> None:
+    from app import policy
+    from app.resolve import Graph
+
+    graph = Graph.load(plain)
+    for kind in ("reboot", "replace_hw"):
+        who = policy.who_acts(
+            plain, graph, {"tier": "propose", "action_kind": kind}, "TRN-051", "telemetry"
+        )
+        assert who["who"] == "person"
+        assert "not reversible" in who["why"]
+    assert policy.who_acts(plain, graph, {"tier": "unknown", "action_kind": "none"}, "TRN-051", None)["who"] == "ask"
+    assert policy.who_acts(plain, graph, {"tier": "check_first", "action_kind": "read"}, "TRN-051", None)["who"] == "person"
