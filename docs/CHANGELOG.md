@@ -59,7 +59,10 @@ within two minutes, an automation permission waiting on the owner, so the PDF wa
 (installed for this with Homebrew, with Office's Calibri and Consolas loaded into a throwaway profile). Once the
 owner granted the permission, the PDF was exported from PowerPoint itself: ten pages, Calibri and Consolas, the
 same layout. A folder on the Desktop, "Silent context submission", holds the final video, the deck, its PDF, the
-source zip rebuilt from main's tip and `submission-notes.md`, what goes where in the form.
+source zip rebuilt from main's tip and `submission-notes.md`, what goes where in the form. The zip was checked as
+before: 133 files, the same list as `git ls-files`, no `.env`, store or database inside; unpacked into an empty
+folder with `.env` from `.env.example`, `uv sync`, 154 tests pass, the seed builds 14 entities and 7 edges, and
+`ask demo` answers.
 
 ### The source zip
 
