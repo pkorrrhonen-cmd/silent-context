@@ -4,6 +4,41 @@ Newest first. One entry per session; a session that ships several distinct thing
 What changed and *why*, with what was measured, so a later reader can tell a decision from a habit.
 The canonical state is [`BUILD_INFO.json`](BUILD_INFO.json): refer to it, do not copy it here.
 
+## Session 3, 7.11.2026: the technical check before the checkpoint
+
+**Why:** the owner saw the page the evening before and holds phase 6's checkpoint. Before anything
+is built on it, the session checked that the demo and the repository are technically sound and that
+the build still follows the product and the plan. Nothing in `app/`, `web/` or `data/` changed.
+
+**Measured:**
+
+- 150 tests pass in the working folder.
+- **A clean install passed** (phase 7's A10, listed as untried until now): `git archive HEAD` into an
+  empty folder, `uv sync`, `.env` copied from `.env.example` with its values empty, and every command
+  in the README's "How to run" in order, with no key. 150 tests pass there too. The seed builds 14
+  entities and 7 edges. Ingest reads 11 sources into 5 claims from the recorded answers, and with
+  `--until 2026-10-20T12:00:00` 5 sources into 2 claims. The truth report is clean: found 11/11,
+  merged 7/7, entity 4/4, scope 4/4, time 7/7, evidence 6/6, no problems; held-out 1 of 16
+  confidently wrong, the same as the recorded run. `ask demo`, `ask claims` and `ask access` answer
+  as the README says, and the export writes `export/graph.json`. `--refresh` without a key stops
+  with the message that names the settings, instead of failing somewhere deeper.
+- **All ten scenes ran at 1440 by 900 with the browser pane visible:** no console errors, every
+  request answered 200, and the dimming between scenes was seen moving (a 0.35 s transition, caught
+  mid-way in a screenshot). This closes the one thing session 2 could not check. The Ask button sits
+  inside the viewport at that size. Rebuilding the store for a scene takes 0.05 s.
+- **No key in the history:** a pattern scan of every commit's diff found nothing. gitleaks is not
+  installed on the Mac either, so the gate before any flip to public still needs it
+  ([`BACKLOG.md`](BACKLOG.md) REPO-3).
+
+**Against the plan:** everything on the plan's "never cut" list exists and runs. Of the cutting
+order, the "mark as wrong" button, the MCP wrapper, the Cypher export and the transcript were left
+out, in that order, as the plan allows; the procedure fields, the point-in-time query, the
+disagreement and the held-out metric are in. The README still lacks the architecture diagram and
+the "what was tested" section, and `docs/what-is-simulated.md` does not exist (DOC-1, DOC-3).
+
+**Open after this:** the owner's checkpoint on the page and the captions, the product name, and
+phase 7's remaining half, the acceptance table for the slides.
+
 ## Session 2, 6.11.2026: Elisa selected, decisions made, phases 0 and 1 built
 
 **Why:** the challenge is selected and the decisions P1 to P6 are made, so the build starts from the
