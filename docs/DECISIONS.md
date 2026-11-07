@@ -14,7 +14,7 @@ Updated 7.11.2026 (session 3).
 |---|---|---|---|
 | 1 | The challenge | Elisa, selected 6.11.2026. Final. | `OK` |
 | 2 | Visibility | Public as soon as the product is in a shape the repository can be opened in, before the submission. gitleaks is installed and run over the full history, and `CLAUDE.md` and `docs/` are read for anything internal, at that point. The owner, 7.11.2026. | `OK` |
-| 3 | License | None chosen. The terms: the team owns what it builds, and Elisa can use it in its business. Chosen when the repository goes public; MIT recommended, because the jury and Elisa can then use it without a question. | `later`, before the flip to public |
+| 3 | License | MIT, in `LICENSE` and `pyproject.toml`: the team owns what it builds, Elisa can use it in its business, and the jury and anyone else can read, run and build on it without a question. The owner, 7.11.2026. | `OK` |
 | 4 | Truth set, the second expert's claim | Corrected: the claim waits with `no_id`. The truth set first bound it to TRN-051, and the model left it waiting, because the advice is about old units in general and TRN-051 only prompted it. The file says this was done after the first scored run, which makes that row weaker evidence than the rest. | `OK` |
 | 5 | Measuring run-to-run variation | Done: five repeats with the prompt unchanged and no rule tuned to them. Confidently wrong per run, of 16: 0, 0, 0, 1, 1, the same one file each time. See `data/truth/held_out_repeats.json`. | `OK` |
 | 6 | IP terms | Accepted in sinceai.app when the challenge was selected. The owner, 7.11.2026. | `OK` |

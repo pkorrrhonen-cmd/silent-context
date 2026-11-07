@@ -177,6 +177,9 @@ Everything below runs with no key, from the recorded answers.
 - **The Cypher export** loaded into an empty Neo4j 5 database with no edits.
 - **The MCP wrapper:** a client over an in-memory transport lists the three tools and gets the same
   answers as the functions behind the HTTP interface; a file outside the manifest is refused.
+- **No secret in the history:** gitleaks 8.30.1 over all 30 commits and the working tree on 7.11.2026, zero
+  findings. The one thing it first flagged was the recorded answers' prompt hash, allowed in
+  [`.gitleaks.toml`](.gitleaks.toml) with the reason.
 
 What was not tested: extraction on real conversations, outcomes read from real chat, and the class
 binding on anything but this synthetic data ([`docs/what-is-simulated.md`](docs/what-is-simulated.md)).
@@ -213,7 +216,8 @@ Most of the data is synthetic, as Elisa's ground rules allow. What was generated
 
 ## Open-source components and licences
 
-Direct dependencies, licences read from the installed package metadata:
+This repository: MIT ([`LICENSE`](LICENSE)). Direct dependencies, licences read from the installed package
+metadata:
 
 | Component | Licence | Used for |
 |---|---|---|
@@ -233,4 +237,5 @@ data. Everything else is synthetic. No Elisa system was accessed. Elisa's challe
 included in this repository.
 
 **IP.** Under the challenge terms the team owns what it builds, and Elisa can use it in its business.
-No licence has been chosen for this repository yet.
+This repository is under the MIT licence ([`LICENSE`](LICENSE)), so the jury, Elisa and anyone else can
+read, run and build on it without a question.

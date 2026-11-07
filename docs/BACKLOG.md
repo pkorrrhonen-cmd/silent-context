@@ -29,14 +29,13 @@ Updated 7.11.2026 (session 3).
 | P-3 | **Submit** in sinceai.app: project details, submission URL, repository or demo link, video, source zip. | Closes Sunday 8.11. at 10:00 EET; the plan is to send by 09:30. |
 | P-10 | **Put the final video where the submission can point** (YouTube unlisted, or the file as the form allows) and open the link once logged out. | The video is final on 7.11.: `silent-context-en-captions.mp4` in the Desktop folder "Silent context video" and in the pipeline's media folder. |
 | P-8 | **On the main PC,** point the checkout at the renamed repository: `git remote set-url origin https://github.com/pkorrrhonen-cmd/silent-context.git`. | GitHub redirects the old name, so this can wait; it only keeps the remote honest. |
-| P-7 | *Optional:* **ask Joni the questions** in the Atlas artifact `SINCEAI-2026-ELISA-PAATOKSET` part 1.5, face to face, if there is time. | Saturday at the Joki showroom, 9 to 12 and 14.30 to 18. No decision depends on the answers. |
+| P-7 | *Optional:* **ask Elisa's representative the questions** in the Atlas artifact `SINCEAI-2026-ELISA-PAATOKSET` part 1.5, face to face, if there is time. | Saturday at the showroom, 9 to 12 and 14.30 to 18. No decision depends on the answers. |
 
 ## The repository
 
 | Code | Task | Why / notes |
 |---|---|---|
 | REPO-2 | **Register the Atlas system,** then render `docs/adr/` from its model. | Not during the event weekend (the owner, 6.11.2026). Until then decisions live in [`DECISIONS.md`](DECISIONS.md). |
-| REPO-3 | **Before any flip to public:** run gitleaks over the full history and read `CLAUDE.md` and `docs/` for anything internal. | Depends on [`DECISIONS.md`](DECISIONS.md) row 2. gitleaks is not installed on the Mac; a pattern scan of the history on 7.11. found no key. |
 | REPO-4 | **Build the source zip with `git archive`,** not from the working folder. | The working folder holds untracked leftovers that are not part of the product. |
 
 ## The build

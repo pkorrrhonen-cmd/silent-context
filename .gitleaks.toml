@@ -1,0 +1,15 @@
+# gitleaks: what is allowed to look like a secret here.
+#
+# Every recorded model answer in data/extractions/ starts with "key": the SHA-256 of the whole prompt
+# (app/extract.py), which is how a clean install finds the answer without calling anything. It is a hash
+# of public text, not a credential, and the generic-api-key rule fires on it. Nothing else is allowed.
+
+title = "Silent context"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "The prompt hash that keys a recorded answer"
+paths = ['''data/extractions/.*\.json$''']
+regexes = ['''"key": "[0-9a-f]{64}"''']
