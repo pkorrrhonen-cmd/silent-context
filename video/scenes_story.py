@@ -128,7 +128,10 @@ PAGE = {
                (("s", 3), "focus", ["#claims"], None), (("s", 4), "focus", ["#graph"], None),
                (("s", 5), "focus", ["#agent"], None)]),
     "04": (1, []),  # the page opens Elisa's thread over the whole frame; it is the picture, read as written
-    "05": (2, [(HOLD, "#claims", 1.8, (0, 0, 1, 1)), (("s", 2), "#timeline", 1.8, (.3, .5, .5, .5))]),
+    # Sentence 2 is about the moment the part was changed: the time axis is lit for it, because the page dims it in
+    # this scene and a dimmed axis looked plain grey under the zoom (the owner, 7.11. late evening).
+    "05": (2, [(HOLD, "#claims", 1.8, (0, 0, 1, 1)), (("s", 2), "focus", ["#timeline", "#claims"], None),
+               (("s", 2), "#timeline", 1.8, (.3, .5, .5, .5))]),
     "06": (3, [(HOLD, "#answer", 1.7, ANSWER)]),
     "07": (4, [(HOLD, "#answer", 1.7, (0, 0, .8, .9))]),
     "08": (5, [(HOLD, "#answer", 1.6, (0, 0, .92, .95))]),

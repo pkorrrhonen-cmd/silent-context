@@ -53,6 +53,17 @@ The final `silent-context-v6-captions.mp4` is 176.5 s, 1920 by 1080, 22.2 MB, th
 black band under the picture, the same length as v5 to the frame, because the voice sets it; frames read at
 thirteen points. It is in the Desktop folder "Silent context submission V5" with its SRT.
 
+**The owner's watch of v6, and the second take:** two jerks in the zoom at 0:56 and 1:10, and at 1:06 the
+words speak of the moment the part was changed while the picture is plain grey. Measured from the take's
+frame list: stalls of 0.43 s and of 0.27 and 0.30 s inside the first two zoom moves, none later, and none in
+the v5 and v4 takes; they fall in the minute a deck build, a LibreOffice export and a page render ran beside
+the recorder (a lesson in `LESSONS.md`). The grey: the page dims the time axis in the bind scene, so the zoom
+showed a dimmed panel; block 05 now lights the axis with the claims for that sentence (`scenes_story.py`).
+The take was recorded again on a quiet machine, cut and finished as before, and the frame list read for
+stalls before the cut: 55 or 56 frames in every zoom move and no frame over 50 ms, the same as the v5
+and v4 takes. The final keeps its name, length and size class; the plans `v6-cut.json` and `v6-final.json`
+are rewritten from the new marks, and the V5 folder's video and SRT are replaced.
+
 **Proposed, as a side session with its brief:** the hosted demo on Cloudflare Containers (the owner: the
 account has Workers Paid), the real FastAPI app as a Docker image, repeatable with one command, its
 address into the Demo URL field and the README's Demo section; a static snapshot on Pages or a Python

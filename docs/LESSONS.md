@@ -36,6 +36,17 @@ same move gave a frame every 17 ms.
 **Rule:** no `will-change` on anything a screencast must follow; measure the frames of a move before
 building on it.
 
+## Nothing else runs while a take records
+
+On 7.11.2026 the v6 take was recorded while a deck build, a LibreOffice export and a page render ran on the
+same machine. The owner saw two jerks in the zoom at 0:56 and 1:10. The take's frame list showed why: one
+frame of 0.43 s and two of 0.27 and 0.30 s inside the first two zoom moves, in the minute those jobs ran,
+and none later; the v5 and v4 takes, recorded on a quiet machine, had no frame over 50 ms in any move.
+The screencast only delivers what the browser paints, and a busy CPU paints late.
+
+**Rule:** a take is recorded alone: nothing else is started until it is done, and the frame list is read
+for stalls before the cut.
+
 ## A look decided last costs a take, a deck and an evening
 
 On 7.11.2026 the page, the cards and both decks were built with no decision about colours or a look: the
