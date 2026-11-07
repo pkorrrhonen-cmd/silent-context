@@ -4,6 +4,42 @@ Newest first. One entry per session; a session that ships several distinct thing
 What changed and *why*, with what was measured, so a later reader can tell a decision from a habit.
 The canonical state is [`BUILD_INFO.json`](BUILD_INFO.json): refer to it, do not copy it here.
 
+## Session 6, 7.11.2026 evening: the submission sent, and a vertical video for the owner's own channels
+
+**The submission** was sent from sinceai.app at about 20:00 with the owner, from package V5: every text from
+submission-notes.md, the YouTube link, the hosted copy as the Demo URL, the zip (checked equal to main's tip), the
+five-picture deck as the pitch deck and the full deck as the supporting document; the owner dropped the three files
+in, since the app's browser pane cannot upload. The form had three fields the notes did not: an MLH technology
+feedback (written on Claude Opus 5.5 through the API and the MCP Python SDK), the GenAI tools as toggles (Anthropic
+and OpenAI) and a free answer on the model's use (the reader only; the model never binds, decides or acts).
+ElevenLabs was ticked under partner technologies because the video's voice is made with it; the form enters the same
+tick in MLH's Best Use of ElevenLabs and asked for a sentence, written. Found on the form: a demo video can also go
+in as a file (an alternative to the YouTube link, not a second video), a filled supporting document slot opens
+another, and the zip limit is 250 MB. The submission was read back after sending with every field and file in place.
+The owner's word: Save changes, and the form is not touched again. P-3 and P-7 leave the backlog.
+
+**The vertical video** for the owner's own channels (Instagram, LinkedIn, the Lounge AI channel), told to someone who
+knows nothing about the subject. A first 30 second cut of six cards was built before any storyboard was agreed; the
+owner stopped it ("we skipped the planning phase", see LESSONS) and the storyboard was agreed scene by scene: the
+event, Elisa's network across the country, the shift to autonomous operation, the knowledge that lives in people's
+chats, the agent that pins it to the unit, the answer anywhere in the network, the close; English, "I" for what he
+did, under 60 seconds, his two photos from the event (6.11.) at the start (decision 26). Built on `video/social.html`
+as one stage for seven scenes: the map of Finland from Natural Earth's public-domain outline with 49 towns as the
+units and each one's nearest neighbours as links (an illustration, said so on screen), Elisa's example thread, the
+advice flying as a note to its unit, a fault far north with the note travelling to it, the agent's real answer from
+the page, dated. The photos stay out of the repository (other people in them), in the pipeline's media folder.
+
+Measured on the first take: a layer at opacity 0 is not painted before its fade (a 0.67 s gap in the screencast on
+the photo's fade-in), and animating the note's width and font size stalled its flight 0.43 s; at opacity 0.002 and
+with a transform-only flight one 0.27 s gap remained, at the photo-to-map crossfade. The owner locked the picture on
+the guide cut with one change (the day tiles were too transparent; dark glass now), then voiced the narration in
+ElevenLabs: 53.6 s, 3.9 words a second, aligned at -38 dB with a fit cost of 0.15, every block boundary in a pause.
+The take was recorded again on that alignment. With the default 1.2 s tail the final was 61.2 s, over the owner's
+limit, so `cut_from_take.py` took `--tail` (0.8 here) beside `--band` (0 here, the captions over the picture in the
+platforms' safe area): the final is 58.4 s, 1080 by 1920, 7.7 MB with the captions burned in, 5.8 MB without, with
+the SRT. Delivered in the Desktop folder "Silent context social video" with the words and notes. Not part of the
+submission.
+
 ## Session 5, 7.11.2026 late evening: the light look in Elisa's colours, video v6, package V5
 
 **Why:** after package V4 the owner read the whole once more and asked two things: whether a live demo

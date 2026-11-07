@@ -4,7 +4,7 @@
  "size": "1080x1920",
  "band": 0,
  "narration": "audio/narration.wav",
- "scenes_json": "audio/scenes-guide-social.json",
+ "scenes_json": "audio/scenes-social.json",
  "scenes": {
   "01": {
    "clip": "01-the-event",

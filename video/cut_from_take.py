@@ -40,6 +40,8 @@ def main() -> None:
     ap.add_argument("--name", default="silent-context-en", help="the final's name in the plan")
     ap.add_argument("--prefix", default="", help="a prefix for the written files: 'v3-' gives v3-cut.json and v3-final.json")
     ap.add_argument("--out", default=Path(__file__).parent, help="where the cut list and the final plan go")
+    ap.add_argument("--tail", type=float, default=TAIL, help="seconds of picture after a block's last word; the "
+                    "social cut takes 0.8 to stay under 60 s")
     ap.add_argument("--band", type=int, default=BAND, help="the captions' band under the picture in pixels; 0 for the "
                     "9:16 social cut, whose captions sit in the platforms' safe area over the picture")
     a = ap.parse_args()
@@ -58,7 +60,7 @@ def main() -> None:
     for i, block in enumerate(blocks):
         start = marks[f"block {block}"]
         hold_end = marks[f"block {blocks[i + 1]}"] if i + 1 < len(blocks) else marks["done"]
-        end = min(hold_end, start + speech[block] + 0.3 + TAIL)
+        end = min(hold_end, start + speech[block] + 0.3 + a.tail)
         scenes.append({"name": names[block], "parts": [{"take": a.take, "from": round(start, 2), "to": round(end, 2)}]})
     cut = {
         "about": "Silent context: one clip per narration block, cut from the one take by its block marks, each no longer than its speech plus a tail (cut_from_take.py). Nothing is sped up. Paths are relative to --media.",

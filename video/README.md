@@ -45,15 +45,17 @@ scene with the owner before the build (a first 30 second cut of six cards, built
 | `social/finland.js` | The map: Finland's outline from Natural Earth 1:50m (public domain), 49 towns as the units and each one's two nearest neighbours as the links; an illustration, and named so on screen. |
 | `social/answer-scene-4.png` | The agent's answer at scene 4, shot from the running page at two times the size and cropped, 7.11.2026, named and dated on screen. |
 | `scenes_social.py` | The recorder's scene: the seven scenes in order, each at its block's mark, the moves timed from the aligned voice (`SILENT_CONTEXT_ALIGNMENT`). |
-| `social-cut.json`, `social-final.json` | Written by `cut_from_take.py --band 0`: no band, the captions sit over the picture in the safe area. |
+| `social-cut.json`, `social-final.json` | Written by `cut_from_take.py --band 0 --tail 0.8`: no band, the captions sit over the picture in the safe area; a shorter tail after each block's last word, because with the default 1.2 s the final was 61.2 s against the owner's limit of 60. |
 
 The two photos are the owner's and stay out of the repository: the page reads them from the pipeline's media folder
 beside this checkout (`../../sf3d-ai-lab/media/silent-context/photos/`), so the take is recorded on the Mac only.
 
 In order, from `sf3d-ai-lab/video`: the guide track (`guide.py`) and its alignment first, the take with the
-alignment set, then `cut_from_take.py --band 0 --prefix social-`, `assemble.py --out cut-social` and `final.py
---clips cut-social --burn --captions social`. The owner's voice last: align it, record the take again on that
-alignment, and run the same three steps. The guide cut (70 s on the Mac's slow voice) is never published.
+alignment set, then `cut_from_take.py --band 0 --tail 0.8 --prefix social-`, `assemble.py --out cut-social` and
+`final.py --clips cut-social --burn --captions social`. The owner's voice last: align it (`--noise=-38dB`), record the
+take again on that alignment, and run the same three steps. The guide cut (70 s on the Mac's slow voice) is never
+published. The final on the owner's voice (7.11. evening, his track 53.6 s): 58.4 s, 1080 by 1920, 7.7 MB with the
+captions burned in, 5.8 MB without, in the Desktop folder "Silent context social video".
 
 ```bash
 SILENT_CONTEXT_ALIGNMENT=../media/silent-context/audio/scenes-social.json uv run python pipeline/record.py --stage "file://<repo>/video/social.html" --scenes <repo>/video/scenes_social.py --out ../media/silent-context/takes-social --size 1080x1920 social

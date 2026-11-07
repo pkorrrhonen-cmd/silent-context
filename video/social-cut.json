@@ -7,9 +7,9 @@
    "name": "01-the-event",
    "parts": [
     {
-     "take": "takes-social/social",
-     "from": 1.14,
-     "to": 11.05
+     "take": "takes-social-voice/social",
+     "from": 1.16,
+     "to": 9.23
     }
    ]
   },
@@ -17,9 +17,9 @@
    "name": "02-elisa",
    "parts": [
     {
-     "take": "takes-social/social",
-     "from": 11.17,
-     "to": 20.21
+     "take": "takes-social-voice/social",
+     "from": 11.22,
+     "to": 19.45
     }
    ]
   },
@@ -27,9 +27,9 @@
    "name": "03-the-shift",
    "parts": [
     {
-     "take": "takes-social/social",
-     "from": 20.21,
-     "to": 27.76
+     "take": "takes-social-voice/social",
+     "from": 20.26,
+     "to": 26.2
     }
    ]
   },
@@ -37,9 +37,9 @@
    "name": "04-the-silent-knowledge",
    "parts": [
     {
-     "take": "takes-social/social",
-     "from": 28.26,
-     "to": 41.29
+     "take": "takes-social-voice/social",
+     "from": 28.33,
+     "to": 39.76
     }
    ]
   },
@@ -47,9 +47,9 @@
    "name": "05-what-i-built",
    "parts": [
     {
-     "take": "takes-social/social",
-     "from": 41.29,
-     "to": 56.32
+     "take": "takes-social-voice/social",
+     "from": 41.36,
+     "to": 54.44
     }
    ]
   },
@@ -57,9 +57,9 @@
    "name": "06-the-payoff",
    "parts": [
     {
-     "take": "takes-social/social",
-     "from": 56.32,
-     "to": 65.22
+     "take": "takes-social-voice/social",
+     "from": 56.39,
+     "to": 64.14
     }
    ]
   },
@@ -67,9 +67,9 @@
    "name": "07-close",
    "parts": [
     {
-     "take": "takes-social/social",
-     "from": 66.35,
-     "to": 70.71
+     "take": "takes-social-voice/social",
+     "from": 66.43,
+     "to": 70.16
     }
    ]
   }

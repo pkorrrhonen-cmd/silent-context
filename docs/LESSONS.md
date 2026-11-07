@@ -4,6 +4,20 @@ Newest first. The **root cause** is the heading, not the symptom, because the ro
 elsewhere. Only lessons whose price was actually paid. A lesson that becomes a permanent rule moves
 into `CLAUDE.md`.
 
+
+## A ready pipeline and approved words tempt a build before the storyboard, and the owner's planning step is skipped
+
+On 7.11.2026 evening the owner asked for a 30 second vertical video of the submitted work for his own channels.
+The pipeline, the look and the narration's words were all ready, so the session wrote six cards from the
+submission's story and built a guide cut in one go. The owner's reply: this went minimally wrong, we did not hold
+the planning phase; the video matters to his family, colleagues and work contacts, its audience knows nothing of
+the subject, and the picture had to be made for a portrait screen from the start. The storyboard was then agreed
+scene by scene and the video rebuilt; the first cut cost about an hour.
+
+**Rule:** a video for a new audience is a new video, however ready the material: storyboard and narration v0
+first, the owner's sign-off, then the build (the video rulebook's steps), also for a "short version" of an
+approved video.
+
 ## A new unit at a site that already has one makes every mention of that site ambiguous
 
 On 7.11.2026 evening the fourth unit, TRN-063, was first placed at Rauta beside TRN-051. Two resolver tests

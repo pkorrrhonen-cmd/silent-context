@@ -18,7 +18,7 @@ Atlas artifact `SINCEAI-2026-SUUNNITELMA`, not here, because this repository is 
 Codes: **P** the owner's own actions, **REPO** the repository, **DOC** the documents to fill,
 **BUILD** the build's phases.
 
-Updated 7.11.2026 (session 5 and its hosting side session, late evening).
+Updated 7.11.2026 (session 6, evening: the submission is sent).
 
 ---
 
@@ -26,11 +26,10 @@ Updated 7.11.2026 (session 5 and its hosting side session, late evening).
 
 | Code | Task | Why / notes |
 |---|---|---|
-| P-3 | **Submit** in sinceai.app. | The form opens Saturday 7.11. at 18:00 EET and closes Sunday 8.11. at 10:00; the owner sends on Saturday evening, by 09:30 at the latest, and a submission can be edited after sending. The video is on YouTube as unlisted, `https://youtu.be/0t4Ib1uPcfc` (the owner, 7.11. evening). The package is the Desktop folder "Silent context submission V5": every field's text is in its `submission-notes.md` (the tagline, 128 of 140 characters, the About text, Built with in the order that puts the five vote-card chips first, the GenAI answer); the five-picture deck `silent-context-in-five.pdf` goes in as the pitch deck, the full deck as a supporting document, the zip as the source. The Demo URL field takes the hosted copy's address, `https://silent-context.pkorrrhonen.workers.dev` ([`hosting.md`](hosting.md) says how it is published; a submission can be edited). Rebuild the zip with `git archive` if main moves after the last rebuild. The older folders V4, V3, V2 and "Silent context submission" are the earlier packages, kept as fallbacks. |
 | P-11 | **Vote** in sinceai.app on Sunday 10:00 to 12:00. | 20 pairwise comparisons per builder; the vote picks the finalists and feeds the company top three. Can be done from anywhere. The closing ceremony at 13:15 needs presence only from the five finalists, who must be at the stage side at 13:00 and present live. |
+| P-13 | **Post the vertical video** on your own channels (Instagram, LinkedIn, the Lounge AI channel). | The Desktop folder "Silent context social video": the captioned file is the one to post (58.4 s, 1080 by 1920), the uncaptioned one with the SRT for a platform whose own captions you prefer, and `notes.md` holds a draft for the post. Not part of the submission. |
 | P-12 | **After the event, decide whether the hosted copy stays up.** `cd hosting && npx wrangler delete` takes the Worker and its container down; [`hosting.md`](hosting.md) says how the image is removed too. | The copy at `https://silent-context.pkorrrhonen.workers.dev` sleeps two hours after the last visit and costs nothing asleep; awake it costs about 0.03 USD an hour beyond the plan's included amounts. The Sunday cron wakes it 08:00 to 13:55 Finnish time every week until the Worker is deleted or the `triggers` line in `hosting/wrangler.jsonc` goes. |
 | P-8 | **On the main PC,** point the checkout at the renamed repository: `git remote set-url origin https://github.com/pkorrrhonen-cmd/silent-context.git`. | GitHub redirects the old name, so this can wait; it only keeps the remote honest. |
-| P-7 | *Optional:* **ask Elisa's representative the questions** in the Atlas artifact `SINCEAI-2026-ELISA-PAATOKSET` part 1.5, face to face, if there is time. | Saturday at the showroom, until 18:00. No decision depends on the answers. |
 
 ## The repository
 
