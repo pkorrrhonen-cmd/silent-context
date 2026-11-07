@@ -1,0 +1,7 @@
+{
+  "size": "1920x1080",
+  "speed_of_waits": 1,
+  "scenes": [
+    { "name": "01-demo", "parts": [ { "take": "takes/demo" } ] }
+  ]
+}
