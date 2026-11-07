@@ -40,6 +40,8 @@ def main() -> None:
     ap.add_argument("--name", default="silent-context-en", help="the final's name in the plan")
     ap.add_argument("--prefix", default="", help="a prefix for the written files: 'v3-' gives v3-cut.json and v3-final.json")
     ap.add_argument("--out", default=Path(__file__).parent, help="where the cut list and the final plan go")
+    ap.add_argument("--band", type=int, default=BAND, help="the captions' band under the picture in pixels; 0 for the "
+                    "9:16 social cut, whose captions sit in the platforms' safe area over the picture")
     a = ap.parse_args()
     media = Path(a.media).expanduser()
     names = names_of(Path(a.narration))
@@ -68,7 +70,7 @@ def main() -> None:
         "about": "Silent context: the final plan (pipeline/final.py), written by cut_from_take.py from the alignment. Each narration block is one clip; its sentences start 0.3 s into the clip, which already shows what they talk about. The captions are burned into a black band under the picture, never over it. The guide run uses the same plan with --narration, --scenes-json and --name; the owner's own track replaces audio/narration.wav last.",
         "name": a.name,
         "size": events["size"],
-        "band": BAND,
+        "band": a.band,
         "narration": "audio/narration.wav",
         "scenes_json": a.scenes_json,
         "scenes": {block: {"clip": names[block], "blocks": [[0, sentences[block] - 1, 0.3]]} for block in blocks},

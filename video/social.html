@@ -1,0 +1,199 @@
+<!doctype html>
+<!-- The six cards of the 30 second vertical video (narration-social.md), in the page's own light look, laid out for
+     1080 by 1920: every word inside x 60 to 940 and y 200 to 1270, the burned captions from 1290 to 1440 and the
+     band under them left to the platforms' own buttons (sf3d-ai-lab VIDEO-RULEBOOK.md §9). Recorded by
+     scenes_social.py: storyGo(n, cues) shows card n and times its elements from the aligned voice, as story.html
+     does; data-cue="S,F" is sentence S of the block and a fraction F of its length, data-at the fixed seconds
+     without an alignment. Two pictures are the product's own page at two scenes, recorded on 7.11.2026
+     (social/claim-scene-3.png, social/answer-scene-4.png), named so on screen. Jost is the repository's copy.
+     Written at the event, after the submission; used only to make the video, not part of the product. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Silent context: the vertical cards</title>
+<style>
+  @font-face {
+    font-family: "Jost";
+    font-style: normal;
+    font-weight: 500 700;
+    src: url("../web/fonts/jost-latin.woff2") format("woff2");
+  }
+  :root {
+    --bg: #efeff1; --panel: #ffffff; --panel-raised: #f6f6f7; --line: #d2d2d6;
+    --copper: #ff6400; --copper-bright: #ff8800; --accent: #005fed; --text: #171c43; --muted: #70707a; --faint: #8d8d95;
+    --propose: #008253;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --head: "Jost", var(--sans);
+  }
+  * { box-sizing: border-box; }
+  html, body { width: 1080px; height: 1920px; margin: 0; overflow: hidden; }
+  body { background: var(--bg); color: var(--text); font: 30px/1.38 var(--sans); position: relative; }
+  /* The safe area: 60 px on the left, 140 on the right, the top 230 and everything below 1270 left alone. */
+  .card { position: absolute; inset: 0; display: none; flex-direction: column; align-items: stretch; padding: 230px 140px 650px 60px; }
+  .card[data-on] { display: flex; }
+  .eyebrow { font: 600 24px var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin: 0 0 22px; }
+  h1 { font: 600 88px/1.08 var(--head); margin: 0; letter-spacing: -0.005em; }
+  .title { position: relative; height: 96px; }
+  .title h1 { position: absolute; left: 0; top: 0; width: 880px; }
+  .foot { position: absolute; left: 60px; top: 1226px; font: 22px var(--mono); letter-spacing: .06em; color: var(--faint); margin: 0; }
+  #tick { position: fixed; left: 0; bottom: 0; width: 2px; height: 2px; background: #efeff0; }
+
+  /* Everything that appears does so the same way: a short rise, then still. What leaves fades upward. */
+  .in { opacity: 0; animation: arrive .55s cubic-bezier(.2,.7,.2,1) forwards; animation-delay: var(--at, 0s); }
+  @keyframes arrive { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .out { animation: leave .4s ease-out forwards; animation-delay: var(--at, 0s); }
+  @keyframes leave { to { opacity: 0; transform: translateY(-12px); } }
+
+  /* Cards 0 and 1: Elisa's Teams thread, as in the example file. */
+  .thread { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 32px 36px 76px; margin-top: 44px; min-height: 580px; font-size: 29px; line-height: 1.36; }
+  .msg { margin: 0 0 24px; }
+  .msg .who { font: 600 20px var(--mono); color: var(--accent); margin: 0 0 6px; }
+  .msg .who span { color: var(--faint); font-weight: 400; margin-left: 12px; }
+  .msg p { margin: 0; color: var(--text); }
+  .msg.v p { color: var(--muted); }
+  .msg.mark p { color: var(--text); font-weight: 600; }
+  .thread .tag { position: absolute; left: 36px; bottom: 24px; font: 19px var(--mono); color: var(--faint); letter-spacing: .05em; margin: 0; }
+
+  /* Cards 2 and 4: a picture of the page, with its name and date under it. */
+  .shot { margin-top: 44px; }
+  .shot img { display: block; width: 880px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+  .shot .label { font: 20px var(--mono); color: var(--faint); letter-spacing: .04em; margin: 14px 0 0; }
+  .lines { display: flex; flex-direction: column; gap: 14px; margin-top: 34px; }
+  .lines .l { font-size: 42px; line-height: 1.22; color: var(--muted); margin: 0; }
+  .lines .l b { color: var(--text); font-weight: 600; }
+  .lead { font-size: 42px; line-height: 1.22; color: var(--muted); margin: 28px 0 0; }
+
+  /* Card 3: three steps, stacked. */
+  .steps { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
+  .step { display: grid; grid-template-columns: 60px 1fr; gap: 24px; align-items: start; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 22px 28px 24px; }
+  .step svg { width: 60px; height: 60px; margin-top: 4px; }
+  .step svg * { fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .step b { display: block; font: 600 19px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .step p { margin: 0; font-size: 29px; line-height: 1.3; color: var(--text); }
+
+  /* Card 5: the close. */
+  .close h1 { font-size: 118px; }
+  .close .repo { font: 600 31px var(--mono); color: var(--text); margin: 44px 0 0; letter-spacing: .01em; word-break: break-all; }
+  .close .repo span { display: block; color: var(--faint); font-weight: 400; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<!-- 01 · What I built -->
+<section class="card" id="card-0">
+  <p class="eyebrow in" data-cue="0,0" data-at=".2">Since AI 2026 · Elisa's challenge</p>
+  <div class="title"><h1 class="in" data-cue="0,0.05" data-at=".4">What I built</h1></div>
+  <div class="thread in" data-cue="1,0" data-at="2.8">
+    <div class="msg v in" data-cue="1,0.05" data-at="3.0"><p class="who">Veikko Vikkelä <span>Field Engineer · 09:14</span></p>
+      <p>Changed the SFP on transmission node TRN-042. Link is up and alarms cleared, but traffic is still not coming back.</p></div>
+    <div class="msg in" data-cue="1,0.5" data-at="5.0"><p class="who">Erkki Expert <span>Network Expert · 09:22</span></p>
+      <p>That's it. Disable the interface, wait a little, then enable it again. Don't reboot the whole unit unless that fails.</p></div>
+    <p class="tag in" data-cue="1,0.05" data-at="3.0">a Teams thread · Elisa's example file, unchanged</p>
+  </div>
+  <p class="foot">Silent context · Since AI 2026</p>
+</section>
+
+<!-- 02 · The missing link: the same thread; its last two messages arrive, then the title swaps. -->
+<section class="card" id="card-1">
+  <p class="eyebrow">Since AI 2026 · Elisa's challenge</p>
+  <div class="title">
+    <h1 class="out" data-cue="1,0" data-at="2.4">What I built</h1>
+    <h1 class="in" data-cue="1,0.12" data-at="2.8">The missing link.</h1>
+  </div>
+  <div class="thread">
+    <div class="msg v"><p class="who">Veikko Vikkelä <span>Field Engineer · 09:14</span></p>
+      <p>Changed the SFP on transmission node TRN-042. Link is up and alarms cleared, but traffic is still not coming back.</p></div>
+    <div class="msg"><p class="who">Erkki Expert <span>Network Expert · 09:22</span></p>
+      <p>That's it. Disable the interface, wait a little, then enable it again. Don't reboot the whole unit unless that fails.</p></div>
+    <div class="msg v mark in" data-cue="0,0.05" data-at=".3"><p class="who">Veikko Vikkelä <span>09:26</span></p><p>Is this documented somewhere?</p></div>
+    <div class="msg mark in" data-cue="0,0.55" data-at="1.3"><p class="who">Erkki Expert <span>09:27</span></p><p>Not that I know of. We've just learned it over the years.</p></div>
+    <p class="tag">a Teams thread · Elisa's example file, unchanged</p>
+  </div>
+  <p class="lead in" data-cue="1,0.3" data-at="3.4">Nobody writes it down. And there is a lot of it.</p>
+  <p class="foot">Silent context · Since AI 2026</p>
+</section>
+
+<!-- 03 · The agent -->
+<section class="card" id="card-2">
+  <p class="eyebrow in" data-cue="0,0" data-at=".2">So I built</p>
+  <h1 class="in" data-cue="0,0.05" data-at=".4">An agent that reads the chat as it is.</h1>
+  <div class="shot in" data-cue="1,0" data-at="3.6">
+    <img src="social/claim-scene-3.png" alt="The note on the page: the expert's advice, seen on TRN-042, told by a network expert in Teams and email">
+    <p class="label">the note, on the product's page · recorded 7.11.2026</p>
+  </div>
+  <div class="lines">
+    <p class="l in" data-cue="1,0.15" data-at="4.4"><b>Pinned</b> to the unit it was about.</p>
+    <p class="l in" data-cue="1,0.6" data-at="6.0"><b>Who</b> said it, where, and when.</p>
+  </div>
+  <p class="foot">Silent context · Since AI 2026</p>
+</section>
+
+<!-- 04 · No extra work -->
+<section class="card" id="card-3">
+  <p class="eyebrow in" data-cue="0,0" data-at=".2">No extra work</p>
+  <h1 class="in" data-cue="0,0.05" data-at=".4">No forms. No extra people.</h1>
+  <p class="lead in" data-cue="1,0" data-at="2.4">The knowledge is captured as a by-product of the work itself.</p>
+  <div class="steps">
+    <div class="step in" data-cue="1,0.25" data-at="3.4">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M8 10h28v18H20l-8 7v-7H8z"/><path d="M14 17h16M14 22h10"/></svg>
+      <div><b>Read as written</b><p>The chat and the email, exactly as they are.</p></div></div>
+    <div class="step in" data-cue="1,0.5" data-at="4.4">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><rect x="6" y="22" width="32" height="14" rx="2"/><path d="M11 29h6M21 29h12"/><path d="M14 8h16v12H14z"/><path d="M22 4v4M22 20v3"/></svg>
+      <div><b>Pinned to the unit</b><p>In the expert's own words, with who said it and when.</p></div></div>
+    <div class="step in" data-cue="1,0.75" data-at="5.4">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><rect x="6" y="9" width="32" height="26" rx="3"/><path d="M13 19l6 6 12-12"/></svg>
+      <div><b>One call for the agent</b><p>What to do next, and where that came from.</p></div></div>
+  </div>
+  <p class="foot">Silent context · Since AI 2026</p>
+</section>
+
+<!-- 05 · The payoff -->
+<section class="card" id="card-4">
+  <p class="eyebrow in" data-cue="0,0" data-at=".2">Next time, the same fault</p>
+  <h1 class="in" data-cue="0,0.05" data-at=".4">The answer, in one call.</h1>
+  <div class="shot in" data-cue="0,0.3" data-at="2.0">
+    <img src="social/answer-scene-4.png" alt="The agent's answer on the page: propose, bounce the interface, a reboot held back, the counters read from the device">
+    <p class="label">the agent's answer, on the product's page · recorded 7.11.2026</p>
+  </div>
+  <div class="lines">
+    <p class="l in" data-cue="0,0.7" data-at="4.4"><b>What to do</b>, and why.</p>
+  </div>
+  <p class="foot">Silent context · Since AI 2026</p>
+</section>
+
+<!-- 06 · Close -->
+<section class="card close" id="card-5">
+  <p class="eyebrow in" data-cue="0,0" data-at=".2">Since AI 2026 · Elisa's challenge</p>
+  <h1 class="in" data-cue="0,0.05" data-at=".4">Silent context</h1>
+  <p class="lead in" data-cue="0,0.3" data-at="1.0">Built at the event, in one weekend. Solo.</p>
+  <p class="repo in" data-cue="1,0" data-at="2.2">github.com/pkorrrhonen-cmd/silent-context<span>MIT · Petri Korhonen</span></p>
+</section>
+
+<div id="tick"></div>
+<script>
+"use strict";
+const cards = [...document.querySelectorAll(".card")];
+// cues: [[start, end], ...] per sentence of the card's block, seconds from the card's first frame; an element with
+// data-cue="S,F" moves at start[S] + F * (end[S] - start[S]); without cues, at its data-at seconds.
+window.storyGo = (n, cues) => {
+  const card = cards[n];  // storyGo(-1) shows no card: the recorder's state between blocks
+  for (const el of card ? card.querySelectorAll(".in, .out") : []) {
+    let at = parseFloat(el.dataset.at || "0");
+    if (cues && el.dataset.cue) {
+      const [si, f] = el.dataset.cue.split(",").map(Number);
+      const c = cues[Math.min(si, cues.length - 1)];
+      if (c) at = c[0] + f * (c[1] - c[0]);
+    }
+    el.style.setProperty("--at", at.toFixed(2) + "s");
+  }
+  cards.forEach((c, i) => c.toggleAttribute("data-on", i === n));
+};
+const fromHash = parseInt(location.hash.slice(1), 10);
+if (!Number.isNaN(fromHash)) storyGo(fromHash);
+let on = false;
+setInterval(() => { on = !on; document.getElementById("tick").style.transform = on ? "translateX(1px)" : "none"; }, 200);
+document.fonts.ready.then(() => { document.body.dataset.ready = "1"; });
+</script>
+</body>
+</html>

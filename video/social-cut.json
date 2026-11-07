@@ -1,0 +1,67 @@
+{
+ "about": "Silent context: one clip per narration block, cut from the one take by its block marks, each no longer than its speech plus a tail (cut_from_take.py). Nothing is sped up. Paths are relative to --media.",
+ "size": "1080x1920",
+ "speed_of_waits": 1,
+ "scenes": [
+  {
+   "name": "01-what-i-built",
+   "parts": [
+    {
+     "take": "takes-social/social",
+     "from": 1.16,
+     "to": 10.19
+    }
+   ]
+  },
+  {
+   "name": "02-the-missing-link",
+   "parts": [
+    {
+     "take": "takes-social/social",
+     "from": 10.19,
+     "to": 16.78
+    }
+   ]
+  },
+  {
+   "name": "03-the-agent",
+   "parts": [
+    {
+     "take": "takes-social/social",
+     "from": 19.23,
+     "to": 27.42
+    }
+   ]
+  },
+  {
+   "name": "04-no-extra-work",
+   "parts": [
+    {
+     "take": "takes-social/social",
+     "from": 30.26,
+     "to": 37.46
+    }
+   ]
+  },
+  {
+   "name": "05-the-payoff",
+   "parts": [
+    {
+     "take": "takes-social/social",
+     "from": 38.29,
+     "to": 45.54
+    }
+   ]
+  },
+  {
+   "name": "06-close",
+   "parts": [
+    {
+     "take": "takes-social/social",
+     "from": 47.33,
+     "to": 51.82
+    }
+   ]
+  }
+ ]
+}

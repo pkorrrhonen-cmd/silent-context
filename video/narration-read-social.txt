@@ -1,0 +1,11 @@
+What I built at Since AI 2026, for Elisa. Network experts fix faults in chats, and the fix stays in the thread.
+
+Nobody writes it down. It is the missing link in running a network, and there is a lot of it.
+
+So I built an agent that reads the chats as they are. It pins the advice to the right unit, with who said it and when.
+
+No forms, no extra people. The knowledge is captured as a by-product of the work itself.
+
+Next time the same fault appears, the agent has the answer in one call: what to do, and why.
+
+Silent context. The code is public.

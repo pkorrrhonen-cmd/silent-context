@@ -31,6 +31,29 @@ three quarters at 1.6; the claim card at 1.8.
 | `scenes.py` | The recorder's scene: the two cards, then the page's ten scenes in the narration's order, each held. |
 | `cut.json`, `final.json` | The assembly and the final plan of the first cut. |
 
+## The 30 second vertical cut, for the owner's own channels
+
+Made 7.11.2026 late evening, after the submission was sent; not part of the submission (the form is closed, the
+owner). A 9:16 video of 1080 by 1920 for Instagram and the like, in plain words: what was built at the event, in the
+owner's voice.
+
+| File | What |
+|---|---|
+| `narration-social.md` | Six blocks, 108 words, in the aligner's form; `narration-read-social.txt` is what the owner reads into ElevenLabs. |
+| `social.html` | Six cards in the page's light look, laid out for the portrait frame: every word inside x 60 to 940 and y 200 to 1270, the burned captions from 1290 to 1440 (`final.py --captions social`), the band under them left to the platforms' buttons. Elisa's Teams thread as in the example file; two pictures of the product's page (`social/`), named and dated on screen. `storyGo(n, cues)` as in `story.html`. |
+| `social/claim-scene-3.png`, `social/answer-scene-4.png` | The note at scene 3 and the agent's answer at scene 4, shot from the running page at two times the size and cropped to what fits the frame, 7.11.2026. |
+| `scenes_social.py` | The recorder's scene: the six cards in order, each at its block's mark, the elements timed from the aligned voice (`SILENT_CONTEXT_ALIGNMENT`). |
+| `social-cut.json`, `social-final.json` | Written by `cut_from_take.py --band 0`: no band, the captions sit over the picture in the safe area. |
+
+In order, from `sf3d-ai-lab/video`: the guide track (`guide.py`) and its alignment first, the take with the
+alignment set, then `cut_from_take.py --band 0 --prefix social-`, `assemble.py --out cut-social` and `final.py
+--clips cut-social --burn --captions social`. The owner's voice last: align it, record the take again on that
+alignment, and run the same three steps. The guide cut (43 s on the Mac's slow voice) is never published.
+
+```bash
+SILENT_CONTEXT_ALIGNMENT=../media/silent-context/audio/scenes-social.json uv run python pipeline/record.py --stage "file://<repo>/video/social.html" --scenes <repo>/video/scenes_social.py --out ../media/silent-context/takes-social --size 1080x1920 social
+```
+
 ## Shared
 
 | File | What |
