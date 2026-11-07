@@ -39,6 +39,14 @@ the "what was tested" section, and `docs/what-is-simulated.md` does not exist (D
 **Open after this:** the owner's checkpoint on the page and the captions, the product name, and
 phase 7's remaining half, the acceptance table for the slides.
 
+### The source zip
+
+Built from main with `git archive --format=zip --prefix=silent-context/ HEAD` at `c9bfe7f`, into the
+owner's Desktop folder "Silent context video", 251 kB. Measured: 127 files, the same number as `git
+ls-files`, no `.env`, store or database inside. Unpacked into an empty folder with `.env` copied from
+`.env.example` and nothing filled in: `uv sync`, 154 tests pass, `ask demo` answers, the export writes
+`graph.json` and `graph.cypher`, and gitleaks finds nothing in it.
+
 ### Public, under MIT
 
 **Decided by the owner** ([`DECISIONS.md`](DECISIONS.md) rows 2 and 3): the repository goes public now
