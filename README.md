@@ -42,25 +42,25 @@ in [`docs/what-is-simulated.md`](docs/what-is-simulated.md).
 
 ```mermaid
 flowchart LR
-    subgraph sources [Sources, unchanged]
-        T[Teams exports]
-        E[Emails]
+    subgraph sources ["Sources, unchanged"]
+        T["Teams exports"]
+        E["Emails"]
     end
-    subgraph devices [Devices, synthetic here]
-        EV[Event stream]
-        TM[Telemetry]
+    subgraph devices ["Devices, synthetic here"]
+        EV["Event stream"]
+        TM["Telemetry"]
     end
     T --> X
     E --> X
-    X[Extract: the model reads one thread,\nits answer recorded] --> C[Check against the text:\nonly what is literally there]
-    C --> B[Bind by code against the graph,\nor wait with a reason]
-    B --> S[(Claim store, SQLite,\nrebuilt from data/)]
+    X["Extract: the model reads one thread,<br/>its answer recorded"] --> C["Check against the text:<br/>only what is literally there"]
+    C --> B["Bind by code against the graph,<br/>or wait with a reason"]
+    B --> S[("Claim store, SQLite,<br/>rebuilt from data/")]
     EV --> S
     TM --> S
-    S --> A[claims_for and access_for:\nrules, a template, no model]
-    A --> P[The page and\npython -m app.ask]
-    A --> L[(Answer and gap logs)]
-    S --> G[Export: graph.json\nand graph.cypher]
+    S --> A["claims_for and access_for:<br/>rules, a template, no model"]
+    A --> P["The page and<br/>python -m app.ask"]
+    A --> L[("Answer and gap logs")]
+    S --> G["Export: graph.json<br/>and graph.cypher"]
 ```
 
 ## How to run

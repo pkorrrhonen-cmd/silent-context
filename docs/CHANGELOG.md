@@ -77,6 +77,16 @@ run locked SQLite, because the script kept several connections to one store open
 log sat unwritten in one of them. One connection at a time fixed it; the tests had hidden this by
 closing after each case.
 
+### Phase 8, started: the video's words and picture
+
+**Built:** `video/narration.md`, one block per scene in the form the pipeline's aligner parses, to the
+owner's rule: the whole idea in the first 20 seconds (block 01, over the agent proposing), how it
+happens by about 66 seconds, the harder cases and the limits after that, 129 seconds and 351 words in
+all, 2.4 to 2.9 words a second per block. `video/scenes.py` drives the page through its own `goTo()`
+and reads each hold from the narration, so the two cannot drift apart. `video/cut.json` assembles one
+clip with nothing sped up. The pipeline is pre-existing work in another repository; the video folder
+is the event's.
+
 ### Documents
 
 `docs/what-is-simulated.md` says what is real, what stands in and what is not built on purpose. The

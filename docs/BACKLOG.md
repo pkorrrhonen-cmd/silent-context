@@ -43,7 +43,7 @@ Updated 7.11.2026 (session 3).
 
 | Code | Task | Why / notes |
 |---|---|---|
-| BUILD-8 | Video, slides, documentation. | Phase 8, after everything else. The video: the whole idea clear in 20 seconds, how it happens shown briefly after that, fully grasped at about 60 seconds ([`DECISIONS.md`](DECISIONS.md) row 10). |
+| BUILD-8 | Video and slides. | Phase 8. The narration and the scenes file exist in `video/`; the owner approves the recorded picture, then voices the narration in ElevenLabs last (Atlas `SINCEAI-2026-VIDEO`). The slides have an outline in [`slides.md`](slides.md); the owner makes the deck. |
 
 ## Documents to fill
 
