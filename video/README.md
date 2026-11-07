@@ -7,6 +7,7 @@ artifact `SINCEAI-2026-VIDEO`. What is here was written at the event:
 |---|---|
 | `narration.md` | The narration, one block per scene, in the aligner's form. Blocks 01 and 02 are the pitch; the owner voices it last. |
 | `pitch.html` | The two pitch cards in front of the page, in the page's own look: the problem, then the answer. |
+| `narration-read.txt` | The same narration as plain paragraphs, no headers, for the owner to read into ElevenLabs. Rendered from `narration.md`; rewrite it after a change to the words. |
 | `scenes.py` | The recorder's scene: the two cards, then the page's ten scenes in the narration's order, each held. |
 | `cut.json` | The assembly: twelve clips cut from the one take by its block marks, nothing sped up. |
 | `final.json` | The final plan: each narration scene over its clip, the sentences starting 0.3 s in, the captions in a band. |

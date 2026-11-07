@@ -1,0 +1,23 @@
+Network experts solve faults in chats and emails. The fix stays in the thread, and the next person starts from zero.
+
+Silent context reads those messages as they are. The advice becomes claims tied to the network, each with its source and how long it holds. An agent gets one call: what to do next, and where that came from.
+
+Before anything is captured, the agent is asked about a unit whose link is up but carries no traffic. It does not know, and says who to ask.
+
+The same fault was solved a week earlier, in a Teams thread and an email. Both are read exactly as written. Nobody fills in anything for the system.
+
+The advice becomes one claim: what to check and what to do. It is tied to the unit, keeps the expert's own words on which units it covers, and is dated from the moment the module was replaced.
+
+Now the same fault on another unit of the same class. The agent reads the counters from the device itself, proposes the expert's step with its source, and holds back a reboot until a bounce has failed.
+
+What a person did, and what happened, comes from the device events. The record fills itself in. Nobody reported anything.
+
+A firmware update on one unit puts the advice in doubt for that unit only. The agent asks to check again there. Nothing expires by a calendar.
+
+On a newer unit the step did not help, and the expert narrowed the advice. The agent stops offering it there, and says why.
+
+When two experts disagree, both stay visible with their sources. The agent does not pick a side. It asks for the counters first.
+
+Before anyone drives to a site: where the key is now, who said so, and how old that information is.
+
+What this does not claim. It never starts a conversation with a specialist. It shows where a claim came from and what was reported, not the truth. It scores claims, never people. Everything except Elisa's two example files is simulated. Asking the expert at the moment of need is not built.
