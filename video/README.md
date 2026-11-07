@@ -31,28 +31,37 @@ three quarters at 1.6; the claim card at 1.8.
 | `scenes.py` | The recorder's scene: the two cards, then the page's ten scenes in the narration's order, each held. |
 | `cut.json`, `final.json` | The assembly and the final plan of the first cut. |
 
-## The 30 second vertical cut, for the owner's own channels
+## The vertical video for the owner's own channels
 
 Made 7.11.2026 late evening, after the submission was sent; not part of the submission (the form is closed, the
-owner). A 9:16 video of 1080 by 1920 for Instagram and the like, in plain words: what was built at the event, in the
-owner's voice.
+owner). A 9:16 video of 1080 by 1920, under 60 seconds, for Instagram, LinkedIn and the like: what was built at the
+event, told to someone who knows nothing about the subject, in the owner's voice. The storyboard was agreed scene by
+scene with the owner before the build (a first 30 second cut of six cards, built before that, stays in the history).
 
 | File | What |
 |---|---|
-| `narration-social.md` | Six blocks, 108 words, in the aligner's form; `narration-read-social.txt` is what the owner reads into ElevenLabs. |
-| `social.html` | Six cards in the page's light look, laid out for the portrait frame: every word inside x 60 to 940 and y 200 to 1270, the burned captions from 1290 to 1440 (`final.py --captions social`), the band under them left to the platforms' buttons. Elisa's Teams thread as in the example file; two pictures of the product's page (`social/`), named and dated on screen. `storyGo(n, cues)` as in `story.html`. |
-| `social/claim-scene-3.png`, `social/answer-scene-4.png` | The note at scene 3 and the agent's answer at scene 4, shot from the running page at two times the size and cropped to what fits the frame, 7.11.2026. |
-| `scenes_social.py` | The recorder's scene: the six cards in order, each at its block's mark, the elements timed from the aligned voice (`SILENT_CONTEXT_ALIGNMENT`). |
+| `narration-social.md` | Seven blocks, 180 words, in the aligner's form; `narration-read-social.txt` is what the owner reads into ElevenLabs. |
+| `social.html` | One stage for the seven scenes, laid out for the portrait frame: every word inside x 60 to 940 and y 230 to 1270, the burned captions from 1290 to 1440 (`final.py --captions social`), the band under them left to the platforms' buttons. The owner's two photos from the event (scene 1), the map of Finland with the network as dots and links (scenes 2 to 6), Elisa's Teams thread as in the example file (scene 4), the advice as a note that flies to its unit (5), a fault far north and the agent's real answer from the page (6), the close (7). `storyGo(n, cues)` starts scene n and times every move from the aligned voice; `window.videoInstant` jumps to a scene's end state for checking. |
+| `social/finland.js` | The map: Finland's outline from Natural Earth 1:50m (public domain), 49 towns as the units and each one's two nearest neighbours as the links; an illustration, and named so on screen. |
+| `social/answer-scene-4.png` | The agent's answer at scene 4, shot from the running page at two times the size and cropped, 7.11.2026, named and dated on screen. |
+| `scenes_social.py` | The recorder's scene: the seven scenes in order, each at its block's mark, the moves timed from the aligned voice (`SILENT_CONTEXT_ALIGNMENT`). |
 | `social-cut.json`, `social-final.json` | Written by `cut_from_take.py --band 0`: no band, the captions sit over the picture in the safe area. |
+
+The two photos are the owner's and stay out of the repository: the page reads them from the pipeline's media folder
+beside this checkout (`../../sf3d-ai-lab/media/silent-context/photos/`), so the take is recorded on the Mac only.
 
 In order, from `sf3d-ai-lab/video`: the guide track (`guide.py`) and its alignment first, the take with the
 alignment set, then `cut_from_take.py --band 0 --prefix social-`, `assemble.py --out cut-social` and `final.py
 --clips cut-social --burn --captions social`. The owner's voice last: align it, record the take again on that
-alignment, and run the same three steps. The guide cut (43 s on the Mac's slow voice) is never published.
+alignment, and run the same three steps. The guide cut (70 s on the Mac's slow voice) is never published.
 
 ```bash
 SILENT_CONTEXT_ALIGNMENT=../media/silent-context/audio/scenes-social.json uv run python pipeline/record.py --stage "file://<repo>/video/social.html" --scenes <repo>/video/scenes_social.py --out ../media/silent-context/takes-social --size 1080x1920 social
 ```
+
+Measured 7.11.: a layer that waits at opacity 0 is not painted before its fade, and the first fade of the 2000 pixel
+photo had a 0.67 s gap in the screencast; at opacity 0.002 it is painted and the fade has its frames. The note's
+flight animated its width and font size in the first take and stalled 0.43 s; by transform alone it does not.
 
 ## Shared
 

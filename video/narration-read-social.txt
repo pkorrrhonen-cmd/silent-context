@@ -1,11 +1,13 @@
-What I built at Since AI 2026, for Elisa. Network experts fix faults in chats, and the fix stays in the thread.
+This weekend I was at Since AI in Turku, a Major League Hacking hackathon: pick a company's challenge, and build a working product in three days.
 
-Nobody writes it down. It is the missing link in running a network, and there is a lot of it.
+I chose Elisa's. Elisa runs a large part of Finland's telecom network: the calls, the data, thousands of units across the whole country.
 
-So I built an agent that reads the chats as they are. It pins the advice to the right unit, with who said it and when.
+Running a network like that is becoming more and more autonomous. Machines watch it, and machines fix it.
 
-No forms, no extra people. The knowledge is captured as a by-product of the work itself.
+But the know-how of what actually works lives in people. It has built up over decades and it keeps building: in chats, in emails, in someone's head. Nobody writes it down, so the machines can't see it.
 
-Next time the same fault appears, the agent has the answer in one call: what to do, and why.
+So I built Silent context: an agent that reads those chats as they are and pins each piece of advice to the right unit, with who said it and when. No forms, no extra people. The knowledge is captured as the work gets done.
 
-Silent context. The code is public.
+Next time the same fault appears anywhere in the network, the autonomous system has the answer in one call: what to do, and why.
+
+Three days, one agent, the code is public.

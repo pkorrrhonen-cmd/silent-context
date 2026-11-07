@@ -7,17 +7,17 @@
  "scenes_json": "audio/scenes-guide-social.json",
  "scenes": {
   "01": {
-   "clip": "01-what-i-built",
+   "clip": "01-the-event",
    "blocks": [
     [
      0,
-     1,
+     0,
      0.3
     ]
    ]
   },
   "02": {
-   "clip": "02-the-missing-link",
+   "clip": "02-elisa",
    "blocks": [
     [
      0,
@@ -27,7 +27,7 @@
    ]
   },
   "03": {
-   "clip": "03-the-agent",
+   "clip": "03-the-shift",
    "blocks": [
     [
      0,
@@ -37,17 +37,27 @@
    ]
   },
   "04": {
-   "clip": "04-no-extra-work",
+   "clip": "04-the-silent-knowledge",
    "blocks": [
     [
      0,
-     1,
+     2,
      0.3
     ]
    ]
   },
   "05": {
-   "clip": "05-the-payoff",
+   "clip": "05-what-i-built",
+   "blocks": [
+    [
+     0,
+     2,
+     0.3
+    ]
+   ]
+  },
+  "06": {
+   "clip": "06-the-payoff",
    "blocks": [
     [
      0,
@@ -56,12 +66,12 @@
     ]
    ]
   },
-  "06": {
-   "clip": "06-close",
+  "07": {
+   "clip": "07-close",
    "blocks": [
     [
      0,
-     1,
+     0,
      0.3
     ]
    ]

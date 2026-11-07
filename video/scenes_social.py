@@ -18,7 +18,7 @@ from pathlib import Path
 
 NARRATION = Path(__file__).with_name("narration-social.md")
 CARDS = Path(__file__).with_name("social.html")
-BLOCKS = ["01", "02", "03", "04", "05", "06"]
+BLOCKS = ["01", "02", "03", "04", "05", "06", "07"]
 MARGIN = 2
 # The voice starts 0.3 s into each clip (the final plan), and the clip starts at the block's mark, which follows the
 # card's first frame by a frame or two.
