@@ -1,7 +1,117 @@
 {
-  "size": "1920x1080",
-  "speed_of_waits": 1,
-  "scenes": [
-    { "name": "01-demo", "parts": [ { "take": "takes/demo" } ] }
-  ]
+ "about": "Silent context: eleven clips cut from the one take by its block marks (record.py, scenes.py). Nothing is sped up. Paths are relative to --media, the video's folder under media/.",
+ "size": "1920x1080",
+ "speed_of_waits": 1,
+ "scenes": [
+  {
+   "name": "01-whole",
+   "parts": [
+    {
+     "take": "takes/demo",
+     "from": 1.22,
+     "to": 24.13
+    }
+   ]
+  },
+  {
+   "name": "02-gap",
+   "parts": [
+    {
+     "take": "takes/demo",
+     "from": 24.13,
+     "to": 36.85
+    }
+   ]
+  },
+  {
+   "name": "03-capture",
+   "parts": [
+    {
+     "take": "takes/demo",
+     "from": 36.85,
+     "to": 49.62
+    }
+   ]
+  },
+  {
+   "name": "04-bind",
+   "parts": [
+    {
+     "take": "takes/demo",
+     "from": 49.62,
+     "to": 65.44
+    }
+   ]
+  },
+  {
+   "name": "05-use",
+   "parts": [
+    {
+     "take": "takes/demo",
+     "from": 65.44,
+     "to": 81.2
+    }
+   ]
+  },
+  {
+   "name": "06-learn",
+   "parts": [
+    {
+     "take": "takes/demo",
+     "from": 81.2,
+     "to": 92.01
+    }
+   ]
+  },
+  {
+   "name": "07-ageing",
+   "parts": [
+    {
+     "take": "takes/demo",
+     "from": 92.01,
+     "to": 104.8
+    }
+   ]
+  },
+  {
+   "name": "08-not-for-all",
+   "parts": [
+    {
+     "take": "takes/demo",
+     "from": 104.8,
+     "to": 117.6
+    }
+   ]
+  },
+  {
+   "name": "09-disagree",
+   "parts": [
+    {
+     "take": "takes/demo",
+     "from": 117.6,
+     "to": 129.39
+    }
+   ]
+  },
+  {
+   "name": "10-barrier",
+   "parts": [
+    {
+     "take": "takes/demo",
+     "from": 129.39,
+     "to": 140.12
+    }
+   ]
+  },
+  {
+   "name": "11-limits",
+   "parts": [
+    {
+     "take": "takes/demo",
+     "from": 140.12,
+     "to": 160.12
+    }
+   ]
+  }
+ ]
 }

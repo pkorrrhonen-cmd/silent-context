@@ -1,0 +1,119 @@
+{
+ "about": "Silent context: the final plan (pipeline/final.py). Each narration scene is one clip; its sentences start 0.3 s into the clip, which already shows what they talk about. The guide run uses the same plan with --narration, --scenes-json and --name. The owner's own track replaces audio/narration.wav last.",
+ "name": "silent-context-en",
+ "size": "1920x1080",
+ "narration": "audio/narration.wav",
+ "scenes_json": "audio/scenes.json",
+ "scenes": {
+  "01": {
+   "clip": "01-whole",
+   "blocks": [
+    [
+     0,
+     1,
+     0.3
+    ]
+   ]
+  },
+  "02": {
+   "clip": "02-gap",
+   "blocks": [
+    [
+     0,
+     1,
+     0.3
+    ]
+   ]
+  },
+  "03": {
+   "clip": "03-capture",
+   "blocks": [
+    [
+     0,
+     2,
+     0.3
+    ]
+   ]
+  },
+  "04": {
+   "clip": "04-bind",
+   "blocks": [
+    [
+     0,
+     1,
+     0.3
+    ]
+   ]
+  },
+  "05": {
+   "clip": "05-use",
+   "blocks": [
+    [
+     0,
+     1,
+     0.3
+    ]
+   ]
+  },
+  "06": {
+   "clip": "06-learn",
+   "blocks": [
+    [
+     0,
+     2,
+     0.3
+    ]
+   ]
+  },
+  "07": {
+   "clip": "07-ageing",
+   "blocks": [
+    [
+     0,
+     2,
+     0.3
+    ]
+   ]
+  },
+  "08": {
+   "clip": "08-not-for-all",
+   "blocks": [
+    [
+     0,
+     1,
+     0.3
+    ]
+   ]
+  },
+  "09": {
+   "clip": "09-disagree",
+   "blocks": [
+    [
+     0,
+     2,
+     0.3
+    ]
+   ]
+  },
+  "10": {
+   "clip": "10-barrier",
+   "blocks": [
+    [
+     0,
+     0,
+     0.3
+    ]
+   ]
+  },
+  "11": {
+   "clip": "11-limits",
+   "blocks": [
+    [
+     0,
+     5,
+     0.3
+    ]
+   ]
+  }
+ }
+}
