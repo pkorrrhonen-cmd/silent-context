@@ -90,6 +90,23 @@ is not changed), `cut_from_take.py` now names clips from the narration's headers
 at the second) and "Silent context video", and the pipeline's media folder. The owner watches both cuts and
 picks the one to upload.
 
+### The submission package V2 and the deck in five pictures
+
+**Why:** the owner wants a whole new package with the new files, and a short deck from which the thing opens
+with about five pictures, for the pitch deck field that voters open from the vote card.
+
+**Built:** the Desktop folder "Silent context submission V2": the second cut and its captions, the source zip
+from main's tip, the ten-slide deck and its PDF, the notes rewritten for the package, and
+`silent-context-in-five.pdf`: five pages of 1920 by 1080 in the page's look, written as `docs/slides/five/five.html`
+and rendered with headless Chrome (`render.js`), with crops of the running page read from its own elements at
+device scale 2 (`shoot.js`, `shots/`). The pages: the chat and "It lives in one chat"; the four steps; the agent's
+answer with the device record; the three doubt cases; what was measured and the limits. Every number on
+the fifth page is the README's. The notes now send the five-picture deck as the pitch deck and the full deck
+as a supporting document. The first package stays in "Silent context submission" as the fallback.
+
+**Measured:** the PDF is five pages, 0.66 MB, each page read as a PNG; the only fix was the closing line,
+which wrapped.
+
 ## Session 3, 7.11.2026: the technical check before the checkpoint
 
 **Why:** the owner saw the page the evening before and holds phase 6's checkpoint. Before anything

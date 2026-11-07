@@ -1,0 +1,190 @@
+<!doctype html>
+<!-- Silent context in five pictures: a short deck for the submission's pitch deck field, in the page's own look.
+     Five pages of 1920 by 1080; the crops in shots/ come from the running page (shoot.js), and render.js writes
+     the PDF beside the other slides. Written at the event; tooling for the submission, not part of the product. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Silent context in five pictures</title>
+<style>
+  :root {
+    --bg: #0d1116; --panel: #141c25; --panel-raised: #1b2732; --line: #2b3a48;
+    --copper: #b5612a; --copper-bright: #e8934f; --text: #e8ecef; --muted: #93a1af; --faint: #5b6977;
+    --propose: #53c08f;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  @page { size: 1920px 1080px; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); font: 22px/1.4 var(--sans); }
+  .slide { width: 1920px; height: 1080px; position: relative; overflow: hidden; padding: 84px 120px 100px;
+           page-break-after: always; break-after: page; display: flex; flex-direction: column; }
+  .slide:last-child { page-break-after: auto; break-after: auto; }
+  .eyebrow { font: 600 20px var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--copper-bright); margin: 0 0 22px; }
+  h1 { font-size: 64px; line-height: 1.1; margin: 0 0 36px; letter-spacing: -0.015em; }
+  .foot { position: absolute; left: 120px; right: 120px; bottom: 44px; display: flex; justify-content: space-between;
+          font: 15px var(--mono); letter-spacing: .06em; color: var(--faint); }
+  .shot { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--panel); }
+  .shot img { display: block; width: 100%; }
+
+  /* 1: the chat and the big lines */
+  .split { display: grid; grid-template-columns: 680px 1fr; gap: 96px; align-items: center; flex: 1; }
+  .thread { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 30px 34px; font-size: 23px; line-height: 1.4; }
+  .msg { margin: 0 0 22px; }
+  .msg .who { font: 600 16px var(--mono); color: var(--copper-bright); margin: 0 0 6px; }
+  .msg .who span { color: var(--faint); font-weight: 400; margin-left: 10px; }
+  .msg p { margin: 0; }
+  .msg.v p { color: var(--muted); }
+  .thread .tag { margin: 6px 0 0; padding-top: 14px; border-top: 1px solid var(--line); font: 14px var(--mono); color: var(--faint); letter-spacing: .06em; }
+  .lines .l { font-size: 42px; line-height: 1.25; color: var(--muted); margin: 0 0 26px; }
+  .lines h1 { font-size: 80px; margin: 10px 0 22px; }
+  .lines .sub { font-size: 32px; color: var(--muted); margin: 0; }
+
+  /* 2: the four steps */
+  .flow { display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr 40px 1fr; gap: 16px; align-items: stretch; margin-top: 10px; }
+  .step { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 28px 28px 30px; }
+  .step svg { width: 52px; height: 52px; margin-bottom: 18px; }
+  .step svg * { fill: none; stroke: var(--copper-bright); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .step b { display: block; font: 600 15px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--copper-bright); margin-bottom: 12px; }
+  .step p { margin: 0; font-size: 26px; line-height: 1.3; }
+  .step p code { font: 600 23px var(--mono); }
+  .arrow { align-self: center; justify-self: center; width: 40px; height: 40px; }
+  .arrow path { fill: none; stroke: var(--copper-bright); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .after { font-size: 32px; line-height: 1.35; color: var(--muted); margin: 56px 0 0; max-width: 1500px; }
+  .after b { color: var(--text); font-weight: 600; }
+
+  /* 3: the answer, three points, the device record */
+  .three { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; margin: 26px 0 34px; }
+  .three p { margin: 0; font-size: 27px; line-height: 1.3; padding-left: 18px; border-left: 3px solid var(--copper); }
+  .three p span { color: var(--muted); }
+  .label { font-size: 26px; color: var(--muted); margin: 0 0 14px; }
+  .label b { color: var(--text); font-weight: 600; }
+
+  /* 4: three rows, a label and a crop each */
+  .rows { display: flex; flex-direction: column; gap: 34px; margin-top: 6px; }
+  .row { display: grid; grid-template-columns: 460px 1fr; gap: 40px; align-items: center; }
+  .row .label { margin: 0; font-size: 28px; line-height: 1.3; }
+  .row .label b { display: block; font: 600 15px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--copper-bright); margin-bottom: 8px; }
+
+  /* 5: measured and the limits */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; margin-top: 6px; }
+  h2 { font: 600 17px var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--copper-bright); margin: 0 0 26px; }
+  .nums { display: flex; flex-direction: column; gap: 22px; }
+  .num { display: grid; grid-template-columns: 250px 1fr; gap: 24px; align-items: baseline; }
+  .num b { font: 700 54px/1 var(--sans); letter-spacing: -0.02em; }
+  .num span { font-size: 25px; color: var(--muted); line-height: 1.3; }
+  .num span i { font-style: normal; color: var(--text); }
+  .limits { display: flex; flex-direction: column; gap: 26px; }
+  .limits p { display: grid; grid-template-columns: 64px 1fr; align-items: baseline; margin: 0; font-size: 31px; line-height: 1.3; }
+  .limits p b { font: 600 18px var(--mono); color: var(--copper-bright); letter-spacing: .1em; }
+  .repo { position: absolute; left: 120px; right: 120px; bottom: 96px; font: 26px var(--mono); color: var(--text); }
+  .repo span { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<section class="slide">
+  <p class="eyebrow">Silent context · Since AI 2026 · Elisa's challenge</p>
+  <div class="split">
+    <div class="thread">
+      <div class="msg v"><p class="who">Veikko Vikkelä <span>Field Engineer · 09:14</span></p>
+        <p>Changed the SFP on transmission node TRN-042. Link is up and alarms cleared, but traffic is still not coming back.</p></div>
+      <div class="msg"><p class="who">Erkki Expert <span>Network Expert · 09:22</span></p>
+        <p>That's it. Disable the interface, wait a little, then enable it again. Don't reboot the whole unit unless that fails.</p></div>
+      <div class="msg v"><p class="who">Veikko Vikkelä <span>09:26</span></p><p>Is this documented somewhere?</p></div>
+      <div class="msg"><p class="who">Erkki Expert <span>09:27</span></p><p>Not that I know of. We've just learned it over the years.</p></div>
+      <p class="tag">a Teams thread · Elisa's example file, unchanged</p>
+    </div>
+    <div class="lines">
+      <p class="l">The link came up. No traffic.</p>
+      <p class="l">Erkki knew the fix.</p>
+      <h1>It lives in one chat.</h1>
+      <p class="sub">The next person starts from zero. The agent that is meant to help cannot see it at all.</p>
+    </div>
+  </div>
+  <p class="foot"><span>Petri Korhonen · github.com/pkorrrhonen-cmd/silent-context · MIT</span><span>1 / 5</span></p>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">The answer</p>
+  <h1>Silent context remembers it.</h1>
+  <div class="flow">
+    <div class="step">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M8 10h28v18H20l-8 7v-7H8z"/><path d="M14 17h16M14 22h10"/></svg>
+      <b>Read as written</b><p>The chat and the email, exactly as they are.</p></div>
+    <svg class="arrow" viewBox="0 0 36 36" aria-hidden="true"><path d="M5 18h24M21 10l8 8-8 8"/></svg>
+    <div class="step">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><rect x="6" y="22" width="32" height="14" rx="2"/><path d="M11 29h6M21 29h12"/><path d="M14 8h16v12H14z"/><path d="M22 4v4M22 20v3"/></svg>
+      <b>Pinned to the unit</b><p><code>TRN-042</code>, in Erkki's own words, and which units he said it covers.</p></div>
+    <svg class="arrow" viewBox="0 0 36 36" aria-hidden="true"><path d="M5 18h24M21 10l8 8-8 8"/></svg>
+    <div class="step">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="15"/><path d="M22 12v10l7 4"/></svg>
+      <b>Who said it, and when</b><p>Erkki · Teams · 14.10. Dated from the moment the part was changed.</p></div>
+    <svg class="arrow" viewBox="0 0 36 36" aria-hidden="true"><path d="M5 18h24M21 10l8 8-8 8"/></svg>
+    <div class="step">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><rect x="6" y="9" width="32" height="26" rx="3"/><path d="M13 19l6 6 12-12"/></svg>
+      <b>One call for the agent</b><p>What to do next, and where that came from. Or: check first. Or: I don't know, ask these people.</p></div>
+  </div>
+  <p class="after"><b>Nobody fills in anything</b> for the system, and the system <b>never starts a conversation</b> with anyone. An unclear case waits with its reason.</p>
+  <p class="foot"><span>Silent context</span><span>2 / 5</span></p>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">One call for the agent</p>
+  <h1>A week later, the same fault on another unit.</h1>
+  <div class="shot"><img src="shots/use-answer.png" alt="The agent's answer: PROPOSE, disable the interface, wait a little, then enable it again; held back: no reboot or hardware replacement before a failed bounce is reported; counters zero, read from the device by the agent itself"></div>
+  <div class="three">
+    <p>Erkki's step, <span>with its source.</span></p>
+    <p>The counters, <span>read from the device itself.</span></p>
+    <p>No reboot <span>before the lighter fix has failed.</span></p>
+  </div>
+  <p class="label"><b>Then the record fills itself in.</b> What the technician did, and that it worked, comes from the device's own events. Nobody reported anything.</p>
+  <div class="shot" style="height: 214px"><img src="shots/learn-answer.png" alt="From the devices: the agent proposed, a person did, the outcome: counters rising afterwards"></div>
+  <p class="foot"><span>Silent context</span><span>3 / 5</span></p>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">Doubt</p>
+  <h1>It knows when not to trust itself.</h1>
+  <div class="rows">
+    <div class="row"><p class="label"><b>After a firmware update</b>Check again, on that unit only. Nothing expires by a calendar.</p>
+      <div class="shot" style="height: 96px"><img src="shots/ageing-head.png" alt="CHECK FIRST on TRN-042: the firmware changed after this advice, so it needs checking again on this unit"></div></div>
+    <div class="row"><p class="label"><b>Where the fix did not help</b>Erkki narrowed the advice to the old units. It is no longer offered on the new one.</p>
+      <div class="shot" style="height: 96px"><img src="shots/notforall-card.png" alt="NOT APPLICABLE: the older units' advice, on the newer unit" style="width: 100%"></div></div>
+    <div class="row"><p class="label"><b>When two experts disagree</b>Both stay visible with their sources. No side is taken; the counters are read first.</p>
+      <div class="shot" style="height: 96px"><img src="shots/disagree-head.png" alt="CHECK FIRST on TRN-051: read the traffic counters first; the recorded advice disagrees on what comes next, and this answer does not choose"></div></div>
+  </div>
+  <p class="after" style="margin-top: 48px">It shows where advice came from and what was reported about it, <b>not whether it is true.</b> It scores advice, <b>never people.</b></p>
+  <p class="foot"><span>Silent context</span><span>4 / 5</span></p>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">Measured, and the limits</p>
+  <h1>Runs with no model and no key.</h1>
+  <div class="cols">
+    <div>
+      <h2>Measured, from the recorded answers</h2>
+      <div class="nums">
+        <div class="num"><b>154</b><span>tests pass</span></div>
+        <div class="num"><b>11 / 11</b><span>sources found in the truth set; <i>merged 7/7, unit 4/4, time 7/7</i></span></div>
+        <div class="num"><b>1 of 16</b><span>wrong on sources the rule author never read; <i>0, 0, 0, 1, 1</i> in five repeats</span></div>
+        <div class="num"><b>Passed</b><span>a clean install from the README, no key</span></div>
+        <div class="num"><b>No edits</b><span>the graph export loads into Neo4j 5 as it is</span></div>
+      </div>
+    </div>
+    <div>
+      <h2>What it does not claim</h2>
+      <div class="limits">
+        <p><b>01</b><span>It never starts a conversation with an expert.</span></p>
+        <p><b>02</b><span>It shows where advice came from, not whether it is true.</span></p>
+        <p><b>03</b><span>It scores advice, never people.</span></p>
+        <p><b>04</b><span>Everything but Elisa's two example files is simulated. The numbers describe that data only.</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="repo">github.com/pkorrrhonen-cmd/silent-context <span>· MIT · Petri Korhonen</span></p>
+  <p class="foot"><span>Silent context · Since AI 2026 · Elisa's challenge</span><span>5 / 5</span></p>
+</section>
+
+</body>
+</html>
