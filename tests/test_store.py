@@ -215,3 +215,32 @@ def test_export_carries_sources_but_not_the_teller_key(
 
 def test_export_is_stable_between_runs(conn: sqlite3.Connection) -> None:
     assert export.graph(conn) == export.graph(conn)
+
+
+def test_cypher_export_writes_every_node_and_edge_without_the_teller_key(
+    conn: sqlite3.Connection, tmp_path: Path
+) -> None:
+    conn.execute(BOUND_CLAIM.replace("'text'", "'what''s said'"))
+    conn.execute(
+        "INSERT INTO source (id, claim_id, channel, ref, role, teller_key, excerpt, received_at)"
+        " VALUES ('s1', 'c1', 'teams', 'teams_trn042.json#seq=8', 'Network Expert', 'secret-teller',"
+        " 'quote', '2026-10-14T23:00:00')"
+    )
+    conn.execute(
+        "INSERT INTO evidence_event (id, claim_id, scope_entity, type, event_time, basis)"
+        " VALUES ('e1', 'c1', 'TRN-042', 'reported_success', '2026-10-14T09:25:00', 'message')"
+    )
+    conn.execute("INSERT INTO edge (src, rel, dst) VALUES ('c1', 'ABOUT', 'TRN-042')")
+    text = export.write_cypher(conn, tmp_path / "out" / "graph.cypher").read_text(encoding="utf-8")
+    assert "secret-teller" not in text
+    assert "teller_key" not in text
+    entities = conn.execute("SELECT count(*) FROM entity").fetchone()[0]
+    assert text.count("CREATE (:Entity:") == entities
+    assert "CREATE (:Claim {id: 'c1', claim_kind: 'troubleshooting', claim_text: 'what\\'s said'" in text
+    assert "(:Source {channel: 'teams', ref: 'teams_trn042.json#seq=8', role: 'Network Expert'" in text
+    assert "(u:Entity {id: 'TRN-042'}) CREATE (c)-[:HAS_EVIDENCE]->(:Evidence {" in text
+    assert "-[:ON]->(u);" in text
+    assert "MATCH (a {id: 'c1'}), (b {id: 'TRN-042'}) CREATE (a)-[:ABOUT]->(b);" in text
+    statements = [line for line in text.splitlines() if line and not line.startswith("//")]
+    assert all(line.endswith(";") for line in statements)
+    assert "\n" not in text.replace("\n", "", text.count("\n"))  # no bare newline inside a literal

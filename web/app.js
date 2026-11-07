@@ -2,92 +2,151 @@
 
 const SYMPTOM = "link up, counters zero after SFP replacement";
 
-// The demo as a sequence. Each scene sets the clock, and may ask the agent or open a source.
+// The demo as a story. Each scene sets the clock, says in plain words what happens and where to
+// look, and may ask the agent or open a source. The field names stay in the data, not on the page.
 const SCENES = [
   {
-    title: "The gap",
+    nav: "The gap",
+    title: "Before anything is captured",
+    text:
+      "Ask the agent about a unit whose link is up but whose counters stay at zero after an SFP swap." +
+      " Nothing is recorded yet, so it says it does not know, names who to ask, and logs the gap. The cycle stops here.",
+    look: "the agent, at the bottom",
     clock: "2026-10-14T22:00:00",
     fresh: true,
-    caption: "A unit has a fault nobody documented. The agent has nothing to go on, and says so.",
     ask: { unit: "TRN-051", symptom: SYMPTOM },
     lit: ["agent"],
   },
   {
-    title: "Capture",
+    nav: "Capture",
+    title: "The advice already exists, in a chat and an email",
+    text:
+      "On 14.10. a network expert solved this fault on TRN-042. The Teams thread and the email are Elisa's own" +
+      " example files, read exactly as written. Nobody filled in anything for the system.",
+    look: "the sources on the left, and the thread that opened",
     clock: "2026-10-15T00:00:00",
-    caption: "Elisa's conversation and email are read as they are. Nobody wrote anything for the system.",
     source: "teams_trn042.json",
     lit: ["sources", "timeline"],
   },
   {
-    title: "Bind",
+    nav: "Bind",
+    title: "One claim, tied to the graph",
+    text:
+      "The advice becomes one context claim: what to check, what to do, and what not to do before that. It is tied to" +
+      " TRN-042, keeps the expert's own words about which units it covers, and is dated from the moment the module was replaced.",
+    look: "the claim in the middle, and its links on the right",
     clock: "2026-10-15T00:00:00",
-    caption: "One claim with two sources, bound to TRN-042, in the expert's own words about scope.",
     selectUnit: "TRN-042",
     lit: ["claims", "graph"],
   },
   {
-    title: "Use",
+    nav: "Use",
+    title: "The same fault on another unit",
+    text:
+      "TRN-051 is the same class as TRN-042. The agent reads the counters from the device itself and proposes the" +
+      " expert's step, with its source. A reboot or a hardware swap stays held back until a bounce has failed.",
+    look: "the agent's answer",
     clock: "2026-10-21T10:50:00",
-    caption: "The same fault on another old unit. The agent reads the counters itself and proposes the step.",
     ask: { unit: "TRN-051", symptom: SYMPTOM },
     lit: ["agent"],
   },
   {
-    title: "Learn",
+    nav: "Learn",
+    title: "What happened, from the devices",
+    text:
+      "A person bounced the interface and traffic came back. The device events say so; nobody reported it." +
+      " The record of what was proposed, what was done and what happened fills itself in.",
+    look: "the agent",
     clock: "2026-10-21T11:15:00",
-    caption: "What the person did and what happened comes from the devices. Nobody reported it.",
     // The line needs the earlier proposal, also when this scene is opened directly.
     askedBefore: { clock: "2026-10-21T10:50:00", entity: "TRN-051", symptom: SYMPTOM },
     lit: ["agent"],
   },
   {
-    title: "Ageing",
+    nav: "Ageing",
+    title: "Doubt, for one unit only",
+    text:
+      "A firmware update on TRN-042 alone. The advice is put in doubt for that unit and no other, so the agent asks" +
+      " to check again there. Nothing expires by a calendar.",
+    look: "the time axis, and the agent",
     clock: "2026-10-29T00:00:00",
-    caption: "A firmware update on TRN-042 alone puts the advice in doubt for that unit, and no other.",
     ask: { unit: "TRN-042", symptom: SYMPTOM, counters: "zero" },
     lit: ["agent", "timeline"],
   },
   {
-    title: "Not for all",
+    nav: "Not for all",
+    title: "Not for all units",
+    text:
+      "On a newer unit the bounce did not help, and the cause was a VLAN setting. The expert narrowed the advice to" +
+      " the 4.x firmware units. The agent no longer offers it for TRN-100, and says why.",
+    look: "the graph, and the agent",
     clock: "2026-10-31T00:00:00",
-    caption: "The advice failed on a newer unit. The expert narrowed it, and the agent does not offer it there.",
     ask: { unit: "TRN-100", symptom: SYMPTOM, counters: "zero" },
     lit: ["agent", "graph"],
   },
   {
-    title: "Disagree",
+    nav: "Disagree",
+    title: "Two experts disagree",
+    text:
+      "A second expert would replace the SFP first. Both claims stay visible with their sources, the agent does not" +
+      " pick a side, and it asks for the counters before either action.",
+    look: "the claims, and the agent",
     clock: "2026-11-03T00:00:00",
-    caption: "Two experts disagree. Both stay visible, the agent does not choose, and it reads first.",
     ask: { unit: "TRN-051", symptom: SYMPTOM, counters: "zero" },
     lit: ["agent", "claims"],
   },
   {
-    title: "The barrier",
+    nav: "The barrier",
+    title: "Before anyone drives to Nilo",
+    text:
+      "Where the barrier key is now, who said so, and how old that information is. The earlier location is kept" +
+      " and shown as replaced.",
+    look: "the agent",
     clock: "2026-11-03T00:00:00",
-    caption: "Where the key is, before anyone drives there, with how old that information is.",
     ask: { unit: "SITE-NILO" },
     lit: ["agent", "timeline"],
   },
   {
-    title: "The limits",
+    nav: "The limits",
+    title: "What this demo does not claim",
+    text: "Stated here, in the README and in the slides.",
+    look: "",
     clock: "2026-11-03T00:00:00",
-    caption: "What this demo does not claim.",
     limits: true,
     lit: [],
   },
 ];
 
 const PRESETS = [
-  { label: "Another old unit", ask: { unit: "TRN-051", symptom: SYMPTOM } },
-  { label: "Where it was seen", ask: { unit: "TRN-042", symptom: SYMPTOM } },
-  { label: "Newer generation", ask: { unit: "TRN-100", symptom: SYMPTOM } },
-  { label: "A different symptom", ask: { unit: "TRN-051", symptom: "intermittent CRC errors on uplink" } },
-  { label: "Before driving to Nilo", ask: { unit: "SITE-NILO" } },
-  { label: "The key on 10.10.?", ask: { unit: "SITE-NILO", at: "2026-10-10" } },
+  { label: "Old unit TRN-051", ask: { unit: "TRN-051", symptom: SYMPTOM } },
+  { label: "Seen on TRN-042", ask: { unit: "TRN-042", symptom: SYMPTOM } },
+  { label: "Newer TRN-100", ask: { unit: "TRN-100", symptom: SYMPTOM } },
+  { label: "Other symptom", ask: { unit: "TRN-051", symptom: "intermittent CRC errors on uplink" } },
+  { label: "Drive to Nilo", ask: { unit: "SITE-NILO" } },
+  { label: "Key on 10.10.?", ask: { unit: "SITE-NILO", at: "2026-10-10" } },
 ];
 
+// Plain words for what the data calls things. The data keeps its names; the page translates.
 const TIER_LABEL = { propose: "PROPOSE", check_first: "CHECK FIRST", unknown: "I DON'T KNOW" };
+const MATCH_LABEL = {
+  same_node: "seen on this unit",
+  same_class: "same class as where it was seen",
+  similar_guess: "a guess from a different class",
+  none: "",
+};
+const ACTION_LABEL = {
+  bounce_interface: "bounce the interface",
+  replace_hw: "replace hardware",
+  reboot: "reboot",
+  read: "read something first",
+  none: "",
+};
+const WAITING_LABEL = {
+  no_id: "no unit named",
+  multiple_candidates: "several units could fit",
+  unknown_id: "names a unit the graph does not know",
+  contradicting_context: "the context contradicts itself",
+};
 const SVG_NS = "http://www.w3.org/2000/svg";
 // The axis is compressed before the knee, because nearly everything happens after it. It is marked.
 const AXIS = {
@@ -98,7 +157,7 @@ const AXIS = {
 };
 const AXIS_TICKS = ["2026-09-01", "2026-10-01", "2026-10-14", "2026-10-21", "2026-10-28", "2026-11-01"];
 const GUTTER = 166;
-const LABEL_CHAR_WIDTH = 7;
+const LABEL_CHAR_WIDTH = 6.6;
 
 let state = null;
 let scene = 0;
@@ -120,6 +179,12 @@ function shortTime(iso, withClock = false) {
   return withClock && clock ? `${text} ${clock.slice(0, 5)}` : text;
 }
 
+// A short name for a claim, so a node or a bar can say what it is instead of its id.
+function claimShort(kind, actionKind, superseded) {
+  if (kind === "access") return superseded ? "key, before" : "key, now";
+  return { bounce_interface: "bounce", replace_hw: "SFP first", read: "check port", reboot: "reboot" }[actionKind] || "advice";
+}
+
 function svgEl(name, attrs = {}, parent = null, text = null) {
   const el = document.createElementNS(SVG_NS, name);
   for (const [key, value] of Object.entries(attrs)) el.setAttribute(key, value);
@@ -138,6 +203,25 @@ async function api(path, options = {}) {
     throw new Error(body.detail || `${path}: ${response.status}`);
   }
   return response.json();
+}
+
+// The evidence comes from a template, as the decision says. Here each line becomes a row, with
+// its label apart from what it says, and nothing is added or left out.
+function evidenceHtml(text) {
+  const rows = String(text || "")
+    .split("\n")
+    .filter((line) => line.trim())
+    .map((line) => {
+      const at = line.indexOf(": ");
+      const label = at > 0 ? line.slice(0, at) : "";
+      const rest = at > 0 ? line.slice(at + 2) : line;
+      const parts = rest.split(" · ").map((part) => {
+        const quoted = part.match(/^"(.*)"$/);
+        return quoted ? `<q>${esc(quoted[1])}</q>` : esc(part);
+      });
+      return `<li><b>${esc(label)}</b><span>${parts.join('<span class="dot">·</span>')}</span></li>`;
+    });
+  return `<ul class="evidence">${rows.join("")}</ul>`;
 }
 
 // The time axis: the layers of the reference picture, live
@@ -162,11 +246,11 @@ function drawTimeline() {
   const contextTop = 92;
 
   const bands = [
-    [0, 24, 58, "EVENT STREAM", "as-observed"],
-    [1, 60, 28, "SOURCES", "as-received"],
-    [2, 90, height - 92, "CONTEXT", "as-experienced"],
+    [24, 58, "DEVICES", "what happened"],
+    [60, 28, "SOURCES", "what arrived"],
+    [90, height - 92, "CLAIMS", "believed, and since when"],
   ];
-  for (const [, y, h, name, sub] of bands) {
+  for (const [y, h, name, sub] of bands) {
     svgEl("rect", { x: 0, y, width, height: h, class: "t-band" }, svg);
     svgEl("text", { x: 10, y: y + 15, class: "t-layer" }, svg, name);
     svgEl("text", { x: 10, y: y + 29, class: "t-sublayer" }, svg, sub);
@@ -180,7 +264,7 @@ function drawTimeline() {
   }
   svgEl("text", { x: toX("2026-10-12T00:00:00") - 7, y: 14, class: "t-tick" }, svg, "//");
 
-  const labels = { module_replaced: "SFP", firmware_updated: "firmware" };
+  const labels = { module_replaced: "SFP swapped", firmware_updated: "firmware updated" };
   let lastLabelX = -999;
   let row = 0;
   for (const event of state.events) {
@@ -196,13 +280,13 @@ function drawTimeline() {
       svg
     );
     if (labels[event.type]) {
-      row = x - lastLabelX < 130 ? (row + 1) % 2 : 0;
+      row = x - lastLabelX < 150 ? (row + 1) % 2 : 0;
       lastLabelX = x;
       svgEl(
         "text",
         { x: x + 10, y: eventsY - 3 + row * 14, class: `t-event-label${future}` },
         svg,
-        `${event.entity} ${labels[event.type]}`
+        `${event.entity}: ${labels[event.type]}`
       );
     }
   }
@@ -221,7 +305,7 @@ function drawTimeline() {
       svg
     );
     rect.addEventListener("click", () => openSource(source.file));
-    svgEl("title", {}, rect, source.file);
+    svgEl("title", {}, rect, source.label || source.file);
   }
 
   const claims = state.claims;
@@ -248,9 +332,14 @@ function drawTimeline() {
       svgEl("line", { x1: x1 - 14, x2: x1, y1: y + barHeight / 2, y2: y + barHeight / 2, class: "t-bar-unknown" }, svg);
     }
     const unit = claim.observed_entity || "no unit yet";
-    const from = claim.valid_from ? shortTime(claim.valid_from) : "unknown";
-    const to = claim.valid_to ? shortTime(claim.valid_to) : claim.superseded_at ? "unknown" : "still believed true";
-    const label = `${unit}  valid_from ${from}  valid_to ${to}`;
+    const what = claimShort(claim.kind, claim.action_kind, claim.superseded_at);
+    const from = claim.valid_from ? `from ${shortTime(claim.valid_from)}` : "start unknown";
+    const to = claim.valid_to
+      ? `until ${shortTime(claim.valid_to)}`
+      : claim.superseded_at
+        ? "replaced, end unknown"
+        : "still believed true";
+    const label = `${unit} · ${what} · ${from} · ${to}`;
     const fits = x1 + 6 + label.length * LABEL_CHAR_WIDTH < width - 8;
     svgEl(
       "text",
@@ -270,7 +359,7 @@ function drawTimeline() {
   const group = svgEl("g", { id: "t-line" }, svg);
   group.style.transform = `translateX(${nowX}px)`;
   svgEl("line", { x1: 0, x2: 0, y1: 16, y2: height, class: "t-now" }, group);
-  svgEl("text", { x: -5, y: 13, class: "t-now-label", "text-anchor": "end" }, group, "t=x");
+  svgEl("text", { x: -5, y: 13, class: "t-now-label", "text-anchor": "end" }, group, "now");
 }
 
 // Sources and the extra-work panel
@@ -284,28 +373,32 @@ function drawSources() {
     ...state.sources.map((source) => {
       const li = document.createElement("li");
       li.className = `${source.channel}${source.known ? "" : " future"}${source.origin === "elisa" ? " elisa" : ""}`;
-      let note = "not yet";
+      let note = "not yet received";
       if (source.known) {
-        if (source.unchanged) note = `unchanged ${source.sha256.slice(0, 7)}`;
-        else if (source.claim_ids.length) note = `${source.claim_ids.length === 1 ? "a claim" : "claims"}`;
-        else note = "no claim";
+        if (source.unchanged) note = "Elisa's file, unchanged";
+        else if (source.claim_ids.length) note = source.claim_ids.length === 1 ? "one claim" : `${source.claim_ids.length} claims`;
+        else note = "no advice in it";
       }
       li.innerHTML = `
         <span class="channel">${source.channel === "teams" ? "T" : "E"}</span>
-        <span class="name">${esc(source.file.replace(/\.(json|txt)$/, ""))}</span>
+        <span class="name">${esc(source.label || source.file)}</span>
         <span class="note">${esc(note)}</span>`;
-      li.title = `${source.file}, received ${source.received_at}`;
+      li.title = `${source.file}, received ${shortTime(source.received_at, true)}${source.sha256 ? `, sha256 ${source.sha256.slice(0, 12)}` : ""}`;
       li.addEventListener("click", () => openSource(source.file));
       return li;
     })
   );
-  const groups = Object.entries(m.gaps_by_group)
-    .map(([group, count]) => `${esc(group)} <b>${count}</b>`)
-    .join(", ");
+  const groups = Object.entries(m.gaps_by_group);
+  const gaps = groups.reduce((sum, [, count]) => sum + count, 0);
+  const gapText = gaps
+    ? ` The agent said "I don't know" <b>${gaps}</b> ${gaps === 1 ? "time" : "times"}, each logged for ${groups
+        .map(([group]) => esc(group))
+        .join(" and ")}.`
+    : "";
   const wrong = m.held_out_wrong_per_run;
   $("metrics").innerHTML = `
-    <p>Bound <b>${m.bound}</b>, waiting with a reason <b>${m.waiting}</b>${groups ? `. "I don't know": ${groups}` : ""}</p>
-    ${wrong ? `<p>Held-out binding test, wrong of 16 per run: <b>${wrong.join(" ")}</b></p>` : ""}`;
+    <p><b>${m.bound}</b> ${m.bound === 1 ? "claim" : "claims"} tied to a unit, <b>${m.waiting}</b> waiting with a reason.${gapText}</p>
+    ${wrong ? `<p>Blind test on 16 unseen sources, wrongly tied per run: <b>${wrong.join(" ")}</b></p>` : ""}`;
 }
 
 // Claims
@@ -319,10 +412,20 @@ function statusFor(claim) {
   return inAnswer?.status_for_entity || claim.status_for_entity;
 }
 
+function toldBy(sources) {
+  const byRole = new Map();
+  for (const s of sources) {
+    const role = s.role || "role unknown";
+    if (!byRole.has(role)) byRole.set(role, new Set());
+    byRole.get(role).add(s.channel === "teams" ? "Teams" : s.channel);
+  }
+  return [...byRole].map(([role, channels]) => `${role} in ${[...channels].join(" and ")}`).join("; ");
+}
+
 function drawClaims() {
   const used = usedByAnswer();
   $("claim-count").textContent = state.claims.length
-    ? `${state.claims.length} at this time, from what people already wrote`
+    ? `${state.claims.length} at this moment, from what people already wrote`
     : "none yet";
   // What the agent just used or the viewer picked comes first, so it is on screen without scrolling.
   const rank = (claim) => (claim.id === selected ? 2 : used.has(claim.id) ? 1 : 0);
@@ -332,18 +435,22 @@ function drawClaims() {
       const card = document.createElement("article");
       const status = statusFor(claim);
       card.className = `claim ${claim.binding_status}${claim.superseded_at ? " superseded" : ""}${claim.id === selected ? " selected" : ""}${used.has(claim.id) ? " used" : ""}`;
-      const sources = claim.sources.map((s) => `${s.channel}/${s.role || "role unknown"}`);
-      const uniqueSources = [...new Set(sources)].join(", ");
+      const where = claim.observed_entity
+        ? `seen on <b>${esc(claim.observed_entity)}</b>`
+        : `not tied to a unit: <b>${esc(WAITING_LABEL[claim.binding_reason] || claim.binding_reason)}</b>`;
+      const covers = claim.scope_text
+        ? `covers <b>"${esc(claim.scope_text)}"</b>, ${claim.scope_status === "confirmed" ? "confirmed" : "in the expert's words"}`
+        : "covers: not stated";
       card.innerHTML = `
         <p>${esc(claim.claim_text)}</p>
         <div class="meta">
           <span class="chip ${esc(status)}">${esc(status.replace("_", " "))}</span>
-          <span>on <b>${esc(claim.observed_entity || claim.binding_reason)}</b></span>
-          <span>scope <b>${esc(claim.scope_text || "not stated")}</b> (${esc(claim.scope_status)})</span>
-          <span>${esc(uniqueSources)}</span>
-          <span>age <b>${claim.info_age_days}</b> d</span>
+          <span>${where}</span>
+          <span>${covers}</span>
+          <span>told by ${esc(toldBy(claim.sources))}</span>
+          <span>known for <b>${claim.info_age_days}</b> days</span>
         </div>
-        <pre class="evidence">${esc(claim.evidence_rendered)}</pre>`;
+        ${evidenceHtml(claim.evidence_rendered)}`;
       card.addEventListener("click", () => selectClaim(claim.id));
       return card;
     })
@@ -368,7 +475,7 @@ const NODE_LABEL = {
   "SITE-RAUTA": "Rauta",
   "SITE-KOSKI": "Koski",
 };
-const COLUMN = { claims: 0.15, units: 0.46, classes: 0.73, barrier: 0.92 };
+const COLUMN = { claims: 0.19, units: 0.48, classes: 0.74, barrier: 0.92 };
 const FIXED = {
   "TRN-042": [COLUMN.units, 0.2],
   "TRN-051": [COLUMN.units, 0.41],
@@ -412,7 +519,7 @@ function drawGraph() {
     SUPERSEDES: "supersedes",
     CONFLICTS_WITH: "conflicts",
   };
-  const relLabel = { APPLIES_TO: "applies to", SUPERSEDES: "supersedes", CONFLICTS_WITH: "conflicts" };
+  const relLabel = { APPLIES_TO: "applies to", SUPERSEDES: "replaces", CONFLICTS_WITH: "disagrees" };
   for (const edge of state.graph.edges) {
     const a = positions[edge.src];
     const b = positions[edge.dst];
@@ -423,8 +530,8 @@ function drawGraph() {
     let d;
     if (sameColumn) {
       // Between two claims: bow out to the left of the column, where nothing else runs.
-      const out = a[0] - 34;
-      d = `M${out},${a[1]} C${out - 30},${a[1]} ${out - 30},${b[1]} ${out},${b[1]}`;
+      const out = a[0] - 50;
+      d = `M${out},${a[1]} C${out - 26},${a[1]} ${out - 26},${b[1]} ${out},${b[1]}`;
     } else {
       const mid = (a[0] + b[0]) / 2;
       d = `M${a[0]},${a[1]} C${mid},${a[1]} ${mid},${b[1]} ${b[0]},${b[1]}`;
@@ -453,8 +560,10 @@ function drawGraph() {
     const position = positions[node.id];
     if (!position) continue;
     const isClaim = node.kind === "claim";
-    const label = isClaim ? node.id : NODE_LABEL[node.id] || node.name;
-    const w = Math.max(48, label.length * 7.4 + 12);
+    const label = isClaim
+      ? claimShort(node.claim_kind, node.action_kind, node.superseded_at)
+      : NODE_LABEL[node.id] || node.name;
+    const w = Math.max(48, label.length * 7.2 + 14);
     const classes = ["g-node", node.kind];
     if (isClaim && node.binding_status === "waiting") classes.push("waiting");
     if (isClaim && node.superseded_at) classes.push("superseded");
@@ -527,7 +636,7 @@ function drawAnswer() {
     box.innerHTML = line
       ? `
       <div class="answer-head"><span class="tier learned">FROM THE DEVICES</span>
-        <span class="match">${esc(line.entity)} · nobody wrote this down</span></div>
+        <span class="match"><b>${esc(line.entity)}</b> · nobody wrote this down</span></div>
       <dl class="log">
         <dt>The agent proposed</dt><dd>${esc(line.next_step)}</dd>
         <dt>A person did</dt><dd>${esc(line.human_did)}</dd>
@@ -538,17 +647,17 @@ function drawAnswer() {
     return;
   }
   const rows = [];
-  if (answer.prohibition) rows.push(`<dt>Not yet</dt><dd class="no">${esc(answer.prohibition)}</dd>`);
+  if (answer.prohibition) rows.push(`<dt>Held back</dt><dd class="no">${esc(answer.prohibition)}</dd>`);
   const used = answer.observed_used;
   if (used?.counters_from === "telemetry") {
-    rows.push(`<dt>Counters</dt><dd class="read">${esc(used.counters)}, read from the device by the agent</dd>`);
+    rows.push(`<dt>Counters</dt><dd class="read">${esc(used.counters)}, read from the device by the agent itself</dd>`);
   } else if (used?.counters_from === "reported") {
     rows.push(`<dt>Counters</dt><dd>${esc(used.counters)}, as reported</dd>`);
   }
-  if (answer.match_note) rows.push(`<dt>Reach</dt><dd>${esc(answer.match_note)}</dd>`);
-  if (answer.ask_group) rows.push(`<dt>Ask</dt><dd>${esc(answer.ask_group)}. The gap is logged.</dd>`);
+  if (answer.match_note) rows.push(`<dt>Why this unit</dt><dd>${esc(answer.match_note)}</dd>`);
+  if (answer.ask_group) rows.push(`<dt>Ask instead</dt><dd>${esc(answer.ask_group)}. The gap is logged, so the next time it has a name.</dd>`);
   rows.push(`<dt>What would change this</dt><dd>${esc(answer.what_would_change)}</dd>`);
-  if (answer.boundary_known === false) rows.push("<dt>Boundary</dt><dd>Not known</dd>");
+  if (answer.boundary_known === false) rows.push("<dt>Boundary</dt><dd>Not known: the moment one statement replaced the other is not recorded.</dd>");
   const shown = (answer.claims || []).filter((claim) => claim.status_for_entity !== "not_yet_valid");
   const side = shown
     .map(
@@ -561,17 +670,19 @@ function drawAnswer() {
         ${claim.status_note ? `<p class="note">${esc(claim.status_note)}</p>` : ""}
         ${claim.status_for_entity === "disputed" && claim.binding_status === "waiting" ? `<p class="note">${esc(claim.match_note)}</p>` : ""}
         ${claim.status_for_entity === "not_applicable" ? `<p class="note">${esc(claim.match_note)}</p>` : ""}
-        <pre class="evidence">${esc(claim.evidence_rendered)}</pre>
+        ${evidenceHtml(claim.evidence_rendered)}
       </div>`
     )
     .join("");
   const when = answer.asked_at_time ? ` · as of ${esc(shortTime(answer.asked_at_time))}` : "";
   // Where a key is, is knowledge and not a proposal to do something.
   const tierLabel = answer.site && answer.tier === "propose" ? "KNOWN" : TIER_LABEL[answer.tier];
+  const how = MATCH_LABEL[answer.match_level] || "";
+  const action = ACTION_LABEL[answer.action_kind] || "";
   box.innerHTML = `
     <div class="answer-head">
       <span class="tier ${esc(answer.tier)}">${tierLabel}</span>
-      <span class="match">${esc(answer.entity)}${when}${answer.match_level ? ` · ${esc(answer.match_level)}` : ""}${answer.action_kind && answer.action_kind !== "none" ? ` · ${esc(answer.action_kind)}` : ""}</span>
+      <span class="match"><b>${esc(answer.entity)}</b>${when}${how ? ` · ${esc(how)}` : ""}${action ? ` · ${esc(action)}` : ""}</span>
     </div>
     <p class="next">${esc(answer.next_step)}</p>
     <dl>${rows.join("")}</dl>
@@ -605,8 +716,8 @@ async function openSource(file) {
     )
     .join("");
   openOverlay(`
-    <h3>${esc(source.subject || file)}</h3>
-    <p class="sub">${origin}. sha256 ${esc(source.sha256)}</p>
+    <h3>${esc(source.label || source.subject || file)}</h3>
+    <p class="sub">${origin}. ${esc(source.channel === "teams" ? "Teams export" : "Email")} <code>${esc(file)}</code>, sha256 <code>${esc(source.sha256.slice(0, 16))}</code></p>
     ${messages}`);
 }
 
@@ -633,12 +744,19 @@ function drawScenes() {
     ...SCENES.map((item, index) => {
       const button = document.createElement("button");
       button.type = "button";
-      button.innerHTML = `<b>${index + 1}</b>${esc(item.title)}`;
+      button.innerHTML = `<b>${index + 1}</b>${esc(item.nav)}`;
+      button.title = item.title;
       if (index === scene) button.setAttribute("aria-current", "step");
       button.addEventListener("click", () => goTo(index));
       return button;
     })
   );
+}
+
+function drawStory(item) {
+  $("story-title").textContent = `${scene + 1}. ${item.title}`;
+  $("story-text").textContent = item.text;
+  $("story-look").textContent = item.look;
 }
 
 function drawAll() {
@@ -657,7 +775,7 @@ async function goTo(index) {
   scene = Math.max(0, Math.min(index, SCENES.length - 1));
   const item = SCENES[scene];
   drawScenes();
-  $("caption").textContent = item.caption;
+  drawStory(item);
   for (const panel of document.querySelectorAll(".panel")) {
     const lit = item.lit.includes(panel.id);
     panel.classList.toggle("lit", lit);
@@ -689,7 +807,7 @@ async function goTo(index) {
     if (item.source) await openSource(item.source);
     if (item.limits) showLimits();
   } catch (error) {
-    $("caption").textContent = error.message;
+    $("story-text").textContent = error.message;
   } finally {
     busy = false;
   }

@@ -8,15 +8,21 @@ recorded here before the next batch. **This file is the truth, the conversation 
 Decided before this list and not re-opened here: the decisions of 4.11.2026 in the Atlas artifact
 `SINCEAI-2026-SUUNNITELMA`.
 
-Updated 6.11.2026 (session 2).
+Updated 7.11.2026 (session 3).
 
 | # | Where | What now | State |
 |---|---|---|---|
 | 1 | The challenge | Elisa, selected 6.11.2026. Final. | `OK` |
-| 2 | Visibility | Private. The IP terms are read. The submission form asks for a repository link, so this is decided before the submission; gitleaks over the full history before any flip to public. | `later`, before the submission on 8.11. |
-| 3 | License | None chosen. The terms: the team owns what it builds, and Elisa can use it in its business. | `later`, before the submission on 8.11. |
+| 2 | Visibility | Public as soon as the product is in a shape the repository can be opened in, before the submission. gitleaks is installed and run over the full history, and `CLAUDE.md` and `docs/` are read for anything internal, at that point. The owner, 7.11.2026. | `OK` |
+| 3 | License | None chosen. The terms: the team owns what it builds, and Elisa can use it in its business. Chosen when the repository goes public; MIT recommended, because the jury and Elisa can then use it without a question. | `later`, before the flip to public |
 | 4 | Truth set, the second expert's claim | Corrected: the claim waits with `no_id`. The truth set first bound it to TRN-051, and the model left it waiting, because the advice is about old units in general and TRN-051 only prompted it. The file says this was done after the first scored run, which makes that row weaker evidence than the rest. | `OK` |
 | 5 | Measuring run-to-run variation | Done: five repeats with the prompt unchanged and no rule tuned to them. Confidently wrong per run, of 16: 0, 0, 0, 1, 1, the same one file each time. See `data/truth/held_out_repeats.json`. | `OK` |
+| 6 | IP terms | Accepted in sinceai.app when the challenge was selected. The owner, 7.11.2026. | `OK` |
+| 7 | Product name | Silent context, the working name made final. The repository was renamed `silent-context` on 7.11.2026, and GitHub redirects the old name. The owner, 7.11.2026. | `OK` |
+| 8 | Phase 6 checkpoint: the page | Changes: at first glance the page looks confusing. Session 3 makes it clearer wherever it can, and the owner looks again. The owner, 7.11.2026. | `edit` |
+| 9 | Cypher export and a Neo4j trial run | Done in session 3, because the build is ahead of the plan and the owner wants it. The owner, 7.11.2026. | `OK` |
+| 10 | The video's shape | The whole idea is clear in the first 20 seconds. After that, how it happens is shown as a short, clear presentation. At about 60 seconds the viewer has fully grasped what this is. The owner, 7.11.2026. | `OK` |
+| 11 | Something useful or distinguishing with the spare time | The owner asked for it; session 3 proposes what, why and impact in its report, and the owner picks. | `draft` |
 
 ## Design decisions P1 to P6
 

@@ -3,7 +3,7 @@
 An entry for the Since AI 2026 hackathon (6.11. to 8.11.2026), Elisa's challenge, selected on 6.11.
 The build follows the Atlas artifact `SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA`, which implements the
 decisions in [`docs/DECISIONS.md`](docs/DECISIONS.md). The repository
-(`github.com/pkorrrhonen-cmd/sinceai-2026`) stays private until visibility is decided.
+(`github.com/pkorrrhonen-cmd/silent-context`) stays private until it is ready to open.
 
 ## Where the truth is
 

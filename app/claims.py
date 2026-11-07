@@ -409,6 +409,7 @@ def _view(
     return {
         "id": claim["id"],
         "kind": claim["kind"],
+        "action_kind": claim["action_kind"],
         "claim_text": claim["claim_text"],
         "symptom": claim["symptom"],
         "observed_entity": claim["observed_entity"],

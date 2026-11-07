@@ -26,17 +26,15 @@ Updated 7.11.2026 (session 3).
 
 | Code | Task | Why / notes |
 |---|---|---|
-| P-2 | *check* **Accept the IP terms** in sinceai.app. | The terms are read; whether they were accepted in the app is not recorded here. A gate before the submission. |
 | P-3 | **Submit** in sinceai.app: project details, submission URL, repository or demo link, video, source zip. | Closes Sunday 8.11. at 10:00 EET; the plan is to send by 09:30. |
-| P-4 | **Name the product.** | Needed for REPO-1, the README's title and the video. The page says "Silent context" for now. |
-| P-6 | **Look at the page and its ten scenes,** then approve or change them. | Phase 6's checkpoint, still open. The dimming was seen moving on 7.11. and no scene throws a console error, so what remains is the look and the captions. |
+| P-6 | **Look at the clearer page and its ten scenes,** then approve or change them. | Phase 6's checkpoint. On 7.11. the owner found the page confusing at first glance; session 3 rebuilt it for clarity, and it waits for a second look. |
+| P-8 | **On the main PC,** point the checkout at the renamed repository: `git remote set-url origin https://github.com/pkorrrhonen-cmd/silent-context.git`. | GitHub redirects the old name, so this can wait; it only keeps the remote honest. |
 | P-7 | *Optional:* **ask Joni the questions** in the Atlas artifact `SINCEAI-2026-ELISA-PAATOKSET` part 1.5, face to face, if there is time. | Saturday at the Joki showroom, 9 to 12 and 14.30 to 18. No decision depends on the answers. |
 
 ## The repository
 
 | Code | Task | Why / notes |
 |---|---|---|
-| REPO-1 | **Rename the repository** after P-4 (`gh repo rename <name>`) and update `BUILD_INFO.json` `github` and the name in `CLAUDE.md`. | GitHub redirects the old name. |
 | REPO-2 | **Register the Atlas system,** then render `docs/adr/` from its model. | Not during the event weekend (the owner, 6.11.2026). Until then decisions live in [`DECISIONS.md`](DECISIONS.md). |
 | REPO-3 | **Before any flip to public:** run gitleaks over the full history and read `CLAUDE.md` and `docs/` for anything internal. | Depends on [`DECISIONS.md`](DECISIONS.md) row 2. gitleaks is not installed on the Mac; a pattern scan of the history on 7.11. found no key. |
 | REPO-4 | **Build the source zip with `git archive`,** not from the working folder. | The working folder holds untracked leftovers that are not part of the product. |
@@ -45,8 +43,8 @@ Updated 7.11.2026 (session 3).
 
 | Code | Task | Why / notes |
 |---|---|---|
-| BUILD-7 | The acceptance table for the slides. | Phase 7. The clean install passed on 7.11. ([`CHANGELOG.md`](CHANGELOG.md), session 3). |
-| BUILD-8 | Video, slides, documentation. | Phase 8. |
+| BUILD-7 | The acceptance table for the slides. | Phase 7. The clean install passed on 7.11. ([`CHANGELOG.md`](CHANGELOG.md), session 3). The owner wants to go through what the table is before it is built. |
+| BUILD-8 | Video, slides, documentation. | Phase 8, after everything else. The video: the whole idea clear in 20 seconds, how it happens shown briefly after that, fully grasped at about 60 seconds ([`DECISIONS.md`](DECISIONS.md) row 10). |
 
 ## Documents to fill
 

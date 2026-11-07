@@ -2,10 +2,10 @@
   "name": "sinceai-2026",
   "version": "0.1.0",
   "phase": "6",
-  "phaseName": "The page built and checked; waiting for the owner's checkpoint before the rest of phase 7",
+  "phaseName": "The page rebuilt for clarity after the checkpoint; phase 7 half done",
   "session": 3,
   "updated": "2026-11-07",
-  "state": "Session 2 (6.11.2026, Code on the Mac): Elisa's challenge is selected and the decisions P1 to P6 are made. Phase 0 (skeleton, health check), phase 1 (Elisa's files unchanged, synthetic sources, events, seed graph, truth set, held-out binding set) phase 2 (store, export, /graph), phase 3 (extraction, binding, merging, recorded answers, scoring) phase 4 (claims_for, access_for, the prohibition, counters from telemetry), phase 5 (firmware recheck, outcomes from telemetry, the log line from device events) and phase 6 (the page, ten scenes) are in main. Session 3 (7.11.2026, Code on the Mac): a technical check before the checkpoint. A clean install from git archive passed with no key, and all ten scenes ran with the browser pane visible and no console errors. Video, slides and final documentation do not exist yet.",
+  "state": "Session 2 (6.11.2026, Code on the Mac): Elisa's challenge is selected and the decisions P1 to P6 are made. Phase 0 (skeleton, health check), phase 1 (Elisa's files unchanged, synthetic sources, events, seed graph, truth set, held-out binding set) phase 2 (store, export, /graph), phase 3 (extraction, binding, merging, recorded answers, scoring) phase 4 (claims_for, access_for, the prohibition, counters from telemetry), phase 5 (firmware recheck, outcomes from telemetry, the log line from device events) and phase 6 (the page, ten scenes) are in main. Session 3 (7.11.2026, Code on the Mac): a technical check, then the owner's checkpoint: the page looked confusing at first glance, so it was rebuilt for clarity (a story per scene, plain words, readable evidence, named claims) and waits for a second look. The product is named Silent context and the repository is renamed. The Cypher export loads into Neo4j. A clean install from git archive passed with no key. Video, slides and final documentation do not exist yet.",
   "next_session": {
     "id": "phase-7",
     "name": "Acceptance runs and a clean install",
@@ -25,7 +25,7 @@
     "atlas": "No Atlas system for this repository during the event weekend (the owner, 6.11.2026). Threads and documents stay under the Atlas system."
   },
   "ci": "none: added only if the build needs a gate",
-  "github": "github.com/pkorrrhonen-cmd/sinceai-2026 (private; renamed when the product has a name, GitHub redirects the old name)",
+  "github": "github.com/pkorrrhonen-cmd/silent-context (private until it is ready to open; renamed from sinceai-2026 on 7.11.2026, and GitHub redirects the old name)",
   "atlasArtifacts": {
     "status": "SINCEAI-2026-ELISA-TILANNE (read this first: what is done, measured and waiting)",
     "buildPlan": "SINCEAI-2026-ELISA-RAKENNUSSUUNNITELMA",

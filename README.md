@@ -1,7 +1,7 @@
 # Silent context capture for network operations
 
-An entry for Since AI 2026 (6.11. to 8.11.2026), Elisa's challenge. This is a working name, and the
-repository is renamed when the product has its own. Working documents are in [`docs/`](docs/), and
+An entry for Since AI 2026 (6.11. to 8.11.2026), Elisa's challenge. The product's name is Silent
+context. Working documents are in [`docs/`](docs/), and
 [`CLAUDE.md`](CLAUDE.md) says where each thing lives.
 
 ## Challenge
@@ -99,10 +99,23 @@ uv run python -m app.ask claims TRN-051 "link up, counters zero after SFP replac
 uv run python -m app.ask access SITE-NILO --clock 2026-10-21T00:00:00
 ```
 
-To write the graph to `export/graph.json`:
+To write the graph to `export/graph.json` and, as Cypher, to `export/graph.cypher`:
 
 ```bash
 uv run python -m app.export
+```
+
+The Cypher file loads into an empty Neo4j 5 database as it is. It was tried on 7.11.2026 against the
+official `neo4j:5` container: every statement ran, the database held 5 claims, 14 entities, 14 evidence
+events and 9 sources as nodes with all ten edge types, and one query answered the agent's question
+from the graph alone. To repeat it, with any password of your own:
+
+```bash
+docker run -d --name silent-context-neo4j -p 7474:7474 -p 7687:7687 -e NEO4J_AUTH=neo4j/<password> neo4j:5
+```
+
+```bash
+docker exec -i silent-context-neo4j cypher-shell -u neo4j -p <password> < export/graph.cypher
 ```
 
 To run the tests:

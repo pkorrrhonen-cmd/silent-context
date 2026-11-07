@@ -39,6 +39,44 @@ the "what was tested" section, and `docs/what-is-simulated.md` does not exist (D
 **Open after this:** the owner's checkpoint on the page and the captions, the product name, and
 phase 7's remaining half, the acceptance table for the slides.
 
+### The checkpoint, and the page rebuilt for clarity
+
+**Decided by the owner** ([`DECISIONS.md`](DECISIONS.md) rows 6 to 10): the IP terms were accepted at
+selection; the product is Silent context, and the repository was renamed `silent-context`; the
+repository goes public as soon as it is fit to open, with gitleaks then; the Cypher export and the Neo4j
+trial are done because the build is ahead; the video makes the whole idea clear in 20 seconds and
+fully grasped at about 60. The checkpoint's verdict on the page: confusing at first glance.
+
+**Built, for clarity.** The structure stays (the time axis, three panels, the agent, ten scenes), and
+what competed for attention went:
+
+- Each scene opens with a title, two sentences on what happens and where to look, instead of one
+  ellipsised line. The scene buttons keep short names.
+- Field names left the screen: a source has a readable name from the manifest, a claim is named by
+  what it advises (bounce, SFP first, check port, key), a match level and an action kind are said in
+  words, a waiting claim says why in words, and the time axis says "from 14.10. · still believed
+  true" instead of `valid_from` and `valid_to`.
+- The evidence template is shown one line per row, the label apart from what it says. The text is the
+  template's, unchanged: nothing is added, so the decision on evidence still holds.
+- The sources list says "not yet received", "Elisa's file, unchanged", "one claim" or "no advice in
+  it"; the numbers beside it are sentences.
+
+**Measured:** 151 tests pass. All ten scenes ran again at 1440 by 900 with no console errors, and the
+Ask button fits the viewport.
+
+### Cypher export and a Neo4j trial
+
+**Built:** `app/export.py` writes `export/graph.cypher` beside the JSON. Sources and evidence events
+become nodes of their own, because a property cannot hold a list of maps; an evidence event with a
+unit points at it. A test holds that every entity, the claim, its source and its evidence appear, that
+a quote inside a text is escaped, and that the teller key is absent.
+
+**Measured** against the official `neo4j:5` container on the Mac (Docker Desktop started for it):
+every statement ran with no edits. The database held 5 Claim, 14 Entity, 14 Evidence and 9 Source
+nodes and ten relationship types (ABOUT 8, HAS_EVIDENCE 14, ON 12, FROM_SOURCE 9, LOCATED_AT 3,
+INSTANCE_OF 3, APPLIES_TO 1, CONFLICTS_WITH 1, SUPERSEDES 1, HAS_BARRIER 1). A query over the graph
+alone found the claim seen on TRN-042, the same-class unit TRN-051, and reported successes on both.
+
 ## Session 2, 6.11.2026: Elisa selected, decisions made, phases 0 and 1 built
 
 **Why:** the challenge is selected and the decisions P1 to P6 are made, so the build starts from the

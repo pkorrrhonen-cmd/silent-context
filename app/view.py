@@ -19,6 +19,7 @@ def _sources(conn: sqlite3.Connection) -> list[dict]:
         views.append(
             {
                 "file": entry["file"],
+                "label": entry.get("label"),
                 "channel": entry["channel"],
                 "origin": entry["origin"],
                 "received_at": entry["received_at"],
@@ -87,6 +88,7 @@ def source(file: str) -> dict | None:
     thread = parse(path, entry["file"])
     return {
         "file": entry["file"],
+        "label": entry.get("label"),
         "channel": thread.channel,
         "origin": entry["origin"],
         "original_name": entry.get("original_name"),

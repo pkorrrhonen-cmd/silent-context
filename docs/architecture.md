@@ -22,7 +22,7 @@ lists them). The product runs without the author's environment.
 | `app/ingest.py` | Built | Merges, dates and records evidence; the demo clock |
 | `app/scoring.py` | Built | Scores a run against the truth set and the held-out set |
 | `app/db.py` | Built | The claim store: schema, seed graph, rebuild |
-| `app/export.py` | Built | The graph as JSON |
+| `app/export.py` | Built | The graph as JSON and as Cypher |
 | `app/claims.py` | Built | The agent's calls: `claims_for` and `access_for` |
 | `app/ask.py` | Built | Ask the agent from the command line |
 | `app/events.py` | Built | What devices add: recheck, outcomes, what a person did |
@@ -32,9 +32,13 @@ lists them). The product runs without the author's environment.
 
 ## The page
 
-The top of the page is a live version of the time-aware layers in Elisa's reference picture: the event
-stream, what was received, and each claim as a bar from `valid_from` to `valid_to`, open-ended while it
-is still believed true. Moving `t=x` rebuilds the store as it stood then.
+Each scene opens with a title, two sentences on what happens, and where to look. The top of the page
+is a live version of the time-aware layers in Elisa's reference picture: the event stream, what was
+received, and each claim as a bar from `valid_from` to `valid_to`, open-ended while it is still
+believed true. Moving the clock rebuilds the store as it stood then. The page speaks plain words and
+keeps the data's field names in the data: a source has a readable name from the manifest, a claim is
+named by what it advises, the evidence template is shown one line per row, and a match level or an
+action kind is translated before it is shown.
 
 The graph is drawn with hand-made SVG and laid out by kind, so it stays still from scene to scene on a
 recording and needs no library. The page uses system fonts and fetches nothing from outside, because
@@ -106,9 +110,13 @@ claim and a unit, so an update on one unit cannot spread to its class.
 ## The graph export
 
 The export is JSON with stable ids, edge types, times and sources, and it maps directly onto a
-property graph. It has not been loaded into a graph database. Connecting it to Elisa's own graph needs
-Elisa's schema, which is not known here, so matching entities is a separate step on the way to
-production. The teller key stays out of the export: it exists only to merge one person's accounts.
+property graph. The same graph is written as Cypher, where sources and evidence events become nodes
+of their own because a property cannot hold a list of maps, and an evidence event with a unit points
+at that unit. The Cypher file was loaded into an empty Neo4j 5 database on 7.11.2026 with no edits
+(the README says how), and a graph query answered the agent's question from it. Connecting it to
+Elisa's own graph needs Elisa's schema, which is not known here, so matching entities is a separate
+step on the way to production. The teller key stays out of both exports: it exists only to merge one
+person's accounts.
 
 ## Data flow
 
