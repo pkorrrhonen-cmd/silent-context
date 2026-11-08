@@ -19,6 +19,7 @@ decisions in [`docs/DECISIONS.md`](docs/DECISIONS.md). The repository
 | Order, event schedule and gates | [`docs/roadmap.md`](docs/roadmap.md) |
 | What was done and measured | [`docs/CHANGELOG.md`](docs/CHANGELOG.md), newest first |
 | Lesson paid for | [`docs/LESSONS.md`](docs/LESSONS.md): the root cause as the heading, the rule at the end |
+| What the entries ahead of us did, for the next hackathon | [`docs/retrospective.md`](docs/retrospective.md) |
 | Machines, connections, recovery | Atlas `SINCEAI-2026-RUNBOOK`, never this repository |
 | Working practice | this file |
 

@@ -86,6 +86,13 @@ away). Checked by aligning the final's own audio to the words (nine blocks, each
 and by correlating three seconds of each of four blocks against his track; the plan now names the track, and
 `cut_from_take.py` takes `--audio` so the next plan is right from the start. See LESSONS. The owner watched the corrected video and approved it for posting (8.11. at about 18:35).
 
+**Sunday 8.11. evening, the retrospective.** The owner asked what the two entries ahead of us did better. Their
+repositories were found on GitHub (Kaiku: alexisselorm/pauwer_elisa_hackathon, two people, 113 commits; Knownstate:
+silvekoski/knownstate, one person, live on OpenShift) and read, not run; a FIWARE entry also named Kaiku turned out to
+be a Fonecta challenge entry by another team. `docs/retrospective.md` compares the three against the reviewers' bar
+(usability, linking precision, time validity, readiness) and lists seven points for the next hackathon; LESSONS.md
+has the lesson. The other Elisa entries found on GitHub: elidex, ElisaEcho, Lumi, A-stars, two more.
+
 ## Session 5, 7.11.2026 late evening: the light look in Elisa's colours, video v6, package V5
 
 **Why:** after package V4 the owner read the whole once more and asked two things: whether a live demo

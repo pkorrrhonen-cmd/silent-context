@@ -5,6 +5,20 @@ elsewhere. Only lessons whose price was actually paid. A lesson that becomes a p
 into `CLAUDE.md`.
 
 
+## A demo that tells the story is judged beside products that take a question, and usability was the first criterion
+
+Third of fifteen in Elisa's challenge (8.11.2026). The two entries ahead ran live: a Slack bot that captured while
+the judge watched and an app that opens with "What are you stuck on?", both with real models and held-out evals shown
+inside the product. Silent context ran with no model and no key on purpose, as a page of thirteen scenes with
+recorded answers; the honesty and the documents were as good or better, but a judge could not ask it anything. The
+brief also allowed one-click questions to the specialist, and both winners used them; decision P6 read the brief
+more strictly than it asked. Both winners talked to Elisa at the venue during the event and cite it.
+[`retrospective.md`](retrospective.md) has the comparison.
+
+**The rule:** at a hackathon, build the live path a judge can type into first and keep the keyless path as the
+second one; read the brief for what it allows; put the evals in the product; and talk to the challenge owner on the
+first evening.
+
 ## A generated plan carries a default input, and a finisher that caches its work hides a wrong one
 
 On 8.11.2026 evening the result cut of the vertical video was delivered with the wrong voice: the final plan that
