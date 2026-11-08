@@ -84,7 +84,7 @@ Rebuilt on `audio/narration-social-v2.wav` with `--force`, because `final.py` ke
 encoded scenes in `final/work/<name>` and a plain rerun reused them (the file sizes did not change, which gave it
 away). Checked by aligning the final's own audio to the words (nine blocks, each within 0.1 s of the owner's track's)
 and by correlating three seconds of each of four blocks against his track; the plan now names the track, and
-`cut_from_take.py` takes `--audio` so the next plan is right from the start. See LESSONS.
+`cut_from_take.py` takes `--audio` so the next plan is right from the start. See LESSONS. The owner watched the corrected video and approved it for posting (8.11. at about 18:35).
 
 ## Session 5, 7.11.2026 late evening: the light look in Elisa's colours, video v6, package V5
 
