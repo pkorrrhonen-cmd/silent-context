@@ -4,7 +4,7 @@ Newest first. One entry per session; a session that ships several distinct thing
 What changed and *why*, with what was measured, so a later reader can tell a decision from a habit.
 The canonical state is [`BUILD_INFO.json`](BUILD_INFO.json): refer to it, do not copy it here.
 
-## Session 6, 7.11.2026 evening: the submission sent, and a vertical video for the owner's own channels
+## Session 6, 7.11.2026 evening: the submission sent
 
 **The submission** was sent from sinceai.app at about 20:00 with the owner, from package V5: every text from
 submission-notes.md, the YouTube link, the hosted copy as the Demo URL, the zip (checked equal to main's tip), the
@@ -17,28 +17,6 @@ tick in MLH's Best Use of ElevenLabs and asked for a sentence, written. Found on
 in as a file (an alternative to the YouTube link, not a second video), a filled supporting document slot opens
 another, and the zip limit is 250 MB. The submission was read back after sending with every field and file in place.
 The owner's word: Save changes, and the form is not touched again. P-3 and P-7 leave the backlog.
-
-**The vertical video** for the owner's own channels (Instagram, LinkedIn, the Lounge AI channel), told to someone who
-knows nothing about the subject. A first 30 second cut of six cards was built before any storyboard was agreed; the
-owner stopped it ("we skipped the planning phase", see LESSONS) and the storyboard was agreed scene by scene: the
-event, Elisa's network across the country, the shift to autonomous operation, the knowledge that lives in people's
-chats, the agent that pins it to the unit, the answer anywhere in the network, the close; English, "I" for what he
-did, under 60 seconds, his two photos from the event (6.11.) at the start (decision 26). Built on `video/social.html`
-as one stage for seven scenes: the map of Finland from Natural Earth's public-domain outline with 49 towns as the
-units and each one's nearest neighbours as links (an illustration, said so on screen), Elisa's example thread, the
-advice flying as a note to its unit, a fault far north with the note travelling to it, the agent's real answer from
-the page, dated. The photos stay out of the repository (other people in them), in the pipeline's media folder.
-
-Measured on the first take: a layer at opacity 0 is not painted before its fade (a 0.67 s gap in the screencast on
-the photo's fade-in), and animating the note's width and font size stalled its flight 0.43 s; at opacity 0.002 and
-with a transform-only flight one 0.27 s gap remained, at the photo-to-map crossfade. The owner locked the picture on
-the guide cut with one change (the day tiles were too transparent; dark glass now), then voiced the narration in
-ElevenLabs: 53.6 s, 3.9 words a second, aligned at -38 dB with a fit cost of 0.15, every block boundary in a pause.
-The take was recorded again on that alignment. With the default 1.2 s tail the final was 61.2 s, over the owner's
-limit, so `cut_from_take.py` took `--tail` (0.8 here) beside `--band` (0 here, the captions over the picture in the
-platforms' safe area): the final is 58.4 s, 1080 by 1920, 7.7 MB with the captions burned in, 5.8 MB without, with
-the SRT. Delivered in the Desktop folder "Silent context social video" with the words and notes. Not part of the
-submission.
 
 **Sunday 8.11. at 09:25, before the deadline:** the README's list of what was left out on purpose names phone calls,
 and `what-is-simulated.md` says the same: the calls between field engineers and experts carry much of this knowledge
@@ -57,43 +35,9 @@ readiness, so a strict score reflects the field, not the work; and they will rea
 again over the coming weeks. The vote window closed at 12:00, so P-11 leaves the backlog; the event is over. The
 README's first paragraph names the result.
 
-**Sunday 8.11. evening, the result cut of the vertical video** (decision 27). The owner wanted the video for his
-channels made again now that the result was known: a little over a minute, the first twenty seconds on what the
-event was and how it went, then the product as simply as before, then the thanks and the thought that the code may
-end up in real use and help everyone a little through network services that just work; no jargon, told to someone
-who knows nothing. The storyboard and the words were put to him first this time (the lesson from Saturday) and he
-changed two things before approving: the words closer to the first video's, which explained the product well, and no
-mention of his family. Nine blocks, 234 words (`narration-social-v2.md`); he voiced them in ElevenLabs twice and
-chose the second track, 72.4 s at 4.1 words a second, aligned at -38 dB with a fit cost of 0.29, every block boundary
-in a pause. The stage `social-v2.html` keeps the first video's scenes and adds two on his three photos from the
-closing ceremony (kept out of the repository, other people in them): the "Build complete" screen with the tiles "15
-teams" and "A team of one", the results board as a band that pushes in on the third-place line with a highlight, the
-stage under "Thank you", and the map at rest with every unit green for "a network that just works". The push-in's
-fixed point was first estimated from the photo and landed the cell at the frame's right edge; the stills on the
-aligned cues showed it, and the transform now carries the cell's centre to the frame's middle. One take, alone on the
-machine: four stalls of 0.27 to 0.38 s in the screencast, each at a crossfade between a full-frame photo and the map
-or at a block's end, outside the clips or of the kind accepted on Saturday. Cut with `--band 0 --tail 0.5`: the final
-is 77.8 s, 1080 by 1920, 15.7 MB with the captions burned in, 12.3 MB without, with the SRT, in the Desktop folder
-"Silent context social video V2" with the words, the notes and a draft post. The voice alone is 72.4 s, so a shorter
-video needs shorter words; the owner approved these.
-
-**The first delivery had the wrong voice** (the owner heard it at once): the final plan that `cut_from_take.py`
-writes names `audio/narration.wav` as its track, the Saturday video's voice, and `final.py` was run without
-`--narration`, so it cut that track at the new sentence times. The frame check had looked at the picture only.
-Rebuilt on `audio/narration-social-v2.wav` with `--force`, because `final.py` keeps the normalised track and the
-encoded scenes in `final/work/<name>` and a plain rerun reused them (the file sizes did not change, which gave it
-away). Checked by aligning the final's own audio to the words (nine blocks, each within 0.1 s of the owner's track's)
-and by correlating three seconds of each of four blocks against his track; the plan now names the track, and
-`cut_from_take.py` takes `--audio` so the next plan is right from the start. See LESSONS. The owner watched the corrected video and approved it for posting (8.11. at about 18:35).
-
-**Sunday 8.11. evening, the retrospective.** The owner asked what the two entries ahead of us did better. Their
-repositories were found on GitHub (Kaiku: alexisselorm/pauwer_elisa_hackathon, two people, 113 commits; Knownstate:
-silvekoski/knownstate, one person, live on OpenShift) and read, not run; a FIWARE entry also named Kaiku turned out to
-be a Fonecta challenge entry by another team. `docs/retrospective.md` compares the three against the reviewers' bar
-(usability, linking precision, time validity, readiness) and lists seven points for the next hackathon; LESSONS.md
-has the lesson. The other Elisa entries found on GitHub: elidex, ElisaEcho, Lumi, A-stars, two more. The owner's reading, added to the retrospective: we built the network-automation layer, the winners built the
-technician's tool, and the jury judged the layer people touch. The submitted commit f36d5b1 is now the tag
-`submission`, and the README says that the commits after it change no product code.
+**Sunday 8.11. evening:** material made after the result and not part of the entry (a video for the owner's own
+channels and a retrospective) was removed from the repository; the submitted commit is the tag `submission`, and
+no product code changed after it.
 
 ## Session 5, 7.11.2026 late evening: the light look in Elisa's colours, video v6, package V5
 

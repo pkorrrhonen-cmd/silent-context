@@ -13,36 +13,10 @@ inside the product. Silent context ran with no model and no key on purpose, as a
 recorded answers; the honesty and the documents were as good or better, but a judge could not ask it anything. The
 brief also allowed one-click questions to the specialist, and both winners used them; decision P6 read the brief
 more strictly than it asked. Both winners talked to Elisa at the venue during the event and cite it.
-[`retrospective.md`](retrospective.md) has the comparison.
 
 **The rule:** at a hackathon, build the live path a judge can type into first and keep the keyless path as the
 second one; read the brief for what it allows; put the evals in the product; and talk to the challenge owner on the
 first evening.
-
-## A generated plan carries a default input, and a finisher that caches its work hides a wrong one
-
-On 8.11.2026 evening the result cut of the vertical video was delivered with the wrong voice: the final plan that
-`cut_from_take.py` writes names the submission video's track by default, `final.py` was run without `--narration`,
-and the check before delivery looked at frames of the picture, never at the sound. The owner heard it at once. The
-first rerun with the plan corrected changed nothing, because `final.py` keeps the normalised track and the encoded
-scenes under `final/work/<name>` and reuses them unless `--force` is given; the unchanged file sizes were the clue.
-
-**The rule:** before a video is delivered, its sound is checked as its picture is: the final's own audio aligned to
-the words, or correlated against the track it should carry. A generated plan is read before it is run, and every
-input it names is the one meant; a tool that caches is rerun with its force flag after any input changes.
-
-## A ready pipeline and approved words tempt a build before the storyboard, and the owner's planning step is skipped
-
-On 7.11.2026 evening the owner asked for a 30 second vertical video of the submitted work for his own channels.
-The pipeline, the look and the narration's words were all ready, so the session wrote six cards from the
-submission's story and built a guide cut in one go. The owner's reply: this went minimally wrong, we did not hold
-the planning phase; the video matters to his family, colleagues and work contacts, its audience knows nothing of
-the subject, and the picture had to be made for a portrait screen from the start. The storyboard was then agreed
-scene by scene and the video rebuilt; the first cut cost about an hour.
-
-**Rule:** a video for a new audience is a new video, however ready the material: storyboard and narration v0
-first, the owner's sign-off, then the build (the video rulebook's steps), also for a "short version" of an
-approved video.
 
 ## A new unit at a site that already has one makes every mention of that site ambiguous
 
