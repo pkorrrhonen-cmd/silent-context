@@ -40,6 +40,12 @@ platforms' safe area): the final is 58.4 s, 1080 by 1920, 7.7 MB with the captio
 the SRT. Delivered in the Desktop folder "Silent context social video" with the words and notes. Not part of the
 submission.
 
+**Sunday 8.11. at 09:25, before the deadline:** the README's list of what was left out on purpose names phone calls,
+and `what-is-simulated.md` says the same: the calls between field engineers and experts carry much of this knowledge
+in practice, a transcript is a thread to the reader, so it is one speech-to-text connector away, with consent and
+data protection settled first. Decision P5 had kept real calls out of the demo; the owner noted on Sunday morning
+that the omission was never said aloud. The form was not touched. 160 tests pass.
+
 ## Session 5, 7.11.2026 late evening: the light look in Elisa's colours, video v6, package V5
 
 **Why:** after package V4 the owner read the whole once more and asked two things: whether a live demo
