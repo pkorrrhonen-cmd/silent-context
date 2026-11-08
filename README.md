@@ -66,7 +66,10 @@ What the demo does not claim:
   data here. It is not evidence of a correct class binding in a real network.
 
 Left out on purpose, each a connector or a model away: live connectors to Teams and Slack, a chat with
-the agent, search by meaning, and Elisa's real inventory graph.
+the agent, search by meaning, Elisa's real inventory graph, and phone calls. The calls between field
+engineers and experts are where much of this knowledge moves in practice; a transcript is a thread to the
+reader, so it is one speech-to-text connector away, with consent and data protection settled before any
+call is recorded (decision P5 kept real calls out of the demo).
 
 ## Architecture
 

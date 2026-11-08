@@ -37,7 +37,7 @@ The README's "What the demo does not claim" and the page's last scene say the sa
 | A better symptom match | Symptoms are matched by plain words over what a claim says. A miss says "I don't know", and a false match still has to pass the claim's own check before anything is proposed. A deployment would want a semantic match here. |
 | Acting on a real network | A policy says who acts (decision 20). The agent acts itself only on the reversible bounce, once its own log shows it carried out on the class with the counters rising; in this demo that action is an event written into the synthetic stream, marked as the agent's. There is no step machine and no write path to any device. |
 | A "mark as wrong" button | First in the plan's cutting order. A flagged evidence type exists in the schema for it. |
-| A scripted call transcript | Decision P5 allowed one only on three conditions, and the demo did not need it. |
+| Phone calls, transcribed | Decision P5 kept real calls out and allowed a scripted transcript only on three conditions; the demo did not need one. In practice the calls between field engineers and experts carry much of this knowledge: a transcript is a thread to the reader, so it is one speech-to-text connector away, with consent and data protection settled first. |
 
 ## What this means for a reader
 
