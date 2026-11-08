@@ -54,6 +54,15 @@ awards and says in its PRD that they do not change the Elisa evaluation. A FIWAR
 same event, but it is a Fonecta challenge entry by another team ([oroomi/kaiku](https://github.com/oroomi/kaiku)),
 not Elisa's winner.
 
+## The layer we built, in the owner's words
+
+We drew the boundary ourselves, and too tightly. We built more network automation: the agent that acts under a policy
+for the autonomous network, the claims it reads, the prohibition in code. The winners built more of the tool the
+field engineer holds: chat-like tools for the people on call, where the knowledge is collected and where it is
+read back. The work sat one layer apart, and the jury judged the layer people touch every day: usability, and for
+whom the product is. The next brief is read from several vantage points before the boundary is drawn: who touches
+this daily, who collects, who decides, and what the judge can do with it in two minutes.
+
 ## What to keep from ours
 
 The decision record, the truth set written before the rules, the held-out set the rule author never read, the two

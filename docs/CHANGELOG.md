@@ -91,7 +91,9 @@ repositories were found on GitHub (Kaiku: alexisselorm/pauwer_elisa_hackathon, t
 silvekoski/knownstate, one person, live on OpenShift) and read, not run; a FIWARE entry also named Kaiku turned out to
 be a Fonecta challenge entry by another team. `docs/retrospective.md` compares the three against the reviewers' bar
 (usability, linking precision, time validity, readiness) and lists seven points for the next hackathon; LESSONS.md
-has the lesson. The other Elisa entries found on GitHub: elidex, ElisaEcho, Lumi, A-stars, two more.
+has the lesson. The other Elisa entries found on GitHub: elidex, ElisaEcho, Lumi, A-stars, two more. The owner's reading, added to the retrospective: we built the network-automation layer, the winners built the
+technician's tool, and the jury judged the layer people touch. The submitted commit f36d5b1 is now the tag
+`submission`, and the README says that the commits after it change no product code.
 
 ## Session 5, 7.11.2026 late evening: the light look in Elisa's colours, video v6, package V5
 

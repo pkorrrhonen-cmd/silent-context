@@ -240,6 +240,10 @@ production solution, so a production deployment should choose its endpoint accor
 ## Pre-existing work
 
 Commit 1 (4.11.2026) is a scaffold created before the event; everything after it was built at Since AI 2026.
+The submission is the tag `submission` (commit f36d5b1, Sunday 8.11.2026 at 09:25; the source zip in the form was built
+from it). The commits after it were made after the result and change no product code: the result in this README,
+[`docs/retrospective.md`](docs/retrospective.md), the video for the owner's own channels under `video/`, and the records
+in `docs/`.
 
 ## AI tools used
 
