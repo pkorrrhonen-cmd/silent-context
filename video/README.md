@@ -65,6 +65,31 @@ Measured 7.11.: a layer that waits at opacity 0 is not painted before its fade, 
 photo had a 0.67 s gap in the screencast; at opacity 0.002 it is painted and the fade has its frames. The note's
 flight animated its width and font size in the first take and stalled 0.43 s; by transform alone it does not.
 
+### The result cut (8.11.2026 evening)
+
+After the result (third in Elisa's own top three) the video was made again, a little over a minute, with the result
+in its first twenty seconds and the thanks at its end. The storyboard and the words were approved by the owner before
+the build. The same stage, with two scenes added and the close changed; the first video's files stay as they are.
+
+| File | What |
+|---|---|
+| `narration-social-v2.md` | Nine blocks, 234 words, in the aligner's form; `narration-read-social-v2.txt` is what the owner reads into ElevenLabs. |
+| `social-v2.html` | The first stage's scenes plus the result (the "Build complete" screen, then the results board as a band pushed in on the third-place line, the owner's photos from the closing ceremony) and the thanks (the stage under "Thank you", then the map at rest with every unit green); the close names the place. The push-in is a transform about the cell's centre, carried to the frame's middle, so the screencast keeps its frames. |
+| `scenes_social_v2.py` | The recorder's scene: `scenes_social.py` pointed at the nine blocks and the second stage. |
+| `social-v2-cut.json`, `social-v2-final.json` | Written by `cut_from_take.py --band 0 --tail 0.5 --prefix social-v2-`. |
+
+The three new photos (`build-complete.jpg`, `results-board.jpg`, `closing-stage.jpg`) are the owner's and stay out of
+the repository, in the pipeline's media folder beside the first two; the stage photo carried an EXIF rotation, which
+ffmpeg applied when scaling it. The owner's voice was aligned first (72.4 s, 4.1 words a second, fit cost 0.29), the
+take recorded on it, then the same three steps as above. Measured on the take: four stalls of 0.27 to 0.38 s, each
+at a crossfade between a full-frame photo and the map or at a block's end, none inside a move. The final: 77.8 s,
+1080 by 1920, 15.7 MB with the captions burned in, 12.3 MB without, in the Desktop folder "Silent context social
+video V2".
+
+```bash
+SILENT_CONTEXT_ALIGNMENT=../media/silent-context/audio/scenes-social-v2.json uv run python pipeline/record.py --stage "file://<repo>/video/social-v2.html" --scenes <repo>/video/scenes_social_v2.py --out ../media/silent-context/takes-social-v2 --size 1080x1920 social
+```
+
 ## Shared
 
 | File | What |

@@ -57,6 +57,26 @@ readiness, so a strict score reflects the field, not the work; and they will rea
 again over the coming weeks. The vote window closed at 12:00, so P-11 leaves the backlog; the event is over. The
 README's first paragraph names the result.
 
+**Sunday 8.11. evening, the result cut of the vertical video** (decision 27). The owner wanted the video for his
+channels made again now that the result was known: a little over a minute, the first twenty seconds on what the
+event was and how it went, then the product as simply as before, then the thanks and the thought that the code may
+end up in real use and help everyone a little through network services that just work; no jargon, told to someone
+who knows nothing. The storyboard and the words were put to him first this time (the lesson from Saturday) and he
+changed two things before approving: the words closer to the first video's, which explained the product well, and no
+mention of his family. Nine blocks, 234 words (`narration-social-v2.md`); he voiced them in ElevenLabs twice and
+chose the second track, 72.4 s at 4.1 words a second, aligned at -38 dB with a fit cost of 0.29, every block boundary
+in a pause. The stage `social-v2.html` keeps the first video's scenes and adds two on his three photos from the
+closing ceremony (kept out of the repository, other people in them): the "Build complete" screen with the tiles "15
+teams" and "A team of one", the results board as a band that pushes in on the third-place line with a highlight, the
+stage under "Thank you", and the map at rest with every unit green for "a network that just works". The push-in's
+fixed point was first estimated from the photo and landed the cell at the frame's right edge; the stills on the
+aligned cues showed it, and the transform now carries the cell's centre to the frame's middle. One take, alone on the
+machine: four stalls of 0.27 to 0.38 s in the screencast, each at a crossfade between a full-frame photo and the map
+or at a block's end, outside the clips or of the kind accepted on Saturday. Cut with `--band 0 --tail 0.5`: the final
+is 77.8 s, 1080 by 1920, 15.7 MB with the captions burned in, 12.3 MB without, with the SRT, in the Desktop folder
+"Silent context social video V2" with the words, the notes and a draft post. The voice alone is 72.4 s, so a shorter
+video needs shorter words; the owner approved these.
+
 ## Session 5, 7.11.2026 late evening: the light look in Elisa's colours, video v6, package V5
 
 **Why:** after package V4 the owner read the whole once more and asked two things: whether a live demo
