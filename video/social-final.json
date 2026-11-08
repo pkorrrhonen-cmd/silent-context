@@ -3,7 +3,7 @@
  "name": "silent-context-social",
  "size": "1080x1920",
  "band": 0,
- "narration": "audio/narration.wav",
+ "narration": "audio/narration-social.wav",
  "scenes_json": "audio/scenes-social.json",
  "scenes": {
   "01": {

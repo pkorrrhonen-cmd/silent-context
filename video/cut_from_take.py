@@ -38,6 +38,8 @@ def main() -> None:
     ap.add_argument("--scenes-json", default="audio/scenes.json", help="align.py's output, relative to --media")
     ap.add_argument("--narration", default=Path(__file__).with_name("narration.md"), help="the narration, for the clips' names")
     ap.add_argument("--name", default="silent-context-en", help="the final's name in the plan")
+    ap.add_argument("--audio", default="audio/narration.wav", help="the track the final plays, relative to --media; "
+                    "the plan names it, so final.py needs no --narration (the result cut of the social video, 8.11.2026)")
     ap.add_argument("--prefix", default="", help="a prefix for the written files: 'v3-' gives v3-cut.json and v3-final.json")
     ap.add_argument("--out", default=Path(__file__).parent, help="where the cut list and the final plan go")
     ap.add_argument("--tail", type=float, default=TAIL, help="seconds of picture after a block's last word; the "
@@ -69,11 +71,11 @@ def main() -> None:
         "scenes": scenes,
     }
     final = {
-        "about": "Silent context: the final plan (pipeline/final.py), written by cut_from_take.py from the alignment. Each narration block is one clip; its sentences start 0.3 s into the clip, which already shows what they talk about. The captions are burned into a black band under the picture, never over it. The guide run uses the same plan with --narration, --scenes-json and --name; the owner's own track replaces audio/narration.wav last.",
+        "about": "Silent context: the final plan (pipeline/final.py), written by cut_from_take.py from the alignment. Each narration block is one clip; its sentences start 0.3 s into the clip, which already shows what they talk about. The captions are burned into a black band under the picture, never over it. The guide run uses the same plan with --narration, --scenes-json and --name; the track is the one --audio named when this plan was written.",
         "name": a.name,
         "size": events["size"],
         "band": a.band,
-        "narration": "audio/narration.wav",
+        "narration": a.audio,
         "scenes_json": a.scenes_json,
         "scenes": {block: {"clip": names[block], "blocks": [[0, sentences[block] - 1, 0.3]]} for block in blocks},
     }

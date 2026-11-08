@@ -86,6 +86,12 @@ at a crossfade between a full-frame photo and the map or at a block's end, none 
 1080 by 1920, 15.7 MB with the captions burned in, 12.3 MB without, in the Desktop folder "Silent context social
 video V2".
 
+The plan's `narration` must be the track meant: `cut_from_take.py --audio audio/narration-social-v2.wav` writes it (the
+default is the submission video's `audio/narration.wav`, and the first delivery of this cut carried that voice). After
+any change to the track or the plan, `final.py` needs `--force`: it keeps the normalised track and the encoded scenes
+in `final/work/<name>` and otherwise reuses them. The sound is checked before delivery by aligning the final's own
+audio to the narration (`align.py` on the audio extracted from the mp4): each block within 0.1 s of the track's.
+
 ```bash
 SILENT_CONTEXT_ALIGNMENT=../media/silent-context/audio/scenes-social-v2.json uv run python pipeline/record.py --stage "file://<repo>/video/social-v2.html" --scenes <repo>/video/scenes_social_v2.py --out ../media/silent-context/takes-social-v2 --size 1080x1920 social
 ```

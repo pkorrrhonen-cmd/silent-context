@@ -77,6 +77,15 @@ is 77.8 s, 1080 by 1920, 15.7 MB with the captions burned in, 12.3 MB without, w
 "Silent context social video V2" with the words, the notes and a draft post. The voice alone is 72.4 s, so a shorter
 video needs shorter words; the owner approved these.
 
+**The first delivery had the wrong voice** (the owner heard it at once): the final plan that `cut_from_take.py`
+writes names `audio/narration.wav` as its track, the Saturday video's voice, and `final.py` was run without
+`--narration`, so it cut that track at the new sentence times. The frame check had looked at the picture only.
+Rebuilt on `audio/narration-social-v2.wav` with `--force`, because `final.py` keeps the normalised track and the
+encoded scenes in `final/work/<name>` and a plain rerun reused them (the file sizes did not change, which gave it
+away). Checked by aligning the final's own audio to the words (nine blocks, each within 0.1 s of the owner's track's)
+and by correlating three seconds of each of four blocks against his track; the plan now names the track, and
+`cut_from_take.py` takes `--audio` so the next plan is right from the start. See LESSONS.
+
 ## Session 5, 7.11.2026 late evening: the light look in Elisa's colours, video v6, package V5
 
 **Why:** after package V4 the owner read the whole once more and asked two things: whether a live demo

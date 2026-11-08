@@ -5,6 +5,18 @@ elsewhere. Only lessons whose price was actually paid. A lesson that becomes a p
 into `CLAUDE.md`.
 
 
+## A generated plan carries a default input, and a finisher that caches its work hides a wrong one
+
+On 8.11.2026 evening the result cut of the vertical video was delivered with the wrong voice: the final plan that
+`cut_from_take.py` writes names the submission video's track by default, `final.py` was run without `--narration`,
+and the check before delivery looked at frames of the picture, never at the sound. The owner heard it at once. The
+first rerun with the plan corrected changed nothing, because `final.py` keeps the normalised track and the encoded
+scenes under `final/work/<name>` and reuses them unless `--force` is given; the unchanged file sizes were the clue.
+
+**The rule:** before a video is delivered, its sound is checked as its picture is: the final's own audio aligned to
+the words, or correlated against the track it should carry. A generated plan is read before it is run, and every
+input it names is the one meant; a tool that caches is rerun with its force flag after any input changes.
+
 ## A ready pipeline and approved words tempt a build before the storyboard, and the owner's planning step is skipped
 
 On 7.11.2026 evening the owner asked for a 30 second vertical video of the submitted work for his own channels.
