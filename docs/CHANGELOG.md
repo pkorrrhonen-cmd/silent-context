@@ -44,7 +44,9 @@ submission.
 and `what-is-simulated.md` says the same: the calls between field engineers and experts carry much of this knowledge
 in practice, a transcript is a thread to the reader, so it is one speech-to-text connector away, with consent and
 data protection settled first. Decision P5 had kept real calls out of the demo; the owner noted on Sunday morning
-that the omission was never said aloud. The form was not touched. 160 tests pass.
+that the omission was never said aloud. 160 tests pass. The owner then reopened the form once, at about 09:30: the
+source zip was replaced with one from this tip (213 files, 5.1 MB) and the About text's left-out sentence got the same
+words; saved before the 10:00 deadline. The submission is final as of then.
 
 ## Session 5, 7.11.2026 late evening: the light look in Elisa's colours, video v6, package V5
 
