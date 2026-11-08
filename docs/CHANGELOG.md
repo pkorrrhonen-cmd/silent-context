@@ -48,6 +48,15 @@ that the omission was never said aloud. 160 tests pass. The owner then reopened 
 source zip was replaced with one from this tip (213 files, 5.1 MB) and the About text's left-out sentence got the same
 words; saved before the 10:00 deadline. The submission is final as of then.
 
+**Sunday 8.11., the result:** Elisa's own top three, announced by the challenge's two reviewers after the vote and
+the finals: Kaiku first, Knownstate second, Silent context third. Their note to the fifteen teams, in short: the level
+at the top was very high and the finalists were hard to separate; several implementations solved parts of the problem
+in ways they want to take into Elisa's own engineering discussions; with a few hours for fifteen repositories, demos,
+videos and documents they held one strict bar across usability, linking precision, time validity and overall
+readiness, so a strict score reflects the field, not the work; and they will read the submissions and repositories
+again over the coming weeks. The vote window closed at 12:00, so P-11 leaves the backlog; the event is over. The
+README's first paragraph names the result.
+
 ## Session 5, 7.11.2026 late evening: the light look in Elisa's colours, video v6, package V5
 
 **Why:** after package V4 the owner read the whole once more and asked two things: whether a live demo

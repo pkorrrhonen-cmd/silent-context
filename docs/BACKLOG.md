@@ -18,7 +18,7 @@ Atlas artifact `SINCEAI-2026-SUUNNITELMA`, not here, because this repository is 
 Codes: **P** the owner's own actions, **REPO** the repository, **DOC** the documents to fill,
 **BUILD** the build's phases.
 
-Updated 7.11.2026 (session 6, evening: the submission is sent).
+Updated 8.11.2026 (session 6: the event is over, third in Elisa's top three; the vote window closed).
 
 ---
 
@@ -26,7 +26,6 @@ Updated 7.11.2026 (session 6, evening: the submission is sent).
 
 | Code | Task | Why / notes |
 |---|---|---|
-| P-11 | **Vote** in sinceai.app on Sunday 10:00 to 12:00. | 20 pairwise comparisons per builder; the vote picks the finalists and feeds the company top three. Can be done from anywhere. The closing ceremony at 13:15 needs presence only from the five finalists, who must be at the stage side at 13:00 and present live. |
 | P-13 | **Post the vertical video** on your own channels (Instagram, LinkedIn, the Lounge AI channel). | The Desktop folder "Silent context social video": the captioned file is the one to post (58.4 s, 1080 by 1920), the uncaptioned one with the SRT for a platform whose own captions you prefer, and `notes.md` holds a draft for the post. Not part of the submission. |
 | P-12 | **After the event, decide whether the hosted copy stays up.** `cd hosting && npx wrangler delete` takes the Worker and its container down; [`hosting.md`](hosting.md) says how the image is removed too. | The copy at `https://silent-context.pkorrrhonen.workers.dev` sleeps two hours after the last visit and costs nothing asleep; awake it costs about 0.03 USD an hour beyond the plan's included amounts. The Sunday cron wakes it 08:00 to 13:55 Finnish time every week until the Worker is deleted or the `triggers` line in `hosting/wrangler.jsonc` goes. |
 | P-8 | **On the main PC,** point the checkout at the renamed repository: `git remote set-url origin https://github.com/pkorrrhonen-cmd/silent-context.git`. | GitHub redirects the old name, so this can wait; it only keeps the remote honest. |

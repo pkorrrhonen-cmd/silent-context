@@ -1,8 +1,8 @@
 # Silent context capture for network operations
 
-An entry for Since AI 2026 (6.11. to 8.11.2026), Elisa's challenge. The product's name is Silent
-context. Working documents are in [`docs/`](docs/), and
-[`CLAUDE.md`](CLAUDE.md) says where each thing lives.
+An entry for Since AI 2026 (6.11. to 8.11.2026), Elisa's challenge: third in Elisa's own top three,
+announced at the close of the event on 8.11.2026. The product's name is Silent context. Working documents
+are in [`docs/`](docs/), and [`CLAUDE.md`](CLAUDE.md) says where each thing lives.
 
 ## Challenge
 
